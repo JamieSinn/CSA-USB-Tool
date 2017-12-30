@@ -148,6 +148,7 @@ namespace CSAUSBTool
 
         private void buildISOButton_Click(object sender, EventArgs e)
         {
+            Directory.CreateDirectory(isoFolderPath);
             toolStripStatusLabel.Text = @"Building ISO Image...";
             selectedFrc.BuildISO(downloadFolderPath, isoFolderPath, toolStripProgressBar);
             toolStripStatusLabel.Text = @"Idle";
