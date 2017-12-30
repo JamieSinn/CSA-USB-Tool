@@ -12,12 +12,27 @@
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
+    <Optimize>true</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -32,9 +47,128 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>firstrobotics_iconvert_rgb_tCt_icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>CSAUSBTool.Program</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DiscUtils, Version=0.13.0.0, Culture=neutral, PublicKeyToken=5fa5b410cc9c6289, processorArchitecture=MSIL">
+      <HintPath>..\packages\DiscUtils.0.13.0-alpha\lib\net45\DiscUtils.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DiscUtils.BootConfig, Version=0.13.0.0, Culture=neutral, PublicKeyToken=5fa5b410cc9c6289, processorArchitecture=MSIL">
+      <HintPath>..\packages\DiscUtils.BootConfig.0.13.0-alpha\lib\net45\DiscUtils.BootConfig.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DiscUtils.Core, Version=0.13.0.0, Culture=neutral, PublicKeyToken=5fa5b410cc9c6289, processorArchitecture=MSIL">
+      <HintPath>..\packages\DiscUtils.Core.0.13.0-alpha\lib\net45\DiscUtils.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DiscUtils.Dmg, Version=0.13.0.0, Culture=neutral, PublicKeyToken=5fa5b410cc9c6289, processorArchitecture=MSIL">
+      <HintPath>..\packages\DiscUtils.Dmg.0.13.0-alpha\lib\net45\DiscUtils.Dmg.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DiscUtils.Ext, Version=0.13.0.0, Culture=neutral, PublicKeyToken=5fa5b410cc9c6289, processorArchitecture=MSIL">
+      <HintPath>..\packages\DiscUtils.Ext.0.13.0-alpha\lib\net45\DiscUtils.Ext.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DiscUtils.Fat, Version=0.13.0.0, Culture=neutral, PublicKeyToken=5fa5b410cc9c6289, processorArchitecture=MSIL">
+      <HintPath>..\packages\DiscUtils.Fat.0.13.0-alpha\lib\net45\DiscUtils.Fat.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DiscUtils.HfsPlus, Version=0.13.0.0, Culture=neutral, PublicKeyToken=5fa5b410cc9c6289, processorArchitecture=MSIL">
+      <HintPath>..\packages\DiscUtils.HfsPlus.0.13.0-alpha\lib\net45\DiscUtils.HfsPlus.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DiscUtils.Iscsi, Version=0.13.0.0, Culture=neutral, PublicKeyToken=5fa5b410cc9c6289, processorArchitecture=MSIL">
+      <HintPath>..\packages\DiscUtils.Iscsi.0.13.0-alpha\lib\net45\DiscUtils.Iscsi.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DiscUtils.Iso9660, Version=0.13.0.0, Culture=neutral, PublicKeyToken=5fa5b410cc9c6289, processorArchitecture=MSIL">
+      <HintPath>..\packages\DiscUtils.Iso9660.0.13.0-alpha\lib\net45\DiscUtils.Iso9660.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DiscUtils.Lvm, Version=0.13.0.0, Culture=neutral, PublicKeyToken=5fa5b410cc9c6289, processorArchitecture=MSIL">
+      <HintPath>..\packages\DiscUtils.Lvm.0.13.0-alpha\lib\net45\DiscUtils.Lvm.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DiscUtils.Net, Version=0.13.0.0, Culture=neutral, PublicKeyToken=5fa5b410cc9c6289, processorArchitecture=MSIL">
+      <HintPath>..\packages\DiscUtils.Net.0.13.0-alpha\lib\net45\DiscUtils.Net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DiscUtils.Nfs, Version=0.13.0.0, Culture=neutral, PublicKeyToken=5fa5b410cc9c6289, processorArchitecture=MSIL">
+      <HintPath>..\packages\DiscUtils.Nfs.0.13.0-alpha\lib\net45\DiscUtils.Nfs.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DiscUtils.Ntfs, Version=0.13.0.0, Culture=neutral, PublicKeyToken=5fa5b410cc9c6289, processorArchitecture=MSIL">
+      <HintPath>..\packages\DiscUtils.Ntfs.0.13.0-alpha\lib\net45\DiscUtils.Ntfs.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DiscUtils.OpticalDiscSharing, Version=0.13.0.0, Culture=neutral, PublicKeyToken=5fa5b410cc9c6289, processorArchitecture=MSIL">
+      <HintPath>..\packages\DiscUtils.OpticalDiscSharing.0.13.0-alpha\lib\net45\DiscUtils.OpticalDiscSharing.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DiscUtils.OpticalDisk, Version=0.13.0.0, Culture=neutral, PublicKeyToken=5fa5b410cc9c6289, processorArchitecture=MSIL">
+      <HintPath>..\packages\DiscUtils.OpticalDisk.0.13.0-alpha\lib\net45\DiscUtils.OpticalDisk.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DiscUtils.Registry, Version=0.13.0.0, Culture=neutral, PublicKeyToken=5fa5b410cc9c6289, processorArchitecture=MSIL">
+      <HintPath>..\packages\DiscUtils.Registry.0.13.0-alpha\lib\net45\DiscUtils.Registry.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DiscUtils.Sdi, Version=0.13.0.0, Culture=neutral, PublicKeyToken=5fa5b410cc9c6289, processorArchitecture=MSIL">
+      <HintPath>..\packages\DiscUtils.Sdi.0.13.0-alpha\lib\net45\DiscUtils.Sdi.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DiscUtils.SquashFs, Version=0.13.0.0, Culture=neutral, PublicKeyToken=5fa5b410cc9c6289, processorArchitecture=MSIL">
+      <HintPath>..\packages\DiscUtils.SquashFs.0.13.0-alpha\lib\net45\DiscUtils.SquashFs.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DiscUtils.Streams, Version=0.13.0.0, Culture=neutral, PublicKeyToken=5fa5b410cc9c6289, processorArchitecture=MSIL">
+      <HintPath>..\packages\DiscUtils.Streams.0.13.0-alpha\lib\net45\DiscUtils.Streams.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DiscUtils.Swap, Version=0.13.0.0, Culture=neutral, PublicKeyToken=5fa5b410cc9c6289, processorArchitecture=MSIL">
+      <HintPath>..\packages\DiscUtils.Swap.0.13.0-alpha\lib\net45\DiscUtils.Swap.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DiscUtils.Udf, Version=0.13.0.0, Culture=neutral, PublicKeyToken=5fa5b410cc9c6289, processorArchitecture=MSIL">
+      <HintPath>..\packages\DiscUtils.Udf.0.13.0-alpha\lib\net45\DiscUtils.Udf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DiscUtils.Vdi, Version=0.13.0.0, Culture=neutral, PublicKeyToken=5fa5b410cc9c6289, processorArchitecture=MSIL">
+      <HintPath>..\packages\DiscUtils.Vdi.0.13.0-alpha\lib\net45\DiscUtils.Vdi.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DiscUtils.Vhd, Version=0.13.0.0, Culture=neutral, PublicKeyToken=5fa5b410cc9c6289, processorArchitecture=MSIL">
+      <HintPath>..\packages\DiscUtils.Vhd.0.13.0-alpha\lib\net45\DiscUtils.Vhd.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DiscUtils.Vhdx, Version=0.13.0.0, Culture=neutral, PublicKeyToken=5fa5b410cc9c6289, processorArchitecture=MSIL">
+      <HintPath>..\packages\DiscUtils.Vhdx.0.13.0-alpha\lib\net45\DiscUtils.Vhdx.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DiscUtils.Vmdk, Version=0.13.0.0, Culture=neutral, PublicKeyToken=5fa5b410cc9c6289, processorArchitecture=MSIL">
+      <HintPath>..\packages\DiscUtils.Vmdk.0.13.0-alpha\lib\net45\DiscUtils.Vmdk.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DiscUtils.Wim, Version=0.13.0.0, Culture=neutral, PublicKeyToken=5fa5b410cc9c6289, processorArchitecture=MSIL">
+      <HintPath>..\packages\DiscUtils.Wim.0.13.0-alpha\lib\net45\DiscUtils.Wim.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DiscUtils.Xfs, Version=0.13.0.0, Culture=neutral, PublicKeyToken=5fa5b410cc9c6289, processorArchitecture=MSIL">
+      <HintPath>..\packages\DiscUtils.Xfs.0.13.0-alpha\lib\net45\DiscUtils.Xfs.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DiscUtils.Xva, Version=0.13.0.0, Culture=neutral, PublicKeyToken=5fa5b410cc9c6289, processorArchitecture=MSIL">
+      <HintPath>..\packages\DiscUtils.Xva.0.13.0-alpha\lib\net45\DiscUtils.Xva.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,14 +180,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="ControlSystemsSoftware.cs" />
+    <Compile Include="CSAUSBTool.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="CSAUSBTool.Designer.cs">
+      <DependentUpon>CSAUSBTool.cs</DependentUpon>
     </Compile>
+    <Compile Include="FRCYear.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="CSAUSBTool.resx">
+      <DependentUpon>CSAUSBTool.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -63,6 +202,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -75,6 +215,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="firstrobotics_iconvert_rgb_tCt_icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
