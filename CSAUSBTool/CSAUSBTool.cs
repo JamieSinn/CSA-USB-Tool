@@ -23,40 +23,8 @@ namespace CSAUSBTool
         public CSAUSBTool()
         {
             InitializeComponent();
-            competitions[2017] = new FRCYear(2017,
-                new List<ControlSystemsSoftware>
-                {
-                    new ControlSystemsSoftware("NI-Update",
-                        "FRCUpdateSuite_2017.2.0.zip",
-                        "http://ftp.ni.com/support/softlib/first/frc/FileAttachments/FRCUpdateSuite_2017.2.0.zip",
-                        "4b773561c66cd3e4fb06315d6e570884",
-                        true),
-                    new ControlSystemsSoftware("NI-LabVIEW",
-                        "NI_FRC2017.zip",
-                        "http://ftp.ni.com/support/softlib/labview/labview_frc/NI_FRC2017.zip",
-                        "6f3d492145ddb84527ed493690020ed9",
-                        true),
-                    new ControlSystemsSoftware("C++Toolchain",
-                        "FRC-2017-Windows-Toolchain-4.9.3.msi",
-                        "http://first.wpi.edu/FRC/roborio/toolchains/FRC-2017-Windows-Toolchain-4.9.3.msi",
-                        "48d500157900ec7532e417e118880a8d",
-                        false),
-                    new ControlSystemsSoftware("CTRE-Libraries",
-                        "CTRE Toolsuite v4.4.1.12.zip",
-                        "http://www.ctr-electronics.com/downloads/installers/CTRE%20Toolsuite%20v4.4.1.12.zip",
-                        "e29adad28add73220792b0c919bffbb4",
-                        true),
-                    new ControlSystemsSoftware("EclipseJava",
-                        "eclipse-java-oxygen-2-win32.zip",
-                        "http://mirror.csclub.uwaterloo.ca/eclipse/technology/epp/downloads/release/oxygen/2/eclipse-java-oxygen-2-win32.zip",
-                        "e7661f45ebd097d4b6b7ad18d5f08799",
-                        true),
-                    new ControlSystemsSoftware("EclipseC++",
-                        "eclipse-cpp-oxygen-2-win32.zip",
-                        "http://mirror.csclub.uwaterloo.ca/eclipse/technology/epp/downloads/release/oxygen/2/eclipse-cpp-oxygen-2-win32.zip",
-                        "f6dca87d054379c63e76ed160b7efaf6",
-                        true)
-                });
+
+            competitions[2017] = new FRCYear(2017, FRCYear.GetWebList(2017));
             competitions[2018] = new FRCYear(2018,
                 new List<ControlSystemsSoftware>
                 {
