@@ -25,40 +25,7 @@ namespace CSAUSBTool
             InitializeComponent();
 
             competitions[2017] = new FRCYear(2017, FRCYear.GetWebList(2017));
-            competitions[2018] = new FRCYear(2018,
-                new List<ControlSystemsSoftware>
-                {
-                    new ControlSystemsSoftware("NI-Update",
-                        "",
-                        "",
-                        "",
-                        true),
-                    new ControlSystemsSoftware("NI-LabVIEW",
-                        "",
-                        "",
-                        "",
-                        true),
-                    new ControlSystemsSoftware("C++Toolchain",
-                        "",
-                        "",
-                        "",
-                        false),
-                    new ControlSystemsSoftware("CTRE-Libraries",
-                        "",
-                        "",
-                        "",
-                        true),
-                    new ControlSystemsSoftware("EclipseJava",
-                        "eclipse-java-oxygen-2-win32.zip",
-                        "http://mirror.csclub.uwaterloo.ca/eclipse/technology/epp/downloads/release/oxygen/2/eclipse-java-oxygen-2-win32.zip",
-                        "e7661f45ebd097d4b6b7ad18d5f08799",
-                        true),
-                    new ControlSystemsSoftware("EclipseC++",
-                        "eclipse-cpp-oxygen-2-win32.zip",
-                        "http://mirror.csclub.uwaterloo.ca/eclipse/technology/epp/downloads/release/oxygen/2/eclipse-cpp-oxygen-2-win32.zip",
-                        "f6dca87d054379c63e76ed160b7efaf6",
-                        true)
-                });
+            competitions[2018] = new FRCYear(2018, FRCYear.GetWebList(2018));
             buildISOButton.Enabled = false;
             yearSelection.SelectedIndex = 0;
             selectedFrc = competitions[selectedYear];
