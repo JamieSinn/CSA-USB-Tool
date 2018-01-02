@@ -71,7 +71,7 @@ namespace CSAUSBTool
                 string[] lines = data.Split('\n');
                 foreach (var line in lines)
                 {
-                    if(line.Equals("")) continue;
+                    if(line.Equals("") || line.StartsWith("#")) continue;
                     string[] args = line.Split(',');
                     ret.Add(new ControlSystemsSoftware(args[0], args[1], args[2], args[3], bool.Parse(args[4])));
                 }
