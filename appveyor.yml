@@ -1,0 +1,4 @@
+version: 2018.0.{build}
+image: Visual Studio 2015
+before_build:
+  - nuget restore
