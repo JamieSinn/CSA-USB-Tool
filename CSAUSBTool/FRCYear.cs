@@ -53,8 +53,6 @@ namespace CSAUSBTool
 
             foreach (var soft in Software)
             {
-                progress.ProgressBar.Value += (100 / Software.Count);
-                Thread.Sleep(300);
                 builder.AddFile(soft.FileName, sourcepath + @"\" + soft.FileName);
             }
             builder.Build(outputPath + @"\" + builder.VolumeIdentifier + ".iso");
