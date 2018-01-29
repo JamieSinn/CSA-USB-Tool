@@ -2,7 +2,7 @@
 EclipseJava,eclipse-java-oxygen-2-win32.zip,http://mirror.csclub.uwaterloo.ca/eclipse/technology/epp/downloads/release/oxygen/2/eclipse-java-oxygen-2-win32.zip,e7661f45ebd097d4b6b7ad18d5f08799,true
 EclipseC++,eclipse-cpp-oxygen-2-win32.zip,http://mirror.csclub.uwaterloo.ca/eclipse/technology/epp/downloads/release/oxygen/2/eclipse-cpp-oxygen-2-win32.zip,f6dca87d054379c63e76ed160b7efaf6,true
 NI-LabVIEW,NI_FRC2018.zip,http://ftp.ni.com/support/softlib/labview/labview_frc/NI_FRC2018.zip,29ea9bdf54f6b645b49a9c5d5df5a96f,true
-NI-Update,FRCUpdateSuite_2018.0.0.zip,http://ftp.ni.com/support/softlib/first/frc/FileAttachments/FRCUpdateSuite_2018.0.0.zip,4f81ce8f34847a403723bc79786cfb3a,true
+NI-Update,FRCUpdateSuite_2018.1.0.zip,http://ftp.ni.com/support/softlib/first/frc/FileAttachments/FRCUpdateSuite_2018.1.0.zip,16c3ee965b54887aa57aeb6b2cf87c79,true
 Password,2018Password.txt,https://raw.githubusercontent.com/JamieSinn/CSA-USB-Tool/master/2018Password.txt,fc4dc94845f4177577d41dea08c99fb1,false
 C++Toolchain,FRC-2018-Windows-Toolchain-5.5.msi,http://first.wpi.edu/FRC/roborio/toolchains/FRC-2018-Windows-Toolchain-5.5.msi,044f9a97451643be24b4dd9880413602,false
 CTRE-Phoenix-Win,CTRE Phoenix Framework v5.2.1.1.zip,http://www.ctr-electronics.com/downloads/installers/CTRE%20Phoenix%20Framework%20v5.2.1.1.zip,8a3fc6542649cfcc1b3054edc5415937,true
