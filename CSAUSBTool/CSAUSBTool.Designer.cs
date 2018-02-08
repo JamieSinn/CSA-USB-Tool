@@ -172,9 +172,9 @@
             this.downloadAsyncCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.downloadAsyncCheckbox.Location = new System.Drawing.Point(15, 104);
             this.downloadAsyncCheckbox.Name = "downloadAsyncCheckbox";
-            this.downloadAsyncCheckbox.Size = new System.Drawing.Size(159, 17);
+            this.downloadAsyncCheckbox.Size = new System.Drawing.Size(106, 17);
             this.downloadAsyncCheckbox.TabIndex = 16;
-            this.downloadAsyncCheckbox.Text = "Download Async (No Unzip)";
+            this.downloadAsyncCheckbox.Text = "Download Async";
             this.downloadAsyncCheckbox.UseVisualStyleBackColor = true;
             // 
             // CSAUSBTool

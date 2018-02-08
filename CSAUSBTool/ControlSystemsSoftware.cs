@@ -38,15 +38,17 @@ namespace CSAUSBTool
             using (WebClient client = new WebClient())
             {
                 client.DownloadProgressChanged += progress;
-                client.DownloadDataCompleted += (sender, eventargs) =>
+                
+                client.DownloadFileCompleted += (sender, eventargs) =>
                 {
-                    Console.Out.WriteLine("File transfer completed");
+                    Console.Out.WriteLine("Download finished for: " + Name);
                 };
                 if (async)
                     client.DownloadFileAsync(Uri, path + @"\" + FileName);
                 else
                 {
                     client.DownloadFile(Uri, path + @"\" + FileName);
+                    Console.Out.WriteLine("Download finished for: " + Name);
                     Thread.Sleep(1000);
                     IsValid(path);
                 }

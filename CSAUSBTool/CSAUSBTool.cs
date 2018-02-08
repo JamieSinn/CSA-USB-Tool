@@ -20,15 +20,23 @@ namespace CSAUSBTool
         public FRCYear selectedFrc { get; set; }
         private Dictionary<int, FRCYear> competitions = new Dictionary<int, FRCYear>();
 
-        public CSAUSBTool()
+        public CSAUSBTool(string[] args) 
         {
             InitializeComponent();
-
-            competitions[2017] = new FRCYear(2017, FRCYear.GetWebList(2017));
+            
+            if (args.Length >= 1)
+            {
+                Console.Out.WriteLine(args[0]);
+                competitions[9999] = new FRCYear(9999, FRCYear.GetWebList(args[0]));
+            }
             competitions[2018] = new FRCYear(2018, FRCYear.GetWebList(2018));
+            competitions[2017] = new FRCYear(2017, FRCYear.GetWebList(2017));
             buildISOButton.Enabled = false;
-            yearSelection.SelectedIndex = 0;
+            yearSelection.DataSource = new BindingSource(competitions, null);
+            yearSelection.DisplayMember = "Key";
+            yearSelection.ValueMember = "Value";
             selectedFrc = competitions[selectedYear];
+          
             downloadFolder.Text = Directory.GetCurrentDirectory() + @"\" + selectedYear + @"\";
         }
 

@@ -45,6 +45,7 @@ namespace CSAUSBTool
 
         public void BuildISO(string sourcepath, string outputPath, ToolStripProgressBar progress)
         {
+            progress.ProgressBar.Value = 0;
             CDBuilder builder = new CDBuilder
             {
                 UseJoliet = true,
@@ -53,28 +54,40 @@ namespace CSAUSBTool
 
             foreach (var soft in Software)
             {
+                progress.ProgressBar.Value += 100 / Software.Count;
                 builder.AddFile(soft.FileName, sourcepath + @"\" + soft.FileName);
             }
             builder.Build(outputPath + @"\" + builder.VolumeIdentifier + ".iso");
-            progress.Value = 100;
+            progress.ProgressBar.Value = 100;
         }
 
         public static List<ControlSystemsSoftware> GetWebList(int year)
+        {
+            return GetWebList(
+                "https://raw.githubusercontent.com/JamieSinn/CSA-USB-Tool/master/Software" + year + ".csv");
+        }
+
+        public static List<ControlSystemsSoftware> GetWebList(string uri)
         {
             List<ControlSystemsSoftware> ret = new List<ControlSystemsSoftware>();
 
             using (WebClient client = new WebClient())
             {
-                string data = client.DownloadString(new Uri("https://raw.githubusercontent.com/JamieSinn/CSA-USB-Tool/master/Software" + year + ".csv"));
+                string data = client.DownloadString(new Uri(uri));
                 string[] lines = data.Split('\n');
                 foreach (var line in lines)
                 {
-                    if(line.Equals("") || line.StartsWith("#")) continue;
+                    if (line.Equals("") || line.StartsWith("#")) continue;
                     string[] args = line.Split(',');
                     ret.Add(new ControlSystemsSoftware(args[0], args[1], args[2], args[3], bool.Parse(args[4])));
                 }
             }
             return ret;
+        }
+
+        public override string ToString()
+        {
+            return Year + "";
         }
     }
 }
