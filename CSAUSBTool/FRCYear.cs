@@ -36,9 +36,11 @@ namespace CSAUSBTool
                         Console.Out.WriteLine(soft.FileName + " already exists in target directory, skipping.");
                         continue;
                     }
+
                     Console.Out.WriteLine("MD5 Hash for " + soft.FileName +
                                           " was not equal to the given hash. Redownloading.");
                 }
+
                 soft.Download(path, progress, async);
             }
         }
@@ -57,6 +59,7 @@ namespace CSAUSBTool
                 progress.ProgressBar.Value += 100 / Software.Count;
                 builder.AddFile(soft.FileName, sourcepath + @"\" + soft.FileName);
             }
+
             builder.Build(outputPath + @"\" + builder.VolumeIdentifier + ".iso");
             progress.ProgressBar.Value = 100;
         }
@@ -69,19 +72,43 @@ namespace CSAUSBTool
 
         public static List<ControlSystemsSoftware> GetWebList(string uri)
         {
-            List<ControlSystemsSoftware> ret = new List<ControlSystemsSoftware>();
+            if (uri.StartsWith("local:"))
+            {
+                return GetLocalList(uri.Replace("local:", ""));
+            }
 
             using (WebClient client = new WebClient())
             {
                 string data = client.DownloadString(new Uri(uri));
-                string[] lines = data.Split('\n');
-                foreach (var line in lines)
-                {
-                    if (line.Equals("") || line.StartsWith("#")) continue;
-                    string[] args = line.Split(',');
-                    ret.Add(new ControlSystemsSoftware(args[0], args[1], args[2], args[3], bool.Parse(args[4])));
-                }
+                List<string> lines = data.Split('\n').ToList();
+                return getFromCSV(lines);
             }
+        }
+
+        public static List<ControlSystemsSoftware> GetLocalList(string uri)
+        {
+
+            StreamReader file = new StreamReader(uri);
+            string line;
+            List<string> lines = new List<string>();
+            while ((line = file.ReadLine()) != null)
+            {
+               lines.Add(line);
+            }
+            return getFromCSV(lines);
+        }
+
+        private static List<ControlSystemsSoftware> getFromCSV(List<string> lines)
+        {
+            List<ControlSystemsSoftware> ret = new List<ControlSystemsSoftware>();
+
+            foreach (string line in lines)
+            {
+                if (line.Equals("") || line.StartsWith("#")) continue;
+                string[] args = line.Split(',');
+                ret.Add(new ControlSystemsSoftware(args[0], args[1], args[2], args[3], bool.Parse(args[4])));
+            }
+
             return ret;
         }
 

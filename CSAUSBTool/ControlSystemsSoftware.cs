@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Security.Cryptography;
 using System.IO.Compression;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace CSAUSBTool
 {
@@ -35,10 +31,16 @@ namespace CSAUSBTool
         public void Download(string path, DownloadProgressChangedEventHandler progress, bool async)
         {
             if (FileName == "") return;
+            if (Uri.ToString().StartsWith("local:"))
+            {
+                CopyLocal(Uri.ToString().Replace("local:", ""), path);
+                return;
+            }
+
             using (WebClient client = new WebClient())
             {
                 client.DownloadProgressChanged += progress;
-                
+
                 client.DownloadFileCompleted += (sender, eventargs) =>
                 {
                     Console.Out.WriteLine("Download finished for: " + Name);
@@ -53,6 +55,11 @@ namespace CSAUSBTool
                     IsValid(path);
                 }
             }
+        }
+
+        public void CopyLocal(string sourcePath, string destPath)
+        {
+            File.Copy(sourcePath, destPath + @"\" + FileName);
         }
 
         public bool IsValid(string path)

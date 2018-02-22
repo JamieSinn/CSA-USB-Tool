@@ -44,7 +44,8 @@ namespace CSAUSBTool
         {
             if (yearSelection.SelectedItem.ToString().Equals(""))
                 return;
-            selectedYear = int.Parse((string) yearSelection.SelectedItem);
+            KeyValuePair<int, FRCYear> selected = (KeyValuePair<int, FRCYear>) yearSelection.SelectedItem;
+            selectedYear = selected.Key;
             selectedFrc = competitions[selectedYear];
             downloadFolder.Text = Directory.GetCurrentDirectory() + @"\" + selectedYear + @"\";
         }
