@@ -5,10 +5,10 @@ NI-LabVIEW,NI_FRC2018.zip,http://ftp.ni.com/support/softlib/labview/labview_frc/
 NI-Update,FRCUpdateSuite_2018.1.0.zip,http://ftp.ni.com/support/softlib/first/frc/FileAttachments/FRCUpdateSuite_2018.1.0.zip,16c3ee965b54887aa57aeb6b2cf87c79,true
 Password,2018Password.txt,https://raw.githubusercontent.com/JamieSinn/CSA-USB-Tool/master/2018Password.txt,fc4dc94845f4177577d41dea08c99fb1,false
 C++Toolchain,FRC-2018-Windows-Toolchain-5.5.msi,http://first.wpi.edu/FRC/roborio/toolchains/FRC-2018-Windows-Toolchain-5.5.msi,044f9a97451643be24b4dd9880413602,false
-CTRE-Phoenix-Win,CTRE Phoenix Framework v5.2.1.1.zip,http://www.ctr-electronics.com/downloads/installers/CTRE%20Phoenix%20Framework%20v5.2.1.1.zip,8a3fc6542649cfcc1b3054edc5415937,true
-CTRE-Phoenix-All,CTRE_Phoenix_FRCLibs_NON-WINDOWS_v5.2.1.1.zip,http://www.ctr-electronics.com//downloads/lib/CTRE_Phoenix_FRCLibs_NON-WINDOWS_v5.2.1.1.zip,f1457befc2a337f55760a36c8c8dd07b,true
+CTRE-Phoenix-Win,CTRE Phoenix Framework v5.2.2.0.zip,http://www.ctr-electronics.com/downloads/installers/CTRE%20Phoenix%20Framework%20v5.2.2.0.zip,157727565a4388cb19de690e141d28d5,true
+CTRE-Phoenix-All,CTRE_Phoenix_FRCLibs_NON-WINDOWS_v5.2.2.0.zip,http://www.ctr-electronics.com//downloads/lib/CTRE_Phoenix_FRCLibs_NON-WINDOWS_v5.2.2.0.zip,89ea52874af7b4a637e45bd9a0340662,true
 Silverlight5,Silverlight.exe,https://download.microsoft.com/download/F/D/0/FD0B0093-DE8A-4C4E-BDC4-F0C56D72018C/50907.00/Silverlight.exe,d83b8ae32eb0d6c8df1d5bd9a2953702,false
 ScreenstepsC++,FRC_C_Programming.pdf,https://s3.amazonaws.com/screensteps_live/exported/Wpilib/2078/54165/FRC_C_Programming.pdf,3b3bcae79578c6faedaa1def8d04db01,false
 RadioConfigTool,FRC_Radio_Configuration_18_1_0.zip,https://firstfrc.blob.core.windows.net/frc2018/Radio/FRC_Radio_Configuration_18_1_0.zip,4114e8e40fc291c91d7b4efc8f6c73ab,true
-EclipsePlugins,EclipsePluginsV2018.2.2.zip,http://first.wpi.edu/FRC/roborio/release/EclipsePluginsV2018.2.2.zip,e521bef2275ac776fa06e2e4c12e128f,true
-2018Manual,2018FRCGameSeasonManual.pdf,https://firstfrc.blob.core.windows.net/frc2018/Manual/2018FRCGameSeasonManual.pdf,7d93084e731cc2c04f5b5ce8882c0401,false
+EclipsePlugins,EclipsePluginsV2018.3.3.zip,http://first.wpi.edu/FRC/roborio/release/EclipsePluginsV2018.3.3.zip,e9c35c26532d7b79ba893ff3ca81273c,true
+2018Manual,2018FRCGameSeasonManual.pdf,https://firstfrc.blob.core.windows.net/frc2018/Manual/2018FRCGameSeasonManual.pdf,177cec6c0060dcaf19fff5f2fa40062b,false
