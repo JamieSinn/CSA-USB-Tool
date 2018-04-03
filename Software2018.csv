@@ -13,3 +13,4 @@ RadioConfigTool,FRC_Radio_Configuration_18_1_0.zip,https://firstfrc.blob.core.wi
 EclipsePlugins,EclipsePluginsV2018.4.1.zip,http://first.wpi.edu/FRC/roborio/release/EclipsePluginsV2018.4.1.zip,126ffcb52b9d09a5a34253a79144a30c ,true
 2018Manual,2018FRCGameSeasonManual.pdf,https://firstfrc.blob.core.windows.net/frc2018/Manual/2018FRCGameSeasonManual.pdf,177cec6c0060dcaf19fff5f2fa40062b,false
 NavX,navx-mxp.zip,https://www.kauailabs.com/public_files/navx-mxp/navx-mxp.zip,a1801df66539f8e82569f624c9485795,true
+Shuffleboard,app-1.3.1.jar,http://first.wpi.edu/FRC/roborio/maven/release/edu/wpi/first/shuffleboard/app/1.3.1/app-1.3.1.jar,843f7c65e8329894a804cb99963b87ca,false
