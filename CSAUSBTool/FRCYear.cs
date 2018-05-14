@@ -56,6 +56,8 @@ namespace CSAUSBTool
 
             foreach (var soft in Software)
             {
+                // Skip NI LabView due to ISO file format not supporting large files
+                if (soft.FileName.Contains("NI_FRC")) continue;
                 progress.ProgressBar.Value += 100 / Software.Count;
                 builder.AddFile(soft.FileName, sourcepath + @"\" + soft.FileName);
             }
