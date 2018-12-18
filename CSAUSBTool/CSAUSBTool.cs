@@ -29,6 +29,7 @@ namespace CSAUSBTool
                 Console.Out.WriteLine(args[0]);
                 competitions[9999] = new FRCYear(9999, FRCYear.GetWebList(args[0]));
             }
+            competitions[2019] = new FRCYear(2019, FRCYear.GetWebList(2019));
             competitions[2018] = new FRCYear(2018, FRCYear.GetWebList(2018));
             competitions[2017] = new FRCYear(2017, FRCYear.GetWebList(2017));
             buildISOButton.Enabled = false;
