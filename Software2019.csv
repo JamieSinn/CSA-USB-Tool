@@ -1,14 +1,9 @@
 #FriendlyName,FileName,URL,MD5,isZipped
-#VSCode
-#WPILib Offline Installer
-#NI-LabVIEW,NI_FRC2018.zip,http://ftp.ni.com/support/softlib/labview/labview_frc/NI_FRC2018.zip,29ea9bdf54f6b645b49a9c5d5df5a96f,true
-#NI-Update,FRCUpdateSuite_2018.1.0.zip,http://ftp.ni.com/support/softlib/first/frc/FileAttachments/FRCUpdateSuite_2018.1.0.zip,16c3ee965b54887aa57aeb6b2cf87c79,true
-#Password,2018Password.txt,https://raw.githubusercontent.com/JamieSinn/CSA-USB-Tool/master/2018Password.txt,fc4dc94845f4177577d41dea08c99fb1,false
-#CTRE-Phoenix-Win,CTRE Phoenix Framework v5.3.1.0.zip,http://www.ctr-electronics.com/downloads/installers/CTRE%20Phoenix%20Framework%20v5.3.1.0.zip,f6b06385d0371ce032416488a741eeed,true
-#CTRE-Phoenix-All,CTRE_Phoenix_FRCLibs_NON-WINDOWS_v5.3.1.0.zip,http://www.ctr-electronics.com//downloads/lib/CTRE_Phoenix_FRCLibs_NON-WINDOWS_v5.3.1.0.zip,db14f175e19d249a4468a7d1447498a2,true
-RadioConfigTool,FRC_Radio_Configuration_18_1_0.zip,https://firstfrc.blob.core.windows.net/frc2018/Radio/FRC_Radio_Configuration_18_1_0.zip,4114e8e40fc291c91d7b4efc8f6c73ab,true
-#2018Manual,2018FRCGameSeasonManual.pdf,https://firstfrc.blob.core.windows.net/frc2018/Manual/2018FRCGameSeasonManual.pdf,177cec6c0060dcaf19fff5f2fa40062b,false
-#NavX,navx-mxp.zip,https://www.kauailabs.com/public_files/navx-mxp/navx-mxp.zip,a1801df66539f8e82569f624c9485795,true
-#Shuffleboard,app-1.3.1.jar,http://first.wpi.edu/FRC/roborio/maven/release/edu/wpi/first/shuffleboard/app/1.3.1/app-1.3.1.jar,843f7c65e8329894a804cb99963b87ca,false
-#NavXLib
-
+#WPILib-Offline-Installer,WPILibInstaller_Windows32-2019.1.1.zip,https://github.com/wpilibsuite/allwpilib/releases/download/v2019.1.1/WPILibInstaller_Windows32-2019.1.1.zip,
+NI-LabVIEW,NI_FRC2019.zip,http://download.ni.com/support/softlib/labview/labview_frc/NI_FRC2019.zip,b7d5ecf60bc88e067d04541052e2914b,true
+NI-Update,FRCUpdateSuite_2019.0.0.zip,http://download.ni.com/support/softlib/first/frc/FileAttachments/FRCUpdateSuite_2019.0.0.zip,081c165ca83825c9fd96d628d07aa3ac,true
+Password,2019Password.txt,https://raw.githubusercontent.com/JamieSinn/CSA-USB-Tool/master/2019Password.txt,ca4566be531c8574d87ba065bb2b9e8f,false
+CTRE-Phoenix-Win,CTRE Phoenix Framework v5.12.0.1.zip,http://www.ctr-electronics.com/downloads/installers/CTRE%20Phoenix%20Framework%20v5.12.0.1.zip,f6b06385d0371ce032416488a741eeed,true
+RadioConfigTool,FRC_Radio_Configuration_19_1_0.zip,https://firstfrc.blob.core.windows.net/frc2019/Radio/FRC_Radio_Configuration_19_1_0.zip,6c506ec3127d2aca85bd62783cb4b331,true
+2019Manual,2019FRCGameSeasonManual.pdf,https://firstfrc.blob.core.windows.net/frc2019/Manual/2019FRCGameSeasonManual.pdf,c99624cfac6d551eca207f4b69c7e8b0,false
+NavX,navx-mxp.zip,https://www.kauailabs.com/public_files/navx-mxp/navx-mxp.zip,5a830ac17c4cf94b43c69ed6993ac72c,true
