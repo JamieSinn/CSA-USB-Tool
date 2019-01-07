@@ -1,4 +1,5 @@
 #FriendlyName,FileName,URL,MD5,isZipped
+WPILib-Offline-Installer64,WPILibInstaller_Windows32-2019.1.1.zip,https://github.com/wpilibsuite/allwpilib/releases/download/v2019.1.1/WPILibInstaller_Windows64-2019.1.1.zip,995af48bfdbd423e317164bfde3f206b,true
 WPILib-Offline-Installer,WPILibInstaller_Windows32-2019.1.1.zip,https://github.com/wpilibsuite/allwpilib/releases/download/v2019.1.1/WPILibInstaller_Windows32-2019.1.1.zip,82e87154749d010f53f9cc0dc9027716,true
 NI-LabVIEW,NI_FRC2019.zip,http://download.ni.com/support/softlib/labview/labview_frc/NI_FRC2019.zip,b7d5ecf60bc88e067d04541052e2914b,true
 NI-Update,FRCUpdateSuite_2019.0.0.zip,http://download.ni.com/support/softlib/first/frc/FileAttachments/FRCUpdateSuite_2019.0.0.zip,081c165ca83825c9fd96d628d07aa3ac,true
