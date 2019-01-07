@@ -1,5 +1,5 @@
 #FriendlyName,FileName,URL,MD5,isZipped
-#WPILib-Offline-Installer,WPILibInstaller_Windows32-2019.1.1.zip,https://github.com/wpilibsuite/allwpilib/releases/download/v2019.1.1/WPILibInstaller_Windows32-2019.1.1.zip,
+WPILib-Offline-Installer,WPILibInstaller_Windows32-2019.1.1.zip,https://github.com/wpilibsuite/allwpilib/releases/download/v2019.1.1/WPILibInstaller_Windows32-2019.1.1.zip,82e87154749d010f53f9cc0dc9027716,true
 NI-LabVIEW,NI_FRC2019.zip,http://download.ni.com/support/softlib/labview/labview_frc/NI_FRC2019.zip,b7d5ecf60bc88e067d04541052e2914b,true
 NI-Update,FRCUpdateSuite_2019.0.0.zip,http://download.ni.com/support/softlib/first/frc/FileAttachments/FRCUpdateSuite_2019.0.0.zip,081c165ca83825c9fd96d628d07aa3ac,true
 Password,2019Password.txt,https://raw.githubusercontent.com/JamieSinn/CSA-USB-Tool/master/2019Password.txt,ca4566be531c8574d87ba065bb2b9e8f,false
