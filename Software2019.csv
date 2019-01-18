@@ -2,7 +2,7 @@
 WPILib-Offline-Installer64,WPILibInstaller_Windows64-2019.1.1.zip,https://github.com/wpilibsuite/allwpilib/releases/download/v2019.1.1/WPILibInstaller_Windows64-2019.1.1.zip,995af48bfdbd423e317164bfde3f206b,true
 WPILib-Offline-Installer,WPILibInstaller_Windows32-2019.1.1.zip,https://github.com/wpilibsuite/allwpilib/releases/download/v2019.1.1/WPILibInstaller_Windows32-2019.1.1.zip,82e87154749d010f53f9cc0dc9027716,true
 NI-LabVIEW,NI_FRC2019.zip,http://download.ni.com/support/softlib/labview/labview_frc/NI_FRC2019.zip,b7d5ecf60bc88e067d04541052e2914b,true
-NI-Update,FRCUpdateSuite_2019.0.0.zip,http://download.ni.com/support/softlib/first/frc/FileAttachments/FRCUpdateSuite_2019.0.0.zip,081c165ca83825c9fd96d628d07aa3ac,true
+NI-Update,FRCUpdateSuite_2019.1.0.zip,http://download.ni.com/support/softlib/first/frc/FileAttachments/FRCUpdateSuite_2019.1.0.zip,f26f25f8c3c7d0b889e21f511895caa8,true
 Password,2019Password.txt,https://raw.githubusercontent.com/JamieSinn/CSA-USB-Tool/master/2019Password.txt,ca4566be531c8574d87ba065bb2b9e8f,false
 CTRE-Phoenix-Win,CTRE Phoenix Framework v5.12.0.1.zip,http://www.ctr-electronics.com/downloads/installers/CTRE%20Phoenix%20Framework%20v5.12.0.1.zip,f6b06385d0371ce032416488a741eeed,true
 RadioConfigTool,FRC_Radio_Configuration_19_1_0.zip,https://firstfrc.blob.core.windows.net/frc2019/Radio/FRC_Radio_Configuration_19_1_0.zip,6c506ec3127d2aca85bd62783cb4b331,true
