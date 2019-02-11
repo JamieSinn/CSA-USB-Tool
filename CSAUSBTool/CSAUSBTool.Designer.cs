@@ -41,7 +41,7 @@
             this.buildISOButton = new System.Windows.Forms.Button();
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
-            this.toolStripProgressBar = new System.Windows.Forms.ToolStripProgressBar();
+            toolStripProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.downloadAsyncCheckbox = new System.Windows.Forms.CheckBox();
             this.statusStrip.SuspendLayout();
@@ -146,7 +146,7 @@
             // 
             this.statusStrip.BackColor = System.Drawing.SystemColors.Control;
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripProgressBar,
+            toolStripProgressBar,
             this.toolStripStatusLabel});
             this.statusStrip.Location = new System.Drawing.Point(0, 183);
             this.statusStrip.Name = "statusStrip";
@@ -156,8 +156,8 @@
             // 
             // toolStripProgressBar
             // 
-            this.toolStripProgressBar.Name = "toolStripProgressBar";
-            this.toolStripProgressBar.Size = new System.Drawing.Size(100, 16);
+            toolStripProgressBar.Name = "toolStripProgressBar";
+            toolStripProgressBar.Size = new System.Drawing.Size(100, 16);
             // 
             // toolStripStatusLabel
             // 
@@ -217,7 +217,7 @@
         private System.Windows.Forms.Button buildISOButton;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
         private System.Windows.Forms.StatusStrip statusStrip;
-        private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar;
+        public static System.Windows.Forms.ToolStripProgressBar toolStripProgressBar;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel;
         private System.Windows.Forms.CheckBox downloadAsyncCheckbox;
     }

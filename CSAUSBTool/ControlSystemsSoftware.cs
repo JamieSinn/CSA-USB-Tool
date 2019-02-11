@@ -4,7 +4,10 @@ using System.Linq;
 using System.Net;
 using System.Security.Cryptography;
 using System.IO.Compression;
+using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace CSAUSBTool
 {
@@ -28,7 +31,7 @@ namespace CSAUSBTool
             Unzip = unzip;
         }
 
-        public void Download(string path, DownloadProgressChangedEventHandler progress, bool async)
+        public async void Download(string path, DownloadProgressChangedEventHandler progress, bool async)
         {
             if (FileName == "") return;
             if (Uri.ToString().StartsWith("local:"))
@@ -37,23 +40,48 @@ namespace CSAUSBTool
                 return;
             }
 
-            using (WebClient client = new WebClient())
+            if (FileName.Contains("VSCode") || FileName.Contains("WPILib"))
             {
-                client.DownloadProgressChanged += progress;
+                await DownloadHTTP(path);
+            }
+            else
+            {
+                using (WebClient client = new WebClient())
+                {
+                    client.DownloadProgressChanged += progress;
 
-                client.DownloadFileCompleted += (sender, eventargs) =>
-                {
-                    Console.Out.WriteLine("Download finished for: " + Name);
-                };
-                if (async)
-                    client.DownloadFileAsync(Uri, path + @"\" + FileName);
-                else
-                {
-                    client.DownloadFile(Uri, path + @"\" + FileName);
-                    Console.Out.WriteLine("Download finished for: " + Name);
-                    Thread.Sleep(1000);
-                    IsValid(path);
+                    client.DownloadFileCompleted += (sender, eventargs) =>
+                    {
+                        Console.Out.WriteLine("Download finished for: " + Name);
+                    };
+                    if (async)
+                        client.DownloadFileAsync(Uri, path + @"\" + FileName);
+                    else
+                    {
+                        client.DownloadFile(Uri, path + @"\" + FileName);
+                        Console.Out.WriteLine("Download finished for: " + Name);
+                        Thread.Sleep(1000);
+                        IsValid(path);
+                    }
                 }
+            }
+        }
+
+        async Task DownloadHTTP(string path)
+        {
+            var noCancel = new CancellationTokenSource();
+
+            using (var client = new HttpClientDownloadWithProgress(Uri.ToString(), path + @"\" + FileName))
+            {
+                client.ProgressChanged += (totalFileSize, totalBytesDownloaded, progressPercentage) =>
+                {
+                    if (progressPercentage != null)
+                    {
+                        CSAUSBTool.toolStripProgressBar.Value = (int)progressPercentage;
+                    }
+                };
+
+                await client.StartDownload(noCancel.Token);
             }
         }
 
