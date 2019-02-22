@@ -2,7 +2,7 @@
 WPILib-Offline-Installer64,WPILibInstaller_Windows64-2019.3.2.zip,https://github.com/wpilibsuite/allwpilib/releases/download/v2019.3.2/WPILibInstaller_Windows64-2019.3.2.zip,2DFA7D9D2AB77235D5E38943ACDD860A,true
 WPILib-Offline-Installer,WPILibInstaller_Windows32-2019.3.2.zip,https://github.com/wpilibsuite/allwpilib/releases/download/v2019.3.2/WPILibInstaller_Windows32-2019.3.2.zip,B8EEFCA4E828708432BDD39D0FF9CC7F,true
 NI-LabVIEW,NI_FRC2019.zip,http://download.ni.com/support/softlib/labview/labview_frc/NI_FRC2019.zip,b7d5ecf60bc88e067d04541052e2914b,true
-NI-Update,FRCUpdateSuite_2019.1.0.zip,http://download.ni.com/support/softlib/first/frc/FileAttachments/FRCUpdateSuite_2019.1.0.zip,f26f25f8c3c7d0b889e21f511895caa8,true
+NI-Update,FRCUpdateSuite_2019.2.0.zip,http://download.ni.com/support/softlib/first/frc/FileAttachments/FRCUpdateSuite_2019.2.0.zip,7f0658ddc0b0bd363cdefcd67473de57,true
 Password,2019Password.txt,https://raw.githubusercontent.com/JamieSinn/CSA-USB-Tool/master/2019Password.txt,ca4566be531c8574d87ba065bb2b9e8f,false
 CTRE-Phoenix-Win,CTRE.Phoenix.Framework.v5.14.0.0.zip,https://github.com/CrossTheRoadElec/Phoenix-Releases/releases/download/aPhoenix-v5.14.0.0/CTRE.Phoenix.Framework.v5.14.0.0.zip,16973fce8e7301099d8a53bb34e63f8d,true
 RadioConfigTool,FRC_Radio_Configuration_19_1_1.zip,https://firstfrc.blob.core.windows.net/frc2019/Radio/FRC_Radio_Configuration_19_1_1.zip,1bb18ce8064572e7c3caa455082ae93a,true
