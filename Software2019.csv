@@ -12,3 +12,4 @@ VSCode-1.30.1,VSCode-win32.zip,https://vscode-update.azurewebsites.net/1.30.1/wi
 VSCode-1.30.1-64,VSCode-win64.zip,https://vscode-update.azurewebsites.net/1.30.1/win32-x64-archive/stable,3eca8fc696b93ae43c87cfc530b1b5d1,true
 VSCode-Cpp,VSCode-Cpp.vsix,https://github.com/Microsoft/vscode-cpptools/releases/download/0.21.0/cpptools-win32.vsix,fa79d518b034763f67c381398353d9a2,true
 REV-SPARK-MAX,SPARK-MAX-Software-All-CSATool-1.1.zip,http://www.revrobotics.com/content/sw/max/SPARK-MAX-Software-All-CSATool-1.1.zip,71071ea8044d04dee3f6ed3c3b03229d,true
+DotNet4.6.2,NDP462-KB3151800-x86-x64-AllOS-ENU.exe,https://download.microsoft.com/download/F/9/4/F942F07D-F26F-4F30-B4E3-EBD54FABA377/NDP462-KB3151800-x86-x64-AllOS-ENU.exe,9A5D647EE710AF2B1AEDE329C40BBE1A,false
