@@ -6,11 +6,11 @@ NI-Update,FRCUpdateSuite_2019.2.0.zip,http://download.ni.com/support/softlib/fir
 Password,2019Password.txt,https://raw.githubusercontent.com/JamieSinn/CSA-USB-Tool/master/2019Password.txt,ca4566be531c8574d87ba065bb2b9e8f,false
 CTRE-Phoenix-Win,CTRE.Phoenix.Framework.v5.14.0.0.zip,https://github.com/CrossTheRoadElec/Phoenix-Releases/releases/download/aPhoenix-v5.14.0.0/CTRE.Phoenix.Framework.v5.14.0.0.zip,16973fce8e7301099d8a53bb34e63f8d,true
 RadioConfigTool,FRC_Radio_Configuration_19_1_1.zip,https://firstfrc.blob.core.windows.net/frc2019/Radio/FRC_Radio_Configuration_19_1_1.zip,1bb18ce8064572e7c3caa455082ae93a,true
-2019Manual,2019FRCGameSeasonManual.pdf,https://firstfrc.blob.core.windows.net/frc2019/Manual/2019FRCGameSeasonManual.pdf,c99624cfac6d551eca207f4b69c7e8b0,false
-NavX,navx-mxp.zip,https://www.kauailabs.com/public_files/navx-mxp/navx-mxp.zip,5a830ac17c4cf94b43c69ed6993ac72c,true
+2019Manual,2019FRCGameSeasonManual.pdf,https://firstfrc.blob.core.windows.net/frc2019/Manual/2019FRCGameSeasonManual.pdf,add71f99cdaf4e205139939b83ead06a,false
+NavX,navx-mxp.zip,https://www.kauailabs.com/public_files/navx-mxp/navx-mxp.zip,4a2839e34feafb8fc89d22fbfc701ba0,true
 VSCode-1.30.1,VSCode-win32.zip,https://vscode-update.azurewebsites.net/1.30.1/win32-archive/stable,c03410ac12386119c165a9b62c1cd3a7,true
 VSCode-1.30.1-64,VSCode-win64.zip,https://vscode-update.azurewebsites.net/1.30.1/win32-x64-archive/stable,3eca8fc696b93ae43c87cfc530b1b5d1,true
 VSCode-Cpp,VSCode-Cpp.vsix,https://github.com/Microsoft/vscode-cpptools/releases/download/0.21.0/cpptools-win32.vsix,fa79d518b034763f67c381398353d9a2,true
 REV-SPARK-MAX,SPARK-MAX-Software-All-CSATool-1.1.zip,http://www.revrobotics.com/content/sw/max/SPARK-MAX-Software-All-CSATool-1.1.zip,71071ea8044d04dee3f6ed3c3b03229d,true
-DotNet4.6.2,NDP462-KB3151800-x86-x64-AllOS-ENU.exe,https://download.microsoft.com/download/F/9/4/F942F07D-F26F-4F30-B4E3-EBD54FABA377/NDP462-KB3151800-x86-x64-AllOS-ENU.exe,9A5D647EE710AF2B1AEDE329C40BBE1A,false
+DotNet4.6.2,NDP462-KB3151800-x86-x64-AllOS-ENU.exe,https://download.microsoft.com/download/F/9/4/F942F07D-F26F-4F30-B4E3-EBD54FABA377/NDP462-KB3151800-x86-x64-AllOS-ENU.exe,9a5d647ee710af2b1aede329c40bbe1a,false
 RobotPy,robotpy-2019.2.3.zip,https://github.com/robotpy/robotpy-wpilib/releases/download/2019.2.3/robotpy-2019.2.3.zip,dfb0ea3a5f550c452430b3ad1b635e1c,true
