@@ -13,3 +13,4 @@ VSCode-1.30.1-64,VSCode-win64.zip,https://vscode-update.azurewebsites.net/1.30.1
 VSCode-Cpp,VSCode-Cpp.vsix,https://github.com/Microsoft/vscode-cpptools/releases/download/0.21.0/cpptools-win32.vsix,fa79d518b034763f67c381398353d9a2,true
 REV-SPARK-MAX,SPARK-MAX-Software-All-CSATool-1.1.zip,http://www.revrobotics.com/content/sw/max/SPARK-MAX-Software-All-CSATool-1.1.zip,71071ea8044d04dee3f6ed3c3b03229d,true
 DotNet4.6.2,NDP462-KB3151800-x86-x64-AllOS-ENU.exe,https://download.microsoft.com/download/F/9/4/F942F07D-F26F-4F30-B4E3-EBD54FABA377/NDP462-KB3151800-x86-x64-AllOS-ENU.exe,9A5D647EE710AF2B1AEDE329C40BBE1A,false
+RobotPy,robotpy-2019.2.3.zip,https://github.com/robotpy/robotpy-wpilib/releases/download/2019.2.3/robotpy-2019.2.3.zip,dfb0ea3a5f550c452430b3ad1b635e1c,true
