@@ -4,7 +4,7 @@ WPILib-Offline-Installer,WPILibInstaller_Windows32-2019.4.1.zip,https://github.c
 NI-LabVIEW,NI_FRC2019.zip,http://download.ni.com/support/softlib/labview/labview_frc/NI_FRC2019.zip,b7d5ecf60bc88e067d04541052e2914b,true
 NI-Update,FRCUpdateSuite_2019.2.0.zip,http://download.ni.com/support/softlib/first/frc/FileAttachments/FRCUpdateSuite_2019.2.0.zip,7f0658ddc0b0bd363cdefcd67473de57,true
 Password,2019Password.txt,https://raw.githubusercontent.com/JamieSinn/CSA-USB-Tool/master/2019Password.txt,ca4566be531c8574d87ba065bb2b9e8f,false
-CTRE-Phoenix-Win,CTRE.Phoenix.Framework.v5.14.0.0.zip,https://github.com/CrossTheRoadElec/Phoenix-Releases/releases/download/aPhoenix-v5.14.0.0/CTRE.Phoenix.Framework.v5.14.0.0.zip,16973fce8e7301099d8a53bb34e63f8d,true
+CTRE-Phoenix-Win,CTRE.Phoenix.Framework.v5.14.1.2.zip,https://github.com/CrossTheRoadElec/Phoenix-Releases/releases/download/Phoenix_v5.14.1.2/CTRE.Phoenix.Framework.v5.14.1.2.zip,a4e7433a8299311f6059cfd6e4ee59c6,true
 RadioConfigTool,FRC_Radio_Configuration_19_1_1.zip,https://firstfrc.blob.core.windows.net/frc2019/Radio/FRC_Radio_Configuration_19_1_1.zip,1bb18ce8064572e7c3caa455082ae93a,true
 2019Manual,2019FRCGameSeasonManual.pdf,https://firstfrc.blob.core.windows.net/frc2019/Manual/2019FRCGameSeasonManual.pdf,add71f99cdaf4e205139939b83ead06a,false
 NavX,navx-mxp.zip,https://www.kauailabs.com/public_files/navx-mxp/navx-mxp.zip,4a2839e34feafb8fc89d22fbfc701ba0,true
