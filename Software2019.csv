@@ -15,6 +15,5 @@ VSCode-Cpp,VSCode-Cpp.vsix,https://github.com/Microsoft/vscode-cpptools/releases
 REV-SPARK-MAX,SPARK-MAX-Software-All-CSATool-031219.zip,http://www.revrobotics.com/content/sw/max/SPARK-MAX-Software-All-CSATool-031219.zip,f0d0cdcdc0aded8d9001cb0d6263e0a8,true
 DotNet4.6.2,NDP462-KB3151800-x86-x64-AllOS-ENU.exe,https://download.microsoft.com/download/F/9/4/F942F07D-F26F-4F30-B4E3-EBD54FABA377/NDP462-KB3151800-x86-x64-AllOS-ENU.exe,9a5d647ee710af2b1aede329c40bbe1a,false
 Python 3.7.2,python-3.7.2.exe,https://www.python.org/ftp/python/3.7.2/python-3.7.2.exe,38156b62c0cbcb03bfddeb86e66c3a0f,false
-NI cRIO Driver,NICRIO1850.zip,http://download.ni.com/support/softlib/reconfigurable_io/NI%20CompactRIO/NI%20CompactRIO%2018.5/NICRIO1850.zip,0b28a695370b02a92e92c29018d18bd5,true
 RobotPy,robotpy-2019.2.3.zip,https://github.com/robotpy/robotpy-wpilib/releases/download/2019.2.3/robotpy-2019.2.3.zip,dfb0ea3a5f550c452430b3ad1b635e1c,true
 LabVIEW Dashboard,2019.2.2_LVDashboard.zip,https://natinst.my.salesforce.com/sfc/dist/version/download/?oid=00Di0000000jTAB&ids=0680Z000005qF3i&d=%2Fa%2F0Z000000J1AA%2FvfC7ZfjWIfDvcCaXGMM23MIyBxsbnPUpo7MCL4E_OA0&asPdf=false,c8a17a006e74b2268216090c8f997a4c,TRUE
