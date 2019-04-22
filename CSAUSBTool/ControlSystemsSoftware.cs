@@ -1,6 +1,6 @@
 ﻿using System;
+using System.ComponentModel;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Security.Cryptography;
 using System.IO.Compression;
@@ -17,7 +17,7 @@ namespace CSAUSBTool
         private Uri Uri { get; }
         private string Hash { get; }
         public string FileName { get; }
-        private bool Unzip { get; set; }
+        private bool Unzip { get; }
 
         public ControlSystemsSoftware(string name, string fileName, string url, string hash, bool unzip)
         {
@@ -31,53 +31,38 @@ namespace CSAUSBTool
             Unzip = unzip;
         }
 
-        public async void Download(string path, DownloadProgressChangedEventHandler progress, bool async)
+        public async void Download(string path, AsyncCompletedEventHandler progress)
         {
             if (FileName == "") return;
-            if (Uri.ToString().StartsWith("local:"))
+            if (File.Exists(path + @"\" + FileName) && IsValid(path))
             {
-                CopyLocal(Uri.ToString().Replace("local:", ""), path);
+                progress?.Invoke(null, null);
                 return;
             }
 
-            if (FileName.Contains("VSCode") || FileName.Contains("WPILib"))
+            if (Uri.ToString().StartsWith("local:"))
             {
-                await DownloadHTTP(path);
+                CopyLocal(Uri.ToString().Replace("local:", ""), path);
+                progress?.Invoke(null, null);
+                return;
             }
-            else
-            {
-                using (WebClient client = new WebClient())
-                {
-                    client.DownloadProgressChanged += progress;
 
-                    client.DownloadFileCompleted += (sender, eventargs) =>
-                    {
-                        Console.Out.WriteLine("Download finished for: " + Name);
-                    };
-                    if (async)
-                        client.DownloadFileAsync(Uri, path + @"\" + FileName);
-                    else
-                    {
-                        client.DownloadFile(Uri, path + @"\" + FileName);
-                        Console.Out.WriteLine("Download finished for: " + Name);
-                        Thread.Sleep(1000);
-                        IsValid(path);
-                    }
-                }
-            }
+            await DownloadHttp(path, progress);
         }
 
-        async Task DownloadHTTP(string path)
+        private async Task DownloadHttp(string path, AsyncCompletedEventHandler handler)
         {
             var noCancel = new CancellationTokenSource();
 
-            using (var client = new HttpClientDownloadWithProgress(Uri.ToString(), path + @"\" + FileName))
+            using (var client = new HttpClientDownloadWithProgress(Uri.ToString(),
+                path + @"\" + FileName))
             {
                 client.ProgressChanged += (totalFileSize, totalBytesDownloaded, progressPercentage) =>
                 {
-                    if (progressPercentage != null)
+                    if (progressPercentage == null) return;
+                    if ((int) progressPercentage == 100)
                     {
-                        CSAUSBTool.toolStripProgressBar.Value = (int)progressPercentage;
+                        handler?.Invoke(null, null);
                     }
                 };
 
@@ -92,7 +77,7 @@ namespace CSAUSBTool
 
         public bool IsValid(string path)
         {
-            string calc = CalculateMd5(path + @"\" + FileName);
+            var calc = CalculateMd5(path + @"\" + FileName);
             Console.Out.WriteLine(FileName + " provided md5: " + Hash + " calculated md5: " + calc);
             return Hash == calc;
         }
@@ -103,15 +88,7 @@ namespace CSAUSBTool
             ZipFile.ExtractToDirectory(path + @"\" + FileName, FileName);
         }
 
-        private byte[] StringToByteArray(string hex)
-        {
-            return Enumerable.Range(0, hex.Length)
-                .Where(x => x % 2 == 0)
-                .Select(x => Convert.ToByte(hex.Substring(x, 2), 16))
-                .ToArray();
-        }
-
-        private string CalculateMd5(string filepath)
+        private static string CalculateMd5(string filepath)
         {
             using (var md5 = MD5.Create())
             {

@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 namespace CSAUSBTool
 {
 
+    /// <summary>
+    /// Borrowed from WPILib - https://github.com/wpilibsuite
+    /// </summary>
     public class HttpClientDownloadWithProgress : IDisposable
     {
         private readonly string _downloadUrl;
