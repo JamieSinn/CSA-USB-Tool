@@ -11,6 +11,11 @@ namespace CSAUSBTool
         public int Year;
         public List<ControlSystemsSoftware> Software;
 
+        public FrcSeason(int year)
+        {
+            Year = year;
+            Software = GetWebList(year);
+        }
         public FrcSeason(int year, List<ControlSystemsSoftware> software)
         {
             Year = year;

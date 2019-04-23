@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Windows.Forms;
 
@@ -29,10 +30,7 @@ namespace CSAUSBTool
                 _competitions[9999] = new FrcSeason(9999, FrcSeason.GetWebList(args[0]));
             }
 
-            //TODO: Find a better way of enumerating the valid years. Maybe a single file listing valid years?
-            _competitions[2019] = new FrcSeason(2019, FrcSeason.GetWebList(2019));
-            _competitions[2018] = new FrcSeason(2018, FrcSeason.GetWebList(2018));
-            _competitions[2017] = new FrcSeason(2017, FrcSeason.GetWebList(2017));
+            ValidYears().ForEach(year => _competitions[year] = new FrcSeason(year));
 
             // Bind year objects to the selector.
             yearSelection.DataSource = new BindingSource(_competitions, null);
@@ -124,6 +122,18 @@ namespace CSAUSBTool
             }
         }
 
+        private List<int> ValidYears()
+        {
+            var years = new List<int>();
+            using (var client = new WebClient())
+            {
+                var data = client.DownloadString(new Uri("https://raw.githubusercontent.com/JamieSinn/CSA-USB-Tool/master/Years.txt"));
+                var lines = data.Split('\n').ToList();
+                lines.ForEach(line => years.Add(int.Parse(line)));
+            }
+
+            return years;
+        }
         private void SelectedItems_SelectedIndexChanged(object sender, EventArgs e)
         {
             _selectedSoftwares.Clear();
