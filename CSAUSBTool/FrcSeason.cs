@@ -16,11 +16,13 @@ namespace CSAUSBTool
             Year = year;
             Software = GetWebList(year);
         }
+
         public FrcSeason(int year, List<ControlSystemsSoftware> software)
         {
             Year = year;
             Software = software;
         }
+
         public static List<ControlSystemsSoftware> GetWebList(int year)
         {
             return GetWebList(
@@ -44,27 +46,26 @@ namespace CSAUSBTool
 
         public static List<ControlSystemsSoftware> GetLocalList(string uri)
         {
-
             var file = new StreamReader(uri);
             string line;
             var lines = new List<string>();
             while ((line = file.ReadLine()) != null)
             {
-               lines.Add(line);
+                lines.Add(line);
             }
+
             return GetFromCsv(lines);
         }
 
         private static List<ControlSystemsSoftware> GetFromCsv(List<string> lines)
         {
-            List<ControlSystemsSoftware> ret = new List<ControlSystemsSoftware>();
-
-            foreach (var line in lines)
+            var ret = new List<ControlSystemsSoftware>();
+            lines.ForEach(line =>
             {
-                if (line.Equals("") || line.StartsWith("#")) continue;
+                if (line.Equals("") || line.StartsWith("#")) return;
                 var args = line.Split(',');
                 ret.Add(new ControlSystemsSoftware(args[0], args[1], args[2], args[3], bool.Parse(args[4])));
-            }
+            });
 
             return ret;
         }
@@ -73,6 +74,5 @@ namespace CSAUSBTool
         {
             return Year + "";
         }
-       
     }
 }
