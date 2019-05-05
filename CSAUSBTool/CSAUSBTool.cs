@@ -74,7 +74,7 @@ namespace CSAUSBTool
 
         private void ResetSelectedSoftware()
         {
-          
+            toolStripProgressBar.Value = 0;
             foreach (var css in SelectedFrc.Software)
             {
                 _selectedSoftwares.Add(css.Name, css);
@@ -107,6 +107,11 @@ namespace CSAUSBTool
                 soft.Value.Download(DownloadFolderPath,
                     progress: delegate
                     {
+                        if (toolStripProgressBar.Value == 100)
+                        {
+                            return;
+                        }
+
                         DlCount++;
                         if (DlCount == _selectedSoftwares.Count)
                         {
@@ -117,12 +122,12 @@ namespace CSAUSBTool
                             toolStripProgressBar.Value += unitPct;
                         }
 
-                        toolStripStatusLabel.Text = @"Items Downloaded: " + DlCount + @"/" + _selectedSoftwares.Count;
+                        toolStripStatusLabel.Text =  DlCount + @"/" + _selectedSoftwares.Count + @" Downloaded";
                     });
             }
         }
 
-        private List<int> ValidYears()
+        private static List<int> ValidYears()
         {
             var years = new List<int>();
             using (var client = new WebClient())
