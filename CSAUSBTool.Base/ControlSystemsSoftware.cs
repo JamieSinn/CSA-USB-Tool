@@ -1,21 +1,25 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Security.Cryptography;
 using System.IO.Compression;
 using System.Net;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using Octokit;
 
-namespace CSAUSBTool
+namespace CSAUSBTool.Base
 {
     public class ControlSystemsSoftware
     {
         public string Name { get; }
-        private Uri Uri { get; }
+        private string Url { get; set; }
         private string Hash { get; }
-        public string FileName { get; }
+        public string FileName { get; set; }
         private bool Unzip { get; }
+        private GitHubClient github;
 
         public ControlSystemsSoftware(string name, string fileName, string url, string hash, bool unzip)
         {
@@ -24,23 +28,47 @@ namespace CSAUSBTool
 
             Name = name;
             FileName = fileName;
-            Uri = new Uri(url);
+            Url = url;
             Hash = hash;
             Unzip = unzip;
+            github = new GitHubClient(new ProductHeaderValue("CSA USB Tool"));
         }
 
         public async void Download(string path, AsyncCompletedEventHandler progress)
         {
             if (FileName == "") return;
+            //Org, repo, file Using match index to
+            Regex rx = new Regex(@"({<owner>})({<repo>})({<release>})", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+            MatchCollection matches = rx.Matches(Url);
+            // Use github latest
+            foreach (Match match in matches)
+            {
+                GroupCollection collection = match.Groups;
+                var owner = collection["owner"].Value;
+                var repo = collection["repo"].Value;
+                var releasematch = collection["release"].Value;
+
+                var release = await github.Repository.Release.GetLatest(owner, repo);
+                foreach (var asset in release.Assets)
+                {
+                    if(!asset.Name.Contains(releasematch) || matches.Count == 0)
+                        continue;
+
+                    FileName = asset.Name;
+                    Url = asset.BrowserDownloadUrl;
+                }
+
+            }
+
             if (File.Exists(path + @"\" + FileName) && IsValid(path))
             {
                 progress?.Invoke(null, null);
                 return;
             }
 
-            if (Uri.ToString().StartsWith("local:"))
+            if (Url.StartsWith("local:"))
             {
-                CopyLocal(Uri.ToString().Replace("local:", ""), path);
+                CopyLocal(Url.ToString().Replace("local:", ""), path);
                 progress?.Invoke(null, null);
                 return;
             }
@@ -52,7 +80,7 @@ namespace CSAUSBTool
         {
             var noCancel = new CancellationTokenSource();
 
-            using (var client = new HttpClientDownloadWithProgress(Uri.ToString(),
+            using (var client = new HttpClientDownloadWithProgress(Url,
                 path + @"\" + FileName))
             {
                 client.ProgressChanged += (totalFileSize, totalBytesDownloaded, progressPercentage) =>
