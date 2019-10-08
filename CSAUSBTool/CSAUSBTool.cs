@@ -10,13 +10,13 @@ namespace CSAUSBTool
 {
     public partial class CSAUSBTool : Form
     {
-        private int _selectedYear = DateTime.Today.Year;
+        private string SelectedYear = $"FRC{DateTime.Today.Year}";
         public string DownloadFolderPath { get; set; }
         private int DlCount { get; set; }
-        public FrcSeason SelectedFrc { get; set; }
-        private readonly Dictionary<int, FrcSeason> _competitions = new Dictionary<int, FrcSeason>();
+        public FIRSTSeason SelectedSeason { get; set; }
+        private readonly Dictionary<string, FIRSTSeason> seasons = new Dictionary<string, FIRSTSeason>();
 
-        private Dictionary<string, ControlSystemsSoftware> _selectedSoftwares =
+        private Dictionary<string, ControlSystemsSoftware> SelectedSoftware =
             new Dictionary<string, ControlSystemsSoftware>();
 
         public CSAUSBTool(IReadOnlyList<string> args)
@@ -28,28 +28,33 @@ namespace CSAUSBTool
             if (args.Count >= 1)
             {
                 Console.Out.WriteLine(args[0]);
-                _competitions[9999] = new FrcSeason(9999, FrcSeason.GetWebList(args[0]));
+                seasons["FRC9999"] = new FRCSeason(9999);
             }
 
-            ValidYears().ForEach(year => _competitions[year] = new FrcSeason(year));
+
+            ValidSeasons().ForEach(year =>
+            {
+                Enum.TryParse(year.Substring(0, 2), out FIRSTProgram program);
+                seasons[year] = new FIRSTSeason(int.Parse(year.Substring(3)), program);
+            });
 
             // Bind year objects to the selector.
-            yearSelection.DataSource = new BindingSource(_competitions, null);
+            yearSelection.DataSource = new BindingSource(seasons, null);
             yearSelection.DisplayMember = "Key";
             yearSelection.ValueMember = "Value";
-            SelectedFrc = _competitions[_selectedYear];
+            SelectedSeason = seasons[$"FRC{SelectedYear}"];
 
             // Clear the selected software to ensure blank slate.
-            _selectedSoftwares.Clear();
+            SelectedSoftware.Clear();
             
             ResetSelectedSoftware();
             
             // Bind software for the year to the listbox.
-            SelectedItems.DataSource = new BindingSource(_selectedSoftwares, null);
+            SelectedItems.DataSource = new BindingSource(SelectedSoftware, null);
             SelectedItems.DisplayMember = "Key";
             SelectedItems.ValueMember = "Value";
 
-            downloadFolder.Text = Directory.GetCurrentDirectory() + @"\" + _selectedYear + @"\";
+            downloadFolder.Text = Directory.GetCurrentDirectory() + @"\" + SelectedYear + @"\";
         }
 
         private void yearSelection_SelectedIndexChanged(object sender, EventArgs e)
@@ -58,16 +63,16 @@ namespace CSAUSBTool
                 return;
 
             // Reset the selections
-            var selected = (KeyValuePair<int, FrcSeason>) yearSelection.SelectedItem;
-            _selectedYear = selected.Key;
-            SelectedFrc = _competitions[_selectedYear];
-            downloadFolder.Text = Directory.GetCurrentDirectory() + @"\" + _selectedYear + @"\";
-            _selectedSoftwares.Clear();
+            var selected = (KeyValuePair<string, FIRSTSeason>) yearSelection.SelectedItem;
+            SelectedYear = selected.Key;
+            SelectedSeason = seasons[SelectedYear];
+            downloadFolder.Text = Directory.GetCurrentDirectory() + @"\" + SelectedYear + @"\";
+            SelectedSoftware.Clear();
             
             ResetSelectedSoftware();
             
             // Bind software again to ensure it gets updated.
-            SelectedItems.DataSource = new BindingSource(_selectedSoftwares, null);
+            SelectedItems.DataSource = new BindingSource(SelectedSoftware, null);
             SelectedItems.DisplayMember = "Key";
             SelectedItems.ValueMember = "Value";
 
@@ -76,9 +81,9 @@ namespace CSAUSBTool
         private void ResetSelectedSoftware()
         {
             toolStripProgressBar.Value = 0;
-            foreach (var css in SelectedFrc.Software)
+            foreach (var css in SelectedSeason.Software)
             {
-                _selectedSoftwares.Add(css.Name, css);
+                SelectedSoftware.Add(css.Name, css);
             }
         }
 
@@ -102,8 +107,8 @@ namespace CSAUSBTool
             toolStripProgressBar.Value = 0;
             DlCount = 0;
             Directory.CreateDirectory(DownloadFolderPath);
-            var unitPct = 100/_selectedSoftwares.Count;
-            foreach (var soft in _selectedSoftwares)
+            var unitPct = 100/SelectedSoftware.Count;
+            foreach (var soft in SelectedSoftware)
             {
                 soft.Value.Download(DownloadFolderPath,
                     progress: delegate
@@ -114,7 +119,7 @@ namespace CSAUSBTool
                         }
 
                         DlCount++;
-                        if (DlCount == _selectedSoftwares.Count)
+                        if (DlCount == SelectedSoftware.Count)
                         {
                             toolStripProgressBar.Value = 100;
                         }
@@ -123,30 +128,32 @@ namespace CSAUSBTool
                             toolStripProgressBar.Value += unitPct;
                         }
 
-                        toolStripStatusLabel.Text =  DlCount + @"/" + _selectedSoftwares.Count + @" Downloaded";
+                        toolStripStatusLabel.Text =  DlCount + @"/" + SelectedSoftware.Count + @" Downloaded";
                     });
             }
         }
 
-        private static List<int> ValidYears()
+        private static List<string> ValidSeasons()
         {
-            var years = new List<int>();
+            var years = new List<string>();
             using (var client = new WebClient())
             {
                 var data = client.DownloadString(new Uri("https://raw.githubusercontent.com/JamieSinn/CSA-USB-Tool/master/Years.txt"));
                 var lines = data.Split('\n').ToList();
-                lines.ForEach(line => years.Add(int.Parse(line)));
+                lines.ForEach(line => years.Add(line));
             }
 
             return years;
         }
         private void SelectedItems_SelectedIndexChanged(object sender, EventArgs e)
         {
-            _selectedSoftwares.Clear();
+            SelectedSoftware.Clear();
             foreach (KeyValuePair<string, ControlSystemsSoftware> item in SelectedItems.SelectedItems)
             {
-                _selectedSoftwares.Add(item.Key, item.Value);
+                SelectedSoftware.Add(item.Key, item.Value);
             }
         }
+
+        
     }
 }

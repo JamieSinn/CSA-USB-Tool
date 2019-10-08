@@ -46,7 +46,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ControlSystemsSoftware.cs" />
-    <Compile Include="FrcSeason.cs" />
+    <Compile Include="FIRSTSeason.cs" />
+    <Compile Include="FRCSeason.cs" />
+    <Compile Include="FTCSeason.cs" />
     <Compile Include="HttpClientDownload.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
