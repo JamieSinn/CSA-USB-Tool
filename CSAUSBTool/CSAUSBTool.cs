@@ -10,7 +10,7 @@ namespace CSAUSBTool
 {
     public partial class CSAUSBTool : Form
     {
-        private string SelectedYear = $"FRC{DateTime.Today.Year}";
+        private string SelectedYear = "";
         public string DownloadFolderPath { get; set; }
         private int DlCount { get; set; }
         public FIRSTSeason SelectedSeason { get; set; }
@@ -42,7 +42,7 @@ namespace CSAUSBTool
             yearSelection.DataSource = new BindingSource(seasons, null);
             yearSelection.DisplayMember = "Key";
             yearSelection.ValueMember = "Value";
-            SelectedSeason = seasons[$"FRC{SelectedYear}"];
+            SelectedSeason = seasons[SelectedYear];
 
             // Clear the selected software to ensure blank slate.
             SelectedSoftware.Clear();
@@ -54,7 +54,7 @@ namespace CSAUSBTool
             SelectedItems.DisplayMember = "Key";
             SelectedItems.ValueMember = "Value";
 
-            downloadFolder.Text = Directory.GetCurrentDirectory() + @"\" + SelectedYear + @"\";
+            downloadFolder.Text = $@"{Directory.GetCurrentDirectory()}\\{SelectedYear}\\";
         }
 
         private void yearSelection_SelectedIndexChanged(object sender, EventArgs e)
@@ -66,7 +66,7 @@ namespace CSAUSBTool
             var selected = (KeyValuePair<string, FIRSTSeason>) yearSelection.SelectedItem;
             SelectedYear = selected.Key;
             SelectedSeason = seasons[SelectedYear];
-            downloadFolder.Text = Directory.GetCurrentDirectory() + @"\" + SelectedYear + @"\";
+            downloadFolder.Text = $@"{Directory.GetCurrentDirectory()}\\{SelectedYear}\\"; 
             SelectedSoftware.Clear();
             
             ResetSelectedSoftware();
@@ -114,21 +114,16 @@ namespace CSAUSBTool
                     progress: delegate
                     {
                         if (toolStripProgressBar.Value == 100)
-                        {
                             return;
-                        }
 
                         DlCount++;
                         if (DlCount == SelectedSoftware.Count)
-                        {
                             toolStripProgressBar.Value = 100;
-                        }
                         else
-                        {
                             toolStripProgressBar.Value += unitPct;
-                        }
 
-                        toolStripStatusLabel.Text =  DlCount + @"/" + SelectedSoftware.Count + @" Downloaded";
+                        toolStripStatusLabel.Text = $@"{DlCount}/{SelectedSoftware.Count} Downloaded";
+
                     });
             }
         }

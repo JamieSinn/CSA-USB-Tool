@@ -31,7 +31,7 @@ namespace CSAUSBTool.Base
             Url = url;
             Hash = hash;
             Unzip = unzip;
-            github = new GitHubClient(new ProductHeaderValue("CSA USB Tool"));
+            github = new GitHubClient(new ProductHeaderValue("CSAUSBTool"));
         }
 
         public async void Download(string path, AsyncCompletedEventHandler progress)
