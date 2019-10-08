@@ -18,12 +18,14 @@ namespace CSAUSBTool.Base
         public int Year { get; set; }
         public List<ControlSystemsSoftware> Software { get; set; }
         public FIRSTProgram Program { get; set; }
+
         public FIRSTSeason(int year, FIRSTProgram program)
         {
             Year = year;
-            Software = GetWebList();
             Program = program;
+            Software = GetWebList();
         }
+
         public List<ControlSystemsSoftware> GetWebList()
         {
             return GetWebList($"https://raw.githubusercontent.com/JamieSinn/CSA-USB-Tool/master/{Program}Software{Year}.csv");
@@ -38,6 +40,7 @@ namespace CSAUSBTool.Base
 
             using (var client = new WebClient())
             {
+                Console.WriteLine($"{Program}{Year}:{uri}");
                 var data = client.DownloadString(new Uri(uri));
                 var lines = data.Split('\n').ToList();
                 return GetFromCsv(lines);

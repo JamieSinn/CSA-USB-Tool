@@ -10,7 +10,7 @@ namespace CSAUSBTool
 {
     public partial class CSAUSBTool : Form
     {
-        private string SelectedYear = "";
+        private string SelectedYear;
         public string DownloadFolderPath { get; set; }
         private int DlCount { get; set; }
         public FIRSTSeason SelectedSeason { get; set; }
@@ -28,13 +28,13 @@ namespace CSAUSBTool
             if (args.Count >= 1)
             {
                 Console.Out.WriteLine(args[0]);
-                seasons["FRC9999"] = new FRCSeason(9999);
+                seasons["FRC9999"] = new FIRSTSeason(9999, FIRSTProgram.FRC);
             }
 
 
             ValidSeasons().ForEach(year =>
             {
-                Enum.TryParse(year.Substring(0, 2), out FIRSTProgram program);
+                Enum.TryParse(year.Substring(0, 3), true, out FIRSTProgram program);
                 seasons[year] = new FIRSTSeason(int.Parse(year.Substring(3)), program);
             });
 
@@ -42,7 +42,7 @@ namespace CSAUSBTool
             yearSelection.DataSource = new BindingSource(seasons, null);
             yearSelection.DisplayMember = "Key";
             yearSelection.ValueMember = "Value";
-            SelectedSeason = seasons[SelectedYear];
+            SelectedSeason = seasons[ValidSeasons().ElementAt(0)];
 
             // Clear the selected software to ensure blank slate.
             SelectedSoftware.Clear();
@@ -137,7 +137,6 @@ namespace CSAUSBTool
                 var lines = data.Split('\n').ToList();
                 lines.ForEach(line => years.Add(line));
             }
-
             return years;
         }
         private void SelectedItems_SelectedIndexChanged(object sender, EventArgs e)

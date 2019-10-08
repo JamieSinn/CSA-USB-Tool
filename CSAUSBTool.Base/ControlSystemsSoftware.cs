@@ -38,8 +38,8 @@ namespace CSAUSBTool.Base
         {
             if (FileName == "") return;
             //Org, repo, file Using match index to
-            Regex rx = new Regex(@"({<owner>})({<repo>})({<release>})", RegexOptions.Compiled | RegexOptions.IgnoreCase);
-            MatchCollection matches = rx.Matches(Url);
+            var rx = new Regex(@"({<owner>})({<repo>})({<release>})", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+            var matches = rx.Matches(Url);
             // Use github latest
             foreach (Match match in matches)
             {
@@ -60,7 +60,7 @@ namespace CSAUSBTool.Base
 
             }
 
-            if (File.Exists(path + @"\" + FileName) && IsValid(path))
+            if (File.Exists($"{path}\\{FileName}") && IsValid(path))
             {
                 progress?.Invoke(null, null);
                 return;
@@ -81,7 +81,7 @@ namespace CSAUSBTool.Base
             var noCancel = new CancellationTokenSource();
 
             using (var client = new HttpClientDownloadWithProgress(Url,
-                path + @"\" + FileName))
+                $"{path}\\{FileName}"))
             {
                 client.ProgressChanged += (totalFileSize, totalBytesDownloaded, progressPercentage) =>
                 {
@@ -98,12 +98,12 @@ namespace CSAUSBTool.Base
 
         public void CopyLocal(string sourcePath, string destPath)
         {
-            File.Copy(sourcePath, destPath + @"\" + FileName);
+            File.Copy(sourcePath, $"{destPath}\\{FileName}");
         }
 
         public bool IsValid(string path)
         {
-            var calc = CalculateMd5(path + @"\" + FileName);
+            var calc = CalculateMd5($"{path}\\{FileName}");
             Console.Out.WriteLine(FileName + " provided md5: " + Hash + " calculated md5: " + calc);
             return Hash == calc;
         }
@@ -111,7 +111,7 @@ namespace CSAUSBTool.Base
         public void UnzipFile(string path)
         {
             if (!Unzip) return;
-            ZipFile.ExtractToDirectory(path + @"\" + FileName, FileName);
+            ZipFile.ExtractToDirectory($"{path}\\{FileName}", FileName);
         }
 
         private static string CalculateMd5(string filepath)
