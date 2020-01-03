@@ -5,8 +5,8 @@ WPILibSuite_Windows32,WPILibSuite_Windows32-2020.1.1.zip,https://github.com/wpil
 #NI-Update,FRCUpdateSuite_2019.2.0.zip,http://download.ni.com/support/softlib/first/frc/FileAttachments/FRCUpdateSuite_2019.2.0.zip,7f0658ddc0b0bd363cdefcd67473de57,true
 #Password,2020Password.txt,https://raw.githubusercontent.com/JamieSinn/CSA-USB-Tool/master/2020Password.txt,####,false
 CTRE-Phoenix-Win,CTRE.Phoenix.Framework.v5.15.0.0.zip,https://github.com/CrossTheRoadElec/Phoenix-Releases/releases/download/Phoenix_v5.15.0.0/CTRE.Phoenix.Framework.v5.15.0.0.zip,0597a40d3bd93fb30c439b5184abf377,true
-#RadioConfigTool,FRC_Radio_Configuration_19_1_1.zip,https://firstfrc.blob.core.windows.net/frc2019/Radio/FRC_Radio_Configuration_19_1_1.zip,1bb18ce8064572e7c3caa455082ae93a,true
-#RadioConfigTool Israel,FRC_Radio_Configuration_19_1_1_IL.zip,https://firstfrc.blob.core.windows.net/frc2019/Radio/FRC_Radio_Configuration_19_1_1_IL.zip,ba098694023ae483326cb70cc2df1ea6,true
+#RadioConfigTool,FRC_Radio_Configuration_20_0_0.zip,https://firstfrc.blob.core.windows.net/frc2020/Radio/FRC_Radio_Configuration_20_0_0.zip,a623fbc18ac56edc45269bec5f04444f,true
+#RadioConfigTool Israel,FRC_Radio_Configuration_20_0_0_IL.zip,https://firstfrc.blob.core.windows.net/frc2020/Radio/FRC_Radio_Configuration_20_0_0_IL.zip,45619e18bcacf0c4f5c7b4b52d67dd39,true
 2020Manual,2020FRCGameSeasonManual.pdf,https://firstfrc.blob.core.windows.net/frc2020/Manual/2020FRCGameSeasonManual.pdf,00000000000000000,false
 NavX,navx-mxp.zip,https://www.kauailabs.com/public_files/navx-mxp/navx-mxp.zip,4a2839e34feafb8fc89d22fbfc701ba0,true
 VSCode-1.30.1,VSCode-win32.zip,https://vscode-update.azurewebsites.net/1.30.1/win32-archive/stable,c03410ac12386119c165a9b62c1cd3a7,true
