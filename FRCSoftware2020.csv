@@ -3,7 +3,7 @@ WPILibInstaller_Windows64, WPILibInstaller_Windows64-2020.1.2.zip,https://github
 WPILibInstaller_Windows32,WPILibInstaller_Windows32-2020.1.2.zip,https://github.com/wpilibsuite/allwpilib/releases/download/v2020.1.2/WPILibInstaller_Windows32-2020.1.2.zip,2a05c9f916acf9fbbe663b0f0c106f47,true
 #NI-LabVIEW,NI_FRC2019.zip,http://download.ni.com/support/softlib/labview/labview_frc/NI_FRC2019.zip,b7d5ecf60bc88e067d04541052e2914b,true
 #NI-Update,FRCUpdateSuite_2019.2.0.zip,http://download.ni.com/support/softlib/first/frc/FileAttachments/FRCUpdateSuite_2019.2.0.zip,7f0658ddc0b0bd363cdefcd67473de57,true
-#Password,2020Password.txt,https://raw.githubusercontent.com/JamieSinn/CSA-USB-Tool/master/2020Password.txt,####,false
+Password,2020Password.txt,https://raw.githubusercontent.com/JamieSinn/CSA-USB-Tool/master/2020Password.txt,A38D7CB475678BE3910895F56F9D4FD0,false
 CTRE-Phoenix-Win,CTRE.Phoenix.Framework.v5.15.0.0.zip,https://github.com/CrossTheRoadElec/Phoenix-Releases/releases/download/Phoenix_v5.15.0.0/CTRE.Phoenix.Framework.v5.15.0.0.zip,0597a40d3bd93fb30c439b5184abf377,true
 #RadioConfigTool,FRC_Radio_Configuration_19_1_1.zip,https://firstfrc.blob.core.windows.net/frc2019/Radio/FRC_Radio_Configuration_19_1_1.zip,1bb18ce8064572e7c3caa455082ae93a,true
 #RadioConfigTool Israel,FRC_Radio_Configuration_19_1_1_IL.zip,https://firstfrc.blob.core.windows.net/frc2019/Radio/FRC_Radio_Configuration_19_1_1_IL.zip,ba098694023ae483326cb70cc2df1ea6,true
