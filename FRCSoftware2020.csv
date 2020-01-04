@@ -1,6 +1,6 @@
 #FriendlyName,FileName,URL,MD5,isZipped
-WPILibSuite_Windows64, WPILibSuite_Windows64-2020.1.1.zip,https://github.com/wpilibsuite/allwpilib/releases/download/v2020.1.1/WPILibSuite_Windows64-2020.1.1.zip,47b50d85983d64f496884cbb4ca20d7d,true
-WPILibSuite_Windows32,WPILibSuite_Windows32-2020.1.1.zip,https://github.com/wpilibsuite/allwpilib/releases/download/v2020.1.1/WPILibSuite_Windows32-2020.1.1.zip,9eda16fa1a49f6301c0e5cfbad086e5e,true
+WPILibInstaller_Windows64, WPILibInstaller_Windows64-2020.1.2.zip,https://github.com/wpilibsuite/allwpilib/releases/download/v2020.1.2/WPILibInstaller_Windows64-2020.1.2.zip,7a0ac1199248a2ad85c19119c4bdf8d2,true
+WPILibInstaller_Windows32,WPILibInstaller_Windows32-2020.1.2.zip,https://github.com/wpilibsuite/allwpilib/releases/download/v2020.1.2/WPILibInstaller_Windows32-2020.1.2.zip,2a05c9f916acf9fbbe663b0f0c106f47,true
 #NI-LabVIEW,NI_FRC2019.zip,http://download.ni.com/support/softlib/labview/labview_frc/NI_FRC2019.zip,b7d5ecf60bc88e067d04541052e2914b,true
 #NI-Update,FRCUpdateSuite_2019.2.0.zip,http://download.ni.com/support/softlib/first/frc/FileAttachments/FRCUpdateSuite_2019.2.0.zip,7f0658ddc0b0bd363cdefcd67473de57,true
 #Password,2020Password.txt,https://raw.githubusercontent.com/JamieSinn/CSA-USB-Tool/master/2020Password.txt,####,false
