@@ -15,3 +15,6 @@ VSCode-Cpp,VSCode-Cpp.vsix,https://github.com/Microsoft/vscode-cpptools/releases
 REV-SPARK-MAX,SPARK-MAX-Software-All-CSATool-031219.zip,http://www.revrobotics.com/content/sw/max/SPARK-MAX-Software-All-CSATool-031219.zip,f0d0cdcdc0aded8d9001cb0d6263e0a8,true
 DotNet4.6.2,NDP462-KB3151800-x86-x64-AllOS-ENU.exe,https://download.microsoft.com/download/F/9/4/F942F07D-F26F-4F30-B4E3-EBD54FABA377/NDP462-KB3151800-x86-x64-AllOS-ENU.exe,9a5d647ee710af2b1aede329c40bbe1a,false
 Python 3.7.2,python-3.7.2.exe,https://www.python.org/ftp/python/3.7.2/python-3.7.2.exe,38156b62c0cbcb03bfddeb86e66c3a0f,false
+Talon SRX Firmware 20.0 CRF,TalonSrx-Application-20.0-season2020.zip,https://github.com/CrossTheRoadElec/Phoenix-Releases/releases/download/Firmware-for-Phoenix-v5.17.3/TalonSrx-Application-20.0-season2020.zip,093b16551fc83bfc136a9538980db7c0,true
+Victor SPX Firmware 20.0 CRF,VictorSpx-Application-20.0-season2020.zip,https://github.com/CrossTheRoadElec/Phoenix-Releases/releases/download/Firmware-for-Phoenix-v5.17.3/VictorSpx-Application-20.0-season2020.zip,68d5f0420d919b6f5703194d4a4562bc,true
+Talon FX Firmware 20.0.0.0 CRF,TalonFX-Application-20.0.0.0-season2020.zip,https://github.com/CrossTheRoadElec/Phoenix-Releases/releases/download/Firmware-for-Phoenix-v5.17.3/TalonFX-Application-20.0.0.0-season2020.zip,da1b2ce32b9b5da2ce6ea00c70fbf1b2,true
