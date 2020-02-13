@@ -15,4 +15,5 @@ VSCode-Cpp,VSCode-Cpp.vsix,https://github.com/Microsoft/vscode-cpptools/releases
 REV Robotics All FRC Software,REV-Robotics-Software-All-FRC-CSATool-2020-1.zip,http://www.revrobotics.com/content/sw/REV-Robotics-Software-All-FRC-CSATool-2020-1.zip,15d19153cb42bf4b5feaf50f53d750cb,true
 DotNet4.6.2,NDP462-KB3151800-x86-x64-AllOS-ENU.exe,https://download.microsoft.com/download/F/9/4/F942F07D-F26F-4F30-B4E3-EBD54FABA377/NDP462-KB3151800-x86-x64-AllOS-ENU.exe,9a5d647ee710af2b1aede329c40bbe1a,false
 Python 3.7.2,python-3.7.2.exe,https://www.python.org/ftp/python/3.7.2/python-3.7.2.exe,38156b62c0cbcb03bfddeb86e66c3a0f,false
-Limelight Finder Tool, LimelightFinderSetup1_0_1.exe,http://downloads.limelightvision.io/software/LimelightFinderSetup1_0_1.exe
+Limelight Finder 
+Tool,LimelightFinderSetup1_0_1.exe,http://downloads.limelightvision.io/software/LimelightFinderSetup1_0_1.exe,7e3ec1ea8d1c6c78f79839a019d7c43d,false
