@@ -9,9 +9,9 @@ RadioConfigTool,FRC_Radio_Configuration_20_0_0.zip,https://firstfrc.blob.core.wi
 RadioConfigTool Israel,FRC_Radio_Configuration_20_0_0_IL.zip,https://firstfrc.blob.core.windows.net/frc2020/Radio/FRC_Radio_Configuration_20_0_0_IL.zip,45619E18BCACF0C4F5C7B4B52D67DD39,true
 2020Manual,2020FRCGameSeasonManual.pdf,https://firstfrc.blob.core.windows.net/frc2020/Manual/2020FRCGameSeasonManual.pdf,00000000000000000,false
 NavX,navx-mxp.zip,https://www.kauailabs.com/public_files/navx-mxp/navx-mxp.zip,4a2839e34feafb8fc89d22fbfc701ba0,true
-VSCode-1.30.1,VSCode-win32.zip,https://vscode-update.azurewebsites.net/1.30.1/win32-archive/stable,c03410ac12386119c165a9b62c1cd3a7,true
-VSCode-1.30.1-64,VSCode-win64.zip,https://vscode-update.azurewebsites.net/1.30.1/win32-x64-archive/stable,3eca8fc696b93ae43c87cfc530b1b5d1,true
-VSCode-Cpp,VSCode-Cpp.vsix,https://github.com/Microsoft/vscode-cpptools/releases/download/0.21.0/cpptools-win32.vsix,fa79d518b034763f67c381398353d9a2,true
+VSCode-1.41.1,VSCode-win32.zip,https://vscode-update.azurewebsites.net/1.41.1/win32-archive/stable,a704725b36e345f24b2b1a25d539669a,true
+VSCode-1.41.1-64,VSCode-win64.zip,https://vscode-update.azurewebsites.net/1.41.1/win32-x64-archive/stable,49d1738352b9afbc276556fd97a61388,true
+VSCode-Cpp,VSCode-Cpp.vsix,https://github.com/Microsoft/vscode-cpptools/releases/download/0.26.2/cpptools-win32.vsix,56ca3815f455cc0db5d8ef3d2590bde4,true
 REV Robotics All FRC Software,REV-Robotics-Software-All-FRC-CSATool-2020-1.zip,http://www.revrobotics.com/content/sw/REV-Robotics-Software-All-FRC-CSATool-2020-1.zip,15d19153cb42bf4b5feaf50f53d750cb,true
 DotNet4.6.2,NDP462-KB3151800-x86-x64-AllOS-ENU.exe,https://download.microsoft.com/download/F/9/4/F942F07D-F26F-4F30-B4E3-EBD54FABA377/NDP462-KB3151800-x86-x64-AllOS-ENU.exe,9a5d647ee710af2b1aede329c40bbe1a,false
 Python 3.7.2,python-3.7.2.exe,https://www.python.org/ftp/python/3.7.2/python-3.7.2.exe,38156b62c0cbcb03bfddeb86e66c3a0f,false
