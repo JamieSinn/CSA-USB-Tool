@@ -1,6 +1,6 @@
 #FriendlyName,FileName,URL,MD5,isZipped
-WPILibInstaller_Windows64, WPILibInstaller_Windows64-2020.1.2.zip,https://github.com/wpilibsuite/allwpilib/releases/download/v2020.1.2/WPILibInstaller_Windows64-2020.1.2.zip,7a0ac1199248a2ad85c19119c4bdf8d2,true
-WPILibInstaller_Windows32,WPILibInstaller_Windows32-2020.1.2.zip,https://github.com/wpilibsuite/allwpilib/releases/download/v2020.1.2/WPILibInstaller_Windows32-2020.1.2.zip,2a05c9f916acf9fbbe663b0f0c106f47,true
+WPILibInstaller_Windows64, WPILibInstaller_Windows64-2020.3.2.zip,https://github.com/wpilibsuite/allwpilib/releases/download/v2020.3.2/WPILibInstaller_Windows64-2020.3.2.zip,d7001f51d247046310cf9dd56d133a95,true
+WPILibInstaller_Windows32,WPILibInstaller_Windows32-2020.3.2.zip,https://github.com/wpilibsuite/allwpilib/releases/download/v2020.3.2/WPILibInstaller_Windows32-2020.3.2.zip,3984ead5799eec22f8a7edcdd904a3e7,true
 NI-LabVIEW,ni-frc-2020-base-suite_19.0_suite_online_repack.exe,https://download.ni.com/support/nipkg/products/ni-f/ni-frc-2020-base-suite/19.0/online/ni-frc-2020-base-suite_19.0_suite_online_repack.exe,AD3278815ECE779367E661135E01C427,false
 NI-Update,ni-frc-2020-game-tools_19.0_online.exe,https://download.ni.com/support/nipkg/products/ni-f/ni-frc-2020-game-tools/19.0/online/ni-frc-2020-game-tools_19.0_online.exe,5556BC52FA84C148481BD13F9428ACB0,false
 Password,2020Password.txt,https://raw.githubusercontent.com/JamieSinn/CSA-USB-Tool/master/2020Password.txt,A38D7CB475678BE3910895F56F9D4FD0,false
