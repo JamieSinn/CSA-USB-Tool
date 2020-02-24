@@ -28,7 +28,7 @@ namespace CSAUSBTool.Base
 
         public List<ControlSystemsSoftware> GetWebList()
         {
-            return GetWebList($"https://raw.githubusercontent.com/JamieSinn/CSA-USB-Tool/master/{Program}Software{Year}.csv");
+            return GetWebList("https://raw.githubusercontent.com/JamieSinn/CSA-USB-Tool/master/" + Program + "Software"+ Year + ".csv");
         }
 
         public List<ControlSystemsSoftware> GetWebList(string uri)

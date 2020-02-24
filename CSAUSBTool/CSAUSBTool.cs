@@ -34,7 +34,7 @@ namespace CSAUSBTool
 
             ValidSeasons().ForEach(year =>
             {
-                Enum.TryParse(year.Substring(0, 3), true, out FIRSTProgram program);
+                if (!Enum.TryParse(year.Substring(0, 3), true, out FIRSTProgram program)) return;
                 seasons[year] = new FIRSTSeason(int.Parse(year.Substring(3)), program);
             });
 
