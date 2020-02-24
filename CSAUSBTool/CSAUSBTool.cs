@@ -148,6 +148,9 @@ namespace CSAUSBTool
             }
         }
 
-        
+        private void CSAUSBTool_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -152,7 +152,8 @@
             this.Controls.Add(this.statusStrip);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CSAUSBTool";
-            this.Text = "CSA USB Tool";
+            this.Text = "CSA USB Tool v2020.1";
+            this.Load += new System.EventHandler(this.CSAUSBTool_Load);
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
             this.ResumeLayout(false);
