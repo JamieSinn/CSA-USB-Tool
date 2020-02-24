@@ -26,6 +26,13 @@ namespace CSAUSBTool.Base
             Software = GetWebList();
         }
 
+        public FIRSTSeason(int year, FIRSTProgram program, string uri)
+        {
+            Year = year;
+            Program = program;
+            Software = GetWebList(uri);
+        }
+
         public List<ControlSystemsSoftware> GetWebList()
         {
             return GetWebList("https://raw.githubusercontent.com/JamieSinn/CSA-USB-Tool/master/" + Program + "Software"+ Year + ".csv");

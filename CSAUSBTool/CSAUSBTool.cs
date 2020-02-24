@@ -28,7 +28,7 @@ namespace CSAUSBTool
             if (args.Count >= 1)
             {
                 Console.Out.WriteLine(args[0]);
-                seasons["FRC9999"] = new FIRSTSeason(9999, FIRSTProgram.FRC);
+                seasons["FRC9999"] = new FIRSTSeason(9999, FIRSTProgram.FRC, args[0]);
             }
 
 
