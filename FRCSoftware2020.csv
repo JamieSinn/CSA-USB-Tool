@@ -1,7 +1,7 @@
 #FriendlyName,FileName,URL,MD5,isZipped
 NI-LabVIEW,ni-frc-2020-base-suite_19.0.0.49152-0+f0_offline.iso,https://download.ni.com/support/nipkg/products/ni-f/ni-frc-2020-base-suite/19.0/offline/ni-frc-2020-base-suite_19.0.0.49152-0+f0_offline.iso,2bed0a8236a5dd452c96a019450a9ecf,false
 NI-Update,ni-frc-2020-game-tools_19.0.0_offline.iso,https://download.ni.com/support/nipkg/products/ni-f/ni-frc-2020-game-tools/19.0/offline/ni-frc-2020-game-tools_19.0.0_offline.iso,0fd5df9e21e69e2e5a0e1e5f7d60f60a,false
-WPILibInstaller_Windows64, WPILibInstaller_Windows64-2020.3.2.zip,https://github.com/wpilibsuite/allwpilib/releases/download/v2020.3.2/WPILibInstaller_Windows64-2020.3.2.zip,d7001f51d247046310cf9dd56d133a95,true
+WPILibInstaller_Windows64,WPILibInstaller_Windows64-2020.3.2.zip,https://github.com/wpilibsuite/allwpilib/releases/download/v2020.3.2/WPILibInstaller_Windows64-2020.3.2.zip,d7001f51d247046310cf9dd56d133a95,true
 WPILibInstaller_Windows32,WPILibInstaller_Windows32-2020.3.2.zip,https://github.com/wpilibsuite/allwpilib/releases/download/v2020.3.2/WPILibInstaller_Windows32-2020.3.2.zip,3984ead5799eec22f8a7edcdd904a3e7,true
 Password,2020Password.txt,https://raw.githubusercontent.com/JamieSinn/CSA-USB-Tool/master/2020Password.txt,A38D7CB475678BE3910895F56F9D4FD0,false
 CTRE-Phoenix-Win,CTRE.Phoenix.Framework.v5.18.2.1.zip,https://github.com/CrossTheRoadElec/Phoenix-Releases/releases/download/v5.18.2.1/CTRE.Phoenix.Framework.v5.18.2.1.zip,056d0ba2a3baa1f65e85cf06e492b190,true
