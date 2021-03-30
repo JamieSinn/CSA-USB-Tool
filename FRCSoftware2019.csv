@@ -9,8 +9,8 @@ RadioConfigTool,FRC_Radio_Configuration_19_1_1.zip,https://firstfrc.blob.core.wi
 RadioConfigTool Israel,FRC_Radio_Configuration_19_1_1_IL.zip,https://firstfrc.blob.core.windows.net/frc2019/Radio/FRC_Radio_Configuration_19_1_1_IL.zip,ba098694023ae483326cb70cc2df1ea6,true
 2019Manual,2019FRCGameSeasonManual.pdf,https://firstfrc.blob.core.windows.net/frc2019/Manual/2019FRCGameSeasonManual.pdf,cd1d15c6650dc0112905ee52c28d848f,false
 NavX,navx-mxp.zip,https://www.kauailabs.com/public_files/navx-mxp/navx-mxp.zip,4a2839e34feafb8fc89d22fbfc701ba0,true
-VSCode-1.30.1,VSCode-win32.zip,https://vscode-update.azurewebsites.net/1.30.1/win32-archive/stable,c03410ac12386119c165a9b62c1cd3a7,true
-VSCode-1.30.1-64,VSCode-win64.zip,https://vscode-update.azurewebsites.net/1.30.1/win32-x64-archive/stable,3eca8fc696b93ae43c87cfc530b1b5d1,true
+VSCode-1.30.1,VSCode-win32.zip,https://update.code.visualstudio.com/1.30.1/win32-archive/stable,c03410ac12386119c165a9b62c1cd3a7,true
+VSCode-1.30.1-64,VSCode-win64.zip,https://update.code.visualstudio.com/1.30.1/win32-x64-archive/stable,3eca8fc696b93ae43c87cfc530b1b5d1,true
 VSCode-Cpp,VSCode-Cpp.vsix,https://github.com/Microsoft/vscode-cpptools/releases/download/0.21.0/cpptools-win32.vsix,fa79d518b034763f67c381398353d9a2,true
 REV-SPARK-MAX,SPARK-MAX-Software-All-CSATool-031219.zip,http://www.revrobotics.com/content/sw/max/SPARK-MAX-Software-All-CSATool-031219.zip,f0d0cdcdc0aded8d9001cb0d6263e0a8,true
 DotNet4.6.2,NDP462-KB3151800-x86-x64-AllOS-ENU.exe,https://download.microsoft.com/download/F/9/4/F942F07D-F26F-4F30-B4E3-EBD54FABA377/NDP462-KB3151800-x86-x64-AllOS-ENU.exe,9a5d647ee710af2b1aede329c40bbe1a,false
