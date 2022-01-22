@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using CSAUSBTool.Base;
 
@@ -14,6 +16,9 @@ namespace CSAUSBTool
         public string DownloadFolderPath { get; set; }
         private int DlCount { get; set; }
         public FIRSTSeason SelectedSeason { get; set; }
+
+        private List<string> ValidSeasonsList { get; set; }
+
         private readonly Dictionary<string, FIRSTSeason> seasons = new Dictionary<string, FIRSTSeason>();
 
         private Dictionary<string, ControlSystemsSoftware> SelectedSoftware =
@@ -23,6 +28,7 @@ namespace CSAUSBTool
         {
             ServicePointManager.Expect100Continue = true;
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
             InitializeComponent();
 
             if (args.Count >= 1)
@@ -31,11 +37,16 @@ namespace CSAUSBTool
                 seasons["FRC9999"] = new FIRSTSeason(9999, FIRSTProgram.FRC);
             }
 
+            ValidSeasons().ContinueWith(async (years) => (await years));
 
-            ValidSeasons().ForEach(year =>
+            ValidSeasonsList = ValidSeasons().Result;
+
+            ValidSeasonsList.ForEach(year =>
             {
-                if (!Enum.TryParse(year.Substring(0, 3), true, out FIRSTProgram program)) return;
-                seasons[year] = new FIRSTSeason(int.Parse(year.Substring(3)), program);
+                if (!Enum.TryParse(year.Substring(0, 3), true, out FIRSTProgram program))
+                    return;
+ 
+                seasons[year] = new FIRSTSeason(int.Parse(year[3..]), program);            
             });
 
             Text = "CSA USB Tool v2022.1";
@@ -44,7 +55,7 @@ namespace CSAUSBTool
             yearSelection.DataSource = new BindingSource(seasons, null);
             yearSelection.DisplayMember = "Key";
             yearSelection.ValueMember = "Value";
-            SelectedSeason = seasons[ValidSeasons().ElementAt(0)];
+            SelectedSeason = seasons[ValidSeasonsList.ElementAt(0)];
 
             // Clear the selected software to ensure blank slate.
             SelectedSoftware.Clear();
@@ -130,12 +141,12 @@ namespace CSAUSBTool
             }
         }
 
-        private static List<string> ValidSeasons()
+        private async static Task<List<string>> ValidSeasons()
         {
             var years = new List<string>();
-            using (var client = new WebClient())
+            using (var client = new HttpClient())
             {
-                var data = client.DownloadString(new Uri("https://raw.githubusercontent.com/JamieSinn/CSA-USB-Tool/master/Years.txt"));
+               var data = await client.GetStringAsync("https://raw.githubusercontent.com/JamieSinn/CSA-USB-Tool/master/Years.txt"); 
                 var lines = data.Split('\n').ToList();
                 lines.ForEach(line => years.Add(line));
             }
