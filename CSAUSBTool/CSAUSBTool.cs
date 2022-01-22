@@ -19,22 +19,22 @@ namespace CSAUSBTool
 
         private List<string> ValidSeasonsList { get; set; }
 
-        private readonly Dictionary<string, FIRSTSeason> seasons = new Dictionary<string, FIRSTSeason>();
+        private readonly Dictionary<string, FIRSTSeason> seasons = new();
 
-        private Dictionary<string, ControlSystemsSoftware> SelectedSoftware =
-            new Dictionary<string, ControlSystemsSoftware>();
+        private Dictionary<string, ControlSystemsSoftware> SelectedSoftware = new();
 
         public CSAUSBTool(IReadOnlyList<string> args)
         {
+            Text = @"CSA USB Tool v2022.1";
+
             ServicePointManager.Expect100Continue = true;
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
             InitializeComponent();
 
-            if (args.Count >= 1)
+            if (Directory.GetFiles(Directory.GetCurrentDirectory(), "*.csa").Length > 0)
             {
-                Console.Out.WriteLine(args[0]);
-                seasons["FRC9999"] = new FIRSTSeason(9999, FIRSTProgram.FRC);
+                seasons["FRC9999"] = new FRCSeason(9999, $"local:{Directory.GetFiles(Directory.GetCurrentDirectory(), "*.csa")[0]}");
             }
 
             ValidSeasons().ContinueWith(async (years) => (await years));
@@ -43,13 +43,11 @@ namespace CSAUSBTool
 
             ValidSeasonsList.ForEach(year =>
             {
-                if (!Enum.TryParse(year.Substring(0, 3), true, out FIRSTProgram program))
+                if (!Enum.TryParse(year[..3], true, out FIRSTProgram program))
                     return;
  
                 seasons[year] = new FIRSTSeason(int.Parse(year[3..]), program);            
             });
-
-            Text = "CSA USB Tool v2022.1";
 
             // Bind year objects to the selector.
             yearSelection.DataSource = new BindingSource(seasons, null);
@@ -112,8 +110,6 @@ namespace CSAUSBTool
             downloadFolder.Text = folder;
             DownloadFolderPath = folder;
         }
-
- 
 
         private void downloadButton_Click(object sender, EventArgs e)
         {

@@ -19,16 +19,11 @@ namespace CSAUSBTool.Base
         public List<ControlSystemsSoftware> Software { get; set; }
         public FIRSTProgram Program { get; set; }
 
-        public FIRSTSeason(int year, FIRSTProgram program)
+        public FIRSTSeason(int year, FIRSTProgram program, string uri = "")
         {
             Year = year;
             Program = program;
-            Software = GetWebList();
-        }
-
-        public List<ControlSystemsSoftware> GetWebList()
-        {
-            return GetWebList("https://raw.githubusercontent.com/JamieSinn/CSA-USB-Tool/master/" + Program + "Software"+ Year + ".csv");
+            Software = GetWebList(uri);
         }
 
         public List<ControlSystemsSoftware> GetWebList(string uri)
@@ -78,6 +73,19 @@ namespace CSAUSBTool.Base
         public override string ToString()
         {
             return $"{Program} - {Year}";
+        }
+    }
+    public class FRCSeason : FIRSTSeason
+    {
+        public FRCSeason(int year, string uri = "") : base(year, FIRSTProgram.FRC, uri)
+        {
+        }
+    }
+
+    public class FTCSeason : FIRSTSeason
+    {
+        public FTCSeason(int year, string uri = "") : base(year, FIRSTProgram.FTC, uri)
+        {
         }
     }
 }
