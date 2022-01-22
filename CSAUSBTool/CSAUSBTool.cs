@@ -38,6 +38,8 @@ namespace CSAUSBTool
                 seasons[year] = new FIRSTSeason(int.Parse(year.Substring(3)), program);
             });
 
+            Text = "CSA USB Tool v2022.1";
+
             // Bind year objects to the selector.
             yearSelection.DataSource = new BindingSource(seasons, null);
             yearSelection.DisplayMember = "Key";

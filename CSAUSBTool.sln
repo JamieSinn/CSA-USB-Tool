@@ -1,11 +1,26 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.705
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSAUSBTool", "CSAUSBTool\CSAUSBTool.csproj", "{51473C6A-94E1-4908-9F77-15A15EC118F6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSAUSBTool.Base", "CSAUSBTool.Base\CSAUSBTool.Base.csproj", "{5832E6E7-9A7C-49E1-945F-B37D3563EDC3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CEE83079-35D3-480F-99E1-AC6BC51486AF}"
+	ProjectSection(SolutionItems) = preProject
+		2018Password.txt = 2018Password.txt
+		2019Password.txt = 2019Password.txt
+		2020Password.txt = 2020Password.txt
+		2022Password.txt = 2022Password.txt
+		FRCSoftware2017.csv = FRCSoftware2017.csv
+		FRCSoftware2018.csv = FRCSoftware2018.csv
+		FRCSoftware2019.csv = FRCSoftware2019.csv
+		FRCSoftware2020.csv = FRCSoftware2020.csv
+		FRCSoftware2022.csv = FRCSoftware2022.csv
+		FTCSoftware2020.csv = FTCSoftware2020.csv
+		Years.txt = Years.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
