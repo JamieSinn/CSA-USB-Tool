@@ -76,8 +76,6 @@
     <ProjectReference Include="..\CSAUSBTool.Base\CSAUSBTool.Base.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Costura.Fody" Version="5.7.0" />
-    <PackageReference Include="Fody" Version="6.6.0" />
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="Microsoft.NETCore.Platforms" Version="6.0.1" />
     <PackageReference Include="Microsoft.Win32.Primitives" Version="4.3.0" />

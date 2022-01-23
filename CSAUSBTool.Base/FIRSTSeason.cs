@@ -21,8 +21,11 @@ namespace CSAUSBTool.Base
 
         public FIRSTSeason(int year, FIRSTProgram program, string uri = "")
         {
+           
             Year = year;
             Program = program;
+            if (uri.Equals(""))
+                uri = $"https://raw.githubusercontent.com/JamieSinn/CSA-USB-Tool/master/{Program}Software{Year}.csv";
             Software = GetWebList(uri);
         }
 
@@ -57,7 +60,7 @@ namespace CSAUSBTool.Base
             return GetFromCsv(lines);
         }
 
-        private List<ControlSystemsSoftware> GetFromCsv(List<string> lines)
+        private static List<ControlSystemsSoftware> GetFromCsv(List<string> lines)
         {
             var ret = new List<ControlSystemsSoftware>();
             lines.ForEach(line =>

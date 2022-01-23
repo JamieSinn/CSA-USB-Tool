@@ -43,15 +43,15 @@ namespace CSAUSBTool.Base
             // Use github latest
             foreach (Match match in matches)
             {
-                GroupCollection collection = match.Groups;
+                var collection = match.Groups;
                 var owner = collection["owner"].Value;
                 var repo = collection["repo"].Value;
-                var releasematch = collection["release"].Value;
+                var releaseMatch = collection["release"].Value;
 
                 var release = await github.Repository.Release.GetLatest(owner, repo);
                 foreach (var asset in release.Assets)
                 {
-                    if(!asset.Name.Contains(releasematch) || matches.Count == 0)
+                    if(!asset.Name.Contains(releaseMatch) || matches.Count == 0)
                         continue;
 
                     FileName = asset.Name;

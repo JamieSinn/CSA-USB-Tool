@@ -12,78 +12,77 @@ namespace CSAUSBTool
 {
     public partial class CSAUSBTool : Form
     {
-        private string SelectedYear;
+
         public string DownloadFolderPath { get; set; }
         private int DlCount { get; set; }
         public FIRSTSeason SelectedSeason { get; set; }
 
         private List<string> ValidSeasonsList { get; set; }
 
-        private readonly Dictionary<string, FIRSTSeason> seasons = new();
+        private readonly Dictionary<string, FIRSTSeason> _seasons = new();
 
-        private Dictionary<string, ControlSystemsSoftware> SelectedSoftware = new();
+        private string _selectedYear;
+
+        private Dictionary<string, ControlSystemsSoftware> _selectedSoftware = new();
 
         public CSAUSBTool(IReadOnlyList<string> args)
         {
-            Text = @"CSA USB Tool v2022.1";
-
             ServicePointManager.Expect100Continue = true;
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
             InitializeComponent();
-
-            if (Directory.GetFiles(Directory.GetCurrentDirectory(), "*.csa").Length > 0)
+            Text = @"CSA USB Tool v2022.1";
+            string currentDir = Directory.GetCurrentDirectory();
+            if (Directory.GetFiles(currentDir, "*.csa").Length > 0)
             {
-                seasons["FRC9999"] = new FRCSeason(9999, $"local:{Directory.GetFiles(Directory.GetCurrentDirectory(), "*.csa")[0]}");
+                _seasons["FRC9999"] = new FRCSeason(9999, $"local:{Directory.GetFiles(currentDir, "*.csa")[0]}");
             }
 
-            ValidSeasons().ContinueWith(async (years) => (await years));
-
-            ValidSeasonsList = ValidSeasons().Result;
+            ValidSeasonsList = GetValidSeasons();
 
             ValidSeasonsList.ForEach(year =>
             {
                 if (!Enum.TryParse(year[..3], true, out FIRSTProgram program))
                     return;
- 
-                seasons[year] = new FIRSTSeason(int.Parse(year[3..]), program);            
-            });
 
+                _seasons[year] = new FIRSTSeason(int.Parse(year[3..]), program);
+            });
+            
             // Bind year objects to the selector.
-            yearSelection.DataSource = new BindingSource(seasons, null);
+            yearSelection.DataSource = new BindingSource(_seasons, null);
             yearSelection.DisplayMember = "Key";
             yearSelection.ValueMember = "Value";
-            SelectedSeason = seasons[ValidSeasonsList.ElementAt(0)];
+            SelectedSeason = _seasons[ValidSeasonsList.ElementAt(0)];
 
             // Clear the selected software to ensure blank slate.
-            SelectedSoftware.Clear();
+            _selectedSoftware.Clear();
             
             ResetSelectedSoftware();
             
             // Bind software for the year to the listbox.
-            SelectedItems.DataSource = new BindingSource(SelectedSoftware, null);
+            SelectedItems.DataSource = new BindingSource(_selectedSoftware, null);
             SelectedItems.DisplayMember = "Key";
             SelectedItems.ValueMember = "Value";
 
-            downloadFolder.Text = $@"{Directory.GetCurrentDirectory()}\\{SelectedYear}\\";
+            downloadFolder.Text = $@"{Directory.GetCurrentDirectory()}\\{_selectedYear}\\";
         }
 
         private void yearSelection_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (yearSelection.SelectedItem.ToString().Equals(""))
+            if (string.IsNullOrEmpty(yearSelection.SelectedItem.ToString()))
                 return;
 
             // Reset the selections
             var selected = (KeyValuePair<string, FIRSTSeason>) yearSelection.SelectedItem;
-            SelectedYear = selected.Key;
-            SelectedSeason = seasons[SelectedYear];
-            downloadFolder.Text = $@"{Directory.GetCurrentDirectory()}\\{SelectedYear}\\"; 
-            SelectedSoftware.Clear();
+            _selectedYear = selected.Key;
+            SelectedSeason = _seasons[_selectedYear];
+            downloadFolder.Text = $@"{Directory.GetCurrentDirectory()}\\{_selectedYear}\\"; 
+            _selectedSoftware.Clear();
             
             ResetSelectedSoftware();
             
             // Bind software again to ensure it gets updated.
-            SelectedItems.DataSource = new BindingSource(SelectedSoftware, null);
+            SelectedItems.DataSource = new BindingSource(_selectedSoftware, null);
             SelectedItems.DisplayMember = "Key";
             SelectedItems.ValueMember = "Value";
 
@@ -94,7 +93,7 @@ namespace CSAUSBTool
             toolStripProgressBar.Value = 0;
             foreach (var css in SelectedSeason.Software)
             {
-                SelectedSoftware.Add(css.Name, css);
+                _selectedSoftware.Add(css.Name, css);
             }
         }
 
@@ -116,8 +115,8 @@ namespace CSAUSBTool
             toolStripProgressBar.Value = 0;
             DlCount = 0;
             Directory.CreateDirectory(DownloadFolderPath);
-            var unitPct = 100/SelectedSoftware.Count;
-            foreach (var soft in SelectedSoftware)
+            var unitPct = 100/_selectedSoftware.Count;
+            foreach (var soft in _selectedSoftware)
             {
                 soft.Value.Download(DownloadFolderPath,
                     progress: delegate
@@ -126,34 +125,32 @@ namespace CSAUSBTool
                             return;
 
                         DlCount++;
-                        if (DlCount == SelectedSoftware.Count)
+                        if (DlCount == _selectedSoftware.Count)
                             toolStripProgressBar.Value = 100;
                         else
                             toolStripProgressBar.Value += unitPct;
 
-                        toolStripStatusLabel.Text = $@"{DlCount}/{SelectedSoftware.Count} Downloaded";
+                        toolStripStatusLabel.Text = $@"{DlCount}/{_selectedSoftware.Count} Downloaded";
 
                     });
             }
         }
 
-        private async static Task<List<string>> ValidSeasons()
+        private static List<string> GetValidSeasons()
         {
-            var years = new List<string>();
-            using (var client = new HttpClient())
-            {
-               var data = await client.GetStringAsync("https://raw.githubusercontent.com/JamieSinn/CSA-USB-Tool/master/Years.txt"); 
-                var lines = data.Split('\n').ToList();
-                lines.ForEach(line => years.Add(line));
-            }
-            return years;
+            using var client = new HttpClient();
+            var data = client
+                .GetStringAsync($"https://raw.githubusercontent.com/JamieSinn/CSA-USB-Tool/master/Years.txt")
+                .Result; 
+            var lines = data.Split('\n').ToList();
+            return lines;
         }
         private void SelectedItems_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SelectedSoftware.Clear();
+            _selectedSoftware.Clear();
             foreach (KeyValuePair<string, ControlSystemsSoftware> item in SelectedItems.SelectedItems)
             {
-                SelectedSoftware.Add(item.Key, item.Value);
+                _selectedSoftware.Add(item.Key, item.Value);
             }
         }
 
