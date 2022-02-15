@@ -1,14 +1,14 @@
 #FriendlyName,FileName,URL,MD5,isZipped
-NI-LabVIEW,ni-frc-2022-base-suite_22.0.0.49164-0+f12_offline.iso.iso,https://download.ni.com/support/nipkg/products/ni-f/ni-frc-2022-base-suite/22.0/offline/ni-frc-2022-base-suite_22.0.0.49164-0+f12_offline.iso,041dbac231ac3e66c5de5f7bfa945d43,false
-NI-Update,ni-frc-2022-game-tools_22.0.0_offline.iso,https://download.ni.com/support/nipkg/products/ni-f/ni-frc-2022-game-tools/22.0/offline/ni-frc-2022-game-tools_22.0.0_offline.iso,537558e98ee093b1e9dfb63fbdf397d8,false
-WPILibInstaller_Windows64,WPILibInstaller_Windows64-2020.3.2.zip,https://github.com/wpilibsuite/allwpilib/releases/download/v2022.2.1/WPILib_Windows64-2022.2.1.iso,feef49f2226a5ef50de43174dff305f3,true
+NI-LabVIEW,ni-frc-2022-base-suite_22.0.0.49164-0+f12_offline.iso,https://download.ni.com/support/nipkg/products/ni-f/ni-frc-2022-base-suite/22.0/offline/ni-frc-2022-base-suite_22.0.0.49164-0+f12_offline.iso,041dbac231ac3e66c5de5f7bfa945d43,false
+NI-Update,ni-frc-2022-game-tools_22.0.1_offline.iso,https://download.ni.com/support/nipkg/products/ni-f/ni-frc-2022-game-tools/22.0/offline/ni-frc-2022-game-tools_22.0.1_offline.iso,d579261547f9c08e301c93c5b2b98fd6,false
+WPILibInstaller_Windows64,WPILib_Windows64-2022.3.1.iso,https://github.com/wpilibsuite/allwpilib/releases/download/v2022.3.1/WPILib_Windows64-2022.3.1.iso,8be0f176d5bf767da226c5b66d1dc944,false
 Password,2022Password.txt,https://raw.githubusercontent.com/JamieSinn/CSA-USB-Tool/master/2022Password.txt,327a100428a51898054ba1e34e7ffe02,false
-CTRE-Phoenix-Win,CTRE.Phoenix.Framework.v5.20.2.2.zip,https://github.com/CrossTheRoadElec/Phoenix-Releases/releases/download/v5.20.2.2/CTRE_Phoenix_Framework_v5.20.2.2.exe,7bf7a193a3388c564da9ebd2d46337e4,true
+CTRE-Phoenix-Win,CTRE.Phoenix.Framework.v5.21.1.0.zip,https://github.com/CrossTheRoadElec/Phoenix-Releases/releases/download/v5.21.1.0/CTRE_Phoenix_Framework_v5.21.1.0.exe,7eec334bed19236920d7a1ceef0e12b5,true
 RadioConfigTool,FRC_Radio_Configuration_22_0_1.zip,https://firstfrc.blob.core.windows.net/frc2022/Radio/FRC_Radio_Configuration_22_0_1.zip,985ea293c009832f0cec53e60e9babe7,true
 RadioConfigTool Israel,FRC_Radio_Configuration_22_0_1_IL.zip,https://firstfrc.blob.core.windows.net/frc2022/Radio/FRC_Radio_Configuration_22_0_1_IL.zip,29cff7f77fbc5628247188544e65821c,true
 2022Manual,2022FRCGameManual.pdf,https://firstfrc.blob.core.windows.net/frc2022/Manual/2022FRCGameManual.pdf,00000000000000000,false
 NavX,navx-mxp.zip,https://www.kauailabs.com/public_files/navx-mxp/navx-mxp.zip,00000000000000000,true
-VSCode-1.41.1,VSCode-win64.zip,https://az764295.vo.msecnd.net/stable/899d46d82c4c95423fb7e10e68eba52050e30ba3/VSCodeUserSetup-x64-1.63.2.exe,0f5a04b9e36823c986c3313025a4f579,true
+VSCode-1.63.2,VSCode-win64.zip,https://az764295.vo.msecnd.net/stable/899d46d82c4c95423fb7e10e68eba52050e30ba3/VSCodeUserSetup-x64-1.63.2.exe,0f5a04b9e36823c986c3313025a4f579,true
 VSCode-Cpp,VSCode-Cpp.vsix,https://github.com/microsoft/vscode-cpptools/releases/download/1.7.1/cpptools-win32.vsix,3bfbf7ea52676259f563e1705236d7a6,true
 REV Robotics All FRC Software,REV-Robotics-Software-All-FRC-CSATool-2020-1.zip,http://www.revrobotics.com/content/sw/REV-Robotics-Software-All-FRC-CSATool-2020-1.zip,15d19153cb42bf4b5feaf50f53d750cb,true
 DotNet4.8,NDP462-KB3151800-x86-x64-AllOS-ENU.exe,https://download.visualstudio.microsoft.com/download/pr/2d6bb6b2-226a-4baa-bdec-798822606ff1/8494001c276a4b96804cde7829c04d7f/ndp48-x86-x64-allos-enu.exe,7d2b599470e34481138444866b7e4ea6,false
