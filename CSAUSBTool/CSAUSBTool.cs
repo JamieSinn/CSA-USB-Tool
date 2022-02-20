@@ -63,6 +63,7 @@ namespace CSAUSBTool
             SelectedItems.DataSource = new BindingSource(_selectedSoftware, null);
             SelectedItems.DisplayMember = "Key";
             SelectedItems.ValueMember = "Value";
+            SelectedItems.SelectionMode = SelectionMode.MultiExtended;
 
             downloadFolder.Text = $@"{Directory.GetCurrentDirectory()}\\{_selectedYear}\\";
         }
