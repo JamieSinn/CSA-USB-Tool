@@ -10,7 +10,6 @@ RadioConfigTool Israel,FRC_Radio_Configuration_22_0_1_IL.zip,https://firstfrc.bl
 NavX,navx-mxp.zip,https://www.kauailabs.com/public_files/navx-mxp/navx-mxp.zip,00000000000000000,true
 VSCode-1.63.2,VSCode-win64.zip,https://az764295.vo.msecnd.net/stable/899d46d82c4c95423fb7e10e68eba52050e30ba3/VSCodeUserSetup-x64-1.63.2.exe,0f5a04b9e36823c986c3313025a4f579,true
 VSCode-Cpp,VSCode-Cpp.vsix,https://github.com/microsoft/vscode-cpptools/releases/download/1.7.1/cpptools-win32.vsix,3bfbf7ea52676259f563e1705236d7a6,true
-REV Robotics All FRC Software,REV-Robotics-Software-All-FRC-CSATool-2020-1.zip,http://www.revrobotics.com/content/sw/REV-Robotics-Software-All-FRC-CSATool-2020-1.zip,15d19153cb42bf4b5feaf50f53d750cb,true
 DotNet4.8,NDP462-KB3151800-x86-x64-AllOS-ENU.exe,https://download.visualstudio.microsoft.com/download/pr/2d6bb6b2-226a-4baa-bdec-798822606ff1/8494001c276a4b96804cde7829c04d7f/ndp48-x86-x64-allos-enu.exe,7d2b599470e34481138444866b7e4ea6,false
 Python 3.7.2,python-3.7.2.exe,https://www.python.org/ftp/python/3.7.2/python-3.7.2.exe,38156b62c0cbcb03bfddeb86e66c3a0f,false
 Limelight Finder Tool,LimelightFinderSetup1_0_1.exe,http://downloads.limelightvision.io/software/LimelightFinderSetup1_0_1.exe,7e3ec1ea8d1c6c78f79839a019d7c43d,false
@@ -18,3 +17,8 @@ Limelight 2022.2.2,limelight_2022_2_2_release.zip,https://downloads.limelightvis
 7-Zip,7z2107.exe,https://www.7-zip.org/a/7z2107-x64.exe,49839f0c227b5f9399b59f6ae94a7c7b,false
 FRC-Docs,docs-wpilib-org-en-latest.pdf,https://docs.wpilib.org/_/downloads/en/latest/pdf/,00000000000000000,false
 BalenaEtcher Portable,balenaEtcher-Portable-1.7.3.exe,https://github.com/balena-io/etcher/releases/download/v1.7.3/balenaEtcher-Portable-1.7.3.exe,003ef9497101bda77f18cd6583600c92,false
+Rev Hardware Client,REV-Hardware-Client-Setup-1.4.2.exe,https://github.com/REVrobotics/REV-Software-Binaries/releases/download/rhc-1.4.2/REV-Hardware-Client-Setup-1.4.2.exe,112a883b9f189e9e9ee56900465d0628,false
+RevLib,REVLib-offline-v2022.1.1.zip,https://github.com/REVrobotics/REV-Software-Binaries/releases/download/revlib-2022.1.1/REVLib-offline-v2022.1.1.zip,9624efc3bee707c7cc332f260731730d,true
+Rev PH Firmware,pneumatic_hub_22_0_4.revfw.dfu,https://github.com/REVrobotics/REV-Software-Binaries/releases/download/ph-22.0.4/pneumatic_hub_22_0_4.revfw.dfu,b2a929910aa260523c96197304d40f85,false
+Rev PDH Firmware,power_distribution_hub_22_0_3.revfw.dfu,https://github.com/REVrobotics/REV-Software-Binaries/releases/download/pdh-22.0.3/power_distribution_hub_22_0_3.revfw.dfu,5d3f090067c534f82806bb0f503a2ff9,false
+Rev Spark Max Firmware,SPARK-MAX-FW-v1.5.2.dfu,https://www.revrobotics.com/content/sw/max/firmware/SPARK-MAX-FW-v1.5.2.dfu,ff579777ba60c89a7eb4a86fe54732ab,false
