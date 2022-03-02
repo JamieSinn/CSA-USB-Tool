@@ -3,7 +3,7 @@ NI-LabVIEW,ni-frc-2022-base-suite_22.0.0.49164-0+f12_offline.iso,https://downloa
 NI-Update,ni-frc-2022-game-tools_22.0.1_offline.iso,https://download.ni.com/support/nipkg/products/ni-f/ni-frc-2022-game-tools/22.0/offline/ni-frc-2022-game-tools_22.0.1_offline.iso,d579261547f9c08e301c93c5b2b98fd6,false
 WPILibInstaller_Windows64,WPILib_Windows64-2022.4.1.iso,https://github.com/wpilibsuite/allwpilib/releases/download/v2022.4.1/WPILib_Windows64-2022.4.1.iso,9f867a4a8a7a48169668e75feba51d28,false
 Password,2022Password.txt,https://raw.githubusercontent.com/JamieSinn/CSA-USB-Tool/master/2022Password.txt,327a100428a51898054ba1e34e7ffe02,false
-CTRE-Phoenix-Win,CTRE.Phoenix.Framework.v5.21.1.0.zip,https://github.com/CrossTheRoadElec/Phoenix-Releases/releases/download/v5.21.1.0/CTRE_Phoenix_Framework_v5.21.1.0.exe,7eec334bed19236920d7a1ceef0e12b5,true
+CTRE-Phoenix-Win,CTRE.Phoenix.Framework.v5.21.1.0.exe,https://github.com/CrossTheRoadElec/Phoenix-Releases/releases/download/v5.21.1.0/CTRE_Phoenix_Framework_v5.21.1.0.exe,7eec334bed19236920d7a1ceef0e12b5,false
 RadioConfigTool,FRC_Radio_Configuration_22_0_1.zip,https://firstfrc.blob.core.windows.net/frc2022/Radio/FRC_Radio_Configuration_22_0_1.zip,985ea293c009832f0cec53e60e9babe7,true
 RadioConfigTool Israel,FRC_Radio_Configuration_22_0_1_IL.zip,https://firstfrc.blob.core.windows.net/frc2022/Radio/FRC_Radio_Configuration_22_0_1_IL.zip,29cff7f77fbc5628247188544e65821c,true
 2022Manual,2022FRCGameManual.pdf,https://firstfrc.blob.core.windows.net/frc2022/Manual/2022FRCGameManual.pdf,00000000000000000,false
