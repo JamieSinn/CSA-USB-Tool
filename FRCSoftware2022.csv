@@ -22,3 +22,4 @@ Limelight USB Driver,rpiboot_setup.exe,https://github.com/raspberrypi/usbboot/ra
 FRC-Docs,docs-wpilib-org-en-latest.pdf,https://docs.wpilib.org/_/downloads/en/latest/pdf/,00000000000000000,false
 BalenaEtcher Portable,balenaEtcher-Portable-1.7.3.exe,https://github.com/balena-io/etcher/releases/download/v1.7.3/balenaEtcher-Portable-1.7.3.exe,003ef9497101bda77f18cd6583600c92,false
 DSLOG Reader 2.2,DSLOG-Reader.2.2.exe,https://github.com/orangelight/DSLOG-Reader/releases/download/v2.2.0/DSLOG-Reader.2.2.exe,00000000000000000,false
+System Configuration ,ni-system-configuration_21.5.0_offline.iso , https://download.ni.com/support/nipkg/products/ni-s/ni-system-configuration/21.5/offline/ni-system-configuration_21.5.0_offline.iso ,e8b6cf9feed960c217ada3e2ea2dc7e4, false
