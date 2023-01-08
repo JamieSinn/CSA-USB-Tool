@@ -1,4 +1,4 @@
-#FriendlyName,FileName,URL,MD5,isZipped
+FriendlyName,FileName,URL,MD5,isZipped
 NI-LabVIEW,ni-frc-2023-base-suite_23.0.0.49182-0+f30_offline.iso,https://download.ni.com/support/nipkg/products/ni-f/ni-frc-2023-base-suite/23.0/offline/ni-frc-2023-base-suite_23.0.0.49182-0+f30_offline.iso,f970dc8ccc9cde952e60419e20797954,FALSE
 NI-Update,ni-frc-2023-game-tools_23.0.0_offline.iso,https://download.ni.com/support/nipkg/products/ni-f/ni-frc-2023-game-tools/23.0/offline/ni-frc-2023-game-tools_23.0.0_offline.iso,b47dc2c03bc41bb134ff36c9e263e9b2,FALSE
 WPILibInstaller_Windows64,WPILib_Windows-2023.1.1.iso,https://github.com/wpilibsuite/allwpilib/releases/download/v2023.1.1/WPILib_Windows-2023.1.1.iso,8aaf62c19a3cb812d2f5bb679334b397,FALSE
