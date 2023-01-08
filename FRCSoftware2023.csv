@@ -1,0 +1,25 @@
+#FriendlyName,FileName,URL,MD5,isZipped
+NI-LabVIEW,ni-frc-2023-base-suite_23.0.0.49182-0+f30_offline.iso,https://download.ni.com/support/nipkg/products/ni-f/ni-frc-2023-base-suite/23.0/offline/ni-frc-2023-base-suite_23.0.0.49182-0+f30_offline.iso,f970dc8ccc9cde952e60419e20797954,FALSE
+NI-Update,ni-frc-2023-game-tools_23.0.0_offline.iso,https://download.ni.com/support/nipkg/products/ni-f/ni-frc-2023-game-tools/23.0/offline/ni-frc-2023-game-tools_23.0.0_offline.iso,b47dc2c03bc41bb134ff36c9e263e9b2,FALSE
+WPILibInstaller_Windows64,WPILib_Windows-2023.1.1.iso,https://github.com/wpilibsuite/allwpilib/releases/download/v2023.1.1/WPILib_Windows-2023.1.1.iso,8aaf62c19a3cb812d2f5bb679334b397,FALSE
+Password,2023Password.txt,https://raw.githubusercontent.com/arnon001/CSA-USB-Tool/main/2023Password.txt,eed3e7a330aea3f6d9d0e6841f96c1d9,FALSE
+CTRE-Phoenix-Win,CTRE_Phoenix_Framework_v5.30.2.1.exe,https://github.com/CrossTheRoadElec/Phoenix-Releases/releases/download/v5.30.2.0/CTRE_Phoenix_Framework_v5.30.2.1.exe,07ff75b83f683cb31bf244c2486e3da8,FALSE
+RadioConfigTool,FRC_Radio_Configuration_23_0_2.zip,https://firstfrc.blob.core.windows.net/frc2023/Radio/FRC_Radio_Configuration_23_0_2.zip,9807fa40a7e85493b4bae3335d426b57,TRUE
+RadioConfigTool Israel,FRC_Radio_Configuration_23_0_2_IL.zip,https://firstfrc.blob.core.windows.net/frc2023/Radio/FRC_Radio_Configuration_23_0_2_IL.zip,c77af8963134ab739dd7d89bdc029fa3,TRUE
+2023Manual,2023FRCGameManual.pdf,https://firstfrc.blob.core.windows.net/frc2023/Manual/2023FRCGameManual.pdf,16b1699baf43696f7c83a1db5da1ab05,FALSE
+NavX,navx-mxp.zip,https://www.kauailabs.com/public_files/navx-mxp/navx-mxp.zip,0,TRUE
+VSCode-1.74.2,VSCodeUserSetup-x64-1.74.2.exe,https://az764295.vo.msecnd.net/stable/e8a3071ea4344d9d48ef8a4df2c097372b0c5161/VSCodeUserSetup-x64-1.74.2.exe,6effe6b143f05d4b4008bd62e6dd92a3,FALSE
+VSCode-Cpp,cpptools-win64.vsix,https://github.com/microsoft/vscode-cpptools/releases/download/1.13.9/cpptools-win64.vsix,09561030c9ab55075641e1dcb3650f78,TRUE
+REV Hardware Client,REV-Hardware-Client-Setup-1.5.0.exe,https://github.com/REVrobotics/REV-Software-Binaries/releases/download/rhc-1.5.0/REV-Hardware-Client-Setup-1.5.0.exe,54994923c8534a934293bb3c0f0381f1,FALSE
+REVLib labVIEW API,REVLib-labVIEW-2023.1.1-0_windows_all.nipkg,https://github.com/REVrobotics/REV-Software-Binaries/releases/download/revlib-2023.1.1/REVLib-labVIEW-2023.1.1-0_windows_all.nipkg,676cdc599c0c0b6a4157a034823279af,FALSE
+REVLib Java/C++ API,REVLib-offline-v2023.1.1.zip,https://github.com/REVrobotics/REV-Software-Binaries/releases/download/revlib-2023.1.1/REVLib-offline-v2023.1.1.zip,832ea1addf231001f10cd52daa5fabc7,TRUE
+DotNet4.8,NDP462-KB3151800-x86-x64-AllOS-ENU.exe,https://download.visualstudio.microsoft.com/download/pr/2d6bb6b2-226a-4baa-bdec-798822606ff1/8494001c276a4b96804cde7829c04d7f/ndp48-x86-x64-allos-enu.exe,7d2b599470e34481138444866b7e4ea6,FALSE
+Python 3.7.2,python-3.7.2.exe,https://www.python.org/ftp/python/3.7.2/python-3.7.2.exe,38156b62c0cbcb03bfddeb86e66c3a0f,FALSE
+Limelight Finder Tool,LimelightFinderSetup1_0_1.exe,http://downloads.limelightvision.io/software/LimelightFinderSetup1_0_1.exe,7e3ec1ea8d1c6c78f79839a019d7c43d,FALSE
+Limelight 2022.2.3,limelight_2022_3_0_release.zip,https://downloads.limelightvision.io/images/limelight_2022_3_0_release.zip,b934a235dd97c07b091766c5e4d27b6d,TRUE
+Limelight USB Driver,rpiboot_setup.exe,https://github.com/raspberrypi/usbboot/raw/master/win32/rpiboot_setup.exe,d89c6947e9b5f5f59bef272d3dbc97be,FALSE
+7-Zip,7z2201.exe,https://www.7-zip.org/a/7z2201-x64.exe,a6a0f7c173094f8dafef996157751ecf,FALSE
+FRC-Docs,docs-wpilib-org-en-latest.pdf,https://docs.wpilib.org/_/downloads/en/latest/pdf/,0,FALSE
+BalenaEtcher Portable,balenaEtcher-Portable-1.13.1.exe,https://github.com/balena-io/etcher/releases/download/v1.13.1/balenaEtcher-Portable-1.13.1.exe?d_id=077d2a4a-0152-4122-a09b-c64dbafe1177&s_id=1673168381092,b87b07480d2109fd859655b7b131549f,FALSE
+DSLOG Reader 2.2,DSLOG-Reader.2.2.exe,https://github.com/orangelight/DSLOG-Reader/releases/download/v2.2.3/DSLOG-Reader.2.2.exe,0,FALSE
+System Configuration ,ni-system-configuration_22.5.0_offline.iso,https://download.ni.com/support/nipkg/products/ni-s/ni-system-configuration/22.5/offline/ni-system-configuration_22.5.0_offline.iso,0f357a14f794d7feac29450d5f02315a, FALSE
