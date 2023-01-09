@@ -54,8 +54,7 @@
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include=".gitignore" />
-    <Content Include="firstrobotics_iconvert_rgb_tCt_icon.ico" />
+    <EmbeddedResource Include="firstrobotics_iconvert_rgb_tCt_icon.ico" />
     <None Update="FodyWeavers.xml">
       <SubType>Designer</SubType>
     </None>
