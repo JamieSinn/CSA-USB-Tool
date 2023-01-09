@@ -1,4 +1,4 @@
-# CSA-USB-Tool [![Build status](https://ci.appveyor.com/api/projects/status/qmcmk7if7hhxh23d?svg=true)](https://ci.appveyor.com/project/JamieSinn/csa-usb-tool)
+# CSA-USB-Tool 
 
 Tool to download all files in a given FIRST season needed to support teams.
 
