@@ -1,0 +1,23 @@
+#FriendlyName,FileName,URL,MD5,isZipped
+NI-LabVIEW,ni-frc-2023-base-suite_23.0.0.49182-0+f30_offline.iso,https://download.ni.com/support/nipkg/products/ni-f/ni-frc-2023-base-suite/23.0/offline/ni-frc-2023-base-suite_23.0.0.49182-0+f30_offline.iso,f970dc8ccc9cde952e60419e20797954,false
+NI-GameTools,ni-frc-2022-game-tools_23.0.0_offline.iso,https://download.ni.com/support/nipkg/products/ni-f/ni-frc-2023-game-tools/23.0/offline/ni-frc-2023-game-tools_23.0.0_offline.iso,b47dc2c03bc41bb134ff36c9e263e9b2,false
+WPILibInstaller_Windows64,WPILib_Windows64-2023.1.1.iso,https://github.com/wpilibsuite/allwpilib/releases/download/v2023.1.1/WPILib_Windows-2023.1.1.iso,8aaf62c19a3cb812d2f5bb679334b397,false
+Password,2023Password.txt,https://raw.githubusercontent.com/JamieSinn/CSA-USB-Tool/master/2023Password.txt,f7226fa16bbca941473c41beacf2dba4,false
+CTRE-Phoenix-Win,CTRE.Phoenix.Framework.v5.30.2.0.exe,https://github.com/CrossTheRoadElec/Phoenix-Releases/releases/download/v5.30.2.0/CTRE_Phoenix_Framework_v5.30.2.1.exe,07ff75b83f683cb31bf244c2486e3da8,false
+RadioConfigTool,FRC_Radio_Configuration_23_0_2.zip,https://firstfrc.blob.core.windows.net/frc2023/Radio/FRC_Radio_Configuration_23_0_2.zip,9807fa40a7e85493b4bae3335d426b57,true
+RadioConfigTool Israel,FRC_Radio_Configuration_23_0_2_IL.zip,https://firstfrc.blob.core.windows.net/frc2022/Radio/FRC_Radio_Configuration_23_0_2_IL.zip,c77af8963134ab739dd7d89bdc029fa3,true
+2023Manual,2022FRCGameManual.pdf,https://firstfrc.blob.core.windows.net/frc2023/Manual/2023FRCGameManual.pdf,00000000000000000,false
+NavX,navx-mxp.zip,https://www.kauailabs.com/public_files/navx-mxp/navx-mxp.zip,00000000000000000,true
+REV Hardware Client,REV-Hardware-Client-Setup-1.5.0.exe,https://github.com/REVrobotics/REV-Software-Binaries/releases/download/rhc-1.5.0/REV-Hardware-Client-Setup-1.5.0.exe,54994923c8534a934293bb3c0f0381f1,false
+REVLib labVIEW API,REVLib-labVIEW-2023.1.1-0_windows-all.nipkg,https://github.com/REVrobotics/REV-Software-Binaries/releases/download/revlib-2023.1.1/REVLib-labVIEW-2023.1.1-0_windows_all.nipkg,676cdc599c0c0b6a4157a034823279af,false
+REVLib Java/C++ API,REVLib-offline-v2023.1.1.zip,https://github.com/REVrobotics/REV-Software-Binaries/releases/download/revlib-2023.1.1/REVLib-offline-v2023.1.1.zip,832ea1addf231001f10cd52daa5fabc7,true
+DotNet4.8,NDP462-KB3151800-x86-x64-AllOS-ENU.exe,https://download.visualstudio.microsoft.com/download/pr/2d6bb6b2-226a-4baa-bdec-798822606ff1/8494001c276a4b96804cde7829c04d7f/ndp48-x86-x64-allos-enu.exe,7d2b599470e34481138444866b7e4ea6,false
+Python 3.7.2,python-3.7.2.exe,https://www.python.org/ftp/python/3.7.2/python-3.7.2.exe,38156b62c0cbcb03bfddeb86e66c3a0f,false
+Limelight Finder Tool,LimelightFinderSetup1_0_1.exe,http://downloads.limelightvision.io/software/LimelightFinderSetup1_0_1.exe,7e3ec1ea8d1c6c78f79839a019d7c43d,false
+Limelight 2022.2.3,limelight_2022_2_3_release.zip,https://downloads.limelightvision.io/images/limelight_2022_2_3_release.zip,5c4f14e3aa9cf97742ded26c1be01a19,true
+Limelight USB Driver,rpiboot_setup.exe,https://github.com/raspberrypi/usbboot/raw/master/win32/rpiboot_setup.exe,E6EE3C1EEB576253B500BEE1BFA2E5CA,false
+7-Zip,7z2107.exe,https://www.7-zip.org/a/7z2107-x64.exe,49839f0c227b5f9399b59f6ae94a7c7b,false
+FRC-Docs,docs-wpilib-org-en-latest.pdf,https://docs.wpilib.org/_/downloads/en/latest/pdf/,00000000000000000,false
+BalenaEtcher Portable,balenaEtcher-Portable-1.13.1.exe,https://github.com/balena-io/etcher/releases/download/v1.13.1/balenaEtcher-Portable-1.13.1.exe,003ef9497101bda77f18cd6583600c92,false
+DSLOG Reader 2.2,DSLOG-Reader.2.2.exe,https://github.com/orangelight/DSLOG-Reader/releases/download/v2.2.0/DSLOG-Reader.2.2.exe,00000000000000000,false
+System Configuration ,ni-system-configuration_21.5.0_offline.iso,https://download.ni.com/support/nipkg/products/ni-s/ni-system-configuration/22.5/offline/ni-system-configuration_22.5.0_offline.iso,0f357a14f794d7feac29450d5f02315a,false
