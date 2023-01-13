@@ -5,8 +5,8 @@ WPILibInstaller_Windows64,WPILib_Windows64-2023.1.1.iso,https://github.com/wpili
 Password,2023Password.txt,https://raw.githubusercontent.com/JamieSinn/CSA-USB-Tool/master/2023Password.txt,f7226fa16bbca941473c41beacf2dba4,false
 CTRE-Phoenix-Win,CTRE.Phoenix.Framework.v5.30.2.0.exe,https://github.com/CrossTheRoadElec/Phoenix-Releases/releases/download/v5.30.2.0/CTRE_Phoenix_Framework_v5.30.2.1.exe,07ff75b83f683cb31bf244c2486e3da8,false
 RadioConfigTool,FRC_Radio_Configuration_23_0_2.zip,https://firstfrc.blob.core.windows.net/frc2023/Radio/FRC_Radio_Configuration_23_0_2.zip,9807fa40a7e85493b4bae3335d426b57,true
-RadioConfigTool Israel,FRC_Radio_Configuration_23_0_2_IL.zip,https://firstfrc.blob.core.windows.net/frc2022/Radio/FRC_Radio_Configuration_23_0_2_IL.zip,c77af8963134ab739dd7d89bdc029fa3,true
-2023Manual,2022FRCGameManual.pdf,https://firstfrc.blob.core.windows.net/frc2023/Manual/2023FRCGameManual.pdf,00000000000000000,false
+RadioConfigTool Israel,FRC_Radio_Configuration_23_0_2_IL.zip,https://firstfrc.blob.core.windows.net/frc2023/Radio/FRC_Radio_Configuration_23_0_2_IL.zip,c77af8963134ab739dd7d89bdc029fa3,true
+2023Manual,2023FRCGameManual.pdf,https://firstfrc.blob.core.windows.net/frc2023/Manual/2023FRCGameManual.pdf,00000000000000000,false
 NavX,navx-mxp.zip,https://www.kauailabs.com/public_files/navx-mxp/navx-mxp.zip,00000000000000000,true
 REV Hardware Client,REV-Hardware-Client-Setup-1.5.0.exe,https://github.com/REVrobotics/REV-Software-Binaries/releases/download/rhc-1.5.0/REV-Hardware-Client-Setup-1.5.0.exe,54994923c8534a934293bb3c0f0381f1,false
 REVLib labVIEW API,REVLib-labVIEW-2023.1.1-0_windows-all.nipkg,https://github.com/REVrobotics/REV-Software-Binaries/releases/download/revlib-2023.1.1/REVLib-labVIEW-2023.1.1-0_windows_all.nipkg,676cdc599c0c0b6a4157a034823279af,false
