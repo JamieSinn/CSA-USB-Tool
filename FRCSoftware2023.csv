@@ -30,3 +30,4 @@ FRC-Docs,docs-wpilib-org-en-latest.pdf,https://docs.wpilib.org/_/downloads/en/la
 BalenaEtcher Portable,balenaEtcher-Portable-1.14.3.exe,https://github.com/balena-io/etcher/releases/download/v1.14.3/balenaEtcher-Portable-1.14.3.exe,a9d650b8d64720b84bd5c27ac996ec11,false
 DSLOG Reader 2.2,DSLOG-Reader.2.2.exe,https://github.com/orangelight/DSLOG-Reader/releases/download/v2.2.0/DSLOG-Reader.2.2.exe,00000000000000000,false
 System Configuration ,ni-system-configuration_21.5.0_offline.iso,https://download.ni.com/support/nipkg/products/ni-s/ni-system-configuration/22.5/offline/ni-system-configuration_22.5.0_offline.iso,0f357a14f794d7feac29450d5f02315a,false
+VisualVM,visualvm_215.zip,https://github.com/oracle/visualvm/releases/download/2.1.5/visualvm_215.zip,0bca9af2c94d6f0bf61ebf136575a2e8,true
