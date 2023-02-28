@@ -1,6 +1,7 @@
 #FriendlyName,FileName,URL,MD5,isZipped
 NI-LabVIEW,ni-frc-2023-base-suite_23.0.0.49182-0+f30_offline.iso,https://download.ni.com/support/nipkg/products/ni-f/ni-frc-2023-base-suite/23.0/offline/ni-frc-2023-base-suite_23.0.0.49182-0+f30_offline.iso,f970dc8ccc9cde952e60419e20797954,false
 NI-GameTools,ni-frc-2022-game-tools_23.0.0_offline.iso,https://download.ni.com/support/nipkg/products/ni-f/ni-frc-2023-game-tools/23.0/offline/ni-frc-2023-game-tools_23.0.0_offline.iso,b47dc2c03bc41bb134ff36c9e263e9b2,false
+NI-CompactRIO Driver,ni-compactrio-device-drivers_22.8.0.49312-0+f160_offline.iso,https://download.ni.com/support/nipkg/products/ni-c/ni-compactrio-device-drivers/22.8/offline/ni-compactrio-device-drivers_22.8.0.49312-0+f160_offline.iso,880d21bc1eb2ebadf721112815d41369,false
 WPILibInstaller_Windows64,WPILib_Windows-2023.4.2.iso,https://github.com/wpilibsuite/allwpilib/releases/download/v2023.4.2/WPILib_Windows-2023.4.2.iso,1072aff0a9c3af3b4da5f0915c0dc9a2,false
 Password,2023Password.txt,https://raw.githubusercontent.com/JamieSinn/CSA-USB-Tool/master/2023Password.txt,f7226fa16bbca941473c41beacf2dba4,false
 CTRE Phoenix Windows Installer,CTRE_Phoenix_Framework_v5.30.4.2.exe,https://github.com/CrossTheRoadElec/Phoenix-Releases/releases/download/v5.30.4.2/CTRE_Phoenix_Framework_v5.30.4.2.exe,3a2ae2e2dcece40732f88e4b7baafd17,false
