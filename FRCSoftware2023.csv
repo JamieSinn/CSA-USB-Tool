@@ -25,7 +25,7 @@ Python 3.11.2,python-3.11.2-amd64.exe,https://www.python.org/ftp/python/3.11.2/p
 Limelight Finder Tool,LimelightFinderSetup1_0_1.exe,http://downloads.limelightvision.io/software/LimelightFinderSetup1_0_1.exe,7e3ec1ea8d1c6c78f79839a019d7c43d,false
 Limelight 2 2023.4.0,limelight2_2023_4.zip,https://downloads.limelightvision.io/images/limelight2_2023_4.zip,ebc70ebf106f1ae5b06dc3755fabd9ec,true
 Limelight 3 2023.4.0,limelight3_2023_4.zip,https://downloads.limelightvision.io/images/limelight3_2023_4.zip,b590891ebe44df79de08a83b1b969776,true
-Limelight USB Driver,rpiboot_setup.exe,https://github.com/raspberrypi/usbboot/raw/master/win32/rpiboot_setup.exe,E6EE3C1EEB576253B500BEE1BFA2E5CA,false
+Limelight USB Driver,rpiboot_setup.exe,https://github.com/raspberrypi/usbboot/raw/master/win32/rpiboot_setup.exe,d89c6947e9b5f5f59bef272d3dbc97be,false
 7-Zip,7z2107.exe,https://www.7-zip.org/a/7z2107-x64.exe,49839f0c227b5f9399b59f6ae94a7c7b,false
 FRC-Docs,docs-wpilib-org-en-latest.pdf,https://docs.wpilib.org/_/downloads/en/latest/pdf/,00000000000000000,false
 BalenaEtcher Portable,balenaEtcher-Portable-1.14.3.exe,https://github.com/balena-io/etcher/releases/download/v1.14.3/balenaEtcher-Portable-1.14.3.exe,a9d650b8d64720b84bd5c27ac996ec11,false
