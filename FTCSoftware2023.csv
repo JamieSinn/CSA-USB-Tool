@@ -3,8 +3,8 @@ POWERPLAY Manual part 1,Game-Manual-P1.pdf,https://www.firstinspires.org/sites/d
 POWERPLAY Manual part 2,Game-Manual-P2.pdf,https://firstinspiresst01.blob.core.windows.net/first-energize-ftc/game-manual-part-2-traditional.pdf,9891b2728edf6554828847e3d8815032,FALSE
 POWERPLAY Android Studio Guide,Android-Studio-Guide.pdf,https://www.firstinspires.org/sites/default/files/uploads/resource_library/ftc/android-studio-guide.pdf,11f33dee77d3ae88206d4268a7d441ae,FALSE
 Android Studio project,FtcRobotController-8.1.1.zip,https://github.com/FIRST-Tech-Challenge/FtcRobotController/archive/refs/tags/v8.1.1.zip,eb5ef4927f8ceefb8c3df5f91a33dcdb,TRUE
-Robot Controller App,FtcRobotController-8.0.apk,https://github.com/FIRST-Tech-Challenge/FtcRobotController/releases/download/v8.0/FtcRobotController-release.apk,e4fab8f3898ed3f1e2778dac04a02fd0,FALSE
-Driver Station App,FtcDriverStation-8.0.apk,https://github.com/FIRST-Tech-Challenge/FtcRobotController/releases/download/v8.0/FtcDriverStation-release.apk,82ef0e0ffc1e8e47cc8deb45926247c4,FALSE
+Robot Controller App,FtcRobotController-8.1.1.apk,https://github.com/FIRST-Tech-Challenge/FtcRobotController/releases/download/v8.1.1/FtcRobotController-release.apk,d9d9be18f1964754c418b8078342f5f6,FALSE
+Driver Station App,FtcDriverStation-8.1.1.apk,https://github.com/FIRST-Tech-Challenge/FtcRobotController/releases/download/v8.1.1/FtcDriverStation-release.apk,a606be533afab10b14e8be6ba20805e6,FALSE
 REV Hardware Client w/ FTC software,REV-Hardware-Client-Setup-1.5.3-offline-FTC-2023-03-21.exe,https://github.com/REVrobotics/REV-Software-Binaries/releases/download/rhc-1.5.3/REV-Hardware-Client-Setup-1.5.3-offline-FTC-2023-03-21.exe,13955d896362aad4ce90e495d9bd859a,FALSE
 REV Control Hub OS,ControlHubOS-1.1.3.zip,https://github.com/REVrobotics/REV-Software-Binaries/releases/download/chos-1.1.3/ControlHubOS-1.1.3.zip,6eb804159f6797f915f53ae909ba0f11,FALSE
 REV Driver Hub OS,DriverHubOS.zip,https://github.com/REVrobotics/REV-Software-Binaries/releases/download/dhos-1.2.0/DriverHubOS.zip,3a9863f48ee177d41aa6c41b36920fe8,FALSE
