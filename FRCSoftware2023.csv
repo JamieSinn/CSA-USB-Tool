@@ -16,7 +16,7 @@ RadioConfigTool Israel,FRC_Radio_Configuration_23_0_2_IL.zip,https://firstfrc.bl
 2023Manual,2023FRCGameManual.pdf,https://firstfrc.blob.core.windows.net/frc2023/Manual/2023FRCGameManual.pdf,00000000000000000,false
 NavX,navx-mxp.zip,https://www.kauailabs.com/public_files/navx-mxp/navx-mxp.zip,00000000000000000,true
 NavX Library,NavX-Offline-2023-0-3.zip,https://dev.studica.com/maven/release/2023/NavX-Offline-2023-0-3.zip,c2df1e4ad86f778a93d1c7d5facce2ee,true
-REV Hardware Client w/ FRC firmware,REV-Hardware-Client-Setup-1.5.2-with-FRC-firmware.zip,https://github.com/REVrobotics/REV-Software-Binaries/releases/download/rhc-1.5.2/REV-Hardware-Client-1.5.2-with-FRC-firmware.zip,8328fd1045decf42e3d55671df2720aa,true
+REV Hardware Client w/ FRC firmware,REV-Hardware-Client-Setup-1.5.3-offline-FRC-2023-03-21.exe,https://github.com/REVrobotics/REV-Software-Binaries/releases/download/rhc-1.5.3/REV-Hardware-Client-Setup-1.5.3-offline-FRC-2023-03-21.exe,9560ece9ad9b7049f558a25f0a435b4b,false
 REVLib labVIEW API,REVLib-labVIEW-2023.1.3-1_windows_all.nipkg,https://github.com/REVrobotics/REV-Software-Binaries/releases/download/revlib-2023.1.3/REVLib-labVIEW-2023.1.3-1_windows_all.nipkg,2753d222be8661017b554bd38b4c040c,false
 REVLib Java/C++ API,REVLib-offline-v2023.1.3.zip,https://github.com/REVrobotics/REV-Software-Binaries/releases/download/revlib-2023.1.3/REVLib-offline-v2023.1.3.zip,f72f371c9cb2f3357a9646b1e29b1dcc,true
 DotNet4.8,NDP462-KB3151800-x86-x64-AllOS-ENU.exe,https://download.visualstudio.microsoft.com/download/pr/2d6bb6b2-226a-4baa-bdec-798822606ff1/8494001c276a4b96804cde7829c04d7f/ndp48-x86-x64-allos-enu.exe,7d2b599470e34481138444866b7e4ea6,false
