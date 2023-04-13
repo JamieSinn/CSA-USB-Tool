@@ -6,7 +6,7 @@ WPILibInstaller_Windows64,WPILib_Windows-2023.4.3.iso,https://github.com/wpilibs
 Password,2023Password.txt,https://raw.githubusercontent.com/JamieSinn/CSA-USB-Tool/master/2023Password.txt,f7226fa16bbca941473c41beacf2dba4,false
 CTRE Phoenix Windows Installer,CTRE_Phoenix_Framework_v5.30.4.2.exe,https://github.com/CrossTheRoadElec/Phoenix-Releases/releases/download/v5.30.4.2/CTRE_Phoenix_Framework_v5.30.4.2.exe,3a2ae2e2dcece40732f88e4b7baafd17,false
 CTRE Latest Firmware,ctr-device-firmware.zip,https://github.com/CrossTheRoadElec/Phoenix-Releases/raw/master/ctr-device-firmware.zip,00000000000000000,true
-CTRE Tuner X Offline,Tuner_X_v2023.2.0.1_for_Offline_Install.zip,https://store.ctr-electronics.com/content/csa-resources/Tuner_X_v2023.2.0.1_for_Offline_Install.zip,5A4F210BE29CB1FEFB4A4FB06A7ACBBB,true
+CTRE Tuner X Offline,Tuner_X_v2023.2.2.0_for_Offline_Install.zip,https://store.ctr-electronics.com/content/csa-resources/Tuner_X_v2023.2.2.0_for_Offline_Install.zip,4409DC8514712B26786979AE1CC8CF4C,true
 CTRE Linux Offline,CTRE_Phoenix_FRC_Linux_5.30.4.zip,https://github.com/CrossTheRoadElec/Phoenix-Releases/releases/download/v5.30.4.2/CTRE_Phoenix_FRC_Linux_5.30.4.zip,DF58D947801F4FC3A23128E5EE316E4E,true
 CTRE macOS Offline,CTRE_Phoenix_FRC_macOS_5.30.4.zip,https://github.com/CrossTheRoadElec/Phoenix-Releases/releases/download/v5.30.4.2/CTRE_Phoenix_FRC_macOS_5.30.4.zip,BC3A52E7A1DAE5284EA18327B754F0AD,true
 CTRE Phoenix v5 Docs,v5-docs-ctr-electronics-com-en-stable.pdf,https://v5.docs.ctr-electronics.com/_/downloads/en/stable/pdf/,00000000000000000,false
