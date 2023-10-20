@@ -71,8 +71,8 @@ def md5_file(fname: pathlib.Path) -> str:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("csv", type=pathlib.Path)
-    parser.add_argument("dst", type=pathlib.Path)
+    parser.add_argument("csv", type=pathlib.Path, help="Specifies the csv to read from")
+    parser.add_argument("dst", type=pathlib.Path, help="Specifies the destination directory")
     parser.add_argument("--update", help="Update CSV file as specified year")
     parser.add_argument(
         "-d",

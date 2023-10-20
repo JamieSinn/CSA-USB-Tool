@@ -33,9 +33,11 @@ Download the release zip file from the GitHub releases on the right hand side ->
 
 There is a C# GUI available as a github release (recommended), or you can use the `pyusbtool.py` python script. The Python script is not packaged with the release; but you can download it standalone from the repo.
 
+Example usage of the python script on unix based systems:
+
+```console
+$ ./pyusbtool.py FRCSoftware<YEAR>.csv /path/to/drive/ --download
+```
+
 ### PreRequisites
 - .NET 6 Runtime
-
-
-
-
