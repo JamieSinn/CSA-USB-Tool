@@ -3,7 +3,7 @@ NI-LabVIEW,ni-frc-2024-base-suite_24.0.0.49158-0+f6_offline.iso,https://download
 NI-GameTools,ni-frc-2024-game-tools_24.0.1_offline.iso,https://download.ni.com/support/nipkg/products/ni-f/ni-frc-2024-game-tools/24.0/offline/ni-frc-2024-game-tools_24.0.1_offline.iso,68ece2bce407356c4395c77b52e4cd3c,FALSE
 NI-CompactRIO Driver,ni-compactrio-device-drivers_24.0.0.49260-0+f108_offline.iso,https://download.ni.com/support/nipkg/products/ni-c/ni-compactrio-device-drivers/24.0/offline/ni-compactrio-device-drivers_24.0.0.49260-0+f108_offline.iso,a76eef4d5d81d9f01a1c2ea860ba170a,FALSE
 NI-System Configuration,ni-system-configuration_24.0.0_offline.iso,https://download.ni.com/support/nipkg/products/ni-s/ni-system-configuration/24.0/offline/ni-system-configuration_24.0.0_offline.iso,952156ec99ed9b15fb38be981ee0600f,FALSE
-WPILibInstaller_Windows64,WPILib_Windows-2024.2.1.iso,https://packages.wpilib.workers.dev/installer/v2024.2.1/Win64/WPILib_Windows-2024.2.1.iso,99e8b6987b9c2c9deb8d146c21f0ac48,FALSE
+WPILibInstaller_Windows64,WPILib_Windows-2024.3.1.iso,https://packages.wpilib.workers.dev/installer/v2024.3.1/Win64/WPILib_Windows-2024.3.1.iso,781408b02146fde5a8275f31bd55a23c,FALSE
 Password,2024Password.txt,https://raw.githubusercontent.com/JamieSinn/CSA-USB-Tool/master/2024Password.txt,f7226fa16bbca941473c41beacf2dba4,FALSE
 CTRE Phoenix Windows Installer,CTRE_Phoenix_Framework_v5.30.4.2.exe,https://github.com/CrossTheRoadElec/Phoenix-Releases/releases/download/v5.30.4.2/CTRE_Phoenix_Framework_v5.30.4.2.exe,3a2ae2e2dcece40732f88e4b7baafd17,FALSE
 CTRE Latest Firmware,ctr-device-firmware.zip,https://github.com/CrossTheRoadElec/Phoenix-Releases/raw/master/ctr-device-firmware.zip,00000000000000000,TRUE
