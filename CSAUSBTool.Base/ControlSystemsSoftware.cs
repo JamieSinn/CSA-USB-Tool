@@ -14,86 +14,86 @@ namespace CSAUSBTool.Base
 {
     public class ControlSystemsSoftware
     {
-        public string Name { get; }
-        private string Url { get; set; }
-        private string Hash { get; }
+        public string Name { get; set; }
+        public string Description { get; set; }
         public string FileName { get; set; }
-        private bool Unzip { get; }
-        private GitHubClient github;
+        public List<string> Tags { get; set; }
+        public string Uri { get; set; }
+        public string? Hash { get; set; }
+        public string Platform { get; set; }
 
-        public ControlSystemsSoftware(string name, string fileName, string url, string hash, bool unzip)
+        private Dictionary<string, string> DownloadableAssets { get; set; }
+
+        private GitHubClient github = new(new ProductHeaderValue("CSAUSBTool"));
+
+        public ControlSystemsSoftware()
         {
-            if (url == "")
-                return;
 
-            Name = name;
-            FileName = fileName;
-            Url = url;
-            Hash = hash;
-            Unzip = unzip;
-            github = new GitHubClient(new ProductHeaderValue("CSAUSBTool"));
         }
 
-        public async void Download(string path, AsyncCompletedEventHandler progress)
+        private async Task ParseGitHubRelease()
         {
-            if (FileName == "") return;
-            //Org, repo, file Using match index to
-            var rx = new Regex(@"({<owner>})({<repo>})({<release>})", RegexOptions.Compiled | RegexOptions.IgnoreCase);
-            var matches = rx.Matches(Url);
-            // Use github latest
+            var rx = new Regex(@"github://({<owner>})/({<repo>})/({<release>})", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+            var matches = rx.Matches(Uri);
             foreach (Match match in matches)
             {
+                Release gitHubRelease;
                 var collection = match.Groups;
                 var owner = collection["owner"].Value;
                 var repo = collection["repo"].Value;
-                var releaseMatch = collection["release"].Value;
-
-                var release = await github.Repository.Release.GetLatest(owner, repo);
-                foreach (var asset in release.Assets)
+                var tag = collection["release"].Value;
+                if (tag.Equals("latest"))
                 {
-                    if(!asset.Name.Contains(releaseMatch) || matches.Count == 0)
-                        continue;
-
-                    FileName = asset.Name;
-                    Url = asset.BrowserDownloadUrl;
+                    gitHubRelease = await github.Repository.Release.GetLatest(owner, repo);
+                }
+                else
+                {
+                    gitHubRelease = await github.Repository.Release.Get(owner, repo, tag);
                 }
 
+                foreach (var asset in gitHubRelease.Assets)
+                {
+                    DownloadableAssets.Add(asset.Name, asset.BrowserDownloadUrl);
+                }
             }
-
-            if (File.Exists($"{path}\\{FileName}") && IsValid(path))
+        }
+        public async void Download(string path, AsyncCompletedEventHandler progress)
+        {
+            foreach (var (filename, uri) in DownloadableAssets)
             {
-                progress?.Invoke(null, null);
-                return;
-            }
+                if (filename.Equals("")) continue;
 
-            if (Url.StartsWith("local:"))
-            {
-                CopyLocal(Url.ToString().Replace("local:", ""), path);
-                progress?.Invoke(null, null);
-                return;
-            }
+                if (!File.Exists($"{path}\\{filename}") || !IsValid(path)) continue;
 
-            await DownloadHttp(path, progress);
+                if (uri.StartsWith("file://"))
+                {
+                    CopyLocal(uri.Replace("file://", ""), path);
+                    progress.Invoke(null, null);
+                    return;
+                }
+                await DownloadHttp(uri, path, progress);
+                progress.Invoke(null, null);
+                return;
+
+            }
         }
 
-        private async Task DownloadHttp(string path, AsyncCompletedEventHandler handler)
+        private async Task DownloadHttp(string sourceUri, string destinationPath, AsyncCompletedEventHandler handler)
         {
             var noCancel = new CancellationTokenSource();
 
-            using (var client = new HttpClientDownloadWithProgress(Url,
-                $"{path}\\{FileName}"))
+            using var client = new HttpClientDownloadWithProgress(sourceUri,
+                $"{destinationPath}\\{FileName}");
+            client.ProgressChanged += (totalFileSize, totalBytesDownloaded, progressPercentage) =>
             {
-                client.ProgressChanged += (totalFileSize, totalBytesDownloaded, progressPercentage) =>
+                if (progressPercentage == null) return;
+                if ((int) progressPercentage == 100)
                 {
-                    if (progressPercentage == null) return;
-                    if ((int) progressPercentage == 100)
-                    {
-                        handler?.Invoke(null, null);
-                    }
-                };
+                    handler?.Invoke(null, null);
+                }
+            };
 
-                await client.StartDownload(noCancel.Token);
-            }
+            await client.StartDownload(noCancel.Token);
         }
 
         public void CopyLocal(string sourcePath, string destPath)
@@ -108,22 +108,12 @@ namespace CSAUSBTool.Base
             return Hash == calc;
         }
 
-        public void UnzipFile(string path)
-        {
-            if (!Unzip) return;
-            ZipFile.ExtractToDirectory($"{path}\\{FileName}", FileName);
-        }
-
         private static string CalculateMd5(string filepath)
         {
-            using (var md5 = MD5.Create())
-            {
-                using (var stream = File.OpenRead(filepath))
-                {
-                    var hash = md5.ComputeHash(stream);
-                    return BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
-                }
-            }
+            using var md5 = MD5.Create();
+            using var stream = File.OpenRead(filepath);
+            var hash = md5.ComputeHash(stream);
+            return BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
         }
     }
 }
