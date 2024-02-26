@@ -24,8 +24,8 @@ DotNet4.8,NDP462-KB3151800-x86-x64-AllOS-ENU.exe,https://download.visualstudio.m
 Python 3.7.2,python-3.7.2.exe,https://www.python.org/ftp/python/3.7.2/python-3.7.2.exe,38156b62c0cbcb03bfddeb86e66c3a0f,FALSE
 Python 3.11.2,python-3.11.2-amd64.exe,https://www.python.org/ftp/python/3.11.2/python-3.11.2-amd64.exe,4331ca54d9eacdbe6e97d6ea63526e57,FALSE
 Limelight Hardware Manager,LimelightHardwareManagerSetup1_3_0.exe,https://downloads.limelightvision.io/software/LimelightHardwareManagerSetup1_3_0.exe,17bcbd5c25ccf8ff11c5ed63bcc532b1,FALSE
-Limelight v1 v2 v2+ 2024.0.0,limelight2_2024_0.zip,https://downloads.limelightvision.io/images/limelight2_2024_0.zip,6704f7d3b848d2a777e6f0be2e1b4c43,TRUE
-Limelight v3 2024.0.0,limelight3_2024_0.zip,https://downloads.limelightvision.io/images/limelight3_2024_0.zip,874035410b05a17e798718781c0c6a81,TRUE
+Limelight v1 v2 v2+ 2024.1.1,limelight2_2024_1_1.zip,https://downloads.limelightvision.io/images/limelight2_2024_1_1.zip,11222eba60056a0d6117f1dcdc7f668b,TRUE
+Limelight v3 2024.1.1,limelight3_2024_1_1.zip,https://downloads.limelightvision.io/images/limelight3_2024_1_1.zip,08b9f0325934b92890f8b769be268868,TRUE
 Limelight USB Driver,rpiboot_setup.exe,https://github.com/raspberrypi/usbboot/raw/master/win32/rpiboot_setup.exe,f292c52cffaf65e16fb7aead6abe7ddf,FALSE
 7-Zip,7z2301-x64.exe,https://www.7-zip.org/a/7z2301-x64.exe,e5788b13546156281bf0a4b38bdd0901,FALSE
 FRC-Docs,docs-wpilib-org-en-stable.pdf,https://docs.wpilib.org/_/downloads/en/stable/pdf/,00000000000000000,FALSE
