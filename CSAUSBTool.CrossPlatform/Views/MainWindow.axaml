@@ -8,5 +8,31 @@
         x:Class="CSAUSBTool.CrossPlatform.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
         Title="CSAUSBTool.CrossPlatform">
-        <views:MainView />
+  
+    <StackPanel>
+        <DockPanel>
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="_File">
+                    <MenuItem Header="_Refresh" />
+                    <MenuItem Header="Load Custom List" />
+                    <Separator />
+                    <MenuItem Header="_Exit" />
+                </MenuItem>
+                <MenuItem Header="_Program">
+                    <MenuItem Header="F_RC" />
+                    <MenuItem Header="F_TC" />
+                </MenuItem>
+                <MenuItem Header="_Season">
+                    <MenuItem Header="2024" />
+                    <MenuItem Header="2023" />
+                    <MenuItem Header="2022" />
+                </MenuItem>
+                <MenuItem Header="_About">
+                    <MenuItem Header="Version" />
+                </MenuItem>
+            </Menu>
+        </DockPanel>
+      <views:MainView />
+
+    </StackPanel>
 </Window>
