@@ -14,10 +14,9 @@ RadioConfigTool,FRC_Radio_Configuration_24_0_1.zip,https://firstfrc.blob.core.wi
 RadioConfigTool Israel,FRC_Radio_Configuration_24_0_1_IL.zip,https://firstfrc.blob.core.windows.net/frc2024/Radio/FRC_Radio_Configuration_24_0_1_IL.zip,4309bff08b61bc6bfb36e946ed1cf6d7,TRUE
 2024Manual,2024GameManual.pdf,https://firstfrc.blob.core.windows.net/frc2024/Manual/2024GameManual.pdf,00000000000000000,FALSE
 NavX,navx-mxp.zip,https://www.kauailabs.com/public_files/navx-mxp/navx-mxp.zip,00000000000000000,TRUE
-NavX Library,NavX-Offline-2023-0-3.zip,https://dev.studica.com/maven/release/2023/NavX-Offline-2023-0-3.zip,c2df1e4ad86f778a93d1c7d5facce2ee,TRUE
 REV Hardware Client w/ FRC firmware,REV-Hardware-Client-Setup-1.6.4-offline-FRC-2024-02-17.exe,https://github.com/REVrobotics/REV-Software-Binaries/releases/download/rhc-1.6.4/REV-Hardware-Client-Setup-1.6.4-offline-FRC-2024-02-17.exe,c03a4fcf1baafef68bf40db626125aee,FALSE
 REVLib LabVIEW API,REVLib-labVIEW-2024.2.0-0_windows_all.nipkg,https://github.com/REVrobotics/REV-Software-Binaries/releases/download/revlib-2024.2.0/REVLib-labVIEW-2024.2.0-0_windows_all.nipkg,9dcb8aa105fcf306c2ae96d7c286cafe,FALSE
-REVLib Java/C++ API,REVLib-offline-v2024.2.1.zip,https://github.com/REVrobotics/REV-Software-Binaries/releases/download/revlib-2024.2.1/REVLib-offline-v2024.2.1.zip,443e18f01b7e5d1e500ab6e51e55ef32,TRUE
+REVLib Java/C++ API,REVLib-offline-v2024.2.2.zip,https://github.com/REVrobotics/REV-Software-Binaries/releases/download/revlib-2024.2.2/REVLib-offline-v2024.2.2.zip,e9ae5b15848c9cbd200dd111f8ae7411,TRUE
 ReduxLib Offline,ReduxLib-offline-v2024.1.1.zip,https://frcsdk.reduxrobotics.com/offline/ReduxLib-offline-v2024.1.1.zip,5a30ebbfb3780f7edcd582821b33437b,TRUE
 Redux Alchemist,Redux-Alchemist-Setup-2023.0.1.exe,https://github.com/Redux-Robotics/Alchemist/releases/download/v2023.0.1/Redux-Alchemist-Setup-2023.0.1.exe,a67befd08fd3473f0eca4e91a43e4d42,FALSE
 DotNet4.8,NDP462-KB3151800-x86-x64-AllOS-ENU.exe,https://download.visualstudio.microsoft.com/download/pr/2d6bb6b2-226a-4baa-bdec-798822606ff1/8494001c276a4b96804cde7829c04d7f/ndp48-x86-x64-allos-enu.exe,7d2b599470e34481138444866b7e4ea6,FALSE
