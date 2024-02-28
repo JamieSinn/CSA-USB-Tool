@@ -1,6 +1,6 @@
 #FriendlyName,FileName,URL,MD5,isZipped
 NI-LabVIEW,ni-frc-2024-base-suite_24.0.0.49158-0+f6_offline.iso,https://download.ni.com/support/nipkg/products/ni-f/ni-frc-2024-base-suite/24.0/offline/ni-frc-2024-base-suite_24.0.0.49158-0+f6_offline.iso,147c547e41a7b57ca76a8c98d042fdf9,FALSE
-NI-GameTools,ni-frc-2024-game-tools_24.0.1_offline.iso,https://download.ni.com/support/nipkg/products/ni-f/ni-frc-2024-game-tools/24.0/offline/ni-frc-2024-game-tools_24.0.1_offline.iso,68ece2bce407356c4395c77b52e4cd3c,FALSE
+NI-GameTools,ni-frc-2024-game-tools_24.0.2_offline.iso,https://download.ni.com/support/nipkg/products/ni-f/ni-frc-2024-game-tools/24.0/offline/ni-frc-2024-game-tools_24.0.2_offline.iso,f81d8f9a2b472ca3b0bee9d0866e6852,FALSE
 NI-CompactRIO Driver,ni-compactrio-device-drivers_24.0.0.49260-0+f108_offline.iso,https://download.ni.com/support/nipkg/products/ni-c/ni-compactrio-device-drivers/24.0/offline/ni-compactrio-device-drivers_24.0.0.49260-0+f108_offline.iso,a76eef4d5d81d9f01a1c2ea860ba170a,FALSE
 NI-System Configuration,ni-system-configuration_24.0.0_offline.iso,https://download.ni.com/support/nipkg/products/ni-s/ni-system-configuration/24.0/offline/ni-system-configuration_24.0.0_offline.iso,952156ec99ed9b15fb38be981ee0600f,FALSE
 WPILibInstaller_Windows64,WPILib_Windows-2024.3.1.iso,https://packages.wpilib.workers.dev/installer/v2024.3.1/Win64/WPILib_Windows-2024.3.1.iso,781408b02146fde5a8275f31bd55a23c,FALSE
