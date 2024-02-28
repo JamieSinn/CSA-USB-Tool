@@ -5,7 +5,7 @@ NI-CompactRIO Driver,ni-compactrio-device-drivers_24.0.0.49260-0+f108_offline.is
 NI-System Configuration,ni-system-configuration_24.0.0_offline.iso,https://download.ni.com/support/nipkg/products/ni-s/ni-system-configuration/24.0/offline/ni-system-configuration_24.0.0_offline.iso,952156ec99ed9b15fb38be981ee0600f,FALSE
 WPILibInstaller_Windows64,WPILib_Windows-2024.3.1.iso,https://packages.wpilib.workers.dev/installer/v2024.3.1/Win64/WPILib_Windows-2024.3.1.iso,781408b02146fde5a8275f31bd55a23c,FALSE
 WPILib VSCode Windows Archive,VSCode-1.85.1-Windows.zip,https://update.code.visualstudio.com/1.85.1/win32-x64-archive/stable,5621fc9203a0468f9270e2151ac2cdea,TRUE
-Password,2024Password.txt,https://raw.githubusercontent.com/JamieSinn/CSA-USB-Tool/master/2024Password.txt,f7226fa16bbca941473c41beacf2dba4,FALSE
+Password,2024Password.txt,https://raw.githubusercontent.com/JamieSinn/CSA-USB-Tool/master/2024Password.txt,d7928437a4d75c6ee83720dc4300d1b1,FALSE
 CTRE Latest Firmware,ctr-device-firmware.zip,https://github.com/CrossTheRoadElec/Phoenix-Releases/raw/master/ctr-device-firmware.zip,00000000000000000,TRUE
 CTRE Phoenix Windows Installer,Phoenix-Offline_v24.2.0.exe,https://github.com/CrossTheRoadElec/Phoenix-Releases/releases/download/v24.2.0/Phoenix-Offline_v24.2.0.exe,7def85aee10824fba32f0b1b86b7414c,FALSE
 CTRE Phoenix v5 Docs,v5-docs-ctr-electronics-com-en-stable.pdf,https://v5.docs.ctr-electronics.com/_/downloads/en/stable/pdf/,00000000000000000,FALSE
