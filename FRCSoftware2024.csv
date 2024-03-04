@@ -29,5 +29,5 @@ Limelight USB Driver,rpiboot_setup.exe,https://github.com/raspberrypi/usbboot/ra
 7-Zip,7z2301-x64.exe,https://www.7-zip.org/a/7z2301-x64.exe,e5788b13546156281bf0a4b38bdd0901,FALSE
 FRC-Docs,docs-wpilib-org-en-stable.pdf,https://docs.wpilib.org/_/downloads/en/stable/pdf/,00000000000000000,FALSE
 BalenaEtcher Portable,balenaEtcher-Portable-1.18.11.exe,https://github.com/balena-io/etcher/releases/download/v1.18.11/balenaEtcher-Portable-1.18.11.exe,e2b9c834b2874da01e8615aef8395265,FALSE
-DSLOG Reader 2.2,DSLOG-Reader.2.2.exe,https://github.com/orangelight/DSLOG-Reader/releases/download/v2.2.3/DSLOG-Reader.2.2.exe,46c9f05169adee3f589e6ab52960f357,FALSE
+DSLOG Reader 2.3,DSLOG-Reader.2.3.exe,https://github.com/orangelight/DSLOG-Reader/releases/download/v2.3.0/DSLOG-Reader.2.3.exe,94a30213787fc810f4bf8cae29cf1449,FALSE
 VisualVM,visualvm_217.zip,https://github.com/oracle/visualvm/releases/download/2.1.7/visualvm_217.zip,61eb68ae1b3946103967331cc496fb64,TRUE
