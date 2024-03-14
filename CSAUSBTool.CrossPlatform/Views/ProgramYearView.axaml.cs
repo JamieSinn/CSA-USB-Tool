@@ -1,3 +1,4 @@
+using System;
 using Avalonia.Controls;
 using CSAUSBTool.CrossPlatform.Models;
 using CSAUSBTool.CrossPlatform.ViewModels;
@@ -12,7 +13,13 @@ namespace CSAUSBTool.CrossPlatform.Views
             InitializeComponent();
 
             DataContext = new ProgramYear(null, null);
-
+            Tabs.SelectionChanged += new EventHandler<SelectionChangedEventArgs>(TabChanged);
         }
+
+        private void TabChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var selectedTab = Tabs.SelectedItem as ControlSystemSoftwareGroup;
+        }
+
     }
 }
