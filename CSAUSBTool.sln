@@ -11,6 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		2019Password.txt = 2019Password.txt
 		2020Password.txt = 2020Password.txt
 		2022Password.txt = 2022Password.txt
+		Lists\FRC2024.json = Lists\FRC2024.json
 		FRCSoftware2017.csv = FRCSoftware2017.csv
 		FRCSoftware2018.csv = FRCSoftware2018.csv
 		FRCSoftware2019.csv = FRCSoftware2019.csv
