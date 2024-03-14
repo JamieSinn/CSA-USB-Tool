@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSAUSBTool.CrossPlatform.ViewModels
+namespace CSAUSBTool.CrossPlatform.Models
 {
     public class ControlSystemSoftware
     {
@@ -12,6 +12,7 @@ namespace CSAUSBTool.CrossPlatform.ViewModels
         public string Description { get; set; }
         public List<string> Tags { get; set; }
         public string Uri { get; set; }
+        public string? Hash { get; set; }
         public string Platform { get; set; }
 
         public ControlSystemSoftware()

@@ -6,13 +6,14 @@
              x:Class="CSAUSBTool.CrossPlatform.Views.ControlSystemSoftwareGroupView"
              xmlns:viewModels="clr-namespace:CSAUSBTool.CrossPlatform.ViewModels"
              xmlns:views="clr-namespace:CSAUSBTool.CrossPlatform.Views"
+             xmlns:models="clr-namespace:CSAUSBTool.CrossPlatform.Models"
 
-             x:DataType="viewModels:ControlSystemSoftwareGroup">
+             x:DataType="models:ControlSystemSoftwareGroup">
 
   <Design.DataContext>
       <!-- This only sets the DataContext for the previewer in an IDE,
          to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-      <viewModels:ControlSystemSoftwareGroup />
+      <models:ControlSystemSoftwareGroup />
   </Design.DataContext>
     <ListBox x:Name="SoftwareSelectionList"
              DockPanel.Dock="Left"

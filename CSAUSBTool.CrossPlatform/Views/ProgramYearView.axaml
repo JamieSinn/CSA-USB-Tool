@@ -5,6 +5,7 @@
              xmlns:vm="clr-namespace:CSAUSBTool.CrossPlatform.ViewModels"
              xmlns:viewModels="clr-namespace:CSAUSBTool.CrossPlatform.ViewModels"
              xmlns:views="clr-namespace:CSAUSBTool.CrossPlatform.Views"
+             xmlns:models="clr-namespace:CSAUSBTool.CrossPlatform.Models"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="CSAUSBTool.CrossPlatform.Views.ProgramYearView"
              x:DataType="viewModels:ProgramYear">
@@ -13,15 +14,14 @@
          to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
         <viewModels:ProgramYear />
     </Design.DataContext>
-    <TabControl ItemsSource="{Binding ControlSystemSoftwareGroups}"
-                x:Name="SoftwareTabs">
+    <TabControl ItemsSource="{Binding SoftwareGroups}">
         <TabControl.ItemTemplate>
             <DataTemplate>
-                <TextBlock Text="{Binding Tag}" />
+                <TextBlock Text="{Binding DisplayName}" />
             </DataTemplate>
         </TabControl.ItemTemplate>
         <TabControl.ContentTemplate>
-            <DataTemplate DataType="viewModels:ControlSystemSoftwareGroup">
+            <DataTemplate DataType="models:ControlSystemSoftwareGroup">
                 <DockPanel  DockPanel.Dock="Top">
                     <views:ControlSystemSoftwareGroupView 
                         DataContext="{Binding}"/>
