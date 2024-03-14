@@ -14,19 +14,23 @@
          to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
         <viewModels:ProgramYear />
     </Design.DataContext>
-    <TabControl ItemsSource="{Binding SoftwareGroups}">
-        <TabControl.ItemTemplate>
-            <DataTemplate>
-                <TextBlock Text="{Binding DisplayName}" />
-            </DataTemplate>
-        </TabControl.ItemTemplate>
-        <TabControl.ContentTemplate>
-            <DataTemplate DataType="models:ControlSystemSoftwareGroup">
-                <DockPanel  DockPanel.Dock="Top">
-                    <views:ControlSystemSoftwareGroupView 
-                        DataContext="{Binding}"/>
-                </DockPanel>
-            </DataTemplate>
-        </TabControl.ContentTemplate>
-    </TabControl>
+    <Grid Name="BaseGrid"  ColumnDefinitions="*,*" RowDefinitions="*,*">
+      <TabControl Name="Tabs" Grid.Column="0" Grid.Row="0" ItemsSource="{Binding SoftwareGroups}">
+          <TabControl.ItemTemplate>
+              <DataTemplate>
+                  <TextBlock Text="{Binding DisplayName}" />
+              </DataTemplate>
+          </TabControl.ItemTemplate>
+          <TabControl.ContentTemplate>
+              <DataTemplate DataType="models:ControlSystemSoftwareGroup">
+                  <DockPanel  DockPanel.Dock="Top">
+                      <views:ControlSystemSoftwareGroupView
+                          DataContext="{Binding}"/>
+                  </DockPanel>
+              </DataTemplate>
+          </TabControl.ContentTemplate>
+      </TabControl>
+        <Button Name="Download" Grid.Column="0" Grid.Row="1">Download</Button>
+    </Grid>
+    
 </UserControl>

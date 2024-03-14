@@ -10,20 +10,24 @@
 
              x:DataType="models:ControlSystemSoftwareGroup">
 
-  <Design.DataContext>
-      <!-- This only sets the DataContext for the previewer in an IDE,
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
          to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-      <models:ControlSystemSoftwareGroup />
-  </Design.DataContext>
-    <ListBox x:Name="SoftwareSelectionList"
-             DockPanel.Dock="Left"
-             ItemsSource="{Binding Software}"
-             SelectionMode="Multiple,Toggle">
-        <ListBox.ItemTemplate>
-            <DataTemplate>
-                <views:ControlSystemSoftwareView
-                    DataContext="{Binding}"/>
-            </DataTemplate>
-        </ListBox.ItemTemplate>
-    </ListBox>
+        <models:ControlSystemSoftwareGroup />
+    </Design.DataContext>
+    <Grid Name="BaseGrid" ColumnDefinitions="*,*" RowDefinitions="*">
+
+        <ListBox Grid.Column="0" Grid.Row="0" x:Name="SoftwareSelectionList"
+                 DockPanel.Dock="Left"
+                 ItemsSource="{Binding Software}"
+                 SelectionMode="Multiple,Toggle">
+            <ListBox.ItemTemplate>
+                <DataTemplate DataType="models:ControlSystemSoftware">
+                    <views:ControlSystemSoftwareView
+                        DataContext="{Binding}" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <TextBlock Grid.Column="1" Grid.Row="0" Name="Details" Text=""/>
+    </Grid>
 </UserControl>

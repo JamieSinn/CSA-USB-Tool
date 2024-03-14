@@ -25,6 +25,11 @@ namespace CSAUSBTool.CrossPlatform.ViewModels
 
             DownloadSoftwareLists();
         }
+        public ProgramYear()
+        {
+            Year = DateTime.Now.Year;
+            Program = "FRC";
+        }
 
         private void DownloadSoftwareLists()
         {
