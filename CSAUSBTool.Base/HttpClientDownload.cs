@@ -41,8 +41,8 @@ namespace CSAUSBTool.Base
 
             var totalBytes = response.Content.Headers.ContentLength;
 
-            using (var contentStream = await response.Content.ReadAsStreamAsync())
-                return await ProcessContentStream(totalBytes, contentStream, token);
+            await using var contentStream = await response.Content.ReadAsStreamAsync();
+            return await ProcessContentStream(totalBytes, contentStream, token);
         }
 
         private async Task<bool> ProcessContentStream(long? totalDownloadSize, Stream contentStream, CancellationToken token)
@@ -52,11 +52,11 @@ namespace CSAUSBTool.Base
             var buffer = new byte[8192];
             var isMoreToRead = true;
 
-            using (var fileStream = new FileStream(_destinationFilePath, FileMode.Create, FileAccess.Write, FileShare.None, 8192, true))
+            await using (var fileStream = new FileStream(_destinationFilePath, FileMode.Create, FileAccess.Write, FileShare.None, 8192, true))
             {
                 do
                 {
-                    var bytesRead = await contentStream.ReadAsync(buffer, 0, buffer.Length);
+                    var bytesRead = await contentStream.ReadAsync(buffer, 0, buffer.Length, token);
                     if (bytesRead == 0)
                     {
                         isMoreToRead = false;
@@ -64,7 +64,7 @@ namespace CSAUSBTool.Base
                         continue;
                     }
 
-                    await fileStream.WriteAsync(buffer, 0, bytesRead);
+                    await fileStream.WriteAsync(buffer, 0, bytesRead, token);
 
                     totalBytesRead += bytesRead;
                     readCount += 1;
@@ -74,26 +74,22 @@ namespace CSAUSBTool.Base
                 }
                 while (isMoreToRead && !token.IsCancellationRequested);
             }
-            if (token.IsCancellationRequested)
-            {
-                try
-                {
-                    File.Delete(_destinationFilePath);
-                }
-                catch (IOException)
-                {
 
-                }
-                return false;
+            if (!token.IsCancellationRequested) return true;
+
+            try
+            {
+                File.Delete(_destinationFilePath);
             }
-            return true;
+            catch (IOException)
+            {
+
+            }
+            return false;
         }
 
         private void TriggerProgressChanged(long? totalDownloadSize, long totalBytesRead)
         {
-            if (ProgressChanged == null)
-                return;
-
             double? progressPercentage = null;
             if (totalDownloadSize.HasValue)
                 progressPercentage = Math.Round((double)totalBytesRead / totalDownloadSize.Value * 100, 2);
