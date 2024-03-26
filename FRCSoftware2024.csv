@@ -27,6 +27,7 @@ Limelight v1 v2 v2+ 2024.2.2,limelight2_2024_2_2.zip,https://downloads.limelight
 Limelight v3 2024.2.2,limelight3_2024_2_2.zip,https://downloads.limelightvision.io/images/limelight3_2024_2_2.zip,c6a4681c49e07795d77238fca55f36a2,TRUE
 Limelight v3G 2024.2.2,limelight3g_2024_2_2.zip,https://downloads.limelightvision.io/images/limelight3g_2024_2_2.zip,8eb7db5b53b86c37d0504472399abcd2,TRUE
 Limelight USB Driver,rpiboot_setup.exe,https://github.com/raspberrypi/usbboot/raw/master/win32/rpiboot_setup.exe,f292c52cffaf65e16fb7aead6abe7ddf,FALSE
+LimelightLib,LimelightHelpers.java,https://github.com/LimelightVision/limelightlib-wpijava/releases/download/1.4/LimelightHelpers.java,b171cc3ab04859579d2564b62747f2da,FALSE
 7-Zip,7z2301-x64.exe,https://www.7-zip.org/a/7z2301-x64.exe,e5788b13546156281bf0a4b38bdd0901,FALSE
 FRC-Docs,docs-wpilib-org-en-stable.pdf,https://docs.wpilib.org/_/downloads/en/stable/pdf/,00000000000000000,FALSE
 BalenaEtcher Portable,balenaEtcher-Portable-1.18.11.exe,https://github.com/balena-io/etcher/releases/download/v1.18.11/balenaEtcher-Portable-1.18.11.exe,e2b9c834b2874da01e8615aef8395265,FALSE
