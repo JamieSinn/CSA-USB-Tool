@@ -14,7 +14,7 @@ RadioConfigTool,FRC_Radio_Configuration_24_0_1.zip,https://firstfrc.blob.core.wi
 RadioConfigTool Israel,FRC_Radio_Configuration_24_0_1_IL.zip,https://firstfrc.blob.core.windows.net/frc2024/Radio/FRC_Radio_Configuration_24_0_1_IL.zip,4309bff08b61bc6bfb36e946ed1cf6d7,TRUE
 2024Manual,2024GameManual.pdf,https://firstfrc.blob.core.windows.net/frc2024/Manual/2024GameManual.pdf,00000000000000000,FALSE
 NavX,navx-mxp.zip,https://www.kauailabs.com/public_files/navx-mxp/navx-mxp.zip,00000000000000000,TRUE
-REV Hardware Client w/ FRC firmware,REV-Hardware-Client-Setup-1.6.5-offline-FRC-2024-04-12.exe,https://github.com/REVrobotics/REV-Software-Binaries/releases/download/rhc-1.6.5/REV-Hardware-Client-Setup-1.6.5-offline-FRC-2024-04-12.exe,9aa88debcf7f6980518f908925d7aa65,FALSE
+REV Hardware Client w/ FRC firmware,REV-Hardware-Client-Setup-1.6.6-offline-FRC-2024-04-12.exe,https://github.com/REVrobotics/REV-Software-Binaries/releases/download/rhc-1.6.6/REV-Hardware-Client-Setup-1.6.6-offline-FRC-2024-04-12.exe,3655ffb3176637e9fb1e061d810c1a00,FALSE
 REVLib LabVIEW API,REVLib-labVIEW-2024.2.0-0_windows_all.nipkg,https://github.com/REVrobotics/REV-Software-Binaries/releases/download/revlib-2024.2.0/REVLib-labVIEW-2024.2.0-0_windows_all.nipkg,9dcb8aa105fcf306c2ae96d7c286cafe,FALSE
 REVLib Java/C++ API,REVLib-offline-v2024.2.4.zip,https://github.com/REVrobotics/REV-Software-Binaries/releases/download/revlib-2024.2.4/REVLib-offline-v2024.2.4.zip,5bedfe205eb3b72c75bc81c87e9dc808,TRUE
 ReduxLib Offline,ReduxLib-offline-v2024.1.1.zip,https://frcsdk.reduxrobotics.com/offline/ReduxLib-offline-v2024.1.1.zip,5a30ebbfb3780f7edcd582821b33437b,TRUE
