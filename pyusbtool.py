@@ -11,6 +11,7 @@ import hashlib
 import pathlib
 import urllib.request
 import sys
+from pathlib import Path
 
 USER_AGENT = "python-frc-csa-tool/1.0"
 CHUNK_SIZE = 2**20
@@ -102,6 +103,12 @@ if __name__ == "__main__":
             
             md5 = md5.lower()
             valid_checksum = md5 != "0" * len(md5)
+
+            # Check whether the specified path exists or not
+            #print(args.dst)
+           
+            #creating a new directory if needed
+            Path(args.dst).mkdir(parents=True, exist_ok=True)
 
             fname = args.dst / fname
             is_invalid = False
