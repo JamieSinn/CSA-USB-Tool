@@ -21,53 +21,62 @@ def download(url: str, dst_fname: pathlib.Path):
     """
     Downloads a file to a specified directory
     """
+    try:
 
-    def _reporthook(count, blocksize, totalsize):
-        percent = int(count * blocksize * 100 / totalsize)
-        if percent < 0 or percent > 100:
-            sys.stdout.write("\r--%")
-        else:
-            sys.stdout.write("\r%02d%%" % percent)
+        def _reporthook(count, blocksize, totalsize):
+            percent = int(count * blocksize * 100 / totalsize)
+            if percent < 0 or percent > 100:
+                sys.stdout.write("\r--%")
+            else:
+                sys.stdout.write("\r%02d%%" % percent)
+            sys.stdout.flush()
+
+    
+        print("Downloading", url)
+
+        request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+
+        with contextlib.closing(urllib.request.urlopen(request)) as fp:
+            headers = fp.info()
+
+            with open(dst_fname, "wb") as tfp:
+                # copied from urlretrieve source code, Python license
+                bs = 1024 * 8
+                size = -1
+                blocknum = 0
+                read = 0
+                if "content-length" in headers:
+                    size = int(headers["Content-Length"])
+
+                while True:
+                    block = fp.read(bs)
+                    if not block:
+                        break
+                    read += len(block)
+                    tfp.write(block)
+                    blocknum += 1
+                    _reporthook(blocknum, bs, size)
+
+        sys.stdout.write("\n")
         sys.stdout.flush()
-
-    print("Downloading", url)
-
-    request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
-
-    with contextlib.closing(urllib.request.urlopen(request)) as fp:
-        headers = fp.info()
-
-        with open(dst_fname, "wb") as tfp:
-            # copied from urlretrieve source code, Python license
-            bs = 1024 * 8
-            size = -1
-            blocknum = 0
-            read = 0
-            if "content-length" in headers:
-                size = int(headers["Content-Length"])
-
-            while True:
-                block = fp.read(bs)
-                if not block:
-                    break
-                read += len(block)
-                tfp.write(block)
-                blocknum += 1
-                _reporthook(blocknum, bs, size)
-
-    sys.stdout.write("\n")
-    sys.stdout.flush()
+    except Exception as e:
+        print("Could not download file {}".format(url))
+        print(e)
 
 
 def md5_file(fname: pathlib.Path) -> str:
-    with open(fname, "rb") as fp:
-        h = hashlib.md5()
-        chunk = fp.read(CHUNK_SIZE)
-        while chunk:
-            h.update(chunk)
+    try:
+        with open(fname, "rb") as fp:
+            h = hashlib.md5()
             chunk = fp.read(CHUNK_SIZE)
+            while chunk:
+                h.update(chunk)
+                chunk = fp.read(CHUNK_SIZE)
 
-    return h.hexdigest()
+        return h.hexdigest()
+    except Exception as e:
+        print("Could not find file {}".format(fname))
+        print(e)
 
 
 if __name__ == "__main__":
