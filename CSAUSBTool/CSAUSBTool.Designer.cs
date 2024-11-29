@@ -110,7 +110,7 @@
             // 
             // statusStrip
             // 
-            this.statusStrip.BackColor = System.Drawing.SystemColors.Control;
+            
             this.statusStrip.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripProgressBar,

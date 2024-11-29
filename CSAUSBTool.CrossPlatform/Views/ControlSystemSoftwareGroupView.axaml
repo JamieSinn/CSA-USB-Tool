@@ -15,19 +15,24 @@
          to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
         <models:ControlSystemSoftwareGroup />
     </Design.DataContext>
-    <Grid Name="BaseGrid" ColumnDefinitions="*,*" RowDefinitions="*">
-
-        <ListBox Grid.Column="0" Grid.Row="0" x:Name="SoftwareSelectionList"
-                 DockPanel.Dock="Left"
-                 ItemsSource="{Binding Software}"
-                 SelectionMode="Multiple,Toggle">
-            <ListBox.ItemTemplate>
-                <DataTemplate DataType="models:ControlSystemSoftware">
-                    <views:ControlSystemSoftwareView
-                        DataContext="{Binding}" />
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <TextBlock Grid.Column="1" Grid.Row="0" Name="Details" Text=""/>
-    </Grid>
+    <SplitView IsPaneOpen="True" DisplayMode="Inline" OpenPaneLength="400">
+        <SplitView.Pane>
+            <ListBox Grid.Column="0" Grid.Row="0" x:Name="SoftwareSelectionList"
+                     DockPanel.Dock="Left"
+                     ItemsSource="{Binding Software}"
+                     SelectionMode="Multiple,Toggle"
+                     SelectedItems="{Binding SelectedSoftware}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate DataType="models:ControlSystemSoftware">
+                        <views:ControlSystemSoftwareView
+                            DataContext="{Binding}" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </SplitView.Pane>
+        <Grid Name="BaseGrid" ColumnDefinitions="*,*" RowDefinitions="*">
+            <TextBlock Name="TestText"></TextBlock>
+        </Grid>
+    </SplitView>
+    
 </UserControl>

@@ -29,7 +29,7 @@ namespace CSAUSBTool.CrossPlatform.Models
                     groups[tag].Software.Add(s);
                 });
             });
-            return new List<ControlSystemSoftwareGroup>(groups.Values);
+            return [..groups.Values];
         }
     }
 }
