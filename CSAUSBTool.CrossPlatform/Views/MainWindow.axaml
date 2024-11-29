@@ -7,9 +7,7 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="CSAUSBTool.CrossPlatform.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
-        Title="CSAUSBTool.CrossPlatform">
-
-
+        Title="CSAUSBTool v2">
     <StackPanel>
         <DockPanel>
             <Menu DockPanel.Dock="Top">
@@ -34,8 +32,5 @@
             </Menu>
         </DockPanel>
         <views:MainView />
-
-
-
     </StackPanel>
 </Window>

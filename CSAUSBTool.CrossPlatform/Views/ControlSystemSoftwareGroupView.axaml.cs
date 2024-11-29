@@ -16,12 +16,14 @@ namespace CSAUSBTool.CrossPlatform.Views
 
         public void ListSelectionChanged(object? sender, SelectionChangedEventArgs e)
         {
-            Details.Text = "";
+            TestText.Text = "";
             if (SoftwareSelectionList.SelectedItems == null) return;
             foreach (var selectedItem in SoftwareSelectionList.SelectedItems)
             {
-                var s = selectedItem as ControlSystemSoftware;
-                Details.Text += $"{s.Name}\n{s.Description}\n{s.Platform}\n\n";
+                if (selectedItem as ControlSystemSoftware is { } s)
+                {
+                    TestText.Text += string.Format("{0}{1}{1}", s.Name, Environment.NewLine);
+                }
             }
         }
     }

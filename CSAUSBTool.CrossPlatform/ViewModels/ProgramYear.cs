@@ -14,8 +14,7 @@ namespace CSAUSBTool.CrossPlatform.ViewModels
     {
         public int Year { get; set; }
         public string Program { get; set; }
-
-        public List<ControlSystemSoftwareGroup> SoftwareGroups { get; set; } = new();
+        public List<ControlSystemSoftwareGroup> SoftwareGroups { get; set; } = [];
         public ProgramYear(int? year, string? program)
         {
             year ??= DateTime.Now.Year;
@@ -39,7 +38,6 @@ namespace CSAUSBTool.CrossPlatform.ViewModels
             using var client = new HttpClient();
             var software= client.GetFromJsonAsync<SeasonSoftwareList>(downloadUrl).Result;
             
-                    //await client.GetStreamAsync(downloadUrl));
             SoftwareGroups = software.GetGroups();
         }
     }
