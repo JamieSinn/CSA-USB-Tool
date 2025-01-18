@@ -11,21 +11,19 @@ namespace CSAUSBTool.CrossPlatform.Views
 {
     public partial class ProgramYearView : UserControl
     {
-        public ProgramYearView()
+        private readonly ProgramYear _year;
+
+        public ProgramYearView(ProgramYear year)
         {
             InitializeComponent();
-
-            DataContext = new ProgramYear(null, null);
             Tabs.SelectionChanged += TabChanged;
-            Download.Click += Download_Click;
+            _year = year;
+            DataContext = _year;
+            
         }
 
-        private async void Download_Click(object? sender, RoutedEventArgs e)
+        public ProgramYearView() : this(new ProgramYear())
         {
-            var topLevel = TopLevel.GetTopLevel(this);
-            var folder = await topLevel.StorageProvider.OpenFolderPickerAsync(new FolderPickerOpenOptions
-                { Title = "Select a folder to download to", AllowMultiple = false, });
-            
         }
 
         private void TabChanged(object sender, SelectionChangedEventArgs e)

@@ -21,13 +21,13 @@ public partial class App : Application
             case IClassicDesktopStyleApplicationLifetime desktop:
                 desktop.MainWindow = new MainWindow
                 {
-                    DataContext = new MainViewModel()
+                    DataContext = new MainWindowViewModel()
                 };
                 break;
             case ISingleViewApplicationLifetime singleViewPlatform:
-                singleViewPlatform.MainView = new MainView
+                singleViewPlatform.MainView = new MainWindow
                 {
-                    DataContext = new MainViewModel()
+                    DataContext = new MainWindowViewModel()
                 };
                 break;
         }

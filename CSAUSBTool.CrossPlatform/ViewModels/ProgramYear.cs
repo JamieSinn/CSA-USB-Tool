@@ -15,30 +15,39 @@ namespace CSAUSBTool.CrossPlatform.ViewModels
         public int Year { get; set; }
         public string Program { get; set; }
         public List<ControlSystemSoftwareGroup> SoftwareGroups { get; set; } = [];
+
         public ProgramYear(int? year, string? program)
         {
-            year ??= DateTime.Now.Year;
-            program ??= "FRC";
-            Year = (int) year;
-            Program = program;
-
+            Year = year ?? DateTime.Now.Year;
+            Program = program ?? "FRC";
             DownloadSoftwareLists();
         }
+
         public ProgramYear()
         {
             Year = DateTime.Now.Year;
             Program = "FRC";
+            DownloadSoftwareLists();
         }
 
-        private void DownloadSoftwareLists()
+        public void DownloadSoftwareLists()
         {
+            //TODO: Change to main branch when released.
             var downloadUrl =
                 $"https://raw.githubusercontent.com/JamieSinn/CSA-USB-Tool/avalonia/Lists/{Program}{Year}.json";
 
             using var client = new HttpClient();
-            var software= client.GetFromJsonAsync<SeasonSoftwareList>(downloadUrl).Result;
-            
-            SoftwareGroups = software.GetGroups();
+            try
+            {
+                var software = client.GetFromJsonAsync<SeasonSoftwareList>(downloadUrl).Result;
+                if (software == null) return;
+                SoftwareGroups = software.Groups;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Console.WriteLine(e.StackTrace);
+            }
         }
     }
 }

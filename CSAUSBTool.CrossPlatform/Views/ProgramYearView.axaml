@@ -30,7 +30,6 @@
                 </DataTemplate>
             </TabControl.ContentTemplate>
         </TabControl>
-        <Button Name="Download" Grid.Column="0" Grid.Row="1" >Download</Button>
     </Grid>
 
 </UserControl>

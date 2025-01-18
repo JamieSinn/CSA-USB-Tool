@@ -11,9 +11,15 @@ namespace CSAUSBTool.CrossPlatform.Models
         public int Year { get; set; }
         public string Program { get; set; }
         public List<ControlSystemSoftware> Software { get; set; } = new();
+        public List<ControlSystemSoftwareGroup> Groups { get; set; } = new();
 
+        public SeasonSoftwareList(List<ControlSystemSoftware> software)
+        {
+            Software = software;
+            Groups = GetGroups();
+        }
 
-        public List<ControlSystemSoftwareGroup> GetGroups()
+        private List<ControlSystemSoftwareGroup> GetGroups()
         {
             var groups = new Dictionary<string, ControlSystemSoftwareGroup>();
             Software.ForEach(s =>
