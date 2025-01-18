@@ -7,30 +7,34 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="CSAUSBTool.CrossPlatform.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
-        Title="CSAUSBTool v2">
+        Title="CSAUSBTool v2"
+        x:DataType="vm:MainWindowViewModel">
     <StackPanel>
         <DockPanel>
-            <Menu DockPanel.Dock="Top">
-                <MenuItem Header="_File">
-                    <MenuItem Header="_Refresh" />
-                    <MenuItem Header="Load Custom List" />
-                    <Separator />
-                    <MenuItem Header="_Exit" />
-                </MenuItem>
-                <MenuItem Header="_Program">
-                    <MenuItem Header="F_RC" />
-                    <MenuItem Header="F_TC" />
-                </MenuItem>
-                <MenuItem Header="_Season">
-                    <MenuItem Header="2024" />
-                    <MenuItem Header="2023" />
-                    <MenuItem Header="2022" />
-                </MenuItem>
-                <MenuItem Header="_About">
-                    <MenuItem Header="Version" />
+            <Menu>
+                <MenuItem Header="_File"></MenuItem>
+                <MenuItem Header="_Edit"></MenuItem>
+                <MenuItem Header="_Programs" ItemsSource="{Binding Programs}">
+                    <MenuItem.ItemTemplate>
+                        <DataTemplate>
+                            <MenuItem 
+                                Header="{Binding Header}" 
+                                IsEnabled="True" 
+                                Focusable="True" 
+                                ItemsSource="{Binding MenuItems}"/>
+                        </DataTemplate>
+                    </MenuItem.ItemTemplate>
+                    <MenuItem.Styles>
+                        <Style Selector="MenuItem.SubItems MenuItem" x:DataType="vm:MenuItemViewModel">
+                            <Setter Property="Header" Value="{Binding Header}" />
+                            <Setter Property="ItemsSource" Value="{Binding MenuItems}" />
+                            <Setter Property="Command" Value="{Binding Command}" />
+                            <Setter Property="IsEnabled" Value="True"></Setter>
+                        </Style>
+                    </MenuItem.Styles>
                 </MenuItem>
             </Menu>
         </DockPanel>
-        <views:MainView />
+        <views:ProgramYearView />
     </StackPanel>
 </Window>

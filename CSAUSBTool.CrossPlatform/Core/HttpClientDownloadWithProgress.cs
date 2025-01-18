@@ -12,28 +12,18 @@ namespace CSAUSBTool.CrossPlatform.Core
     /// <summary>
     /// Borrowed from WPILib - https://github.com/wpilibsuite
     /// </summary>
-    public class HttpClientDownloadWithProgress : IDisposable
+    public class HttpClientDownloadWithProgress(string downloadUrl, string destinationFilePath) : IDisposable
     {
-        private readonly string _downloadUrl;
-        private readonly string _destinationFilePath;
-
-        private HttpClient _httpClient;
+        private readonly HttpClient _httpClient = new() { Timeout = TimeSpan.FromDays(1) };
 
         public delegate void ProgressChangedHandler(long? totalFileSize, long totalBytesDownloaded, double? progressPercentage);
 
         public event ProgressChangedHandler ProgressChanged;
 
-        public HttpClientDownloadWithProgress(string downloadUrl, string destinationFilePath)
-        {
-            _downloadUrl = downloadUrl;
-            _destinationFilePath = destinationFilePath;
-            _httpClient = new HttpClient { Timeout = TimeSpan.FromDays(1) };
-        }
-
         public async Task<bool> StartDownload(CancellationToken token)
         {
 
-            using var response = await _httpClient.GetAsync(_downloadUrl, HttpCompletionOption.ResponseHeadersRead, token);
+            using var response = await _httpClient.GetAsync(downloadUrl, HttpCompletionOption.ResponseHeadersRead, token);
             return await DownloadFileFromHttpResponseMessage(response, token);
         }
 
@@ -54,7 +44,7 @@ namespace CSAUSBTool.CrossPlatform.Core
             var buffer = new byte[8192];
             var isMoreToRead = true;
 
-            await using (var fileStream = new FileStream(_destinationFilePath, FileMode.Create, FileAccess.Write, FileShare.None, 8192, true))
+            await using (var fileStream = new FileStream(destinationFilePath, FileMode.Create, FileAccess.Write, FileShare.None, 8192, true))
             {
                 do
                 {
@@ -81,7 +71,7 @@ namespace CSAUSBTool.CrossPlatform.Core
 
             try
             {
-                File.Delete(_destinationFilePath);
+                File.Delete(destinationFilePath);
             }
             catch (IOException)
             {   
