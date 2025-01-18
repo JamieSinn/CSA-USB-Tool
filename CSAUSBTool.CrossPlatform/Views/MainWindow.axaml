@@ -6,7 +6,7 @@
         xmlns:views="clr-namespace:CSAUSBTool.CrossPlatform.Views"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="CSAUSBTool.CrossPlatform.Views.MainWindow"
-        Icon="/Assets/avalonia-logo.ico"
+        Icon="/Assets/reuven.ico"
         Title="CSAUSBTool v2"
         x:DataType="vm:MainWindowViewModel">
     <StackPanel>

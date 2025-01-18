@@ -13,9 +13,9 @@ using ReactiveUI;
 
 namespace CSAUSBTool.CrossPlatform.ViewModels
 {
-    internal class MainWindowViewModel
+    internal class MainWindowViewModel : ViewModelBase
     {
-        public List<ProgramYear> ProgramYears { get; set; } = [];
+        public List<ProgramYearViewModel> ProgramYears { get; set; } = [];
         public ObservableCollection<MenuItemViewModel> Programs { get; }
 
         public MainWindowViewModel()
@@ -43,9 +43,9 @@ namespace CSAUSBTool.CrossPlatform.ViewModels
             }).ToList();
         }
 
-        private void HandleYearSelection(ProgramYear year)
+        private void HandleYearSelection(ProgramYearViewModel yearViewModel)
         {
-            Console.WriteLine($"{year.Year} was selected with the program of {year.Program}");
+            System.Diagnostics.Debug.WriteLine($"{yearViewModel.Year} was selected with the program of {yearViewModel.Program}");
         }
 
         public void InitializeProgramLists()
@@ -60,7 +60,7 @@ namespace CSAUSBTool.CrossPlatform.ViewModels
             {
                 var program = line[..3];
                 var year = line[3..7];
-                var programYear = new ProgramYear(int.Parse(year), program);
+                var programYear = new ProgramYearViewModel(int.Parse(year), program);
                 if (programYear.SoftwareGroups.Count > 0)
                 {
                     ProgramYears.Add(programYear);

@@ -3,17 +3,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:CSAUSBTool.CrossPlatform.ViewModels"
-             xmlns:viewModels="clr-namespace:CSAUSBTool.CrossPlatform.ViewModels"
              xmlns:views="clr-namespace:CSAUSBTool.CrossPlatform.Views"
              xmlns:models="clr-namespace:CSAUSBTool.CrossPlatform.Models"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="CSAUSBTool.CrossPlatform.Views.ProgramYearView"
-             x:DataType="viewModels:ProgramYear">
-    <Design.DataContext>
-        <!-- This only sets the DataContext for the previewer in an IDE,
-         to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-        <viewModels:ProgramYear />
-    </Design.DataContext>
+             x:DataType="vm:ProgramYearViewModel">
     <Grid Name="BaseGrid" ColumnDefinitions="*,*" RowDefinitions="*,*">
         <TabControl Name="Tabs" Grid.Column="0" Grid.Row="0" ItemsSource="{Binding SoftwareGroups}">
             <TabControl.ItemTemplate>
