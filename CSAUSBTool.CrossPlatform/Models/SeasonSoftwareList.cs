@@ -29,9 +29,8 @@ namespace CSAUSBTool.CrossPlatform.Models
                 {
                     if (!groups.ContainsKey(tag))
                     {
-                        groups.Add(tag, new ControlSystemSoftwareGroup(){DisplayName =tag, Tag=tag});
+                        groups.Add(tag, new ControlSystemSoftwareGroup(){DisplayName =tag, Tag=tag, SelectedSoftware = [], Software = [] });
                     }
-
                     groups[tag].Software.Add(s);
                 });
             });

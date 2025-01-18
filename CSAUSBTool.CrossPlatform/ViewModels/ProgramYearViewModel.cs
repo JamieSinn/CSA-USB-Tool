@@ -1,29 +1,30 @@
-﻿using System;
+﻿using CSAUSBTool.CrossPlatform.Models;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text.Json;
 using System.Threading.Tasks;
-using CSAUSBTool.CrossPlatform.Models;
 
 
 namespace CSAUSBTool.CrossPlatform.ViewModels
 {
-    public class ProgramYear
+    public class ProgramYearViewModel
     {
         public int Year { get; set; }
         public string Program { get; set; }
         public List<ControlSystemSoftwareGroup> SoftwareGroups { get; set; } = [];
 
-        public ProgramYear(int? year, string? program)
+        public ProgramYearViewModel(int? year, string? program)
         {
             Year = year ?? DateTime.Now.Year;
             Program = program ?? "FRC";
             DownloadSoftwareLists();
         }
 
-        public ProgramYear()
+        public ProgramYearViewModel()
         {
             Year = DateTime.Now.Year;
             Program = "FRC";
@@ -45,8 +46,7 @@ namespace CSAUSBTool.CrossPlatform.ViewModels
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
-                Console.WriteLine(e.StackTrace);
+                // Ignore errors that are generally 404's from mismatched years/programs for legacy compat.
             }
         }
     }
