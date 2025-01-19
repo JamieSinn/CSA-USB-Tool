@@ -9,7 +9,7 @@
              x:Class="CSAUSBTool.CrossPlatform.Views.ProgramYearView"
              x:DataType="vm:ProgramYearViewModel">
     <Grid Name="BaseGrid" ColumnDefinitions="*" RowDefinitions="*">
-        <TabControl Name="Tabs" Grid.Column="0" Grid.Row="0" ItemsSource="{Binding SoftwareGroups}" SelectionChanged="TabChanged">
+        <TabControl Name="Tabs" Grid.Column="0" Grid.Row="0" ItemsSource="{Binding SoftwareGroups}">
             <TabControl.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding DisplayName}" />

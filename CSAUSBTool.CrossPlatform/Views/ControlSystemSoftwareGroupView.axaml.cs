@@ -50,7 +50,7 @@ namespace CSAUSBTool.CrossPlatform.Views
             {
                 if (selectedItem as ControlSystemSoftware is { } s)
                 {
-                    await s.Download(folder[0].Path.ToString(),
+                    s.Download(folder[0].Path.ToString(),
                         new CancellationToken());
                 }
             }

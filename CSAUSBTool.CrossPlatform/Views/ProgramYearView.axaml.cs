@@ -27,13 +27,5 @@ namespace CSAUSBTool.CrossPlatform.Views
         public ProgramYearView() : this(new ProgramYearViewModel())
         {
         }
-
-        private void TabChanged(object? sender, SelectionChangedEventArgs e)
-        {
-            Debug.WriteLine("TAB CHANGED");
-            var selectedTab = Tabs.SelectedItem as ControlSystemSoftwareGroupView;
-            //selectedTab.Software = _yearViewModel.SoftwareGroups.First(s => s.DisplayName == selectedTab.DisplayName).Software;
-            
-        }
     }
 }
