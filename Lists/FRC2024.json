@@ -3,6 +3,17 @@
   "Program": "FRC",
   "Software": [
     {
+      "Name": "Home",
+      "Description": "Select your desired pre-selected software list",
+      "Tags": [
+        "Home"
+      ],
+      "FileName": null,
+      "Uri": "https://github.com",
+      "Hash": null,
+      "Platform": null
+    },
+    {
       "Name": "NI Game Tools",
       "Description": "Game Tools for FRC - DriverStation",
       "Tags": [

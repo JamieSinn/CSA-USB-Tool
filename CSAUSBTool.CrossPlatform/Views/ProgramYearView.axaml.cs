@@ -2,6 +2,7 @@ using System;
 using Avalonia.Controls;
 using CSAUSBTool.CrossPlatform.Models;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Avalonia.Interactivity;
@@ -17,8 +18,9 @@ namespace CSAUSBTool.CrossPlatform.Views
         public ProgramYearView(ProgramYearViewModel yearViewModel)
         {
             InitializeComponent();
-            Tabs.SelectionChanged += TabChanged;
             _yearViewModel = yearViewModel;
+            
+            
             DataContext = _yearViewModel;
         }
 
@@ -28,7 +30,10 @@ namespace CSAUSBTool.CrossPlatform.Views
 
         private void TabChanged(object? sender, SelectionChangedEventArgs e)
         {
-            var selectedTab = Tabs.SelectedItem as ControlSystemSoftwareGroup;
+            Debug.WriteLine("TAB CHANGED");
+            var selectedTab = Tabs.SelectedItem as ControlSystemSoftwareGroupView;
+            //selectedTab.Software = _yearViewModel.SoftwareGroups.First(s => s.DisplayName == selectedTab.DisplayName).Software;
+            
         }
     }
 }

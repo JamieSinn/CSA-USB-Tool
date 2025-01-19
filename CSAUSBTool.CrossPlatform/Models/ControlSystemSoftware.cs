@@ -10,10 +10,11 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using CSAUSBTool.CrossPlatform.Core;
+using ReactiveUI;
 
 namespace CSAUSBTool.CrossPlatform.Models
 {
-    public class ControlSystemSoftware
+    public class ControlSystemSoftware : ReactiveObject
     {
         public string Name { get; set; }
         public string FileName { get; set; }
@@ -26,7 +27,6 @@ namespace CSAUSBTool.CrossPlatform.Models
 
         public ControlSystemSoftware()
         {
-            
         }
 
         public async Task Download(string outputPath, CancellationToken token)
@@ -35,8 +35,10 @@ namespace CSAUSBTool.CrossPlatform.Models
             {
                 throw new ArgumentNullException("Uri", "must not be null");
             }
+
             FileName ??= Uri.Split('/').Last();
-            using var client = new HttpClientDownloadWithProgress(Uri, new Uri(new Uri(outputPath), FileName).AbsolutePath);
+            using var client =
+                new HttpClientDownloadWithProgress(Uri, new Uri(new Uri(outputPath), FileName).AbsolutePath);
             //client.ProgressChanged += _8kbBuffer;
             client.ProgressChanged += UpdateProgress;
             await client.StartDownload(token);

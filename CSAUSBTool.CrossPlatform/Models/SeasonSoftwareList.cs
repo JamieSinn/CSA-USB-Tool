@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ReactiveUI;
 
 namespace CSAUSBTool.CrossPlatform.Models
 {
-    public class SeasonSoftwareList
+    public class SeasonSoftwareList : ReactiveObject
     {
         public int Year { get; set; }
         public string Program { get; set; }

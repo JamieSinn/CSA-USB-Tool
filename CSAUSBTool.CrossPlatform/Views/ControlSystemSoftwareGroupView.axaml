@@ -23,7 +23,8 @@
                          DockPanel.Dock="Left"
                          ItemsSource="{Binding Software}"
                          SelectionMode="Multiple,Toggle"
-                         SelectedItems="{Binding SelectedSoftware}">
+                         SelectedItems="{Binding SelectedSoftware}"
+                         >
 
                     <ListBox.ItemTemplate>
                         <DataTemplate DataType="models:ControlSystemSoftware">

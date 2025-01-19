@@ -8,7 +8,8 @@
         x:Class="CSAUSBTool.CrossPlatform.Views.MainWindow"
         Icon="/Assets/reuven.ico"
         Title="CSAUSBTool v2"
-        x:DataType="vm:MainWindowViewModel">
+        x:DataType="vm:MainWindowViewModel"
+        SizeToContent="WidthAndHeight">
     <StackPanel>
         <DockPanel>
             <Menu>

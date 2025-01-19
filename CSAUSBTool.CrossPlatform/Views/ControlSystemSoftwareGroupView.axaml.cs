@@ -27,9 +27,9 @@ namespace CSAUSBTool.CrossPlatform.Views
             if (SoftwareSelectionList.SelectedItems == null) return;
             foreach (var selectedItem in SoftwareSelectionList.SelectedItems)
             {
-                if (selectedItem as ControlSystemSoftwareViewModel is { } s)
+                if (selectedItem as ControlSystemSoftware is { } s)
                 {
-                    TestText.Text += string.Format("{0}{1}{1}", s.Software.Name, Environment.NewLine);
+                    TestText.Text += string.Format("{0}{1}{1}", s.Name, Environment.NewLine);
                 }
             }
         }

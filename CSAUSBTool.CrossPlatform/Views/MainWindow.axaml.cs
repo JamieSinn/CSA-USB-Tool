@@ -10,5 +10,6 @@ public partial class MainWindow : Window
         InitializeComponent();
         var vm = new MainWindowViewModel();
         DataContext = vm;
+
     }
 }
