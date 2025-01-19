@@ -5,7 +5,7 @@ POWERPLAY Android Studio Guide,Android-Studio-Guide.pdf,https://www.firstinspire
 Android Studio project,FtcRobotController-8.1.1.zip,https://github.com/FIRST-Tech-Challenge/FtcRobotController/archive/refs/tags/v8.1.1.zip,eb5ef4927f8ceefb8c3df5f91a33dcdb,TRUE
 Robot Controller App,FtcRobotController-8.1.1.apk,https://github.com/FIRST-Tech-Challenge/FtcRobotController/releases/download/v8.1.1/FtcRobotController-release.apk,d9d9be18f1964754c418b8078342f5f6,FALSE
 Driver Station App,FtcDriverStation-8.1.1.apk,https://github.com/FIRST-Tech-Challenge/FtcRobotController/releases/download/v8.1.1/FtcDriverStation-release.apk,a606be533afab10b14e8be6ba20805e6,FALSE
-REV Hardware Client w/ FTC software,REV-Hardware-Client-Setup-1.5.3-offline-FTC-2023-03-21.exe,https://github.com/REVrobotics/REV-Software-Binaries/releases/download/rhc-1.5.3/REV-Hardware-Client-Setup-1.5.3-offline-FTC-2023-03-21.exe,13955d896362aad4ce90e495d9bd859a,FALSE
+REV Hardware Client w/ FTC software, REV-Hardware-Client-Setup-1.6.6-offline-FTC-2024-04-12.exe,https://github.com/REVrobotics/REV-Software-Binaries/releases/download/rhc-1.6.6/REV-Hardware-Client-Setup-1.6.6-offline-FTC-2024-04-12.exe,8505df9d2bf8b773340c0fcaeda56e24,FALSE
 REV Control Hub OS,ControlHubOS-1.1.3.zip,https://github.com/REVrobotics/REV-Software-Binaries/releases/download/chos-1.1.3/ControlHubOS-1.1.3.zip,6eb804159f6797f915f53ae909ba0f11,FALSE
 REV Driver Hub OS,DriverHubOS.zip,https://github.com/REVrobotics/REV-Software-Binaries/releases/download/dhos-1.2.0/DriverHubOS.zip,3a9863f48ee177d41aa6c41b36920fe8,FALSE
 REV Expansion/Control Hub Firmware,RevHubFirmware-1.8.2.bin,https://www.revrobotics.com/content/sw/REVHubFirmware_1_08_02.bin,980ebc759354054c53c54eff5c82a16f,FALSE
