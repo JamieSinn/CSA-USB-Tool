@@ -9,6 +9,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+        NUGET_PACKAGES: ${{ github.workspace }}/.nuget/packages
     steps:
     - uses: actions/checkout@v4
     - name: Setup .NET Core
@@ -20,4 +22,4 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --no-restore --Configuration=Release CSAUSBTool.CrossPlatform.Desktop/CSAUSBTool.CrossPlatform.Desktop.csproj
+      run: dotnet build --no-restore CSAUSBTool.CrossPlatform.Desktop/CSAUSBTool.CrossPlatform.Desktop.csproj
