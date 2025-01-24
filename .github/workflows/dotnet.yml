@@ -20,4 +20,4 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --no-restore -- Congifuration Release CSAUSBTool.CrossPlatform.Desktop
+      run: dotnet build --no-restore --Configuration=Release CSAUSBTool.CrossPlatform.Desktop/CSAUSBTool.CrossPlatform.Desktop.csproj
