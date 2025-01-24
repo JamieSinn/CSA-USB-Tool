@@ -1,0 +1,32 @@
+name: Build
+
+on:
+  pull_request:
+
+jobs:
+  test-files:
+    name: Test Files
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Test Files
+      run: echo "Test the current files for schema compliance"
+  build-desktop:
+    needs: 
+    - test-files
+    name: Desktop App
+    runs-on: ubuntu-latest
+    env:
+      NUGET_PACKAGES: ${{ github.workspace }}/.nuget/packages
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 8.0.x
+        cache: true
+        cache-dependency-path: 'CSAUSBTool.CrossPlatform.Desktop/packages.lock.json'
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore CSAUSBTool.CrossPlatform.Desktop/CSAUSBTool.CrossPlatform.Desktop.csproj

@@ -1,0 +1,192 @@
+{
+  "Year": 2024,
+  "Program": "FRC",
+  "Software": [
+    {
+      "Name": "Home",
+      "Description": "Select your desired pre-selected software list",
+      "Tags": [
+        "Home"
+      ],
+      "FileName": null,
+      "Uri": "https://github.com",
+      "Hash": null,
+      "Platform": null
+    },
+    {
+      "Name": "NI Game Tools",
+      "Description": "Game Tools for FRC - DriverStation",
+      "Tags": [
+        "Team",
+        "Event",
+        "FTA",
+        "CSA"
+      ],
+      "FileName": "ni-frc-2024-game-tools_24.0.1_offline.iso",
+      "Uri": "https://download.ni.com/support/nipkg/products/ni-f/ni-frc-2024-game-tools/24.0/offline/ni-frc-2024-game-tools_24.0.1_offline.iso",
+      "Hash": "68ece2bce407356c4395c77b52e4cd3c",
+      "Platform": "Windows"
+    },
+    {
+      "Name": "NI LabVIEW",
+      "Description": "NI LabVIEW Base",
+      "Tags": [
+        "Team",
+        "Event",
+        "FTA",
+        "CSA"
+      ],
+      "FileName": "ni-frc-2024-base-suite_24.0.0.49158-0+f6_offline.iso",
+      "Uri": "https://download.ni.com/support/nipkg/products/ni-f/ni-frc-2024-base-suite/24.0/offline/ni-frc-2024-base-suite_24.0.0.49158-0+f6_offline.iso",
+      "Hash": "147c547e41a7b57ca76a8c98d042fdf9",
+      "Platform": "Windows"
+    },
+    {
+      "Name": "NI CompactRIO Driver",
+      "Description": "cRIO Driver - Rarely used, but can be helpful for recovering roboRIOs",
+      "Tags": [
+        "FTA",
+        "CSA"
+      ],
+      "FileName": "ni-compactrio-device-drivers_24.0.0.49260-0+f108_offline.iso",
+      "Uri": "https://download.ni.com/support/nipkg/products/ni-c/ni-compactrio-device-drivers/24.0/offline/ni-compactrio-device-drivers_24.0.0.49260-0+f108_offline.iso",
+      "Hash": "a76eef4d5d81d9f01a1c2ea860ba170a",
+      "Platform": "Windows"
+    },
+    {
+      "Name": "WPILibInstaller Windows64",
+      "Description": "WPILib Installer",
+      "Tags": [
+        "Event",
+        "Team",
+        "CSA"
+      ],
+      "FileName": "WPILib_Windows-2024.3.1.iso",
+      "Uri": "https://packages.wpilib.workers.dev/installer/v2024.3.1/Win64/WPILib_Windows-2024.3.1.iso",
+      "Hash": "781408b02146fde5a8275f31bd55a23c",
+      "Platform": "Windows"
+    },
+    {
+      "Name": "WPILib VS Code",
+      "Description": "WPILib Installer can source a specific VSCode version if needed.",
+      "Tags": [
+        "Event",
+        "Team",
+        "CSA"
+      ],
+      "FileName": "VSCode-1.85.1-Windows.zip",
+      "Uri": "https://update.code.visualstudio.com/1.85.1/win32-x64-archive/stable",
+      "Hash": "5621fc9203a0468f9270e2151ac2cdea",
+      "Platform": "Windows"
+    },
+    {
+      "Name": "Season Password",
+      "Description": "WPILib Installer",
+      "Tags": [
+        "Event",
+        "Team",
+        "FTA",
+        "CSA"
+      ],
+      "FileName": "2024Password.txt",
+      "Uri": "https://raw.githubusercontent.com/JamieSinn/CSA-USB-Tool/master/2024Password.txt",
+      "Hash": "f7226fa16bbca941473c41beacf2dba4",
+      "Platform": "Windows"
+    },
+    {
+      "Name": "CTRE Phoenix",
+      "Description": "Phoenix Offline Installer - Contains all data/supporting tools.",
+      "Tags": [
+        "Event",
+        "Team",
+        "FTA",
+        "CSA"
+      ],
+      "FileName": "Phoenix-Offline_v24.2.0.exe",
+      "Uri": "https://github.com/CrossTheRoadElec/Phoenix-Releases/releases/download/v24.2.0/Phoenix-Offline_v24.2.0.exe",
+      "Hash": "f7226fa16bbca941473c41beacf2dba4",
+      "Platform": "Windows"
+    },
+    {
+      "Name": "RadioConfigTool",
+      "Description": "Radio Configuration Tool",
+      "Tags": [
+        "Event",
+        "Team",
+        "FTA",
+        "CSA"
+      ],
+      "FileName": "FRC_Radio_Configuration_24_0_1.zip",
+      "Uri": "https://firstfrc.blob.core.windows.net/frc2024/Radio/FRC_Radio_Configuration_24_0_1.zip",
+      "Hash": "b5b755f4947e79e43bc93dae281ba3e2",
+      "Platform": "Windows"
+    },
+    {
+      "Name": "RadioConfigTool Israel",
+      "Description": "Radio Configuration Tool - Israel Firmware/Variant",
+      "Tags": [
+        "Event",
+        "Team",
+        "FTA",
+        "CSA"
+      ],
+      "FileName": "FRC_Radio_Configuration_24_0_1_IL.zip",
+      "Uri": "https://firstfrc.blob.core.windows.net/frc2024/Radio/FRC_Radio_Configuration_24_0_1_IL.zip",
+      "Hash": "4309bff08b61bc6bfb36e946ed1cf6d7",
+      "Platform": "Windows"
+    },
+    {
+      "Name": "2024 Game Manual",
+      "Description": "Season ",
+      "Tags": [
+        "Event",
+        "Team",
+        "FTA",
+        "CSA"
+      ],
+      "FileName": "2024GameManual.pdf",
+      "Uri": "https://firstfrc.blob.core.windows.net/frc2024/Manual/2024GameManual.pdf",
+      "Hash": null,
+      "Platform": null
+    },
+    {
+      "Name": "NavX Libraries",
+      "Description": "NavX Libraries for the MXP version.",
+      "Tags": [
+        "Event",
+        "Team",
+        "CSA"
+      ],
+      "FileName": "navx-mxp.zip",
+      "Uri": "https://www.kauailabs.com/public_files/navx-mxp/navx-mxp.zip",
+      "Hash": null,
+      "Platform": null
+    },
+    {
+      "Name": "REV Hardware Client",
+      "Description": "REV Hardware Client w/ FRC firmware.",
+      "Tags": [
+        "Event",
+        "Team",
+        "CSA"
+      ],
+      "FileName": "REV-Hardware-Client-Setup-1.6.4-offline-FRC-2024-02-17.exe",
+      "Uri": "https://github.com/REVrobotics/REV-Software-Binaries/releases/download/rhc-1.6.4/REV-Hardware-Client-Setup-1.6.4-offline-FRC-2024-02-17.exe",
+      "Hash": "c03a4fcf1baafef68bf40db626125aee",
+      "Platform": "Windows"
+    },
+    {
+      "Name": "REV Hardware Client",
+      "Description": "REV Hardware Client w/ FRC firmware.",
+      "Tags": [
+        "Event",
+        "Team",
+        "CSA"
+      ],
+      "FileName": "REV-Hardware-Client-Setup-1.6.4-offline-FRC-2024-02-17.exe",
+      "Uri": "https://github.com/REVrobotics/REV-Software-Binaries/releases/download/rhc-1.6.4/REV-Hardware-Client-Setup-1.6.4-offline-FRC-2024-02-17.exe",
+      "Hash": "c03a4fcf1baafef68bf40db626125aee",
+      "Platform": "Windows"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:CSAUSBTool.CrossPlatform.ViewModels"
+             xmlns:vm="using:CSAUSBTool.CrossPlatform.ViewModels"
+             xmlns:models="clr-namespace:CSAUSBTool.CrossPlatform.Models"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="CSAUSBTool.CrossPlatform.Views.ControlSystemSoftwareView"
+             x:DataType="models:ControlSystemSoftware">
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+         to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <models:ControlSystemSoftware />
+    </Design.DataContext>
+    <Grid ColumnDefinitions="*" RowDefinitions="*,*,*">
+        <TextBlock Grid.Row="0" Text="{Binding Name}" />
+        <!-- <TextBlock Grid.Row="1" Text="{Binding Description}" /> -->
+        <ProgressBar Grid.Row="2"
+                     Name="DownloadProgress"
+                     Minimum="0"
+                     Maximum="100" 
+                     Value="{Binding DownloadProgress }"
+                     ShowProgressText="True"
+                     IsEnabled="True" 
+                     IsVisible="True" 
+                     />
+    </Grid>
+</UserControl>

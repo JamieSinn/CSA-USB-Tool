@@ -1,0 +1,41 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:CSAUSBTool.CrossPlatform.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:views="clr-namespace:CSAUSBTool.CrossPlatform.Views"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="CSAUSBTool.CrossPlatform.Views.MainWindow"
+        Icon="/Assets/reuven.ico"
+        Title="CSAUSBTool v2"
+        x:DataType="vm:MainWindowViewModel"
+        SizeToContent="WidthAndHeight">
+    <StackPanel>
+        <DockPanel>
+            <Menu>
+                <MenuItem Header="_File"></MenuItem>
+                <MenuItem Header="_Edit"></MenuItem>
+                <MenuItem Header="_Programs" ItemsSource="{Binding Programs}">
+                    <MenuItem.ItemTemplate>
+                        <DataTemplate>
+                            <MenuItem 
+                                Header="{Binding Header}" 
+                                IsEnabled="True" 
+                                Focusable="True" 
+                                ItemsSource="{Binding MenuItems}"/>
+                        </DataTemplate>
+                    </MenuItem.ItemTemplate>
+                    <MenuItem.Styles>
+                        <Style Selector="MenuItem.SubItems MenuItem" x:DataType="vm:MenuItemViewModel">
+                            <Setter Property="Header" Value="{Binding Header}" />
+                            <Setter Property="ItemsSource" Value="{Binding MenuItems}" />
+                            <Setter Property="Command" Value="{Binding Command}" />
+                            <Setter Property="IsEnabled" Value="True"></Setter>
+                        </Style>
+                    </MenuItem.Styles>
+                </MenuItem>
+            </Menu>
+        </DockPanel>
+        <views:ProgramYearView />
+    </StackPanel>
+</Window>

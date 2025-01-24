@@ -1,0 +1,47 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="CSAUSBTool.CrossPlatform.Views.ControlSystemSoftwareGroupView"
+             xmlns:viewModels="clr-namespace:CSAUSBTool.CrossPlatform.ViewModels"
+             xmlns:views="clr-namespace:CSAUSBTool.CrossPlatform.Views"
+             xmlns:models="clr-namespace:CSAUSBTool.CrossPlatform.Models"
+
+             x:DataType="models:ControlSystemSoftwareGroup">
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+         to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+      <models:ControlSystemSoftwareGroup />
+    </Design.DataContext>
+
+  <Grid ColumnDefinitions="*" RowDefinitions="*,*">
+        <SplitView IsPaneOpen="True" DisplayMode="Inline" OpenPaneLength="400" Grid.Column="0" Grid.Row="0">
+            <SplitView.Pane>
+                <ListBox Grid.Column="0" Grid.Row="0" x:Name="SoftwareSelectionList"
+                         DockPanel.Dock="Left"
+                         ItemsSource="{Binding Software}"
+                         SelectionMode="Multiple,Toggle"
+                         SelectedItems="{Binding SelectedSoftware}"
+                         >
+
+                    <ListBox.ItemTemplate>
+                        <DataTemplate DataType="models:ControlSystemSoftware">
+                            <views:ControlSystemSoftwareView
+                                DataContext="{Binding}" />
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+            </SplitView.Pane>
+
+            <Grid Name="BaseGrid" ColumnDefinitions="*,*" RowDefinitions="*">
+                <!--TODO: Create some sort of view that indexes each item and its download status-->
+                <TextBlock Name="TestText"></TextBlock>
+            </Grid>
+        </SplitView>
+      <Button Name="Download" Grid.Column="0" Grid.Row="1" Click="Download_OnClick">Download</Button>
+    </Grid>
+
+</UserControl>

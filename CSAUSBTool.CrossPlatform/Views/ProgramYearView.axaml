@@ -1,0 +1,29 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:CSAUSBTool.CrossPlatform.ViewModels"
+             xmlns:views="clr-namespace:CSAUSBTool.CrossPlatform.Views"
+             xmlns:models="clr-namespace:CSAUSBTool.CrossPlatform.Models"
+             mc:Ignorable="d" d:DesignWidth="1280" d:DesignHeight="720"
+             x:Class="CSAUSBTool.CrossPlatform.Views.ProgramYearView"
+             x:DataType="vm:ProgramYearViewModel">
+    <Grid Name="BaseGrid" ColumnDefinitions="*" RowDefinitions="*">
+        <TabControl Name="Tabs" Grid.Column="0" Grid.Row="0" ItemsSource="{Binding SoftwareGroups}">
+            <TabControl.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding DisplayName}" />
+                </DataTemplate>
+            </TabControl.ItemTemplate>
+            <TabControl.ContentTemplate>
+                <DataTemplate DataType="models:ControlSystemSoftwareGroup">
+                    <DockPanel DockPanel.Dock="Top">
+                        <views:ControlSystemSoftwareGroupView
+                            DataContext="{Binding}" />
+                    </DockPanel>
+                </DataTemplate>
+            </TabControl.ContentTemplate>
+        </TabControl>
+    </Grid>
+
+</UserControl>
