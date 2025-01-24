@@ -16,6 +16,7 @@ jobs:
       with:
         dotnet-version: 8.0.x
         cache: true
+        cache-dependency-path: 'CSAUSBTool.CrossPlatform.Desktop/packages.lock.json'
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
