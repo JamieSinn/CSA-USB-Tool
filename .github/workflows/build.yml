@@ -1,16 +1,23 @@
-name: .NET Build
+name: Build
 
 on:
-  push:
-    branches: [ main ]
   pull_request:
-    branches: [ main ]
 
 jobs:
-  build:
+  test-files:
+    name: Test Files
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Test Files
+      run: dotnet test CSAUSBTool.CrossPlatform.Tests/CSAUSBTool.CrossPlatform.Tests.csproj
+  build-desktop:
+    needs: 
+    - test-files
+    name: Desktop App
     runs-on: ubuntu-latest
     env:
-        NUGET_PACKAGES: ${{ github.workspace }}/.nuget/packages
+      NUGET_PACKAGES: ${{ github.workspace }}/.nuget/packages
     steps:
     - uses: actions/checkout@v4
     - name: Setup .NET Core
