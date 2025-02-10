@@ -100,7 +100,7 @@ if __name__ == "__main__":
             sys.exit(-1)
 
         for item in ourlist['Software']:
-            name = item['Description']
+            name = item['Name']
             fname = item['FileName']
             url = item['Uri']
             md5 = item['Hash']
@@ -134,7 +134,7 @@ if __name__ == "__main__":
                 is_invalid = True
 
             if args.download:
-                if is_invalid:
+                if is_invalid or not fname.exists():
                     download(url, fname)
                 if valid_checksum and md5_file(fname) != md5:
                     print(name, "does not match checksum")
