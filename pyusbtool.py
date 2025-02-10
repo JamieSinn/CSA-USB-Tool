@@ -118,6 +118,7 @@ if __name__ == "__main__":
                     print(name, "exists and has valid checksum")
                     present += 1
                     continue
+                print(name, "is invalid")
                 is_invalid = True
 
             if args.download:
