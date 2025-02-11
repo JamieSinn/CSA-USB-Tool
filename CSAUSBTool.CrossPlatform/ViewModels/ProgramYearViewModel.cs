@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Avalonia.Animation.Easings;
 
 
 namespace CSAUSBTool.CrossPlatform.ViewModels
@@ -45,6 +46,7 @@ namespace CSAUSBTool.CrossPlatform.ViewModels
             }
             catch (Exception e)
             {
+                Console.WriteLine(e);
                 // Ignore errors that are generally 404's from mismatched years/programs for legacy compat.
             }
         }

@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using DynamicData.Tests;
 using ReactiveUI;
 
 namespace CSAUSBTool.CrossPlatform.Models
@@ -11,13 +13,19 @@ namespace CSAUSBTool.CrossPlatform.Models
     {
         public int Year { get; set; }
         public string Program { get; set; }
+        [JsonPropertyName("Software")]
         public List<ControlSystemSoftware> Software { get; set; } = new();
-        public List<ControlSystemSoftwareGroup> Groups { get; set; } = new();
+
+        public List<ControlSystemSoftwareGroup> Groups => GetGroups();
+
+        public SeasonSoftwareList()
+        {
+
+        }
 
         public SeasonSoftwareList(List<ControlSystemSoftware> software)
         {
             Software = software;
-            Groups = GetGroups();
         }
 
         private List<ControlSystemSoftwareGroup> GetGroups()

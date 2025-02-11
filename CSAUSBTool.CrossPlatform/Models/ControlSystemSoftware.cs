@@ -17,7 +17,7 @@ namespace CSAUSBTool.CrossPlatform.Models
     public class ControlSystemSoftware : ReactiveObject
     {
         public string Name { get; set; }
-        public string FileName { get; set; }
+        public string? FileName { get; set; }
         public string Description { get; set; }
         public List<string> Tags { get; set; }
         public string Uri { get; set; }
