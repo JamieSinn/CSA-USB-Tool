@@ -34,7 +34,7 @@ namespace CSAUSBTool.CrossPlatform.ViewModels
         public void DownloadSoftwareLists()
         {
             var downloadUrl =
-                $"https://raw.githubusercontent.com/JamieSinn/CSA-USB-Tool/refs/heads/main/Lists/{Program}{Year}.json";
+                $"https://raw.githubusercontent.com/JamieSinn/CSA-USB-Tool/main/Lists/{Program}{Year}.json";
 
             using var client = new HttpClient();
             try
