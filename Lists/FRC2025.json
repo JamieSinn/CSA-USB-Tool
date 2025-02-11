@@ -1,5 +1,5 @@
 {
-  "Year": 2024,
+  "Year": 2025,
   "Program": "FRC",
   "Software": [
     {
@@ -22,9 +22,9 @@
         "FTA",
         "CSA"
       ],
-      "FileName": "ni-frc-2024-game-tools_24.0.1_offline.iso",
-      "Uri": "https://download.ni.com/support/nipkg/products/ni-f/ni-frc-2024-game-tools/24.0/offline/ni-frc-2024-game-tools_24.0.1_offline.iso",
-      "Hash": "68ece2bce407356c4395c77b52e4cd3c",
+      "FileName": "ni-frc-2025-game-tools_25.0.1_offline.iso",
+      "Uri": "https://download.ni.com/support/nipkg/products/ni-f/ni-frc-2025-game-tools/25.0/offline/ni-frc-2025-game-tools_25.0.1_offline.iso",
+      "Hash": "7fd3f9fef61449f8e263c61ed9f2be6a",
       "Platform": "Windows"
     },
     {
@@ -36,9 +36,9 @@
         "FTA",
         "CSA"
       ],
-      "FileName": "ni-frc-2024-base-suite_24.0.0.49158-0+f6_offline.iso",
-      "Uri": "https://download.ni.com/support/nipkg/products/ni-f/ni-frc-2024-base-suite/24.0/offline/ni-frc-2024-base-suite_24.0.0.49158-0+f6_offline.iso",
-      "Hash": "147c547e41a7b57ca76a8c98d042fdf9",
+      "FileName": "ni-frc-2025-base-suite_25.0.0.49156-0+f4_offline.iso",
+      "Uri": "https://download.ni.com/support/nipkg/products/ni-f/ni-frc-2025-base-suite/25.0/offline/ni-frc-2025-base-suite_25.0.0.49156-0+f4_offline.iso",
+      "Hash": "5b8f9d06aa175563c6d31d7cbfa8c60c",
       "Platform": "Windows"
     },
     {
@@ -61,9 +61,9 @@
         "Team",
         "CSA"
       ],
-      "FileName": "WPILib_Windows-2024.3.1.iso",
-      "Uri": "https://packages.wpilib.workers.dev/installer/v2024.3.1/Win64/WPILib_Windows-2024.3.1.iso",
-      "Hash": "781408b02146fde5a8275f31bd55a23c",
+      "FileName": "WPILib_Windows-2025.2.1.iso",
+      "Uri": "https://packages.wpilib.workers.dev/installer/v2025.2.1/Win64/WPILib_Windows-2025.2.1.iso",
+      "Hash": "05e977b48854a2ececa4aae54849bdae",
       "Platform": "Windows"
     },
     {
@@ -74,9 +74,9 @@
         "Team",
         "CSA"
       ],
-      "FileName": "VSCode-1.85.1-Windows.zip",
-      "Uri": "https://update.code.visualstudio.com/1.85.1/win32-x64-archive/stable",
-      "Hash": "5621fc9203a0468f9270e2151ac2cdea",
+      "FileName": "VSCode-1.96.2-Windows.zip",
+      "Uri": "https://update.code.visualstudio.com/1.96.2/win32-x64-archive/stable",
+      "Hash": "bbd8d51067b5f3a06041d88f74ed3a4b",
       "Platform": "Windows"
     },
     {
@@ -88,9 +88,9 @@
         "FTA",
         "CSA"
       ],
-      "FileName": "2024Password.txt",
-      "Uri": "https://raw.githubusercontent.com/JamieSinn/CSA-USB-Tool/master/2024Password.txt",
-      "Hash": "f7226fa16bbca941473c41beacf2dba4",
+      "FileName": "2025Password.txt",
+      "Uri": "https://raw.githubusercontent.com/JamieSinn/CSA-USB-Tool/main/2025Password.txt",
+      "Hash": "035e077ac662be31f3138fe6a8148103",
       "Platform": "Windows"
     },
     {
