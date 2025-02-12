@@ -95,48 +95,62 @@
     },
     {
       "Name": "CTRE Phoenix",
-      "Description": "Phoenix Offline Installer - Contains all data/supporting tools.",
+      "Description": "Phoenix 6 Offline Installer - Contains all data/supporting tools.",
       "Tags": [
         "Event",
         "Team",
         "FTA",
         "CSA"
       ],
-      "FileName": "Phoenix-Offline_v24.2.0.exe",
-      "Uri": "https://github.com/CrossTheRoadElec/Phoenix-Releases/releases/download/v24.2.0/Phoenix-Offline_v24.2.0.exe",
-      "Hash": "f7226fa16bbca941473c41beacf2dba4",
+      "FileName": "Phoenix-Offline_v25.2.2.exe",
+      "Uri": "https://github.com/CrossTheRoadElec/Phoenix-Releases/releases/download/v25.2.2/Phoenix-Offline_v25.2.2.exe",
+      "Hash": "4d3983ba6a76a7639f4e0f155915878d",
       "Platform": "Windows"
     },
     {
-      "Name": "RadioConfigTool",
-      "Description": "Radio Configuration Tool",
+      "Name": "VH-109 Network Assistant",
+      "Description": "Vivid Hosting Network Assitant Tool",
       "Tags": [
         "Event",
         "Team",
         "FTA",
         "CSA"
       ],
-      "FileName": "FRC_Radio_Configuration_24_0_1.zip",
-      "Uri": "https://firstfrc.blob.core.windows.net/frc2024/Radio/FRC_Radio_Configuration_24_0_1.zip",
-      "Hash": "b5b755f4947e79e43bc93dae281ba3e2",
+      "FileName": "vh_network_assistant.zip",
+      "Uri": "https://4239402461-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FzaDthb1gXvbj84qIfOUE%2Fuploads%2FJH9mvCiIVx33X8PlpHVK%2Fvh_network_assistant.zip?alt=media&token=a461c2fb-7fa0-4023-9264-ebcfeca0561c",
+      "Hash": "9528237b54bf36f55ce98c72f9ed7628",
       "Platform": "Windows"
     },
     {
-      "Name": "RadioConfigTool Israel",
-      "Description": "Radio Configuration Tool - Israel Firmware/Variant",
+      "Name": "VH-109 Firmware 1.2.9 for pre 1.2.0",
+      "Description": "Vivid Hosting Firmware to be used with VH-109 reporting no version (i.e. < 1.2.0)",
       "Tags": [
         "Event",
         "Team",
         "FTA",
         "CSA"
       ],
-      "FileName": "FRC_Radio_Configuration_24_0_1_IL.zip",
-      "Uri": "https://firstfrc.blob.core.windows.net/frc2024/Radio/FRC_Radio_Configuration_24_0_1_IL.zip",
-      "Hash": "4309bff08b61bc6bfb36e946ed1cf6d7",
-      "Platform": "Windows"
+      "FileName": "VH-109_1.2.9-02082025.img.enc",
+      "Uri": "https://4239402461-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FzaDthb1gXvbj84qIfOUE%2Fuploads%2FwewHEZeJhObzkVDsOikS%2FVH-109_1.2.9-02082025.img.enc?alt=media&token=bf810311-e6b2-41d0-b274-d578008752fa",
+      "Hash": "59e8e40a111db80a985b09c2e8628520",
+      "Platform": null
     },
     {
-      "Name": "2024 Game Manual",
+      "Name": "VH-109 Firmware 1.2.9 for 1.2.0+",
+      "Description": "Vivid Hosting Firmware to be used with VH-109 reporting versions >= 1.2.0",
+      "Tags": [
+        "Event",
+        "Team",
+        "FTA",
+        "CSA"
+      ],
+      "FileName": "VH-109_1.2.9-02082025.FROM_1_2_X.img.enc",
+      "Uri": "https://4239402461-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FzaDthb1gXvbj84qIfOUE%2Fuploads%2Fdag77rCmDu2RIMSp2d5q%2FVH-109_1.2.9-02082025.FROM_1_2_X.img.enc?alt=media&token=3df60238-c4c2-4ca1-bceb-1a875c56ff85",
+      "Hash": "fcd3d76e288c2af87917e52b548f3994",
+      "Platform": null
+    },
+    {
+      "Name": "2025 Game Manual",
       "Description": "Season ",
       "Tags": [
         "Event",
@@ -144,8 +158,8 @@
         "FTA",
         "CSA"
       ],
-      "FileName": "2024GameManual.pdf",
-      "Uri": "https://firstfrc.blob.core.windows.net/frc2024/Manual/2024GameManual.pdf",
+      "FileName": "2025GameManual.pdf",
+      "Uri": "https://firstfrc.blob.core.windows.net/frc2025/Manual/2025GameManual.pdf",
       "Hash": null,
       "Platform": null
     },
