@@ -22,7 +22,6 @@ namespace CSAUSBTool.CrossPlatform.Core
 
         public async Task<bool> StartDownload(CancellationToken token)
         {
-
             using var response = await _httpClient.GetAsync(downloadUrl, HttpCompletionOption.ResponseHeadersRead, token);
             return await DownloadFileFromHttpResponseMessage(response, token);
         }

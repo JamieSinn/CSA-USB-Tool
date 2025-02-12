@@ -29,6 +29,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSAUSBTool.CrossPlatform", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSAUSBTool.CrossPlatform.Desktop", "CSAUSBTool.CrossPlatform.Desktop\CSAUSBTool.CrossPlatform.Desktop.csproj", "{FA689B4D-CB1F-4BFA-83EA-4B5D7012B1EF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSV-to-JSON", "CSV-to-JSON\CSV-to-JSON.csproj", "{205AEFF3-8078-410D-9EDF-A7637789786E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +85,26 @@ Global
 		{FA689B4D-CB1F-4BFA-83EA-4B5D7012B1EF}.Release|x64.Build.0 = Release|Any CPU
 		{FA689B4D-CB1F-4BFA-83EA-4B5D7012B1EF}.Release|x86.ActiveCfg = Release|Any CPU
 		{FA689B4D-CB1F-4BFA-83EA-4B5D7012B1EF}.Release|x86.Build.0 = Release|Any CPU
+		{205AEFF3-8078-410D-9EDF-A7637789786E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{205AEFF3-8078-410D-9EDF-A7637789786E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{205AEFF3-8078-410D-9EDF-A7637789786E}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{205AEFF3-8078-410D-9EDF-A7637789786E}.Debug|ARM.Build.0 = Debug|Any CPU
+		{205AEFF3-8078-410D-9EDF-A7637789786E}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{205AEFF3-8078-410D-9EDF-A7637789786E}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{205AEFF3-8078-410D-9EDF-A7637789786E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{205AEFF3-8078-410D-9EDF-A7637789786E}.Debug|x64.Build.0 = Debug|Any CPU
+		{205AEFF3-8078-410D-9EDF-A7637789786E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{205AEFF3-8078-410D-9EDF-A7637789786E}.Debug|x86.Build.0 = Debug|Any CPU
+		{205AEFF3-8078-410D-9EDF-A7637789786E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{205AEFF3-8078-410D-9EDF-A7637789786E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{205AEFF3-8078-410D-9EDF-A7637789786E}.Release|ARM.ActiveCfg = Release|Any CPU
+		{205AEFF3-8078-410D-9EDF-A7637789786E}.Release|ARM.Build.0 = Release|Any CPU
+		{205AEFF3-8078-410D-9EDF-A7637789786E}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{205AEFF3-8078-410D-9EDF-A7637789786E}.Release|ARM64.Build.0 = Release|Any CPU
+		{205AEFF3-8078-410D-9EDF-A7637789786E}.Release|x64.ActiveCfg = Release|Any CPU
+		{205AEFF3-8078-410D-9EDF-A7637789786E}.Release|x64.Build.0 = Release|Any CPU
+		{205AEFF3-8078-410D-9EDF-A7637789786E}.Release|x86.ActiveCfg = Release|Any CPU
+		{205AEFF3-8078-410D-9EDF-A7637789786E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
