@@ -10,6 +10,7 @@ import hashlib
 import pathlib
 import urllib.request
 import sys
+import os
 import json
 
 USER_AGENT = "python-frc-csa-tool/2.0"
@@ -81,6 +82,12 @@ if __name__ == "__main__":
         help="Download files to disk (default is to check only)",
     )
     parser.add_argument(
+        "--find-old",
+        action="store_true",
+        default=False,
+        help="Find any files in the destination directory that are not in the given json file",
+    )
+    parser.add_argument(
         "--no-verify",
         action="store_true",
         default=False,
@@ -91,6 +98,9 @@ if __name__ == "__main__":
     present = 0
     missing = 0
     invalid = 0
+
+    if args.find_old:
+        old_files = os.listdir(args.dst)
 
     with open(args.json) as fp:
         ourlist = json.load(fp)
@@ -109,6 +119,10 @@ if __name__ == "__main__":
             if fname is None:
                 continue
         
+            if args.find_old:
+                old_files.remove(fname)
+                continue
+
             if md5 is None:
                 valid_checksum = False
             else:
@@ -149,8 +163,17 @@ if __name__ == "__main__":
                     print(name, "is missing")
                     missing += 1
 
-    print()
-    print("Finished!")
-    print("-", present, "OK")
-    print("-", missing, "missing")
-    print("-", invalid, "invalid")
+    if args.find_old:
+        if len(old_files) > 0:
+            print(f"Files in {args.dst} not in {args.json}")
+            for fname in old_files:
+                print(fname)
+        else:
+            print(f"No extra files in {args.dst}")
+
+    else:
+        print()
+        print("Finished!")
+        print("-", present, "OK")
+        print("-", missing, "missing")
+        print("-", invalid, "invalid")
