@@ -164,17 +164,17 @@
       "Platform": null
     },
     {
-      "Name": "NavX Libraries",
-      "Description": "NavX Libraries for the MXP version.",
+      "Name": "Studica Hardware Manager",
+      "Description": "Updates and configures all Studica electronics including NavX",
       "Tags": [
         "Event",
         "Team",
         "CSA"
       ],
-      "FileName": "navx-mxp.zip",
-      "Uri": "https://www.kauailabs.com/public_files/navx-mxp/navx-mxp.zip",
-      "Hash": null,
-      "Platform": null
+      "FileName": "Studica_Hardware_Manager-Setup_1.0.0.exe",
+      "Uri": "https://dev.studica.com/maven/release/firmware/app/win32/Studica_Hardware_Manager-Setup_1.0.0.exe",
+      "Hash": "73676756c2bc95f5a8d57c75d1782386",
+      "Platform": "Windows"
     },
     {
       "Name": "REV Hardware Client",
