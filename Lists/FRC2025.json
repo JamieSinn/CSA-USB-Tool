@@ -61,9 +61,9 @@
         "Team",
         "CSA"
       ],
-      "FileName": "WPILib_Windows-2025.2.1.iso",
-      "Uri": "https://packages.wpilib.workers.dev/installer/v2025.2.1/Win64/WPILib_Windows-2025.2.1.iso",
-      "Hash": "05e977b48854a2ececa4aae54849bdae",
+      "FileName": "WPILib_Windows-2025.3.1.iso",
+      "Uri": "https://packages.wpilib.workers.dev/installer/v2025.3.1/Win64/WPILib_Windows-2025.3.1.iso",
+      "Hash": "6307170a459d874b4df7c4c5079a8064",
       "Platform": "Windows"
     },
     {
@@ -184,22 +184,139 @@
         "Team",
         "CSA"
       ],
-      "FileName": "REV-Hardware-Client-Setup-1.6.4-offline-FRC-2024-02-17.exe",
-      "Uri": "https://github.com/REVrobotics/REV-Software-Binaries/releases/download/rhc-1.6.4/REV-Hardware-Client-Setup-1.6.4-offline-FRC-2024-02-17.exe",
-      "Hash": "c03a4fcf1baafef68bf40db626125aee",
+      "FileName": "REV-Hardware-Client-Setup-1.7.2-offline-FRC-2025-02-11.exe",
+      "Uri": "https://github.com/REVrobotics/REV-Software-Binaries/releases/download/rhc-1.7.2/REV-Hardware-Client-Setup-1.7.2-offline-FRC-2025-02-11.exe",
+      "Hash": "7a16eb34431ca803b8615c33f25771be",
       "Platform": "Windows"
     },
     {
-      "Name": "REV Hardware Client",
-      "Description": "REV Hardware Client w/ FRC firmware.",
+      "Name": "REVlib LabView API",
+      "Description": "REV Library for use with Labview",
       "Tags": [
         "Event",
         "Team",
         "CSA"
       ],
-      "FileName": "REV-Hardware-Client-Setup-1.6.4-offline-FRC-2024-02-17.exe",
-      "Uri": "https://github.com/REVrobotics/REV-Software-Binaries/releases/download/rhc-1.6.4/REV-Hardware-Client-Setup-1.6.4-offline-FRC-2024-02-17.exe",
-      "Hash": "c03a4fcf1baafef68bf40db626125aee",
+      "FileName": "revlib_2025.0.0-0_windows_all.nipkg",
+      "Uri": "https://github.com/REVrobotics/REV-Software-Binaries/releases/download/revlib-2025.0.0/revlib_2025.0.0-0_windows_all.nipkg",
+      "Hash": "ad00851226a6d8130b8ec0c762472ed7",
+      "Platform": "Windows"
+    },
+    {
+      "Name": "REVlib Java/C++ API",
+      "Description": "REV Library for use with Java and C++",
+      "Tags": [
+        "Event",
+        "Team",
+        "CSA"
+      ],
+      "FileName": "REVLib-offline-v2025.0.2.zip",
+      "Uri": "https://github.com/REVrobotics/REV-Software-Binaries/releases/download/revlib-2025.0.2/REVLib-offline-v2025.0.2.zip",
+      "Hash": "c0ca044a0fc1832b789bdde98f0633ad",
+      "Platform": "Windows"
+    },
+    {
+      "Name": "Limelight Hardware Manager",
+      "Description": "Limelight Hardware Manager",
+      "Tags": [
+        "Event",
+        "Team",
+        "CSA"
+      ],
+      "FileName": "LimelightHardwareManagerSetup1_5_0.exe",
+      "Uri": "https://downloads.limelightvision.io/software/LimelightHardwareManagerSetup1_5_0.exe",
+      "Hash": "70cdc6b3817a2b092a6dbd4c5a55f772",
+      "Platform": "Windows"
+    },
+    {
+      "Name": "Limelight USB Drivers",
+      "Description": "Compute Module Module Installer.  Provides Windows drivers for Limelight.",
+      "Tags": [
+        "Event",
+        "Team",
+        "CSA"
+      ],
+      "FileName": "rpiboot_setup.exe",
+      "Uri": "https://github.com/raspberrypi/usbboot/raw/master/win32/rpiboot_setup.exe",
+      "Hash": "3107682e67ea4c6d35ea784d421ef338",
+      "Platform": "Windows"
+    },
+    {
+      "Name": "Balena Etcher Flash Tool v1.19.5",
+      "Description": "Flash Tool.  Useful for flashing new images to devices like Limelights.",
+      "Tags": [
+        "Event",
+        "Team",
+        "CSA"
+      ],
+      "FileName": "balenaEtcher-1.19.5.Setup.exe",
+      "Uri": "https://github.com/balena-io/etcher/releases/download/v1.19.5/balenaEtcher-1.19.5.Setup.exe",
+      "Hash": "972f11897ad99fb3377ef6c58afabb9d",
+      "Platform": "Windows"
+    },
+    {
+      "Name": "Limelight OS 2025 for LL 1, 2, 2+",
+      "Description": "Limelight OS image for early limelight models",
+      "Tags": [
+        "Event",
+        "Team",
+        "CSA"
+      ],
+      "FileName": "limelight2_2025_0.zip",
+      "Uri": "https://downloads.limelightvision.io/images/limelight2_2025_0.zip",
+      "Hash": "d1ce74f1c9a0641ce9fc8e8354a91d62",
+      "Platform": "Windows"
+    },
+    {
+      "Name": "Limelight OS 2025 for LL 3",
+      "Description": "Limelight OS image for Limelight 3 models",
+      "Tags": [
+        "Event",
+        "Team",
+        "CSA"
+      ],
+      "FileName": "limelight3_2025_0.zip",
+      "Uri": "https://downloads.limelightvision.io/images/limelight3_2025_0.zip",
+      "Hash": "736045d4c248e6cdb5abb938002cf607",
+      "Platform": "Windows"
+    },
+    {
+      "Name": "Limelight OS 2025 for LL 3G",
+      "Description": "Limelight OS image for Limelight 3G models",
+      "Tags": [
+        "Event",
+        "Team",
+        "CSA"
+      ],
+      "FileName": "limelight3g_2025_0.zip",
+      "Uri": "https://downloads.limelightvision.io/images/limelight3g_2025_0.zip",
+      "Hash": "26b1a9a92d7d42c235fbe1319975dba1",
+      "Platform": "Windows"
+    },
+    {
+      "Name": "Limelight OS 2025 for LL 4",
+      "Description": "Limelight OS image for Limelight 4 models",
+      "Tags": [
+        "Event",
+        "Team",
+        "CSA"
+      ],
+      "FileName": "limelight4_2025_0.zip",
+      "Uri": "https://downloads.limelightvision.io/images/limelight4_2025_0.zip",
+      "Hash": "485b8ff5d0613cbb5d2b922ed07fce8f",
+      "Platform": "Windows"
+    },
+    {
+      "Name": "Limelight 2025 AprilTag map for LL4 v2",
+      "Description": "A map of AprilTags for the 2025 game",
+      "Tags": [
+        "Event",
+        "Team",
+        "CSA"
+      ],
+      "FileName": "frc2025r2.fmap",
+      "Uri": "https://downloads.limelightvision.io/models/frc2025r2.fmap",
+      "Hash": "9f31c7f5ca2e8c65bd3b161a9a616aa5",
       "Platform": "Windows"
     }
   ]
