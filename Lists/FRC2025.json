@@ -184,22 +184,35 @@
         "Team",
         "CSA"
       ],
-      "FileName": "REV-Hardware-Client-Setup-1.6.4-offline-FRC-2024-02-17.exe",
-      "Uri": "https://github.com/REVrobotics/REV-Software-Binaries/releases/download/rhc-1.6.4/REV-Hardware-Client-Setup-1.6.4-offline-FRC-2024-02-17.exe",
-      "Hash": "c03a4fcf1baafef68bf40db626125aee",
+      "FileName": "REV-Hardware-Client-Setup-1.7.2-offline-FRC-2025-02-11.exe",
+      "Uri": "https://github.com/REVrobotics/REV-Software-Binaries/releases/download/rhc-1.7.2/REV-Hardware-Client-Setup-1.7.2-offline-FRC-2025-02-11.exe",
+      "Hash": "7a16eb34431ca803b8615c33f25771be",
       "Platform": "Windows"
     },
     {
-      "Name": "REV Hardware Client",
-      "Description": "REV Hardware Client w/ FRC firmware.",
+      "Name": "REVlib LabView API",
+      "Description": "REV Library for use with Labview",
       "Tags": [
         "Event",
         "Team",
         "CSA"
       ],
-      "FileName": "REV-Hardware-Client-Setup-1.6.4-offline-FRC-2024-02-17.exe",
-      "Uri": "https://github.com/REVrobotics/REV-Software-Binaries/releases/download/rhc-1.6.4/REV-Hardware-Client-Setup-1.6.4-offline-FRC-2024-02-17.exe",
-      "Hash": "c03a4fcf1baafef68bf40db626125aee",
+      "FileName": "revlib_2025.0.0-0_windows_all.nipkg",
+      "Uri": "https://github.com/REVrobotics/REV-Software-Binaries/releases/download/revlib-2025.0.0/revlib_2025.0.0-0_windows_all.nipkg",
+      "Hash": "ad00851226a6d8130b8ec0c762472ed7",
+      "Platform": "Windows"
+    },
+    {
+      "Name": "REVlib Java/C++ API",
+      "Description": "REV Library for use with Java and C++",
+      "Tags": [
+        "Event",
+        "Team",
+        "CSA"
+      ],
+      "FileName": "REVLib-offline-v2025.0.2.zip",
+      "Uri": "https://github.com/REVrobotics/REV-Software-Binaries/releases/download/revlib-2025.0.2/REVLib-offline-v2025.0.2.zip",
+      "Hash": "c0ca044a0fc1832b789bdde98f0633ad",
       "Platform": "Windows"
     }
   ]
