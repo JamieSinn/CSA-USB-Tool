@@ -61,9 +61,9 @@
         "Team",
         "CSA"
       ],
-      "FileName": "WPILib_Windows-2025.2.1.iso",
-      "Uri": "https://packages.wpilib.workers.dev/installer/v2025.2.1/Win64/WPILib_Windows-2025.2.1.iso",
-      "Hash": "05e977b48854a2ececa4aae54849bdae",
+      "FileName": "WPILib_Windows-2025.3.1.iso",
+      "Uri": "https://packages.wpilib.workers.dev/installer/v2025.3.1/Win64/WPILib_Windows-2025.3.1.iso",
+      "Hash": "6307170a459d874b4df7c4c5079a8064",
       "Platform": "Windows"
     },
     {
