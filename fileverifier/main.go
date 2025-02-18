@@ -9,6 +9,8 @@ import (
 	"os"
 )
 
+var completed = make(chan Software, 100)
+
 type ProgramSeason struct {
 	Year     int        `json:"Year,omitempty"`
 	Program  string     `json:"Program,omitempty"`
@@ -31,6 +33,7 @@ func (s *Software) Download() error {
 	if s.Hash == nil {
 		return nil
 	}
+	fmt.Println("Downloading", s.Name)
 	client := http.DefaultClient
 	resp, err := client.Get(s.URI)
 	if err != nil {
@@ -100,6 +103,32 @@ func checkFile(filePath string) (err error) {
 	if err != nil {
 		fmt.Println(err)
 		return err
+	}
+
+	// Download the software
+	for _, software := range programSeason.Software {
+		go func() {
+			err := software.Download()
+			if err != nil {
+				fmt.Println(err)
+			} else {
+				fmt.Printf("Downloaded %s successfully\n", software.Name)
+				completed <- software
+			}
+		}()
+	}
+
+	completedCount := 0
+	for {
+		select {
+		case software := <-completed:
+			completedCount++
+			fmt.Printf("Downloaded %s successfully\n", software.Name)
+		}
+		if completedCount == len(programSeason.Software) {
+			fmt.Println("All downloads completed successfully")
+			break
+		}
 	}
 	return nil
 }

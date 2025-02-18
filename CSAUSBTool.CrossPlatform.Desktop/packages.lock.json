@@ -42,35 +42,6 @@
         "resolved": "0.0.29",
         "contentHash": "U4eJLQdoDNHXtEba7MZUCwrBErBTxFp6sUewXBOdAhU0Kwzwaa/EKFcYm8kpcysjzKtfB4S0S9n0uxKZFz/ikw=="
       },
-      "Avalonia.Controls.ColorPicker": {
-        "type": "Transitive",
-        "resolved": "11.2.2",
-        "contentHash": "4EMwXvp13WsIvk7eHBXjrT3JBqMYI5lGMYwPUh5f4vsPX1KArSnyy9F4+eByUvJKLROEY6j4gXoPaqtZfAjy1A==",
-        "dependencies": {
-          "Avalonia": "11.2.2",
-          "Avalonia.Remote.Protocol": "11.2.2"
-        }
-      },
-      "Avalonia.Controls.DataGrid": {
-        "type": "Transitive",
-        "resolved": "11.2.2",
-        "contentHash": "h86QMlOvjDsihg64WYAvyxFWhwFf30WffwoY8vJGF3BgLpahW+VjNeq5GoO0VyGWWJI2vdTJEzO5fjb8MEpwAg==",
-        "dependencies": {
-          "Avalonia": "11.2.2",
-          "Avalonia.Remote.Protocol": "11.2.2"
-        }
-      },
-      "Avalonia.Diagnostics": {
-        "type": "Transitive",
-        "resolved": "11.2.2",
-        "contentHash": "O3hSjXJ1htUJdlKkkH+B3/CcNIGtIRKHlt/L81H2MUT+xiXoHeiWjQf+mSnGgN3LEOt5ZBCuDOZ4NgkchncylQ==",
-        "dependencies": {
-          "Avalonia": "11.2.2",
-          "Avalonia.Controls.ColorPicker": "11.2.2",
-          "Avalonia.Controls.DataGrid": "11.2.2",
-          "Avalonia.Themes.Simple": "11.2.2"
-        }
-      },
       "Avalonia.Fonts.Inter": {
         "type": "Transitive",
         "resolved": "11.2.2",
@@ -129,14 +100,6 @@
         "type": "Transitive",
         "resolved": "11.2.2",
         "contentHash": "75z5fu4R3myG4TiyPKXHpjA3Jimq6InBB+inLugNHtONuDT9pQdt/CMPhnMcRaueBLjvaJTFs4KS5U8+sGTu0A==",
-        "dependencies": {
-          "Avalonia": "11.2.2"
-        }
-      },
-      "Avalonia.Themes.Simple": {
-        "type": "Transitive",
-        "resolved": "11.2.2",
-        "contentHash": "EgK1N3VAbZpF3NFKKbwDekjKekaDNrHXkPllDom04iP7ZbwuH4xGhmjKlEB5KkPuvxWEfS1ROuRYqVHtna0KRg==",
         "dependencies": {
           "Avalonia": "11.2.2"
         }
@@ -293,7 +256,6 @@
         "type": "Project",
         "dependencies": {
           "Avalonia": "[11.2.2, )",
-          "Avalonia.Diagnostics": "[11.2.2, )",
           "Avalonia.Fonts.Inter": "[11.2.2, )",
           "Avalonia.ReactiveUI": "[11.2.2, )",
           "Avalonia.Themes.Fluent": "[11.2.2, )",
@@ -301,7 +263,7 @@
         }
       }
     },
-    "net8.0/win-x64": {
+    "net8.0/osx-arm64": {
       "Avalonia.Angle.Windows.Natives": {
         "type": "Transitive",
         "resolved": "2.1.22045.20230930",

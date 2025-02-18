@@ -31,6 +31,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSAUSBTool.CrossPlatform.De
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSV-to-JSON", "CSV-to-JSON\CSV-to-JSON.csproj", "{205AEFF3-8078-410D-9EDF-A7637789786E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{382B6900-DA1A-4930-9B1B-82683BCB8C7D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{1530FA21-4057-4298-AFA4-9CC99713872E}"
+	ProjectSection(SolutionItems) = preProject
+		test.yml = test.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -108,6 +115,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{382B6900-DA1A-4930-9B1B-82683BCB8C7D} = {CEE83079-35D3-480F-99E1-AC6BC51486AF}
+		{1530FA21-4057-4298-AFA4-9CC99713872E} = {382B6900-DA1A-4930-9B1B-82683BCB8C7D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {57E81DC4-CACA-4A01-920D-650E89A7990C}
