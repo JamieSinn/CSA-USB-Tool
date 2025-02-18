@@ -91,7 +91,7 @@
       "FileName": "2025Password.txt",
       "Uri": "https://raw.githubusercontent.com/JamieSinn/CSA-USB-Tool/main/2025Password.txt",
       "Hash": "035e077ac662be31f3138fe6a8148103",
-      "Platform": null
+      "Platform": "Windows"
     },
     {
       "Name": "CTRE Phoenix",
@@ -213,7 +213,7 @@
       "FileName": "REVLib-offline-v2025.0.2.zip",
       "Uri": "https://github.com/REVrobotics/REV-Software-Binaries/releases/download/revlib-2025.0.2/REVLib-offline-v2025.0.2.zip",
       "Hash": "c0ca044a0fc1832b789bdde98f0633ad",
-      "Platform": null
+      "Platform": "Windows"
     },
     {
       "Name": "Limelight Hardware Manager",
@@ -265,7 +265,7 @@
       "FileName": "limelight2_2025_0.zip",
       "Uri": "https://downloads.limelightvision.io/images/limelight2_2025_0.zip",
       "Hash": "d1ce74f1c9a0641ce9fc8e8354a91d62",
-      "Platform": null
+      "Platform": "Windows"
     },
     {
       "Name": "Limelight OS 2025 for LL 3",
@@ -278,7 +278,7 @@
       "FileName": "limelight3_2025_0.zip",
       "Uri": "https://downloads.limelightvision.io/images/limelight3_2025_0.zip",
       "Hash": "736045d4c248e6cdb5abb938002cf607",
-      "Platform": null
+      "Platform": "Windows"
     },
     {
       "Name": "Limelight OS 2025 for LL 3G",
@@ -291,7 +291,7 @@
       "FileName": "limelight3g_2025_0.zip",
       "Uri": "https://downloads.limelightvision.io/images/limelight3g_2025_0.zip",
       "Hash": "26b1a9a92d7d42c235fbe1319975dba1",
-      "Platform": null
+      "Platform": "Windows"
     },
     {
       "Name": "Limelight OS 2025 for LL 4",
@@ -304,7 +304,7 @@
       "FileName": "limelight4_2025_0.zip",
       "Uri": "https://downloads.limelightvision.io/images/limelight4_2025_0.zip",
       "Hash": "485b8ff5d0613cbb5d2b922ed07fce8f",
-      "Platform": null
+      "Platform": "Windows"
     },
     {
       "Name": "Limelight 2025 AprilTag map v2 Welded Field",
@@ -317,7 +317,7 @@
       "FileName": "frc2025r2.fmap",
       "Uri": "https://downloads.limelightvision.io/models/frc2025r2.fmap",
       "Hash": "9f31c7f5ca2e8c65bd3b161a9a616aa5",
-      "Platform": null
+      "Platform": "Windows"
     },
     {
       "Name": "Limelight 2025 AprilTag map v2 AndyMark Field",
@@ -330,7 +330,7 @@
       "FileName": "frc2025r2_ANDYMARK.fmap",
       "Uri": "https://downloads.limelightvision.io/models/frc2025r2_ANDYMARK.fmap",
       "Hash": "633d8e1e6297f91313c11dae99c39544",
-      "Platform": null
+      "Platform": "Windows"
     }
   ]
 }
