@@ -307,8 +307,8 @@
       "Platform": "Windows"
     },
     {
-      "Name": "Limelight 2025 AprilTag map for LL4 v2",
-      "Description": "A map of AprilTags for the 2025 game",
+      "Name": "Limelight 2025 AprilTag map v2 Welded Field",
+      "Description": "A map of AprilTags for the 2025 game for the Welded Field",
       "Tags": [
         "Event",
         "Team",
@@ -317,6 +317,19 @@
       "FileName": "frc2025r2.fmap",
       "Uri": "https://downloads.limelightvision.io/models/frc2025r2.fmap",
       "Hash": "9f31c7f5ca2e8c65bd3b161a9a616aa5",
+      "Platform": "Windows"
+    },
+    {
+      "Name": "Limelight 2025 AprilTag map v2 AndyMark Field",
+      "Description": "A map of AprilTags for the 2025 game for the AndyMark Field",
+      "Tags": [
+        "Event",
+        "Team",
+        "CSA"
+      ],
+      "FileName": "frc2025r2_ANDYMARK.fmap",
+      "Uri": "https://downloads.limelightvision.io/models/frc2025r2_ANDYMARK.fmap",
+      "Hash": "633d8e1e6297f91313c11dae99c39544",
       "Platform": "Windows"
     }
   ]
