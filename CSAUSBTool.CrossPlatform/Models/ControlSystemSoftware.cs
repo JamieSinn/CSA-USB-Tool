@@ -40,20 +40,29 @@ namespace CSAUSBTool.CrossPlatform.Models
 
             var outputUri = new Uri(new Uri(outputPath), FileName);
 
-            await using var existingFile = File.OpenRead(outputUri.AbsolutePath);
-
-            if (existingFile is { Length: > 0 })
+            try
             {
-                if (Hash != null)
+                await using var existingFile = File.OpenRead(outputUri.AbsolutePath);
+
+                if (existingFile is { Length: > 0 })
                 {
-                    var currentHash = CalculateMD5(existingFile);
-                    if (currentHash == Hash)
+                    if (Hash != null)
                     {
-                        return;
+                        var currentHash = CalculateMD5(existingFile);
+                        if (currentHash == Hash)
+                        {
+                            return;
+                        }
+
+                        File.Delete(outputUri.AbsolutePath);
                     }
-                    File.Delete(outputUri.AbsolutePath);
                 }
             }
+            catch (FileNotFoundException e)
+            {
+                // Silently catch this - this is ignored.
+            }
+            
 
             using var client =
                 new HttpClientDownloadWithProgress(Uri, outputUri.AbsolutePath);
