@@ -1,142 +1,147 @@
-#!/usr/bin/env python3
-#
-# Cross platform python script to download all the CSA tools to a specified
-# directory
-#
-
-import argparse
-import contextlib
-import csv
-import hashlib
-import pathlib
-import urllib.request
+#!/usr/bin/env python
+import os
 import sys
+import hashlib
+import requests
+import json
+import argparse
 
-USER_AGENT = "python-frc-csa-tool/1.0"
-CHUNK_SIZE = 2**20
+# Try importing tqdm for progress bars
+try:
+    from tqdm import tqdm
+    TQDM_AVAILABLE = True
+except ImportError:
+    TQDM_AVAILABLE = False
 
+VERSION = "1.0.1"
 
-def download(url: str, dst_fname: pathlib.Path):
-    """
-    Downloads a file to a specified directory
-    """
+def compute_md5(file_path, chunk_size=4096):
+    """Compute the MD5 hash of a file with optional progress bar."""
+    md5 = hashlib.md5()
+    try:
+        file_size = os.path.getsize(file_path)
+        progress_bar = None
 
-    def _reporthook(count, blocksize, totalsize):
-        percent = int(count * blocksize * 100 / totalsize)
-        if percent < 0 or percent > 100:
-            sys.stdout.write("\r--%")
-        else:
-            sys.stdout.write("\r%02d%%" % percent)
-        sys.stdout.flush()
+        if TQDM_AVAILABLE:
+            progress_bar = tqdm(total=file_size, unit='B', unit_scale=True, desc=f"Verifying {os.path.basename(file_path)}")
 
-    print("Downloading", url)
-
-    request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
-
-    with contextlib.closing(urllib.request.urlopen(request)) as fp:
-        headers = fp.info()
-
-        with open(dst_fname, "wb") as tfp:
-            # copied from urlretrieve source code, Python license
-            bs = 1024 * 8
-            size = -1
-            blocknum = 0
-            read = 0
-            if "content-length" in headers:
-                size = int(headers["Content-Length"])
-
+        with open(file_path, 'rb') as f:
             while True:
-                block = fp.read(bs)
-                if not block:
+                chunk = f.read(chunk_size)
+                if not chunk:
                     break
-                read += len(block)
-                tfp.write(block)
-                blocknum += 1
-                _reporthook(blocknum, bs, size)
+                md5.update(chunk)
+                if progress_bar:
+                    progress_bar.update(len(chunk))
 
-    sys.stdout.write("\n")
-    sys.stdout.flush()
+        if progress_bar:
+            progress_bar.close()
 
+        return md5.hexdigest()
+    except IOError as e:
+        print(f"Error reading file {file_path}: {e}")
+        return None
 
-def md5_file(fname: pathlib.Path) -> str:
-    with open(fname, "rb") as fp:
-        h = hashlib.md5()
-        chunk = fp.read(CHUNK_SIZE)
-        while chunk:
-            h.update(chunk)
-            chunk = fp.read(CHUNK_SIZE)
+def download_file(url, file_path):
+    """Download a file from a URL with an optional progress bar."""
+    try:
+        response = requests.get(url, stream=True)
+        response.raise_for_status()
+        total_size = int(response.headers.get('content-length', 0))
 
-    return h.hexdigest()
+        progress_bar = None
+        if TQDM_AVAILABLE:
+            progress_bar = tqdm(total=total_size, unit='B', unit_scale=True, desc=f"Downloading {os.path.basename(file_path)}")
 
+        with open(file_path, 'wb') as f:
+            for chunk in response.iter_content(chunk_size=8192):
+                if chunk:
+                    f.write(chunk)
+                    if progress_bar:
+                        progress_bar.update(len(chunk))
 
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("csv", type=pathlib.Path, help="Specifies the csv to read from")
-    parser.add_argument("dst", type=pathlib.Path, help="Specifies the destination directory")
-    parser.add_argument("--update", help="Update CSV file as specified year")
+        if progress_bar:
+            progress_bar.close()
+
+        print(f"Download complete: {file_path}")
+    except requests.RequestException as e:
+        print(f"Error downloading {file_path} from {url}: {e}")
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="Download and verify software files from a JSON configuration."
+    )
+    parser.add_argument("config", help="Path to the JSON configuration file.")
     parser.add_argument(
-        "-d",
-        "--download",
-        action="store_true",
-        default=False,
-        help="Download files to disk (default is to check only)",
+        "destination", nargs="?", default=os.getcwd(),
+        help="Destination directory for downloaded files (default: current directory)."
     )
     parser.add_argument(
-        "--no-verify",
-        action="store_true",
-        default=False,
-        help="Don't verify md5sum of existing files",
+        "-s", "--skip", action="store_true",
+        help="Skip MD5 checksum validation for existing files."
     )
+    parser.add_argument("-v", "--version", action="store_true", help="Show script version and exit.")
+
     args = parser.parse_args()
 
-    present = 0
-    missing = 0
-    invalid = 0
+    if args.version:
+        print(f"Script Version: {VERSION}")
+        sys.exit(0)
 
-    with open(args.csv) as fp:
+    config_filename = args.config
+    destination_directory = args.destination
+    skip_md5 = args.skip
 
-        # #FriendlyName,FileName,URL,MD5,isZipped
-        for name, fname, url, md5, zipped in csv.reader(fp):
-            if name.startswith("#"):
+    # Ensure the destination directory exists
+    os.makedirs(destination_directory, exist_ok=True)
+
+    # Load configuration from the provided JSON file
+    try:
+        with open(config_filename, 'r') as f:
+            config = json.load(f)
+    except Exception as e:
+        print(f"Failed to load configuration file '{config_filename}': {e}")
+        sys.exit(1)
+
+    for software in config.get("Software", []):
+        file_name = software.get("FileName")
+        expected_hash = software.get("Hash")
+        uri = software.get("Uri")
+
+        # Skip entries without a filename (or where no file is expected)
+        if file_name is None or expected_hash is None:
+            print(f"Skipping '{software.get('Name', 'Unknown')}' as no file is specified.")
+            continue
+
+        file_path = os.path.join(destination_directory, file_name)
+
+        file_exists = os.path.exists(file_path)
+
+        if file_exists and skip_md5:
+            print(f"Skipping MD5 validation for '{file_path}' as per user request.")
+            continue
+
+        if file_exists:
+            current_hash = compute_md5(file_path)
+            if current_hash and current_hash.lower() == expected_hash.lower():
+                print(f"'{file_path}' exists and the hash matches.")
                 continue
-            
-            md5 = md5.lower()
-            valid_checksum = md5 != "0" * len(md5)
-
-            fname = args.dst / fname
-            is_invalid = False
-            if fname.exists():
-                if not valid_checksum:
-                    print(name, "exists and has no checksum")
-                    present += 1
-                    continue
-                elif args.no_verify:
-                    print(name, "exists")
-                    present += 1
-                    continue
-                elif md5_file(fname) == md5:
-                    print(name, "exists and has valid checksum")
-                    present += 1
-                    continue
-                is_invalid = True
-
-            if args.download:
-                download(url, fname)
-                if valid_checksum and md5_file(fname) != md5:
-                    print(name, "does not match checksum")
-                    invalid += 1
-                else:
-                    present += 1
             else:
-                if is_invalid:
-                    print(name, "does not match checksum")
-                    invalid += 1
-                else:
-                    print(name, "is missing")
-                    missing += 1
+                print(f"'{file_path}' exists but the hash does not match (expected {expected_hash}, got {current_hash}).")
+        else:
+            print(f"'{file_path}' does not exist.")
 
-    print()
-    print("Finished!")
-    print("-", present, "OK")
-    print("-", missing, "missing")
-    print("-", invalid, "invalid")
+        # Download or re-download the file
+        try:
+            download_file(uri, file_path)
+            if not skip_md5:
+                downloaded_hash = compute_md5(file_path)
+                if downloaded_hash and downloaded_hash.lower() == expected_hash.lower():
+                    print(f"Successfully verified the downloaded file '{file_path}'.\n")
+                else:
+                    print(f"Hash mismatch after downloading '{file_path}'. Expected {expected_hash}, got {downloaded_hash}.\n")
+        except Exception as e:
+            print(f"Error processing '{file_path}': {e}")
+
+if __name__ == '__main__':
+    main()
