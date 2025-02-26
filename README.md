@@ -29,15 +29,33 @@ These changes are expected to be a breaking change - where the old season file l
 
 ## Download/Usage
 
+### C# GUI
+
 Download the release zip file from the GitHub releases on the right hand side -> 
 
-There is a C# GUI available as a github release (recommended), or you can use the `pyusbtool.py` python script. The Python script is not packaged with the release; but you can download it standalone from the repo.
+There is a C# GUI available as a github release (recommended)
 
-Example usage of the python script on unix based systems:
+PreRequisites: .NET 6 Runtime
+
+
+### Python CLI
+
+You can download the repo and use one of the two Python scripts.
+One is designed for use with the old CSV files (FRC up to 2024 and FTC), and the other with the newer JSON files (FRC from 2024 onwards).
+
+#### CSV
+
+Example usage of the python script for CSV files on unix based systems:
 
 ```console
 $ ./pyusbtool.py FRCSoftware<YEAR>.csv /path/to/drive/ --download
 ```
 
-### PreRequisites
-- .NET 6 Runtime
+#### JSON
+
+Example usage of the python script for jSON files on unix based systems:
+
+```console
+$ ./pyusbtool_json.py Lists/FRC<YEAR>.json /path/to/drive/ --download
+```
+
