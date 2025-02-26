@@ -38,7 +38,7 @@
       ],
       "FileName": "ni-frc-2025-base-suite_25.0.0.49156-0+f4_offline.iso",
       "Uri": "https://download.ni.com/support/nipkg/products/ni-f/ni-frc-2025-base-suite/25.0/offline/ni-frc-2025-base-suite_25.0.0.49156-0+f4_offline.iso",
-      "Hash": "5b8f9d06aa175563c6d31d7cbfa8c60c",
+      "Hash": "e6ef5adbd77efad0c44ffffacfbe65a7",
       "Platform": "Windows"
     },
     {
@@ -50,7 +50,7 @@
       ],
       "FileName": "ni-compactrio-device-drivers_24.0.0.49260-0+f108_offline.iso",
       "Uri": "https://download.ni.com/support/nipkg/products/ni-c/ni-compactrio-device-drivers/24.0/offline/ni-compactrio-device-drivers_24.0.0.49260-0+f108_offline.iso",
-      "Hash": "a76eef4d5d81d9f01a1c2ea860ba170a",
+      "Hash": "2726e80f3897683f3296a405384079b9",
       "Platform": "Windows"
     },
     {
@@ -104,7 +104,7 @@
       ],
       "FileName": "Phoenix-Offline_v25.2.2.exe",
       "Uri": "https://github.com/CrossTheRoadElec/Phoenix-Releases/releases/download/v25.2.2/Phoenix-Offline_v25.2.2.exe",
-      "Hash": "4d3983ba6a76a7639f4e0f155915878d",
+      "Hash": "85a7ad9a0ebac0e47cb60a614045ffb8",
       "Platform": "Windows"
     },
     {
@@ -186,7 +186,7 @@
       ],
       "FileName": "REV-Hardware-Client-Setup-1.7.2-offline-FRC-2025-02-11.exe",
       "Uri": "https://github.com/REVrobotics/REV-Software-Binaries/releases/download/rhc-1.7.2/REV-Hardware-Client-Setup-1.7.2-offline-FRC-2025-02-11.exe",
-      "Hash": "7a16eb34431ca803b8615c33f25771be",
+      "Hash": "6f06103b1f586eec5a881ff3df4f9587",
       "Platform": "Windows"
     },
     {
@@ -303,7 +303,7 @@
       ],
       "FileName": "limelight4_2025_1_release.zip",
       "Uri": "https://downloads.limelightvision.io/images/limelight4_2025_1_release.zip",
-      "Hash": "7bddd51a9af0c7792e025792555ef6c3",
+      "Hash": "0e6182ebd0765640e76a0a2d05a293ab",
       "Platform": "Windows"
     },
     {
