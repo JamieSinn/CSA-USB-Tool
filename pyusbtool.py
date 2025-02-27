@@ -108,12 +108,18 @@ def main():
         expected_hash = software.get("Hash")
         uri = software.get("Uri")
 
+<<<<<<< Updated upstream
         # Skip entries without a filename (or where no file is expected)
         if file_name is None or expected_hash is None:
+=======
+        # Skip entries without a filename; allow missing hash values.
+        if file_name is None:
+>>>>>>> Stashed changes
             print(f"Skipping '{software.get('Name', 'Unknown')}' as no file is specified.")
             continue
 
         file_path = os.path.join(destination_directory, file_name)
+<<<<<<< Updated upstream
 
         file_exists = os.path.exists(file_path)
 
@@ -128,20 +134,52 @@ def main():
                 continue
             else:
                 print(f"'{file_path}' exists but the hash does not match (expected {expected_hash}, got {current_hash}).")
+=======
+        file_exists = os.path.exists(file_path)
+
+        if file_exists:
+            # If no hash is provided, skip validation.
+            if expected_hash is None:
+                print(f"'{file_path}' exists; no hash provided, skipping hash validation.")
+                continue
+            elif skip_md5:
+                print(f"Skipping MD5 validation for '{file_path}' as per user request.")
+                continue
+            else:
+                current_hash = compute_md5(file_path)
+                if current_hash and current_hash.lower() == expected_hash.lower():
+                    print(f"'{file_path}' exists and the hash matches.")
+                    continue
+                else:
+                    print(f"'{file_path}' exists but the hash does not match (expected {expected_hash}, got {current_hash}).")
+>>>>>>> Stashed changes
         else:
             print(f"'{file_path}' does not exist.")
 
         # Download or re-download the file
         try:
             download_file(uri, file_path)
+<<<<<<< Updated upstream
             if not skip_md5:
+=======
+            if expected_hash is not None and not skip_md5:
+>>>>>>> Stashed changes
                 downloaded_hash = compute_md5(file_path)
                 if downloaded_hash and downloaded_hash.lower() == expected_hash.lower():
                     print(f"Successfully verified the downloaded file '{file_path}'.\n")
                 else:
                     print(f"Hash mismatch after downloading '{file_path}'. Expected {expected_hash}, got {downloaded_hash}.\n")
+<<<<<<< Updated upstream
+=======
+            else:
+                print(f"Downloaded '{file_path}' with no hash verification.\n")
+>>>>>>> Stashed changes
         except Exception as e:
             print(f"Error processing '{file_path}': {e}")
 
 if __name__ == '__main__':
+<<<<<<< Updated upstream
     main()
+=======
+    main()
+>>>>>>> Stashed changes
