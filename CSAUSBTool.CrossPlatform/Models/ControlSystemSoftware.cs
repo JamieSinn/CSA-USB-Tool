@@ -24,7 +24,13 @@ namespace CSAUSBTool.CrossPlatform.Models
         public string Uri { get; set; }
         public string? Hash { get; set; }
         public string Platform { get; set; }
-        public double DownloadProgress { get; set; }
+
+        private double _DownloadProgress;
+        public double DownloadProgress
+        {
+            get => _DownloadProgress;
+            set => this.RaiseAndSetIfChanged(ref _DownloadProgress, value);
+        }
 
         public ControlSystemSoftware()
         {
@@ -51,6 +57,7 @@ namespace CSAUSBTool.CrossPlatform.Models
                         var currentHash = CalculateMD5(existingFile);
                         if (currentHash == Hash)
                         {
+                            DownloadProgress = 100;
                             return;
                         }
 
