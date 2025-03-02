@@ -45,12 +45,15 @@ namespace CSAUSBTool.CrossPlatform.Views
                 AllowMultiple = false
             });
 
+            if (folder == null || folder.Count < 1) return;
+            var downloadPath = folder[0].Path.ToString();
+
             if (SoftwareSelectionList.SelectedItems == null) return;
             foreach (var selectedItem in SoftwareSelectionList.SelectedItems)
             {
                 if (selectedItem as ControlSystemSoftware is { } s)
                 {
-                    s.Download(folder[0].Path.ToString(),
+                    s.Download(downloadPath,
                         new CancellationToken());
                 }
             }
