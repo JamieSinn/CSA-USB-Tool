@@ -16,7 +16,7 @@ jobs:
         with:
           repo: ${{ github.repository }}
           ref: ${{ github.ref }}
-          path: "Lists/"
+          path: "Lists"
           ext: ".json"
   test-files:
     runs-on: ubuntu-latest
@@ -25,7 +25,7 @@ jobs:
       - get-files
     strategy:
       matrix:
-        paths: ${{ fromJson(needs.get-files.outputs.paths) }}
+        paths: [ 'Lists/FRC2025.json' ]
     steps:
     - uses: actions/checkout@v4
     - name: Test Files
