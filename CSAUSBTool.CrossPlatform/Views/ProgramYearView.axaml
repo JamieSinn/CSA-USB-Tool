@@ -10,18 +10,17 @@
              x:DataType="vm:ProgramYearViewModel">
     <TabControl Name="Tabs" ItemsSource="{Binding SoftwareGroups}" Height="{Binding Height, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}">
         <TabControl.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding DisplayName}" />
-                </DataTemplate>
-            </TabControl.ItemTemplate>
-            <TabControl.ContentTemplate>
-                <DataTemplate DataType="models:ControlSystemSoftwareGroup">
-                    <DockPanel DockPanel.Dock="Top">
-                        <views:ControlSystemSoftwareGroupView
-                            DataContext="{Binding}" />
-                    </DockPanel>
-                </DataTemplate>
-            </TabControl.ContentTemplate>
-        </TabControl>
-
+            <DataTemplate>
+                <TextBlock Text="{Binding DisplayName}" />
+            </DataTemplate>
+        </TabControl.ItemTemplate>
+        <TabControl.ContentTemplate>
+            <DataTemplate DataType="models:ControlSystemSoftwareGroup">
+                <DockPanel DockPanel.Dock="Top">
+                    <views:ControlSystemSoftwareGroupView
+                        DataContext="{Binding}" />
+                </DockPanel>
+            </DataTemplate>
+        </TabControl.ContentTemplate>
+    </TabControl>
 </UserControl>
