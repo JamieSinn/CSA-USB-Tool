@@ -13,35 +13,39 @@
     <Design.DataContext>
         <!-- This only sets the DataContext for the previewer in an IDE,
          to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-      <models:ControlSystemSoftwareGroup />
+      <models:DesignControlSystemSoftwareGroup />
     </Design.DataContext>
 
-  <Grid ColumnDefinitions="*" RowDefinitions="*,*">
-        <SplitView IsPaneOpen="True" DisplayMode="Inline" OpenPaneLength="400" Grid.Column="0" Grid.Row="0">
-            <SplitView.Pane>
-                <ListBox Grid.Column="0" Grid.Row="0" x:Name="SoftwareSelectionList"
-                         DockPanel.Dock="Left"
-                         ItemsSource="{Binding Software}"
-                         SelectionMode="Multiple,Toggle"
-                         SelectedItems="{Binding SelectedSoftware}"
+    <Grid ColumnDefinitions="*">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="*" />
+        <RowDefinition Height="50" />
+      </Grid.RowDefinitions>
+      <ScrollViewer Grid.Column="0" Grid.Row="0">
+        <SplitView IsPaneOpen="True" DisplayMode="Inline" OpenPaneLength="400">
+        <SplitView.Pane>
+          <ListBox x:Name="SoftwareSelectionList"
+                   DockPanel.Dock="Left"
+                   ItemsSource="{Binding Software}"
+                   SelectionMode="Multiple,Toggle"
+                   SelectedItems="{Binding SelectedSoftware}"
                          >
+            <ListBox.ItemTemplate>
+              <DataTemplate DataType="models:ControlSystemSoftware">
+                <views:ControlSystemSoftwareView
+                    DataContext="{Binding}" />
+              </DataTemplate>
+            </ListBox.ItemTemplate>
+          </ListBox>
+        </SplitView.Pane>
 
-                    <ListBox.ItemTemplate>
-                        <DataTemplate DataType="models:ControlSystemSoftware">
-                            <views:ControlSystemSoftwareView
-                                DataContext="{Binding}" />
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-
-            </SplitView.Pane>
-
-            <Grid Name="BaseGrid" ColumnDefinitions="*,*" RowDefinitions="*">
-                <!--TODO: Create some sort of view that indexes each item and its download status-->
-                <TextBlock Name="TestText"></TextBlock>
-            </Grid>
-        </SplitView>
+        <!--TODO: Create some sort of view that indexes each item and its download status-->
+        <StackPanel Orientation="Vertical">
+            <TextBlock x:Name="DownloadListTitle">Items to download</TextBlock>
+            <TextBlock Name="TestText"></TextBlock>
+        </StackPanel>
+      </SplitView>
+      </ScrollViewer>
       <Button Name="Download" Grid.Column="0" Grid.Row="1" Click="Download_OnClick">Download</Button>
     </Grid>
-
-</UserControl>
+  </UserControl>

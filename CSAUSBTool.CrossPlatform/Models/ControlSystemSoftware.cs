@@ -3,11 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Net.Http;
-using System.Net.Http.Json;
 using System.Security.Cryptography;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using CSAUSBTool.CrossPlatform.Core;
@@ -88,6 +84,16 @@ namespace CSAUSBTool.CrossPlatform.Models
             using var md5 = MD5.Create();
             var hash = md5.ComputeHash(stream);
             return BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
+        }
+    }
+
+    public class DesignControlSystemSoftware : ControlSystemSoftware
+    {
+        public DesignControlSystemSoftware()
+        {
+            Name = "FRC Driver Station";
+            Tags = ["Driver Station", "FRC"];
+            Description = "The FRC Driver Station is the software used to control your robot during a match.";
         }
     }
 }

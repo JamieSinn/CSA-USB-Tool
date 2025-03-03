@@ -5,19 +5,18 @@
              xmlns:viewModels="clr-namespace:CSAUSBTool.CrossPlatform.ViewModels"
              xmlns:vm="using:CSAUSBTool.CrossPlatform.ViewModels"
              xmlns:models="clr-namespace:CSAUSBTool.CrossPlatform.Models"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="450"
              x:Class="CSAUSBTool.CrossPlatform.Views.ControlSystemSoftwareView"
              x:DataType="models:ControlSystemSoftware">
 
     <Design.DataContext>
         <!-- This only sets the DataContext for the previewer in an IDE,
          to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-        <models:ControlSystemSoftware />
+      <models:DesignControlSystemSoftware />
     </Design.DataContext>
-    <Grid ColumnDefinitions="*" RowDefinitions="*,*,*">
-        <TextBlock Grid.Row="0" Text="{Binding Name}" />
-        <!-- <TextBlock Grid.Row="1" Text="{Binding Description}" /> -->
-        <ProgressBar Grid.Row="2"
+    <Grid ColumnDefinitions="*" RowDefinitions="*,*">
+        <TextBlock Grid.Row="0" Text="{Binding Name}" ToolTip.Tip="{Binding Description}" />
+        <ProgressBar Grid.Row="1"
                      Name="DownloadProgress"
                      Minimum="0"
                      Maximum="100" 
