@@ -25,11 +25,8 @@ namespace CSAUSBTool.CrossPlatform.ViewModels
             DownloadSoftwareLists();
         }
 
-        public ProgramYearViewModel()
+        public ProgramYearViewModel() : this(DateTime.Now.Year, "FRC")
         {
-            Year = DateTime.Now.Year;
-            Program = "FRC";
-            DownloadSoftwareLists();
         }
 
         public void DownloadSoftwareLists()
@@ -46,7 +43,6 @@ namespace CSAUSBTool.CrossPlatform.ViewModels
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
                 // Ignore errors that are generally 404's from mismatched years/programs for legacy compat.
             }
         }
