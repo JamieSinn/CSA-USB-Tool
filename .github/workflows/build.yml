@@ -4,13 +4,31 @@ on:
   pull_request:
 
 jobs:
-  test-files:
-    name: Test Files
+  get-files:
     runs-on: ubuntu-latest
+    outputs:
+      paths: ${{ steps.get-files.outputs.paths }}
+    steps:
+      - name: Get Software List Files
+        id: list-files
+        uses: mirko-felice/list-files-action@v3.0.5
+        with:
+          repo: ${{ github.repository }}
+          ref: ${{ github.ref }}
+          path: "./Lists/"
+          ext: ".json"
+  test-files:
+    runs-on: ubuntu-latest
+    name: Test Software List Files
+    needs: get-files
+    strategy:
+      matrix:
+        paths: ${{ fromJson(needs.get-files.outputs.paths) }}
     steps:
     - uses: actions/checkout@v4
     - name: Test Files
-      run: echo "Test the current files for schema compliance"
+      run: go run ./fileverifier/main.go -filepath ${{ matrix.paths }}
+
   build-desktop:
     needs: 
     - test-files
