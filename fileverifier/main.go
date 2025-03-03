@@ -143,5 +143,8 @@ func checkFile(filePath string) (err error) {
 			break
 		}
 	}
+	if failedCount > 0 {
+		return fmt.Errorf("failed to download %d software", failedCount)
+	}
 	return nil
 }
