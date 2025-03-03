@@ -30,7 +30,6 @@
                    SelectionMode="Multiple,Toggle"
                    SelectedItems="{Binding SelectedSoftware}"
                          >
-
             <ListBox.ItemTemplate>
               <DataTemplate DataType="models:ControlSystemSoftware">
                 <views:ControlSystemSoftwareView
@@ -38,11 +37,13 @@
               </DataTemplate>
             </ListBox.ItemTemplate>
           </ListBox>
-
         </SplitView.Pane>
 
         <!--TODO: Create some sort of view that indexes each item and its download status-->
-        <TextBlock Name="TestText"></TextBlock>
+        <StackPanel Orientation="Vertical">
+            <TextBlock x:Name="DownloadListTitle">Items to download</TextBlock>
+            <TextBlock Name="TestText"></TextBlock>
+        </StackPanel>
       </SplitView>
       </ScrollViewer>
       <Button Name="Download" Grid.Column="0" Grid.Row="1" Click="Download_OnClick">Download</Button>

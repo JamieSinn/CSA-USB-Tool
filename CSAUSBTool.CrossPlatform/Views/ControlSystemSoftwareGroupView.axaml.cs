@@ -19,6 +19,7 @@ namespace CSAUSBTool.CrossPlatform.Views
         {
             InitializeComponent();
             SoftwareSelectionList.SelectionChanged += ListSelectionChanged;
+            SetFontSizePercentage(DownloadListTitle, 150);
         }
 
         public void ListSelectionChanged(object? sender, SelectionChangedEventArgs e)
@@ -57,6 +58,12 @@ namespace CSAUSBTool.CrossPlatform.Views
                         new CancellationToken());
                 }
             }
+        }
+
+        private static void SetFontSizePercentage(TextBlock textBlock, double percentage)
+        {
+            double defaultFontSize = textBlock.FontSize;
+            textBlock.FontSize = defaultFontSize * (percentage / 100.0);
         }
     }
 }
