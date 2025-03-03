@@ -8,7 +8,7 @@ jobs:
     name: Get Software List Files
     runs-on: ubuntu-latest
     outputs:
-      paths: ${{ steps.get-files.outputs.paths }}
+      paths: ${{ steps.list-files.outputs.paths }}
     steps:
       - name: Get Software List Files
         id: list-files
@@ -21,7 +21,8 @@ jobs:
   test-files:
     runs-on: ubuntu-latest
     name: Test Software List Files
-    needs: get-files
+    needs:
+      - get-files
     strategy:
       matrix:
         paths: ${{ fromJson(needs.get-files.outputs.paths) }}
