@@ -11,6 +11,7 @@ import (
 )
 
 var completed = make(chan Software, 100)
+var failed = make(chan Software, 100)
 var filePath string
 
 type ProgramSeason struct {
@@ -108,22 +109,28 @@ func checkFile(filePath string) (err error) {
 			e2 := software.Download()
 			if e2 != nil {
 				fmt.Println(e2)
+				failed <- software
 			} else {
-				fmt.Printf("Downloaded %s successfully\n", software.Name)
 				completed <- software
 			}
 		}()
 	}
 
 	completedCount := 0
+	failedCount := 0
 	for {
 		select {
 		case software := <-completed:
+			fmt.Printf("Downloaded %s successfully (%d/%d)\n", software.Name, completedCount+failedCount, len(programSeason.Software))
 			completedCount++
-			fmt.Printf("Downloaded %s successfully\n", software.Name)
 		}
-		if completedCount == len(programSeason.Software) {
-			fmt.Println("All downloads completed successfully")
+		select {
+		case software := <-failed:
+			fmt.Printf("Failed to download %s (%d/%d)\n", software.Name, failedCount+completedCount, len(programSeason.Software))
+			failedCount++
+		}
+		if completedCount+failedCount >= len(programSeason.Software) {
+			fmt.Println("All downloads finished")
 			break
 		}
 	}
