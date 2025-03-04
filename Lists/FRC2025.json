@@ -184,9 +184,9 @@
         "Team",
         "CSA"
       ],
-      "FileName": "REV-Hardware-Client-Setup-1.7.2-offline-FRC-2025-02-11.exe",
-      "Uri": "https://github.com/REVrobotics/REV-Software-Binaries/releases/download/rhc-1.7.2/REV-Hardware-Client-Setup-1.7.2-offline-FRC-2025-02-11.exe",
-      "Hash": "7a16eb34431ca803b8615c33f25771be",
+      "FileName": "REV-Hardware-Client-Setup-1.7.3-offline-FRC-2025-02-14.exe",
+      "Uri": "https://github.com/REVrobotics/REV-Software-Binaries/releases/download/rhc-1.7.3/REV-Hardware-Client-Setup-1.7.3-offline-FRC-2025-02-14.exe",
+      "Hash": "f7bc0e38c1e215886f7b5c04eb1fd33d",
       "Platform": "Windows"
     },
     {
@@ -210,9 +210,9 @@
         "Team",
         "CSA"
       ],
-      "FileName": "REVLib-offline-v2025.0.2.zip",
-      "Uri": "https://github.com/REVrobotics/REV-Software-Binaries/releases/download/revlib-2025.0.2/REVLib-offline-v2025.0.2.zip",
-      "Hash": "c0ca044a0fc1832b789bdde98f0633ad",
+      "FileName": "REVLib-offline-v2025.0.3.zip",
+      "Uri": "https://github.com/REVrobotics/REV-Software-Binaries/releases/download/revlib-2025.0.3/REVLib-offline-v2025.0.3.zip",
+      "Hash": "5ee350f310c7a3bdb0640808e9815279",
       "Platform": "Windows"
     },
     {
