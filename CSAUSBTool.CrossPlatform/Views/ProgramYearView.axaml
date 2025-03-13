@@ -8,22 +8,19 @@
              mc:Ignorable="d" d:DesignWidth="1280" d:DesignHeight="720"
              x:Class="CSAUSBTool.CrossPlatform.Views.ProgramYearView"
              x:DataType="vm:ProgramYearViewModel">
-    <Grid Name="BaseGrid" ColumnDefinitions="*" RowDefinitions="*">
-        <TabControl Name="Tabs" Grid.Column="0" Grid.Row="0" ItemsSource="{Binding SoftwareGroups}">
-            <TabControl.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding DisplayName}" />
-                </DataTemplate>
-            </TabControl.ItemTemplate>
-            <TabControl.ContentTemplate>
-                <DataTemplate DataType="models:ControlSystemSoftwareGroup">
-                    <DockPanel DockPanel.Dock="Top">
-                        <views:ControlSystemSoftwareGroupView
-                            DataContext="{Binding}" />
-                    </DockPanel>
-                </DataTemplate>
-            </TabControl.ContentTemplate>
-        </TabControl>
-    </Grid>
-
+    <TabControl Name="Tabs" ItemsSource="{Binding SoftwareGroups}" Height="{Binding Height, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}">
+        <TabControl.ItemTemplate>
+            <DataTemplate>
+                <TextBlock Text="{Binding DisplayName}" />
+            </DataTemplate>
+        </TabControl.ItemTemplate>
+        <TabControl.ContentTemplate>
+            <DataTemplate DataType="models:ControlSystemSoftwareGroup">
+                <DockPanel DockPanel.Dock="Top">
+                    <views:ControlSystemSoftwareGroupView
+                        DataContext="{Binding}" />
+                </DockPanel>
+            </DataTemplate>
+        </TabControl.ContentTemplate>
+    </TabControl>
 </UserControl>

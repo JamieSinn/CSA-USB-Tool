@@ -3,6 +3,7 @@ package main
 import (
 	"crypto/md5"
 	"encoding/json"
+	"flag"
 	"fmt"
 	"io"
 	"net/http"
@@ -10,6 +11,8 @@ import (
 )
 
 var completed = make(chan Software, 100)
+var failed = make(chan Software, 100)
+var filePath string
 
 type ProgramSeason struct {
 	Year     int        `json:"Year,omitempty"`
@@ -31,6 +34,7 @@ func (s *Software) Download() error {
 		return fmt.Errorf("URI is empty")
 	}
 	if s.Hash == nil {
+		fmt.Println("Skipping", s.Name, "as hash is not provided")
 		return nil
 	}
 	fmt.Println("Downloading", s.Name)
@@ -39,49 +43,42 @@ func (s *Software) Download() error {
 	if err != nil {
 		return err
 	}
-	destFile, err := os.CreateTemp("", s.Name)
-	if err != nil {
-		return err
-	}
-	defer destFile.Close()
-
+	defer resp.Body.Close()
 	hasher := md5.New()
 	defer hasher.Reset()
-	n, err := io.Copy(destFile, resp.Body)
-	if err != nil {
-		return err
-	}
-	fmt.Printf("Downloaded %s to %s (%d bytes)\n", s.Name, destFile.Name(), n)
-
+	_, err = io.Copy(hasher, resp.Body)
 	// Calculate the hash
 	hash := fmt.Sprintf("%x", hasher.Sum(nil))
 	if s.Hash != hash {
-		return fmt.Errorf("%s: hash mismatch - expected: %s != %s", s.URI, s.Hash, hash)
+		return fmt.Errorf("ERROR - %s: hash mismatch - expected: %s != %s", s.URI, s.Hash, hash)
 	}
 	return nil
 }
 
 func main() {
-	args := os.Args
-	if len(args) > 1 {
-		filePath := args[1]
-		_, err := os.Stat(filePath)
-		if os.IsNotExist(err) {
-			fmt.Println("File does not exist")
-			os.Exit(1)
-		}
-		if err := checkFile(filePath); err != nil {
-			fmt.Println(err)
-			os.Exit(1)
-		}
-	} else {
+
+	flag.StringVar(&filePath, "file", "", "File path")
+	flag.Parse()
+
+	if filePath == "" {
 		fmt.Println("Please provide a file path")
+		flag.PrintDefaults()
+		os.Exit(1)
+	}
+
+	_, err := os.Stat(filePath)
+	if os.IsNotExist(err) {
+		fmt.Println("File does not exist")
+		flag.PrintDefaults()
+		os.Exit(1)
+	}
+	if err = checkFile(filePath); err != nil {
+		fmt.Println(err)
 		os.Exit(1)
 	}
 }
 
 func checkFile(filePath string) (err error) {
-	// Open the file
 	file, err := os.Open(filePath)
 	if err != nil {
 		fmt.Println(err)
@@ -106,27 +103,34 @@ func checkFile(filePath string) (err error) {
 	}
 
 	// Download the software
-	for _, software := range programSeason.Software {
+	for _, s := range programSeason.Software {
+		software := s
 		go func() {
-			err := software.Download()
-			if err != nil {
-				fmt.Println(err)
+			e2 := software.Download()
+			if e2 != nil {
+				fmt.Println(e2)
+				failed <- software
 			} else {
-				fmt.Printf("Downloaded %s successfully\n", software.Name)
 				completed <- software
 			}
 		}()
 	}
 
 	completedCount := 0
+	failedCount := 0
 	for {
 		select {
 		case software := <-completed:
+			fmt.Printf("Downloaded %s successfully (%d/%d)\n", software.Name, completedCount+failedCount, len(programSeason.Software))
 			completedCount++
-			fmt.Printf("Downloaded %s successfully\n", software.Name)
 		}
-		if completedCount == len(programSeason.Software) {
-			fmt.Println("All downloads completed successfully")
+		select {
+		case software := <-failed:
+			fmt.Printf("Failed to download %s (%d/%d)\n", software.Name, failedCount+completedCount, len(programSeason.Software))
+			failedCount++
+		}
+		if completedCount+failedCount >= len(programSeason.Software) {
+			fmt.Println("All downloads finished")
 			break
 		}
 	}

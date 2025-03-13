@@ -184,9 +184,9 @@
         "Team",
         "CSA"
       ],
-      "FileName": "REV-Hardware-Client-Setup-1.7.2-offline-FRC-2025-02-11.exe",
-      "Uri": "https://github.com/REVrobotics/REV-Software-Binaries/releases/download/rhc-1.7.2/REV-Hardware-Client-Setup-1.7.2-offline-FRC-2025-02-11.exe",
-      "Hash": "7a16eb34431ca803b8615c33f25771be",
+      "FileName": "REV-Hardware-Client-Setup-1.7.3-offline-FRC-2025-02-14.exe",
+      "Uri": "https://github.com/REVrobotics/REV-Software-Binaries/releases/download/rhc-1.7.3/REV-Hardware-Client-Setup-1.7.3-offline-FRC-2025-02-14.exe",
+      "Hash": "f7bc0e38c1e215886f7b5c04eb1fd33d",
       "Platform": "Windows"
     },
     {
@@ -210,9 +210,9 @@
         "Team",
         "CSA"
       ],
-      "FileName": "REVLib-offline-v2025.0.2.zip",
-      "Uri": "https://github.com/REVrobotics/REV-Software-Binaries/releases/download/revlib-2025.0.2/REVLib-offline-v2025.0.2.zip",
-      "Hash": "c0ca044a0fc1832b789bdde98f0633ad",
+      "FileName": "REVLib-offline-v2025.0.3.zip",
+      "Uri": "https://github.com/REVrobotics/REV-Software-Binaries/releases/download/revlib-2025.0.3/REVLib-offline-v2025.0.3.zip",
+      "Hash": "5ee350f310c7a3bdb0640808e9815279",
       "Platform": "Windows"
     },
     {
@@ -262,9 +262,9 @@
         "Team",
         "CSA"
       ],
-      "FileName": "limelight2_2025_0.zip",
-      "Uri": "https://downloads.limelightvision.io/images/limelight2_2025_0.zip",
-      "Hash": "d1ce74f1c9a0641ce9fc8e8354a91d62",
+      "FileName": "limelight2_2025_1_release.zip",
+      "Uri": "https://downloads.limelightvision.io/images/limelight2_2025_1_release.zip",
+      "Hash": "13eb694116b3a85edb9ef11a7ba51b57",
       "Platform": "Windows"
     },
     {
@@ -275,9 +275,9 @@
         "Team",
         "CSA"
       ],
-      "FileName": "limelight3_2025_0.zip",
-      "Uri": "https://downloads.limelightvision.io/images/limelight3_2025_0.zip",
-      "Hash": "736045d4c248e6cdb5abb938002cf607",
+      "FileName": "limelight3_2025_1_release.zip",
+      "Uri": "https://downloads.limelightvision.io/images/limelight3_2025_1_release.zip",
+      "Hash": "3ae5f15e1ddeeb66f43ca60d141bcf8c",
       "Platform": "Windows"
     },
     {
@@ -288,9 +288,9 @@
         "Team",
         "CSA"
       ],
-      "FileName": "limelight3g_2025_0.zip",
-      "Uri": "https://downloads.limelightvision.io/images/limelight3g_2025_0.zip",
-      "Hash": "26b1a9a92d7d42c235fbe1319975dba1",
+      "FileName": "limelight3g_2025_1_release.zip",
+      "Uri": "https://downloads.limelightvision.io/images/limelight3g_2025_1_release.zip",
+      "Hash": "8652721d7c2e5ee71dfb0387c549403f",
       "Platform": "Windows"
     },
     {
@@ -301,9 +301,9 @@
         "Team",
         "CSA"
       ],
-      "FileName": "limelight4_2025_0.zip",
-      "Uri": "https://downloads.limelightvision.io/images/limelight4_2025_0.zip",
-      "Hash": "485b8ff5d0613cbb5d2b922ed07fce8f",
+      "FileName": "limelight4_2025_1_release.zip",
+      "Uri": "https://downloads.limelightvision.io/images/limelight4_2025_1_release.zip",
+      "Hash": "7bddd51a9af0c7792e025792555ef6c3",
       "Platform": "Windows"
     },
     {

@@ -19,6 +19,7 @@ namespace CSAUSBTool.CrossPlatform.Views
         {
             InitializeComponent();
             SoftwareSelectionList.SelectionChanged += ListSelectionChanged;
+            SetFontSizePercentage(DownloadListTitle, 150);
         }
 
         public void ListSelectionChanged(object? sender, SelectionChangedEventArgs e)
@@ -45,15 +46,24 @@ namespace CSAUSBTool.CrossPlatform.Views
                 AllowMultiple = false
             });
 
+            if (folder == null || folder.Count < 1) return;
+            var downloadPath = folder[0].Path.ToString();
+
             if (SoftwareSelectionList.SelectedItems == null) return;
             foreach (var selectedItem in SoftwareSelectionList.SelectedItems)
             {
                 if (selectedItem as ControlSystemSoftware is { } s)
                 {
-                    s.Download(folder[0].Path.ToString(),
+                    s.Download(downloadPath,
                         new CancellationToken());
                 }
             }
+        }
+
+        private static void SetFontSizePercentage(TextBlock textBlock, double percentage)
+        {
+            double defaultFontSize = textBlock.FontSize;
+            textBlock.FontSize = defaultFontSize * (percentage / 100.0);
         }
     }
 }
