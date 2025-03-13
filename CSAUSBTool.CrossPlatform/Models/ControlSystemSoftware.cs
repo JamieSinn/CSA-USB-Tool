@@ -39,10 +39,9 @@ namespace CSAUSBTool.CrossPlatform.Models
             FileName ??= Uri.Split('/').Last();
 
             var outputUri = new Uri(new Uri(outputPath), FileName);
-
             try
             {
-                await using var existingFile = File.OpenRead(outputUri.AbsolutePath);
+                await using var existingFile = File.OpenRead(System.Uri.UnescapeDataString(outputUri.AbsolutePath));
 
                 if (existingFile is { Length: > 0 })
                 {
