@@ -61,9 +61,9 @@
         "Team",
         "CSA"
       ],
-      "FileName": "WPILib_Windows-2025.3.1.iso",
-      "Uri": "https://packages.wpilib.workers.dev/installer/v2025.3.1/Win64/WPILib_Windows-2025.3.1.iso",
-      "Hash": "6307170a459d874b4df7c4c5079a8064",
+      "FileName": "WPILib_Windows-2025.3.2.iso",
+      "Uri": "https://packages.wpilib.workers.dev/installer/v2025.3.2/Win64/WPILib_Windows-2025.3.2.iso",
+      "Hash": "bb749ad10e857b904c5fb7780718a778",
       "Platform": "Windows"
     },
     {
@@ -184,9 +184,9 @@
         "Team",
         "CSA"
       ],
-      "FileName": "REV-Hardware-Client-Setup-1.7.3-offline-FRC-2025-02-14.exe",
-      "Uri": "https://github.com/REVrobotics/REV-Software-Binaries/releases/download/rhc-1.7.3/REV-Hardware-Client-Setup-1.7.3-offline-FRC-2025-02-14.exe",
-      "Hash": "f7bc0e38c1e215886f7b5c04eb1fd33d",
+      "FileName": "REV-Hardware-Client-Setup-1.7.5-offline-FRC-2025-03-18.exe",
+      "Uri": "https://github.com/REVrobotics/REV-Software-Binaries/releases/download/rhc-1.7.5/REV-Hardware-Client-Setup-1.7.5-offline-FRC-2025-03-18.exe",
+      "Hash": "b149e84d0a08d1aab11ed84a2a3ecc45",
       "Platform": "Windows"
     },
     {
