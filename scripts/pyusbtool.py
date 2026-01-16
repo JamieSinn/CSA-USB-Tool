@@ -149,8 +149,15 @@ if __name__ == "__main__":
 
             if args.download:
                 if is_invalid or not fname.exists():
-                    download(url, fname)
-                if valid_checksum and md5_file(fname) != md5:
+                    try:
+                        download(url, fname)
+                    except urllib.error.HTTPError:
+                        pass
+
+                if not fname.exists():
+                    print(name, "failed to download")
+                    invalid += 1
+                elif valid_checksum and md5_file(fname) != md5:
                     print(name, "does not match checksum")
                     invalid += 1
                 else:
