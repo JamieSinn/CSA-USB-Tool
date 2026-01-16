@@ -1,0 +1,326 @@
+{
+  "Year": 2026,
+  "Program": "FRC",
+  "Software": [
+    {
+      "Name": "Home",
+      "Description": "Select your desired pre-selected software list",
+      "Tags": [
+        "Home"
+      ],
+      "FileName": null,
+      "Uri": "https://github.com",
+      "Hash": null,
+      "Platform": null
+    },
+    {
+      "TodoComment": "I did not find an current off line download link.",
+      "Name": "NI Game Tools",
+      "Description": "Game Tools for FRC - DriverStation",
+      "Tags": [
+        "Team",
+        "Event",
+        "FTA",
+        "CSA"
+      ],
+      "FileName": "ni-frc-2026-game-tools_26.0.1_offline.iso",
+      "Uri": "https://download.ni.com/support/nipkg/products/ni-f/ni-frc-2026-game-tools/26.0/offline/ni-frc-2026-game-tools_26.0.1_offline.iso",
+      "Hash": "7fd3f9fef61449f8e263c61ed9f2be6a",
+      "Platform": "Windows"
+    },
+    {
+      "TodoComment": "I did not find an current off line download link.",
+      "Name": "NI LabVIEW",
+      "Description": "NI LabVIEW Base",
+      "Tags": [
+        "Team",
+        "Event",
+        "FTA",
+        "CSA"
+      ],
+      "FileName": "ni-frc-2026-base-suite_26.0.0.49156-0+f4_offline.iso",
+      "Uri": "https://download.ni.com/support/nipkg/products/ni-f/ni-frc-2026-base-suite/26.0/offline/ni-frc-2026-base-suite_26.0.0.49156-0+f4_offline.iso",
+      "Hash": "5b8f9d06aa175563c6d31d7cbfa8c60c",
+      "Platform": "Windows"
+    },
+    {
+      "Name": "NI CompactRIO Driver",
+      "Description": "cRIO Driver - Rarely used, but can be helpful for recovering roboRIOs",
+      "Tags": [
+        "FTA",
+        "CSA"
+      ],
+      "FileName": "ni-compactrio-device-drivers_24.0.0.49260-0+f108_offline.iso",
+      "Uri": "https://download.ni.com/support/nipkg/products/ni-c/ni-compactrio-device-drivers/24.0/offline/ni-compactrio-device-drivers_24.0.0.49260-0+f108_offline.iso",
+      "Hash": "a76eef4d5d81d9f01a1c2ea860ba170a",
+      "Platform": "Windows"
+    },
+    {
+      "Name": "WPILibInstaller Windows64",
+      "Description": "WPILib Installer",
+      "Tags": [
+        "Event",
+        "Team",
+        "CSA"
+      ],
+      "FileName": "WPILib_Windows-2026.2.1.iso",
+      "Uri": "https://packages.wpilib.workers.dev/installer/v2026.2.1/Win64/WPILib_Windows-2026.2.1.iso",
+      "Hash": "ebdcd07dbbb60c628ab3a72bf280fe3b",
+      "Platform": "Windows"
+    },
+    {
+      "Name": "WPILib VS Code",
+      "Description": "WPILib Installer can source a specific VSCode version if needed.",
+      "Tags": [
+        "Event",
+        "Team",
+        "CSA"
+      ],
+      "FileName": "VSCode-1.96.2-Windows.zip",
+      "Uri": "https://update.code.visualstudio.com/1.96.2/win32-x64-archive/stable",
+      "Hash": "bbd8d51067b5f3a06041d88f74ed3a4b",
+      "Platform": "Windows"
+    },
+    {
+      "Name": "CTRE Phoenix",
+      "Description": "Phoenix 6 Offline Installer - Contains all data/supporting tools.",
+      "Tags": [
+        "Event",
+        "Team",
+        "FTA",
+        "CSA"
+      ],
+      "FileName": "Phoenix-Offline_v26.1.0.exe",
+      "Uri": "https://github.com/CrossTheRoadElec/Phoenix-Releases/releases/download/v26.1.0/Phoenix-Offline_v26.1.0.exe",
+      "Hash": "cf5a354500e3818bf3d3766bfdedfe17",
+      "Platform": "Windows"
+    },
+    {
+      "Name": "VH-109 Network Assistant",
+      "Description": "Vivid Hosting Network Assitant Tool",
+      "Tags": [
+        "Event",
+        "Team",
+        "FTA",
+        "CSA"
+      ],
+      "FileName": "vh_network_assistant.zip",
+      "Uri": "https://4239402461-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FzaDthb1gXvbj84qIfOUE%2Fuploads%2FJH9mvCiIVx33X8PlpHVK%2Fvh_network_assistant.zip?alt=media&token=a461c2fb-7fa0-4023-9264-ebcfeca0561c",
+      "Hash": "9528237b54bf36f55ce98c72f9ed7628",
+      "Platform": "Windows"
+    },
+    {
+      "Name": "VH-109 Firmware 2.0.0 for pre 1.2.0",
+      "Description": "Vivid Hosting Firmware to be used with VH-109 reporting no version (i.e. < 1.2.0)",
+      "Tags": [
+        "Event",
+        "Team",
+        "FTA",
+        "CSA"
+      ],
+      "FileName": "VH-109_2.0.0-01082026.img.enc",
+      "Uri": "https://4239402461-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FzaDthb1gXvbj84qIfOUE%2Fuploads%2Fa8FMZChSNPGvUpK2SMnF%2FVH-109_2.0.0-01082026.img.enc?alt=media&token=3e98e6c3-9bec-427e-bedb-72dca8cdedb1",
+      "Hash": "d1729dd126f887263723558e812b60b3",
+      "Platform": null
+    },
+    {
+      "Name": "VH-109 Firmware 2.0.0 for 1.2.0+",
+      "Description": "Vivid Hosting Firmware to be used with VH-109 reporting versions >= 1.2.0",
+      "Tags": [
+        "Event",
+        "Team",
+        "FTA",
+        "CSA"
+      ],
+      "FileName": "VH-109_2.0.0-01082026.FROM_1_2_X.img.enc",
+      "Uri": "https://4239402461-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FzaDthb1gXvbj84qIfOUE%2Fuploads%2FBfum9PRKroEhaes4uiuM%2FVH-109_2.0.0-01082026.FROM_1_2_X.img.enc?alt=media&token=b09e1cde-6545-4a51-9a94-03b520666476",
+      "Hash": "94ce62caac21ef448e830d8448f126c4",
+      "Platform": null
+    },
+    {
+      "Name": "2026 Game Manual",
+      "Description": "Season ",
+      "Tags": [
+        "Event",
+        "Team",
+        "FTA",
+        "CSA"
+      ],
+      "FileName": "2026GameManual.pdf",
+      "Uri": "https://firstfrc.blob.core.windows.net/frc2026/Manual/2026GameManual.pdf",
+      "Hash": "027fe2b5f6520f3b050259a60b14cf4b",
+      "Platform": null
+    },
+    {
+      "TodoComment": "I did not find an current off line download link.",
+      "Name": "Studica Hardware Manager",
+      "Description": "Updates and configures all Studica electronics including NavX",
+      "Tags": [
+        "Event",
+        "Team",
+        "CSA"
+      ],
+      "FileName": "Studica_Hardware_Manager-Setup_1.0.0.exe",
+      "Uri": "https://dev.studica.com/maven/release/firmware/app/win32/Studica_Hardware_Manager-Setup_1.0.0.exe",
+      "Hash": "73676756c2bc95f5a8d57c75d1782386",
+      "Platform": "Windows"
+    },
+    {
+      "TodoComment": "I did not find an off line download link for the rev hardware client 2.",
+      "Name": "REV Hardware Client",
+      "Description": "REV Hardware Client w/ FRC firmware.",
+      "Tags": [
+        "Event",
+        "Team",
+        "CSA"
+      ],
+      "FileName": "REV-Hardware-Client-Setup-1.7.5-offline-FRC-2025-03-18.exe",
+      "Uri": "https://github.com/REVrobotics/REV-Software-Binaries/releases/download/rhc-1.7.5/REV-Hardware-Client-Setup-1.7.5-offline-FRC-2025-03-18.exe",
+      "Hash": "b149e84d0a08d1aab11ed84a2a3ecc45",
+      "Platform": "Windows"
+    },
+    {
+      "Name": "REVlib LabView API",
+      "Description": "REV Library for use with Labview",
+      "Tags": [
+        "Event",
+        "Team",
+        "CSA"
+      ],
+      "FileName": "revlib_2026.0.1-0_windows_all.nipkg",
+      "Uri": "https://github.com/REVrobotics/REV-Software-Binaries/releases/download/revlib-2026.0.1/revlib_2026.0.1-0_windows_all.nipkg",
+      "Hash": "b94125f25872bdf102c24e88e7209d5e",
+      "Platform": "Windows"
+    },
+    {
+      "Name": "REVlib Java/C++ API",
+      "Description": "REV Library for use with Java and C++",
+      "Tags": [
+        "Event",
+        "Team",
+        "CSA"
+      ],
+      "FileName": "REVLib-offline-v2026.0.1.zip",
+      "Uri": "https://github.com/REVrobotics/REV-Software-Binaries/releases/download/revlib-2026.0.1/REVLib-offline-v2026.0.1.zip",
+      "Hash": "665bbb12ea4d68aef7f4ade817ca0b35",
+      "Platform": "Windows"
+    },
+    {
+      "Name": "Limelight Hardware Manager",
+      "Description": "Limelight Hardware Manager",
+      "Tags": [
+        "Event",
+        "Team",
+        "CSA"
+      ],
+      "FileName": "LimelightHardwareManagerSetup2_0_0.exe",
+      "Uri": "https://downloads.limelightvision.io/software/LimelightHardwareManagerSetup2_0_0.exe",
+      "Hash": "33a29f2e34009cf0d9679773b888b672",
+      "Platform": "Windows"
+    },
+    {
+      "Name": "Limelight USB Drivers",
+      "Description": "Compute Module Module Installer.  Provides Windows drivers for Limelight.",
+      "Tags": [
+        "Event",
+        "Team",
+        "CSA"
+      ],
+      "FileName": "rpiboot_setup.exe",
+      "Uri": "https://github.com/raspberrypi/usbboot/raw/master/win32/rpiboot_setup.exe",
+      "Hash": "acb627c5afea6a1e72e71362d4209cf0",
+      "Platform": "Windows"
+    },
+    {
+      "Name": "Balena Etcher Flash Tool v1.19.5",
+      "Description": "Flash Tool.  Useful for flashing new images to devices like Limelights.",
+      "Tags": [
+        "Event",
+        "Team",
+        "CSA"
+      ],
+      "FileName": "balenaEtcher-1.19.5.Setup.exe",
+      "Uri": "https://github.com/balena-io/etcher/releases/download/v1.19.5/balenaEtcher-1.19.5.Setup.exe",
+      "Hash": "972f11897ad99fb3377ef6c58afabb9d",
+      "Platform": "Windows"
+    },
+    {
+      "Name": "Limelight OS 2025 for LL 1, 2, 2+",
+      "Description": "Limelight OS image for early limelight models",
+      "Tags": [
+        "Event",
+        "Team",
+        "CSA"
+      ],
+      "FileName": "limelight2_2025_1_release.zip",
+      "Uri": "https://downloads.limelightvision.io/images/limelight2_2025_1_release.zip",
+      "Hash": "13eb694116b3a85edb9ef11a7ba51b57",
+      "Platform": "Windows"
+    },
+    {
+      "Name": "Limelight OS 2025 for LL 3",
+      "Description": "Limelight OS image for Limelight 3 models",
+      "Tags": [
+        "Event",
+        "Team",
+        "CSA"
+      ],
+      "FileName": "limelight3_2025_1_release.zip",
+      "Uri": "https://downloads.limelightvision.io/images/limelight3_2025_1_release.zip",
+      "Hash": "3ae5f15e1ddeeb66f43ca60d141bcf8c",
+      "Platform": "Windows"
+    },
+    {
+      "Name": "Limelight OS 2025 for LL 3G",
+      "Description": "Limelight OS image for Limelight 3G models",
+      "Tags": [
+        "Event",
+        "Team",
+        "CSA"
+      ],
+      "FileName": "limelight3g_2025_1_release.zip",
+      "Uri": "https://downloads.limelightvision.io/images/limelight3g_2025_1_release.zip",
+      "Hash": "8652721d7c2e5ee71dfb0387c549403f",
+      "Platform": "Windows"
+    },
+    {
+      "Name": "Limelight OS 2025 for LL 4",
+      "Description": "Limelight OS image for Limelight 4 models",
+      "Tags": [
+        "Event",
+        "Team",
+        "CSA"
+      ],
+      "FileName": "limelight4_2025_1_release.zip",
+      "Uri": "https://downloads.limelightvision.io/images/limelight4_2025_1_release.zip",
+      "Hash": "7bddd51a9af0c7792e025792555ef6c3",
+      "Platform": "Windows"
+    },
+    {
+      "Name": "Limelight 2026 AprilTag map v2 Welded Field",
+      "Description": "A map of AprilTags for the 2026 game for the Welded Field",
+      "Tags": [
+        "Event",
+        "Team",
+        "CSA"
+      ],
+      "FileName": "FRC2026_WELDED.fmap",
+      "Uri": "https://downloads.limelightvision.io/models/FRC2026_WELDED.fmap",
+      "Hash": "1ebfa2ef0701113968f47747ead07617",
+      "Platform": "Windows"
+    },
+    {
+      "Name": "Limelight 2026 AprilTag map v2 AndyMark Field",
+      "Description": "A map of AprilTags for the 2026 game for the AndyMark Field",
+      "Tags": [
+        "Event",
+        "Team",
+        "CSA"
+      ],
+      "FileName": "FRC2026_ANDYMARK.fmap",
+      "Uri": "https://downloads.limelightvision.io/models/FRC2026_ANDYMARK.fmap",
+      "Hash": "a53ee446af3a6ee9eb768fa4d860d720",
+      "Platform": "Windows"
+    }
+  ]
+}
