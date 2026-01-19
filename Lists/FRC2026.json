@@ -14,7 +14,6 @@
       "Platform": null
     },
     {
-      "TodoComment": "I did not find an current off line download link.",
       "Name": "NI Game Tools",
       "Description": "Game Tools for FRC - DriverStation",
       "Tags": [
@@ -23,13 +22,12 @@
         "FTA",
         "CSA"
       ],
-      "FileName": "ni-frc-2026-game-tools_26.0.1_offline.iso",
-      "Uri": "https://download.ni.com/support/nipkg/products/ni-f/ni-frc-2026-game-tools/26.0/offline/ni-frc-2026-game-tools_26.0.1_offline.iso",
-      "Hash": "7fd3f9fef61449f8e263c61ed9f2be6a",
+      "FileName": "ni-frc-2026-game-tools_26.0.0_offline.iso",
+      "Uri": "https://download.ni.com/support/nipkg/products/ni-f/ni-frc-2026-game-tools/26.0/offline/ni-frc-2026-game-tools_26.0.0_offline.iso",
+      "Hash": "173dd8799ef15c06418a07ac7c320710",
       "Platform": "Windows"
     },
     {
-      "TodoComment": "I did not find an current off line download link.",
       "Name": "NI LabVIEW",
       "Description": "NI LabVIEW Base",
       "Tags": [
@@ -38,9 +36,9 @@
         "FTA",
         "CSA"
       ],
-      "FileName": "ni-frc-2026-base-suite_26.0.0.49156-0+f4_offline.iso",
-      "Uri": "https://download.ni.com/support/nipkg/products/ni-f/ni-frc-2026-base-suite/26.0/offline/ni-frc-2026-base-suite_26.0.0.49156-0+f4_offline.iso",
-      "Hash": "5b8f9d06aa175563c6d31d7cbfa8c60c",
+      "FileName": "ni-frc-2026-base-suite_26.0.0.49157-0+f5_offline.iso",
+      "Uri": "https://download.ni.com/support/nipkg/products/ni-f/ni-frc-2026-base-suite/26.0/offline/ni-frc-2026-base-suite_26.0.0.49157-0+f5_offline.iso",
+      "Hash": "938c6cd15c5f538b7d300e78b622e2f8",
       "Platform": "Windows"
     },
     {
@@ -76,9 +74,9 @@
         "Team",
         "CSA"
       ],
-      "FileName": "VSCode-1.96.2-Windows.zip",
-      "Uri": "https://update.code.visualstudio.com/1.96.2/win32-x64-archive/stable",
-      "Hash": "bbd8d51067b5f3a06041d88f74ed3a4b",
+      "FileName": "VSCode-1.105.1-Windows.zip",
+      "Uri": "https://update.code.visualstudio.com/1.105.1/win32-x64-archive/stable",
+      "Hash": "5129e8756fa9e1bd45c87173937a71fc",
       "Platform": "Windows"
     },
     {
@@ -152,7 +150,6 @@
       "Platform": null
     },
     {
-      "TodoComment": "I did not find an current off line download link.",
       "Name": "Studica Hardware Manager",
       "Description": "Updates and configures all Studica electronics including NavX",
       "Tags": [
@@ -160,15 +157,14 @@
         "Team",
         "CSA"
       ],
-      "FileName": "Studica_Hardware_Manager-Setup_1.0.0.exe",
-      "Uri": "https://dev.studica.com/maven/release/firmware/app/win32/Studica_Hardware_Manager-Setup_1.0.0.exe",
-      "Hash": "73676756c2bc95f5a8d57c75d1782386",
+      "FileName": "Studica_Hardware_Manager-Setup_1.1.0.exe",
+      "Uri": "https://dev.studica.com/maven/release/firmware/app/win32/Studica_Hardware_Manager-Setup_1.1.0.exe",
+      "Hash": "9a77cd44b57a31b1bd9a55f656fa5825",
       "Platform": "Windows"
     },
     {
-      "TodoComment": "I did not find an off line download link for the rev hardware client 2.",
-      "Name": "REV Hardware Client",
-      "Description": "REV Hardware Client w/ FRC firmware.",
+      "Name": "REV Hardware Client v1 (pre 2026)",
+      "Description": "REV Hardware Client version 1 w/ FRC firmware.",
       "Tags": [
         "Event",
         "Team",
@@ -177,6 +173,19 @@
       "FileName": "REV-Hardware-Client-Setup-1.7.5-offline-FRC-2025-03-18.exe",
       "Uri": "https://github.com/REVrobotics/REV-Software-Binaries/releases/download/rhc-1.7.5/REV-Hardware-Client-Setup-1.7.5-offline-FRC-2025-03-18.exe",
       "Hash": "b149e84d0a08d1aab11ed84a2a3ecc45",
+      "Platform": "Windows"
+    },
+    {
+      "Name": "REV Hardware Client v2 (2026)",
+      "Description": "REV Hardware Client version 2 (2026).",
+      "Tags": [
+        "Event",
+        "Team",
+        "CSA"
+      ],
+      "FileName": "rev-hardware-client-1.0.2-windows-amd64.zip",
+      "Uri": "https://rhc2.revrobotics.com/download/rev-hardware-client-1.0.2-windows-amd64.zip",
+      "Hash": "4c3b043e2e46fcf6c5722a6f9ba8ca88",
       "Platform": "Windows"
     },
     {
