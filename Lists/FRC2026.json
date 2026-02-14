@@ -254,55 +254,55 @@
       "Platform": "Windows"
     },
     {
-      "Name": "Limelight OS 2025 for LL 1, 2, 2+",
+      "Name": "Limelight OS 2026 for LL 1, 2, 2+",
       "Description": "Limelight OS image for early limelight models",
       "Tags": [
         "Event",
         "Team",
         "CSA"
       ],
-      "FileName": "limelight2_2025_1_release.zip",
-      "Uri": "https://downloads.limelightvision.io/images/limelight2_2025_1_release.zip",
-      "Hash": "13eb694116b3a85edb9ef11a7ba51b57",
+      "FileName": "limelight2_2026_0.zip",
+      "Uri": "https://downloads.limelightvision.io/images/limelight2_2026_0.zip",
+      "Hash": "5154e995a6f75bf9f23ec8b9451eaa13",
       "Platform": "Windows"
     },
     {
-      "Name": "Limelight OS 2025 for LL 3",
+      "Name": "Limelight OS 2026 for LL 3",
       "Description": "Limelight OS image for Limelight 3 models",
       "Tags": [
         "Event",
         "Team",
         "CSA"
       ],
-      "FileName": "limelight3_2025_1_release.zip",
-      "Uri": "https://downloads.limelightvision.io/images/limelight3_2025_1_release.zip",
-      "Hash": "3ae5f15e1ddeeb66f43ca60d141bcf8c",
+      "FileName": "limelight3_2026_0.zip",
+      "Uri": "https://downloads.limelightvision.io/images/limelight3_2026_0.zip",
+      "Hash": "99b6d518995412f2b454ba5aebb051e8",
       "Platform": "Windows"
     },
     {
-      "Name": "Limelight OS 2025 for LL 3G",
+      "Name": "Limelight OS 2026 for LL 3G",
       "Description": "Limelight OS image for Limelight 3G models",
       "Tags": [
         "Event",
         "Team",
         "CSA"
       ],
-      "FileName": "limelight3g_2025_1_release.zip",
-      "Uri": "https://downloads.limelightvision.io/images/limelight3g_2025_1_release.zip",
-      "Hash": "8652721d7c2e5ee71dfb0387c549403f",
+      "FileName": "limelight3g_2026_0.zip",
+      "Uri": "https://downloads.limelightvision.io/images/limelight3g_2026_0.zip",
+      "Hash": "c4b4e9adfe36bf64553131443780e18e",
       "Platform": "Windows"
     },
     {
-      "Name": "Limelight OS 2025 for LL 4",
+      "Name": "Limelight OS 2026 for LL 4",
       "Description": "Limelight OS image for Limelight 4 models",
       "Tags": [
         "Event",
         "Team",
         "CSA"
       ],
-      "FileName": "limelight4_2025_1_release.zip",
-      "Uri": "https://downloads.limelightvision.io/images/limelight4_2025_1_release.zip",
-      "Hash": "7bddd51a9af0c7792e025792555ef6c3",
+      "FileName": "limelight4_2026_0.zip",
+      "Uri": "https://downloads.limelightvision.io/images/limelight4_2026_0.zip",
+      "Hash": "c7c9f6f5c77f9d585df1d84b42f68825",
       "Platform": "Windows"
     },
     {
