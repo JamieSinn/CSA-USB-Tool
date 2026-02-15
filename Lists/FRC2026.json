@@ -108,7 +108,7 @@
       "Platform": "Windows"
     },
     {
-      "Name": "VH-109 Firmware 2.0.0 for pre 1.2.0",
+      "Name": "VH-109 Firmware 2.0.1 for pre 1.2.0",
       "Description": "Vivid Hosting Firmware to be used with VH-109 reporting no version (i.e. < 1.2.0)",
       "Tags": [
         "Event",
@@ -116,13 +116,13 @@
         "FTA",
         "CSA"
       ],
-      "FileName": "VH-109_2.0.0-01082026.img.enc",
-      "Uri": "https://4239402461-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FzaDthb1gXvbj84qIfOUE%2Fuploads%2Fa8FMZChSNPGvUpK2SMnF%2FVH-109_2.0.0-01082026.img.enc?alt=media&token=3e98e6c3-9bec-427e-bedb-72dca8cdedb1",
-      "Hash": "d1729dd126f887263723558e812b60b3",
+      "FileName": "VH-109_2.0.1-02062026.img.enc",
+      "Uri": "https://4239402461-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FzaDthb1gXvbj84qIfOUE%2Fuploads%2FDOB0aVqc7pD50euGhir9%2FVH-109_2.0.1-02062026.img.enc?alt=media&token=e44ae3c3-5c07-48f6-8103-59e26cfe7839",
+      "Hash": "22cc298a7de42f6615d99b1659b80591",
       "Platform": null
     },
     {
-      "Name": "VH-109 Firmware 2.0.0 for 1.2.0+",
+      "Name": "VH-109 Firmware 2.0.1 for 1.2.0+",
       "Description": "Vivid Hosting Firmware to be used with VH-109 reporting versions >= 1.2.0",
       "Tags": [
         "Event",
@@ -130,9 +130,9 @@
         "FTA",
         "CSA"
       ],
-      "FileName": "VH-109_2.0.0-01082026.FROM_1_2_X.img.enc",
-      "Uri": "https://4239402461-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FzaDthb1gXvbj84qIfOUE%2Fuploads%2FBfum9PRKroEhaes4uiuM%2FVH-109_2.0.0-01082026.FROM_1_2_X.img.enc?alt=media&token=b09e1cde-6545-4a51-9a94-03b520666476",
-      "Hash": "94ce62caac21ef448e830d8448f126c4",
+      "FileName": "VH-109_2.0.1-02062026.FROM_1_2_X.img.enc",
+      "Uri": "https://4239402461-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FzaDthb1gXvbj84qIfOUE%2Fuploads%2FDYZGxAFlpIglmx8C31gq%2FVH-109_2.0.1-02062026.FROM_1_2_X.img.enc?alt=media&token=711cee42-568c-4533-a5f7-712895e1c6a3",
+      "Hash": "d9be338cedef46135c5df1e14a31e407",
       "Platform": null
     },
     {
