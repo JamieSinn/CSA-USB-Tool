@@ -163,29 +163,16 @@
       "Platform": "Windows"
     },
     {
-      "Name": "REV Hardware Client v1 (pre 2026)",
-      "Description": "REV Hardware Client version 1 w/ FRC firmware.",
+      "Name": "REV Hardware Client v2",
+      "Description": "REV Hardware Client version 2.",
       "Tags": [
         "Event",
         "Team",
         "CSA"
       ],
-      "FileName": "REV-Hardware-Client-Setup-1.7.5-offline-FRC-2025-03-18.exe",
-      "Uri": "https://github.com/REVrobotics/REV-Software-Binaries/releases/download/rhc-1.7.5/REV-Hardware-Client-Setup-1.7.5-offline-FRC-2025-03-18.exe",
-      "Hash": "b149e84d0a08d1aab11ed84a2a3ecc45",
-      "Platform": "Windows"
-    },
-    {
-      "Name": "REV Hardware Client v2 (2026)",
-      "Description": "REV Hardware Client version 2 (2026).",
-      "Tags": [
-        "Event",
-        "Team",
-        "CSA"
-      ],
-      "FileName": "rev-hardware-client2-1.0.2-windows-amd64.zip",
-      "Uri": "https://rhc2.revrobotics.com/download/rev-hardware-client-1.0.2-windows-amd64.zip",
-      "Hash": "4c3b043e2e46fcf6c5722a6f9ba8ca88",
+      "FileName": "rev-hardware-client2-1.0.7-windows-amd64.zip",
+      "Uri": "https://rhc2.revrobotics.com/download/rev-hardware-client-1.0.7-windows-amd64.zip",
+      "Hash": "b1ae2bda1db4ffe2ddf9eab944758a01",
       "Platform": "Windows"
     },
     {
