@@ -317,6 +317,19 @@
       "Uri": "https://downloads.limelightvision.io/models/FRC2026_ANDYMARK.fmap",
       "Hash": "a53ee446af3a6ee9eb768fa4d860d720",
       "Platform": null
+    },
+        {
+      "Name": "Thrifty Config",
+      "Description": "Configure and control Thrifty Bot hardware",
+      "Tags": [
+        "Event",
+        "Team",
+        "CSA"
+      ],
+      "FileName": "ThriftyConfig+Setup+2026.0.1.exe",
+      "Uri": "https://docs.home.thethriftybot.com/software/app/ThriftyConfig+Setup+2026.0.1.exe",
+      "Hash": "11477bd7a4417fedd6a9f4e2d9aa6553",
+      "Platform": "Windows"
     }
   ]
 }
