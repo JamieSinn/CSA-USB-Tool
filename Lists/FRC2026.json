@@ -146,7 +146,7 @@
       ],
       "FileName": "2026GameManual.pdf",
       "Uri": "https://firstfrc.blob.core.windows.net/frc2026/Manual/2026GameManual.pdf",
-      "Hash": "027fe2b5f6520f3b050259a60b14cf4b",
+      "Hash": null,
       "Platform": null
     },
     {
@@ -212,7 +212,7 @@
       "FileName": "REVLib-offline-v2026.0.1.zip",
       "Uri": "https://github.com/REVrobotics/REV-Software-Binaries/releases/download/revlib-2026.0.1/REVLib-offline-v2026.0.1.zip",
       "Hash": "665bbb12ea4d68aef7f4ade817ca0b35",
-      "Platform": "Windows"
+      "Platform": null
     },
     {
       "Name": "Limelight Hardware Manager",
@@ -264,7 +264,7 @@
       "FileName": "limelight2_2026_0.zip",
       "Uri": "https://downloads.limelightvision.io/images/limelight2_2026_0.zip",
       "Hash": "5154e995a6f75bf9f23ec8b9451eaa13",
-      "Platform": "Windows"
+      "Platform": null
     },
     {
       "Name": "Limelight OS 2026 for LL 3",
@@ -277,7 +277,7 @@
       "FileName": "limelight3_2026_0.zip",
       "Uri": "https://downloads.limelightvision.io/images/limelight3_2026_0.zip",
       "Hash": "99b6d518995412f2b454ba5aebb051e8",
-      "Platform": "Windows"
+      "Platform": null
     },
     {
       "Name": "Limelight OS 2026 for LL 3G",
@@ -290,7 +290,7 @@
       "FileName": "limelight3g_2026_0.zip",
       "Uri": "https://downloads.limelightvision.io/images/limelight3g_2026_0.zip",
       "Hash": "c4b4e9adfe36bf64553131443780e18e",
-      "Platform": "Windows"
+      "Platform": null
     },
     {
       "Name": "Limelight OS 2026 for LL 4",
@@ -303,7 +303,7 @@
       "FileName": "limelight4_2026_0.zip",
       "Uri": "https://downloads.limelightvision.io/images/limelight4_2026_0.zip",
       "Hash": "c7c9f6f5c77f9d585df1d84b42f68825",
-      "Platform": "Windows"
+      "Platform": null
     },
     {
       "Name": "Limelight 2026 AprilTag map v2 Welded Field",
@@ -316,7 +316,7 @@
       "FileName": "FRC2026_WELDED.fmap",
       "Uri": "https://downloads.limelightvision.io/models/FRC2026_WELDED.fmap",
       "Hash": "1ebfa2ef0701113968f47747ead07617",
-      "Platform": "Windows"
+      "Platform": null
     },
     {
       "Name": "Limelight 2026 AprilTag map v2 AndyMark Field",
@@ -329,7 +329,7 @@
       "FileName": "FRC2026_ANDYMARK.fmap",
       "Uri": "https://downloads.limelightvision.io/models/FRC2026_ANDYMARK.fmap",
       "Hash": "a53ee446af3a6ee9eb768fa4d860d720",
-      "Platform": "Windows"
+      "Platform": null
     }
   ]
 }
