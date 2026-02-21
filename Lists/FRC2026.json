@@ -157,9 +157,9 @@
         "Team",
         "CSA"
       ],
-      "FileName": "Studica_Hardware_Manager-Setup_1.1.0.exe",
-      "Uri": "https://dev.studica.com/maven/release/firmware/app/win32/Studica_Hardware_Manager-Setup_1.1.0.exe",
-      "Hash": "9a77cd44b57a31b1bd9a55f656fa5825",
+      "FileName": "Studica_Hardware_Manager-Setup_1.1.1.exe",
+      "Uri": "https://dev.studica.com/maven/release/firmware/app/win32/Studica_Hardware_Manager-Setup_1.1.1.exe",
+      "Hash": "dfa692d38f978b4862d7343c8e8cd673",
       "Platform": "Windows"
     },
     {
