@@ -330,6 +330,19 @@
       "Uri": "https://docs.home.thethriftybot.com/software/app/ThriftyConfig+Setup+2026.0.1.exe",
       "Hash": "11477bd7a4417fedd6a9f4e2d9aa6553",
       "Platform": "Windows"
+    },
+    {
+      "Name": "QDash",
+      "Description": "A reliable, high-performance, low-footprint dashboard",
+      "Tags": [
+        "Event",
+        "Team",
+        "CSA"
+      ],
+      "FileName": "QDash-Windows-Installer-2026.2.0-amd64-msvc-standard.exe",
+      "Uri": "https://github.com/QDash-CI/Releases/releases/download/2026.2.0/QDash-Windows-Installer-2026.2.0-amd64-msvc-standard.exe",
+      "Hash": "0d1f71c13e700d1e75a54bdfd19755a3",
+      "Platform": "Windows"
     }
   ]
 }
