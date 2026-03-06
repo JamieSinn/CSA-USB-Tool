@@ -164,7 +164,7 @@
     },
     {
       "Name": "REV Hardware Client v2",
-      "Description": "REV Hardware Client version 2.",
+      "Description": "REV Hardware Client version 2",
       "Tags": [
         "Event",
         "Team",
@@ -199,6 +199,19 @@
       "FileName": "REVLib-offline-v2026.0.3.zip",
       "Uri": "https://github.com/REVrobotics/REV-Software-Binaries/releases/download/revlib-2026.0.3/REVLib-offline-v2026.0.3.zip",
       "Hash": "076bc0c22dcf9cbd89aa3bbca658ec8f",
+      "Platform": null
+    },
+    {
+      "Name": "Rev Firmware Releases",
+      "Description": "REV Firmware releases for use with RHC2 offline",
+      "Tags": [
+        "Event",
+        "Team",
+        "CSA"
+      ],
+      "FileName": "frc2026_week1.zip",
+      "Uri": "https://github.com/REVrobotics/REV-Software-Binaries/releases/download/frc-2026-week-1/frc2026_week1.zip",
+      "Hash": "76df6728334e633352a4a8898a49730a",
       "Platform": null
     },
     {
