@@ -1,12 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text.Json;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using Avalonia.Threading;
@@ -21,7 +23,9 @@ public class MainWindowViewModel : ViewModelBase
 
     private readonly HttpClient _httpClient;
     private readonly Dictionary<string, string> _jsonPathToUrl = new(StringComparer.OrdinalIgnoreCase);
+    private readonly List<ControlSystemSoftware> _observedSoftwareItems = [];
     private CancellationTokenSource? _operationCts;
+    private (string Title, string Message)? _pendingCompletionDialog;
 
     public ObservableCollection<string> JsonFiles { get; } = [];
     public ObservableCollection<string> TagOptions { get; } = ["All Tags"];
@@ -57,12 +61,20 @@ public class MainWindowViewModel : ViewModelBase
         {
             this.RaiseAndSetIfChanged(ref _downloadFolder, value);
             this.RaisePropertyChanged(nameof(HasDownloadFolder));
+            this.RaisePropertyChanged(nameof(IsDownloadFolderPathValid));
+            this.RaisePropertyChanged(nameof(CanDownload));
+            this.RaisePropertyChanged(nameof(CanVerify));
+            if (!IsBusy)
+            {
+                UpdateGuidanceHint();
+            }
         }
     }
 
-    public bool HasDownloadFolder => !string.IsNullOrWhiteSpace(DownloadFolder);
+    public bool HasDownloadFolder => IsDownloadFolderPathValid;
+    public bool IsDownloadFolderPathValid => IsValidDirectoryPath(DownloadFolder);
 
-    private string _statusText = "Step 1: Fetch JSON list from repository.";
+    private string _statusText = "Hint: Click Step 1 to fetch JSON files from the repository.";
     public string StatusText
     {
         get => _statusText;
@@ -98,7 +110,7 @@ public class MainWindowViewModel : ViewModelBase
         }
 
         IsBusy = true;
-        StatusText = "Fetching JSON list from repository...";
+        StatusText = "In progress: Fetching JSON files...";
         JsonFiles.Clear();
         _jsonPathToUrl.Clear();
 
@@ -114,13 +126,23 @@ public class MainWindowViewModel : ViewModelBase
                 _jsonPathToUrl[item.Path] = item.DownloadUrl;
             }
 
-            StatusText = results.Count > 0
-                ? $"Step 2: Select JSON and load. Found {results.Count} files."
-                : "No JSON files found under configured Lists URL.";
+            if (results.Count == 0)
+            {
+                StatusText = "Hint: No JSON files found. Check your config URL and try Step 1 again.";
+                return;
+            }
+
+            var latest = results
+                .OrderByDescending(x => ExtractYearFromPath(x.Path))
+                .ThenBy(x => x.Path, StringComparer.OrdinalIgnoreCase)
+                .First();
+
+            SelectedJsonFile = latest.Path;
+            StatusText = $"Hint: Click Step 2 to load software. Auto-selected newest file: {latest.Path}";
         }
         catch (Exception ex)
         {
-            StatusText = "Failed to fetch JSON list.";
+            StatusText = "Error: Could not fetch JSON files. Check network/config and try Step 1 again.";
             throw new InvalidOperationException($"Failed to fetch JSON list: {ex.Message}", ex);
         }
         finally
@@ -142,56 +164,13 @@ public class MainWindowViewModel : ViewModelBase
         }
 
         IsBusy = true;
-        StatusText = $"Loading software from {SelectedJsonFile}...";
-
         try
         {
-            await using var stream = await _httpClient.GetStreamAsync(downloadUrl);
-            var season = await JsonSerializer.DeserializeAsync<SeasonSoftwareList>(stream, new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true
-            });
-
-            SoftwareItems.Clear();
-            TagOptions.Clear();
-            TagOptions.Add("All Tags");
-
-            if (season?.Software == null || season.Software.Count == 0)
-            {
-                StatusText = "No software entries were found in selected JSON.";
-                this.RaisePropertyChanged(nameof(CanDownload));
-                this.RaisePropertyChanged(nameof(CanVerify));
-                return;
-            }
-
-            foreach (var software in season.Software)
-            {
-                software.DownloadProgress = 0;
-                software.IsChecked = false;
-                software.StatusText = "Pending";
-                software.RefreshDisplayText();
-                SoftwareItems.Add(software);
-            }
-
-            var allTags = SoftwareItems
-                .SelectMany(s => s.Tags)
-                .Where(t => !string.IsNullOrWhiteSpace(t))
-                .Distinct(StringComparer.OrdinalIgnoreCase)
-                .OrderBy(t => t, StringComparer.OrdinalIgnoreCase);
-
-            foreach (var tag in allTags)
-            {
-                TagOptions.Add(tag);
-            }
-
-            SelectedTag = "All Tags";
-            StatusText = $"Step 3: Select software with checkboxes. Loaded {SoftwareItems.Count} entries.";
-            this.RaisePropertyChanged(nameof(CanDownload));
-            this.RaisePropertyChanged(nameof(CanVerify));
+            await LoadJsonInternalAsync(SelectedJsonFile, downloadUrl);
         }
         catch (Exception ex)
         {
-            StatusText = "Failed to load selected JSON.";
+            StatusText = "Error: Could not load selected JSON. Try Step 2 again or choose another file.";
             throw new InvalidOperationException($"Failed to load selected JSON: {ex.Message}", ex);
         }
         finally
@@ -213,6 +192,10 @@ public class MainWindowViewModel : ViewModelBase
         }
 
         this.RaisePropertyChanged(nameof(CanDownload));
+        if (!IsBusy)
+        {
+            UpdateGuidanceHint();
+        }
     }
 
     public void SelectAll()
@@ -222,6 +205,10 @@ public class MainWindowViewModel : ViewModelBase
             item.IsChecked = true;
         }
         this.RaisePropertyChanged(nameof(CanDownload));
+        if (!IsBusy)
+        {
+            UpdateGuidanceHint();
+        }
     }
 
     public void DeselectAll()
@@ -231,6 +218,10 @@ public class MainWindowViewModel : ViewModelBase
             item.IsChecked = false;
         }
         this.RaisePropertyChanged(nameof(CanDownload));
+        if (!IsBusy)
+        {
+            UpdateGuidanceHint();
+        }
     }
 
     public async Task DownloadSelectedAsync()
@@ -252,7 +243,7 @@ public class MainWindowViewModel : ViewModelBase
         }
 
         IsBusy = true;
-        StatusText = $"Downloading {selected.Count} selected items...";
+        StatusText = $"In progress: Downloading {selected.Count} selected item(s)...";
         _operationCts = new CancellationTokenSource();
         var token = _operationCts.Token;
 
@@ -297,7 +288,7 @@ public class MainWindowViewModel : ViewModelBase
             }
             catch (OperationCanceledException)
             {
-                StatusText = "Download canceled.";
+                StatusText = "Aborted: Download cancelled.";
             }
 
             if (!token.IsCancellationRequested)
@@ -310,8 +301,14 @@ public class MainWindowViewModel : ViewModelBase
 
             var failedCount = selected.Count - successful.Count;
             StatusText = token.IsCancellationRequested
-                ? $"Download canceled. Success: {successful.Count}, Failed: {failedCount}"
-                : $"Download finished. Success: {successful.Count}, Failed: {failedCount}";
+                ? $"Aborted: Download cancelled. Success: {successful.Count}, Failed: {failedCount}. Retry failed items if needed."
+                : $"Complete: Download finished. Success: {successful.Count}, Failed: {failedCount}. Next: Run Step 6 to Verify MD5.";
+            _pendingCompletionDialog = (
+                "Download Result",
+                token.IsCancellationRequested
+                    ? $"Aborted: Download cancelled.\nSuccess: {successful.Count}\nFailed: {failedCount}"
+                    : $"Complete: Download finished.\nSuccess: {successful.Count}\nFailed: {failedCount}\n\nNext: Run Step 6 to Verify MD5."
+            );
         }
         finally
         {
@@ -342,7 +339,7 @@ public class MainWindowViewModel : ViewModelBase
         }
 
         IsBusy = true;
-        StatusText = "Verifying MD5 hashes...";
+        StatusText = "In progress: Verifying MD5 hashes...";
         _operationCts = new CancellationTokenSource();
         var token = _operationCts.Token;
 
@@ -408,11 +405,16 @@ public class MainWindowViewModel : ViewModelBase
                 item.IsChecked = item.IsSelectable;
             }
 
-            StatusText = $"Verify complete. OK: {ok}, Fail: {fail}, Missing: {missing}";
+            StatusText = $"Complete: Verify finished. OK: {ok}, Fail: {fail}, Missing: {missing}.";
+            _pendingCompletionDialog = (
+                "Verify Result",
+                $"Complete: Verify finished.\nOK: {ok}\nFail: {fail}\nMissing: {missing}"
+            );
         }
         catch (OperationCanceledException)
         {
-            StatusText = "Verify canceled.";
+            StatusText = "Aborted: Verify cancelled.";
+            _pendingCompletionDialog = ("Verify Result", "Aborted: Verify cancelled.");
         }
         finally
         {
@@ -427,6 +429,21 @@ public class MainWindowViewModel : ViewModelBase
     public void CancelCurrentOperation()
     {
         _operationCts?.Cancel();
+    }
+
+    public bool TryConsumeCompletionDialog(out string title, out string message)
+    {
+        if (_pendingCompletionDialog is null)
+        {
+            title = string.Empty;
+            message = string.Empty;
+            return false;
+        }
+
+        title = _pendingCompletionDialog.Value.Title;
+        message = _pendingCompletionDialog.Value.Message;
+        _pendingCompletionDialog = null;
+        return true;
     }
 
     private async Task DownloadItemWithRetryAsync(ControlSystemSoftware item, CancellationToken token)
@@ -468,7 +485,10 @@ public class MainWindowViewModel : ViewModelBase
         SetItemStatus(item, "Downloading");
         SetItemProgress(item, 0);
 
-        Directory.CreateDirectory(DownloadFolder);
+        if (!Directory.Exists(DownloadFolder))
+        {
+            throw new InvalidOperationException("Selected download folder does not exist.");
+        }
 
         var existingSize = File.Exists(partPath) ? new FileInfo(partPath).Length : 0L;
 
@@ -574,6 +594,170 @@ public class MainWindowViewModel : ViewModelBase
                 }
             }
         }
+    }
+
+    private async Task LoadJsonInternalAsync(string selectedPath, string downloadUrl)
+    {
+        StatusText = $"In progress: Loading software from {selectedPath}...";
+
+        await using var stream = await _httpClient.GetStreamAsync(downloadUrl);
+        var season = await JsonSerializer.DeserializeAsync<SeasonSoftwareList>(stream, new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true
+        });
+
+        SoftwareItems.Clear();
+        DetachSoftwareObservers();
+        TagOptions.Clear();
+        TagOptions.Add("All Tags");
+
+        if (season?.Software == null || season.Software.Count == 0)
+        {
+            StatusText = "Hint: No software entries were found in this JSON. Select a different file.";
+            this.RaisePropertyChanged(nameof(CanDownload));
+            this.RaisePropertyChanged(nameof(CanVerify));
+            return;
+        }
+
+        foreach (var software in season.Software)
+        {
+            software.DownloadProgress = 0;
+            software.IsChecked = false;
+            software.StatusText = "Pending";
+            software.RefreshDisplayText();
+            SoftwareItems.Add(software);
+        }
+        AttachSoftwareObservers();
+
+        var allTags = SoftwareItems
+            .SelectMany(s => s.Tags)
+            .Where(t => !string.IsNullOrWhiteSpace(t))
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .OrderBy(t => t, StringComparer.OrdinalIgnoreCase);
+
+        foreach (var tag in allTags)
+        {
+            TagOptions.Add(tag);
+        }
+
+        SelectedTag = "All Tags";
+        StatusText = $"Hint: Step 3 - select software with checkboxes. Loaded {SoftwareItems.Count} entries.";
+        this.RaisePropertyChanged(nameof(CanDownload));
+        this.RaisePropertyChanged(nameof(CanVerify));
+    }
+
+    private void AttachSoftwareObservers()
+    {
+        foreach (var item in SoftwareItems)
+        {
+            if (_observedSoftwareItems.Contains(item))
+            {
+                continue;
+            }
+            item.PropertyChanged += SoftwareItemOnPropertyChanged;
+            _observedSoftwareItems.Add(item);
+        }
+    }
+
+    private void DetachSoftwareObservers()
+    {
+        foreach (var item in _observedSoftwareItems)
+        {
+            item.PropertyChanged -= SoftwareItemOnPropertyChanged;
+        }
+        _observedSoftwareItems.Clear();
+    }
+
+    private void SoftwareItemOnPropertyChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        if (e.PropertyName != nameof(ControlSystemSoftware.IsChecked))
+        {
+            return;
+        }
+
+        this.RaisePropertyChanged(nameof(CanDownload));
+        if (!IsBusy)
+        {
+            UpdateGuidanceHint();
+        }
+    }
+
+    private void UpdateGuidanceHint()
+    {
+        if (IsBusy)
+        {
+            return;
+        }
+
+        if (!string.IsNullOrWhiteSpace(DownloadFolder) && !IsDownloadFolderPathValid)
+        {
+            StatusText = "Error: Folder path is invalid or does not exist. Use an existing folder path or Step 4.";
+            return;
+        }
+
+        if (SoftwareItems.Count == 0)
+        {
+            if (JsonFiles.Count == 0)
+            {
+                StatusText = "Hint: Click Step 1 to fetch JSON files from the repository.";
+                return;
+            }
+
+            StatusText = string.IsNullOrWhiteSpace(SelectedJsonFile)
+                ? "Hint: Choose a JSON file, then click Step 2 to load software."
+                : "Hint: Click Step 2 to load software from the selected JSON.";
+            return;
+        }
+
+        var selectedCount = SoftwareItems.Count(s => s.IsChecked && s.IsSelectable);
+        var hasSuccessfulDownloads = SoftwareItems.Any(s => s.StatusText == "Success" || s.StatusText == "MD5 OK");
+
+        if (selectedCount > 0 && !HasDownloadFolder)
+        {
+            StatusText = $"Hint: Step 4 - select a download folder for {selectedCount} selected item(s).";
+            return;
+        }
+
+        if (HasDownloadFolder)
+        {
+            StatusText = selectedCount > 0
+                ? "Hint: Step 5 - click Download Selected, or click Step 6 to Verify MD5 if files already exist."
+                : hasSuccessfulDownloads
+                    ? "Hint: You can click Step 6 to Verify MD5, or select more items and use Step 5."
+                    : "Hint: Select software, then use Step 5 to download. You can also use Step 6 to verify existing files.";
+            return;
+        }
+
+        StatusText = "Hint: Step 3 - select software with checkboxes. Then choose a folder in Step 4.";
+    }
+
+    private static bool IsValidDirectoryPath(string path)
+    {
+        if (string.IsNullOrWhiteSpace(path))
+        {
+            return false;
+        }
+
+        try
+        {
+            var fullPath = Path.GetFullPath(path);
+            return Directory.Exists(fullPath);
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
+    private static int ExtractYearFromPath(string path)
+    {
+        var file = Path.GetFileNameWithoutExtension(path);
+        var matches = Regex.Matches(file, @"(19|20)\d{2}");
+        var years = matches
+            .Select(m => int.TryParse(m.Value, out var y) ? y : int.MinValue)
+            .Where(y => y > 0);
+
+        return years.DefaultIfEmpty(int.MinValue).Max();
     }
 
     private static string SanitizeFileName(string name)

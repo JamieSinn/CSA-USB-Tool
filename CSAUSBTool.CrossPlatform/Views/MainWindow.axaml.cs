@@ -1,4 +1,6 @@
 using System;
+using System.Diagnostics;
+using System.IO;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Platform.Storage;
@@ -12,6 +14,12 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
         DataContext = new MainWindowViewModel();
+
+        var tagSelector = this.FindControl<ComboBox>("TagSelector");
+        if (tagSelector != null)
+        {
+            tagSelector.SelectionChanged += TagSelection_OnChanged;
+        }
     }
 
     private MainWindowViewModel Vm => (MainWindowViewModel)DataContext!;
@@ -40,10 +48,22 @@ public partial class MainWindow : Window
         }
     }
 
-    private void ToggleTag_OnClick(object? sender, RoutedEventArgs e)
+    private void TagSelection_OnChanged(object? sender, SelectionChangedEventArgs e)
     {
-        Vm.ToggleTagSelection(Vm.SelectedTag);
-        Vm.SelectedTag = "All Tags";
+        if (sender is not ComboBox combo || combo.SelectedItem is not string selectedTag)
+        {
+            return;
+        }
+
+        if (selectedTag == "All Tags")
+        {
+            return;
+        }
+
+        Vm.ToggleTagSelection(selectedTag);
+
+        // Reset so selecting the same tag later triggers again.
+        combo.SelectedItem = "All Tags";
     }
 
     private void SelectAll_OnClick(object? sender, RoutedEventArgs e)
@@ -70,11 +90,31 @@ public partial class MainWindow : Window
         }
     }
 
+    private async void OpenFolder_OnClick(object? sender, RoutedEventArgs e)
+    {
+        try
+        {
+            if (!Vm.IsDownloadFolderPathValid)
+            {
+                Vm.StatusText = "Error: Folder path is invalid or does not exist.";
+                return;
+            }
+
+            var fullPath = Path.GetFullPath(Vm.DownloadFolder);
+            OpenDirectory(fullPath);
+        }
+        catch (Exception ex)
+        {
+            await ShowErrorAsync(ex.Message);
+        }
+    }
+
     private async void DownloadSelected_OnClick(object? sender, RoutedEventArgs e)
     {
         try
         {
             await Vm.DownloadSelectedAsync();
+            await ShowCompletionIfAnyAsync();
         }
         catch (Exception ex)
         {
@@ -87,6 +127,7 @@ public partial class MainWindow : Window
         try
         {
             await Vm.VerifyMd5Async();
+            await ShowCompletionIfAnyAsync();
         }
         catch (Exception ex)
         {
@@ -101,6 +142,8 @@ public partial class MainWindow : Window
 
     private async System.Threading.Tasks.Task ShowErrorAsync(string message)
     {
+        Vm.StatusText = $"Error: {message}";
+
         var dialog = new Window
         {
             Title = "Error",
@@ -115,5 +158,66 @@ public partial class MainWindow : Window
         };
 
         await dialog.ShowDialog(this);
+    }
+
+    private async System.Threading.Tasks.Task ShowCompletionIfAnyAsync()
+    {
+        if (!Vm.TryConsumeCompletionDialog(out var title, out var message))
+        {
+            return;
+        }
+
+        var dialog = new Window
+        {
+            Title = title,
+            Width = 520,
+            Height = 180,
+            Content = new TextBlock
+            {
+                Text = message,
+                TextWrapping = Avalonia.Media.TextWrapping.Wrap,
+                Margin = new Avalonia.Thickness(16)
+            }
+        };
+
+        await dialog.ShowDialog(this);
+    }
+
+    private static void OpenDirectory(string fullPath)
+    {
+        ProcessStartInfo psi;
+        if (OperatingSystem.IsWindows())
+        {
+            psi = new ProcessStartInfo
+            {
+                FileName = "explorer.exe",
+                Arguments = $"\"{fullPath}\"",
+                UseShellExecute = true
+            };
+        }
+        else if (OperatingSystem.IsMacOS())
+        {
+            psi = new ProcessStartInfo
+            {
+                FileName = "open",
+                Arguments = $"\"{fullPath}\"",
+                UseShellExecute = false
+            };
+        }
+        else if (OperatingSystem.IsLinux())
+        {
+            psi = new ProcessStartInfo
+            {
+                FileName = "xdg-open",
+                Arguments = $"\"{fullPath}\"",
+                UseShellExecute = false
+            };
+        }
+        else
+        {
+            throw new PlatformNotSupportedException("Open Directory is not supported on this platform.");
+        }
+
+        Process.Start(psi);
     }
 }
