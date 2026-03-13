@@ -200,21 +200,22 @@ public partial class MainWindow : Window
         }
 
         CloseActiveCompletionDialog();
+        var isVerifyResult = string.Equals(title, "Verify Result", StringComparison.OrdinalIgnoreCase);
+        var dialog = isVerifyResult
+            ? CreateVerifyResultDialog(title, message)
+            : CreateDownloadResultDialog(title, message);
 
-        var dialog = new Window
+        if (isVerifyResult)
         {
-            Title = title,
-            Width = 520,
-            Height = 180,
-            Content = new TextBlock
-            {
-                Text = message,
-                TextWrapping = Avalonia.Media.TextWrapping.Wrap,
-                Margin = new Avalonia.Thickness(16)
-            }
-        };
+            Vm.SetStep6Done(true);
+        }
+
         dialog.Closed += (_, _) =>
         {
+            if (isVerifyResult)
+            {
+                Vm.SetStep6Done(false);
+            }
             if (ReferenceEquals(_activeCompletionDialog, dialog))
             {
                 _activeCompletionDialog = null;
@@ -234,6 +235,98 @@ public partial class MainWindow : Window
         var existing = _activeCompletionDialog;
         _activeCompletionDialog = null;
         existing.Close();
+    }
+
+    private Window CreateVerifyResultDialog(string title, string message)
+    {
+        var text = new TextBlock
+        {
+            Text = $"{message}\n\nPlease eject USB safely using your system eject option before unplugging.",
+            TextWrapping = Avalonia.Media.TextWrapping.Wrap
+        };
+
+        var openDirectoryButton = new Button { Content = "Open Directory", MinWidth = 130 };
+        openDirectoryButton.Click += async (_, _) =>
+        {
+            try
+            {
+                if (!Vm.IsDownloadFolderPathValid)
+                {
+                    Vm.StatusText = "Error: Folder path is invalid or does not exist.";
+                    return;
+                }
+
+                OpenDirectory(Path.GetFullPath(Vm.DownloadFolder));
+            }
+            catch (Exception ex)
+            {
+                await ShowErrorAsync(ex.Message);
+            }
+        };
+
+        var closeAndContinueButton = new Button { Content = "Close and Continue", MinWidth = 140 };
+        closeAndContinueButton.Click += (_, _) => _activeCompletionDialog?.Close();
+
+        var quitButton = new Button { Content = "Step 7: Quit CSA USB Tool", MinWidth = 170 };
+        quitButton.Click += (_, _) => Close();
+
+        var buttons = new StackPanel
+        {
+            Orientation = Avalonia.Layout.Orientation.Horizontal,
+            Spacing = 8,
+            HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Right,
+            Children = { openDirectoryButton, closeAndContinueButton, quitButton }
+        };
+
+        var layout = new StackPanel
+        {
+            Margin = new Avalonia.Thickness(16),
+            Spacing = 12,
+            Children = { text, buttons }
+        };
+
+        return new Window
+        {
+            Title = title,
+            Width = 620,
+            Height = 250,
+            Content = layout
+        };
+    }
+
+    private Window CreateDownloadResultDialog(string title, string message)
+    {
+        var text = new TextBlock
+        {
+            Text = message,
+            TextWrapping = Avalonia.Media.TextWrapping.Wrap
+        };
+
+        var dismissButton = new Button { Content = "Dismiss", MinWidth = 100 };
+        dismissButton.Click += (_, _) => _activeCompletionDialog?.Close();
+
+        var buttons = new StackPanel
+        {
+            Orientation = Avalonia.Layout.Orientation.Horizontal,
+            Spacing = 8,
+            HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Right,
+            Children = { dismissButton }
+        };
+
+        var layout = new StackPanel
+        {
+            Margin = new Avalonia.Thickness(16),
+            Spacing = 12,
+            Children = { text, buttons }
+        };
+
+        return new Window
+        {
+            Title = title,
+            Width = 520,
+            Height = 200,
+            Content = layout
+        };
     }
 
     private static void OpenDirectory(string fullPath)

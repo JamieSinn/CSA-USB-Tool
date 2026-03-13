@@ -501,15 +501,11 @@ public class MainWindowViewModel : ViewModelBase
                 item.IsChecked = item.IsSelectable;
             }
 
-            IsStep6Done = fail == 0 && missing == 0;
-            StatusText = IsStep6Done
-                ? $"Complete: Step 6 ✅ verify finished. OK: {ok}, Fail: {fail}, Missing: {missing}."
-                : $"Complete: Verify finished. OK: {ok}, Fail: {fail}, Missing: {missing}.";
+            IsStep6Done = true;
+            StatusText = $"Complete: Step 6 ✅ verify finished. OK: {ok}, Fail: {fail}, Missing: {missing}.";
             _pendingCompletionDialog = (
                 "Verify Result",
-                IsStep6Done
-                    ? $"Complete: Step 6 ✅ verify finished.\nOK: {ok}\nFail: {fail}\nMissing: {missing}"
-                    : $"Complete: Verify finished.\nOK: {ok}\nFail: {fail}\nMissing: {missing}"
+                $"Complete: Step 6 ✅ verify finished.\nOK: {ok}\nFail: {fail}\nMissing: {missing}"
             );
         }
         catch (OperationCanceledException)
@@ -546,6 +542,11 @@ public class MainWindowViewModel : ViewModelBase
         message = _pendingCompletionDialog.Value.Message;
         _pendingCompletionDialog = null;
         return true;
+    }
+
+    public void SetStep6Done(bool done)
+    {
+        IsStep6Done = done;
     }
 
     private async Task DownloadItemWithRetryAsync(ControlSystemSoftware item, CancellationToken token)
