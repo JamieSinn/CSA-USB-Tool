@@ -36,7 +36,17 @@ public class MainWindowViewModel : ViewModelBase
     public string? SelectedJsonFile
     {
         get => _selectedJsonFile;
-        set => this.RaiseAndSetIfChanged(ref _selectedJsonFile, value);
+        set
+        {
+            var previous = _selectedJsonFile;
+            this.RaiseAndSetIfChanged(ref _selectedJsonFile, value);
+            if (string.Equals(previous, value, StringComparison.OrdinalIgnoreCase))
+            {
+                return;
+            }
+
+            HandleJsonSelectionChangedAfterLoad();
+        }
     }
 
     private string _selectedTag = "All Tags";
@@ -751,6 +761,31 @@ public class MainWindowViewModel : ViewModelBase
         this.RaisePropertyChanged(nameof(CanVerify));
         this.RaisePropertyChanged(nameof(IsStep3Done));
         this.RaisePropertyChanged(nameof(Step3Text));
+    }
+
+    private void HandleJsonSelectionChangedAfterLoad()
+    {
+        if (IsBusy || !IsStep2Done)
+        {
+            return;
+        }
+
+        DetachSoftwareObservers();
+        SoftwareItems.Clear();
+        TagOptions.Clear();
+        TagOptions.Add("All Tags");
+        SelectedTag = "All Tags";
+
+        IsStep2Done = false;
+        IsStep5Done = false;
+        IsStep6Done = false;
+
+        this.RaisePropertyChanged(nameof(CanDownload));
+        this.RaisePropertyChanged(nameof(CanVerify));
+        this.RaisePropertyChanged(nameof(IsStep3Done));
+        this.RaisePropertyChanged(nameof(Step3Text));
+
+        StatusText = "Hint: JSON selection changed. Click Step 2 to load software for the new selection.";
     }
 
     private void AttachSoftwareObservers()
