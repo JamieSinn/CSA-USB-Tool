@@ -72,6 +72,7 @@
     <StackPanel Grid.Row="4" Orientation="Horizontal" Spacing="8" Margin="0,0,0,8">
       <Button Content="{Binding Step5ButtonText}" Classes.step-done="{Binding IsStep5Done}" Click="DownloadSelected_OnClick" IsEnabled="{Binding CanDownload}" />
       <Button Content="{Binding Step6ButtonText}" Classes.step-done="{Binding IsStep6Done}" Click="VerifyMd5_OnClick" IsEnabled="{Binding CanVerify}" />
+      <CheckBox Content="Verify MD5 after download (entire folder)" IsChecked="{Binding VerifyAfterDownload}" VerticalAlignment="Center" />
       <Button Content="Cancel" Click="Cancel_OnClick" />
       <TextBlock VerticalAlignment="Center" Text="Max Parallel" />
       <ComboBox Width="80"

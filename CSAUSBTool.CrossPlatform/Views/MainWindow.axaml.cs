@@ -11,6 +11,7 @@ namespace CSAUSBTool.CrossPlatform.Views;
 public partial class MainWindow : Window
 {
     private bool _startupFetchTriggered;
+    private Window? _activeCompletionDialog;
 
     public MainWindow()
     {
@@ -137,12 +138,13 @@ public partial class MainWindow : Window
     {
         try
         {
+            CloseActiveCompletionDialog();
             await Vm.DownloadSelectedAsync();
-            await ShowCompletionIfAnyAsync();
-            if (Vm.IsStep5Done && Vm.CanVerify)
+            ShowCompletionIfAny();
+            if (Vm.VerifyAfterDownload && Vm.IsStep5Done && Vm.CanVerify)
             {
                 await Vm.VerifyMd5Async();
-                await ShowCompletionIfAnyAsync();
+                ShowCompletionIfAny();
             }
         }
         catch (Exception ex)
@@ -155,8 +157,9 @@ public partial class MainWindow : Window
     {
         try
         {
+            CloseActiveCompletionDialog();
             await Vm.VerifyMd5Async();
-            await ShowCompletionIfAnyAsync();
+            ShowCompletionIfAny();
         }
         catch (Exception ex)
         {
@@ -189,12 +192,14 @@ public partial class MainWindow : Window
         await dialog.ShowDialog(this);
     }
 
-    private async System.Threading.Tasks.Task ShowCompletionIfAnyAsync()
+    private void ShowCompletionIfAny()
     {
         if (!Vm.TryConsumeCompletionDialog(out var title, out var message))
         {
             return;
         }
+
+        CloseActiveCompletionDialog();
 
         var dialog = new Window
         {
@@ -208,8 +213,27 @@ public partial class MainWindow : Window
                 Margin = new Avalonia.Thickness(16)
             }
         };
+        dialog.Closed += (_, _) =>
+        {
+            if (ReferenceEquals(_activeCompletionDialog, dialog))
+            {
+                _activeCompletionDialog = null;
+            }
+        };
+        _activeCompletionDialog = dialog;
+        dialog.Show(this);
+    }
 
-        await dialog.ShowDialog(this);
+    private void CloseActiveCompletionDialog()
+    {
+        if (_activeCompletionDialog == null)
+        {
+            return;
+        }
+
+        var existing = _activeCompletionDialog;
+        _activeCompletionDialog = null;
+        existing.Close();
     }
 
     private static void OpenDirectory(string fullPath)

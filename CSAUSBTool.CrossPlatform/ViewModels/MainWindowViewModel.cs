@@ -53,6 +53,13 @@ public class MainWindowViewModel : ViewModelBase
         set => this.RaiseAndSetIfChanged(ref _maxParallelDownloads, value);
     }
 
+    private bool _verifyAfterDownload = true;
+    public bool VerifyAfterDownload
+    {
+        get => _verifyAfterDownload;
+        set => this.RaiseAndSetIfChanged(ref _verifyAfterDownload, value);
+    }
+
     private string _downloadFolder = string.Empty;
     public string DownloadFolder
     {
@@ -143,7 +150,7 @@ public class MainWindowViewModel : ViewModelBase
     public string Step3Text => IsStep3Done ? "✅ Step 3: Select by tag" : "Step 3: Select by tag";
     public string Step4ButtonText => IsStep4Done ? "✅ Step 4: Select Folder" : "Step 4: Select Folder";
     public string Step5ButtonText => IsStep5Done ? "✅ Step 5: Download Selected" : "Step 5: Download Selected";
-    public string Step6ButtonText => IsStep6Done ? "✅ Step 6: Verify MD5" : "Step 6: Verify MD5";
+    public string Step6ButtonText => IsStep6Done ? "✅ Step 6: Verify MD5 (Entire Folder)" : "Step 6: Verify MD5 (Entire Folder)";
 
     private bool _isBusy;
     public bool IsBusy
@@ -379,17 +386,22 @@ public class MainWindowViewModel : ViewModelBase
 
             var failedCount = selected.Count - successful.Count;
             IsStep5Done = !token.IsCancellationRequested && failedCount == 0 && selected.Count > 0;
+            var willAutoVerify = VerifyAfterDownload && IsStep5Done;
             StatusText = token.IsCancellationRequested
                 ? $"Aborted: Download cancelled. Success: {successful.Count}, Failed: {failedCount}. Retry failed items if needed."
                 : IsStep5Done
-                    ? $"Complete: Step 5 ✅ download finished. Success: {successful.Count}, Failed: {failedCount}. Next: Step 6 Verify MD5."
+                    ? willAutoVerify
+                        ? $"Complete: Step 5 ✅ download finished. Success: {successful.Count}, Failed: {failedCount}. MD5 verify in progress."
+                        : $"Complete: Step 5 ✅ download finished. Success: {successful.Count}, Failed: {failedCount}. Next: Step 6 Verify MD5."
                     : $"Complete: Download finished. Success: {successful.Count}, Failed: {failedCount}. Next: Step 6 Verify MD5.";
             _pendingCompletionDialog = (
                 "Download Result",
                 token.IsCancellationRequested
                     ? $"Aborted: Download cancelled.\nSuccess: {successful.Count}\nFailed: {failedCount}"
                     : IsStep5Done
-                        ? $"Complete: Step 5 ✅ download finished.\nSuccess: {successful.Count}\nFailed: {failedCount}\n\nNext: Step 6 Verify MD5."
+                        ? willAutoVerify
+                            ? $"Complete: Step 5 ✅ download finished.\nSuccess: {successful.Count}\nFailed: {failedCount}\n\nMD5 verify in progress."
+                            : $"Complete: Step 5 ✅ download finished.\nSuccess: {successful.Count}\nFailed: {failedCount}\n\nNext: Step 6 Verify MD5."
                         : $"Complete: Download finished.\nSuccess: {successful.Count}\nFailed: {failedCount}\n\nNext: Step 6 Verify MD5."
             );
         }
