@@ -746,7 +746,7 @@ public class MainWindowViewModel : ViewModelBase
         }
 
         SelectedTag = "All Tags";
-        StatusText = $"Complete: Step 2 ✅ loaded {SoftwareItems.Count} entries. Hint: Step 3 - select software with checkboxes.";
+        StatusText = $"Complete: Step 2 ✅ loaded {SoftwareItems.Count} entries. Hint: Step 3 - select software with checkboxes. Verify-only path: select folder in Step 4, then run Step 6.";
         this.RaisePropertyChanged(nameof(CanDownload));
         this.RaisePropertyChanged(nameof(CanVerify));
         this.RaisePropertyChanged(nameof(IsStep3Done));
@@ -837,7 +837,7 @@ public class MainWindowViewModel : ViewModelBase
             return;
         }
 
-        StatusText = "Hint: Step 3 - select software with checkboxes. Then choose a folder in Step 4.";
+        StatusText = "Hint: Step 3 - select software with checkboxes. Verify-only path: select folder in Step 4, then run Step 6.";
     }
 
     private static bool IsValidDirectoryPath(string path)
