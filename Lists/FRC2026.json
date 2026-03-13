@@ -196,9 +196,9 @@
         "Team",
         "CSA"
       ],
-      "FileName": "REVLib-offline-v2026.0.3.zip",
-      "Uri": "https://github.com/REVrobotics/REV-Software-Binaries/releases/download/revlib-2026.0.3/REVLib-offline-v2026.0.3.zip",
-      "Hash": "076bc0c22dcf9cbd89aa3bbca658ec8f",
+      "FileName": "REVLib-offline-v2026.0.5.zip",
+      "Uri": "https://github.com/REVrobotics/REV-Software-Binaries/releases/download/revlib-2026.0.5/REVLib-offline-v2026.0.5.zip",
+      "Hash": "735b8fc32f1828d13cb948df98626899",
       "Platform": null
     },
     {
@@ -209,9 +209,9 @@
         "Team",
         "CSA"
       ],
-      "FileName": "frc2026_week1.zip",
-      "Uri": "https://github.com/REVrobotics/REV-Software-Binaries/releases/download/frc-2026-week-1/frc2026_week1.zip",
-      "Hash": "76df6728334e633352a4a8898a49730a",
+      "FileName": "frc2026_week2.zip",
+      "Uri": "https://github.com/REVrobotics/REV-Software-Binaries/releases/download/frc-2026-week-2/frc2026_week2.zip",
+      "Hash": "f34e219c6e3ccc9f73bed4e066ad2c5e",
       "Platform": null
     },
     {
