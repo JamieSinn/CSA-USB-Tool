@@ -1,16 +1,89 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="using:CSAUSBTool.CrossPlatform.ViewModels"
+        xmlns:models="using:CSAUSBTool.CrossPlatform.Models"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:views="clr-namespace:CSAUSBTool.CrossPlatform.Views"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d"
+        d:DesignWidth="1200"
+        d:DesignHeight="800"
         x:Class="CSAUSBTool.CrossPlatform.Views.MainWindow"
         Icon="/Assets/reuven.ico"
-        Title="CSAUSBTool v2"
+        Title="CSA USB Tool"
         x:DataType="vm:MainWindowViewModel"
         SizeToContent="Manual">
-  <Grid>
-    <views:ProgramYearView />
+  <Window.Styles>
+    <Style Selector="Button.step-done">
+      <Setter Property="Background" Value="#2E7D32" />
+      <Setter Property="Foreground" Value="White" />
+    </Style>
+    <Style Selector="TextBlock.step-done">
+      <Setter Property="Foreground" Value="#2E7D32" />
+      <Setter Property="FontWeight" Value="SemiBold" />
+    </Style>
+  </Window.Styles>
+  <Grid RowDefinitions="Auto,Auto,Auto,*,Auto,Auto" Margin="12">
+
+    <StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="8" Margin="0,0,0,8">
+      <Button Content="{Binding Step1ButtonText}" Classes.step-done="{Binding IsStep1Done}" Click="FetchJsonList_OnClick" />
+      <ComboBox Width="450"
+                ItemsSource="{Binding JsonFiles}"
+                SelectedItem="{Binding SelectedJsonFile}" />
+      <Button Content="{Binding Step2ButtonText}" Classes.step-done="{Binding IsStep2Done}" Click="LoadSelectedJson_OnClick" />
+    </StackPanel>
+
+    <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="8" Margin="0,0,0,8">
+      <TextBlock VerticalAlignment="Center" Text="{Binding Step3Text}" Classes.step-done="{Binding IsStep3Done}" />
+      <ComboBox Width="220"
+                ItemsSource="{Binding TagOptions}"
+                x:Name="TagSelector" SelectedItem="{Binding SelectedTag}" />
+      <Button Content="Select All" Click="SelectAll_OnClick" />
+      <Button Content="Deselect All" Click="DeselectAll_OnClick" />
+    </StackPanel>
+
+    <StackPanel Grid.Row="2" Orientation="Horizontal" Spacing="8" Margin="0,0,0,8">
+      <Button Content="{Binding Step4ButtonText}" Classes.step-done="{Binding IsStep4Done}" Click="SelectFolder_OnClick" />
+      <TextBox Width="650" Text="{Binding DownloadFolder}" />
+      <Button Content="Open Directory" Click="OpenFolder_OnClick" />
+    </StackPanel>
+
+    <ListBox Grid.Row="3" ItemsSource="{Binding SoftwareItems}" Margin="0,0,0,8">
+      <ListBox.ItemTemplate>
+        <DataTemplate x:DataType="models:ControlSystemSoftware">
+          <Border BorderThickness="0,0,0,1" BorderBrush="#33444444" Padding="4">
+            <StackPanel Spacing="4">
+              <Grid ColumnDefinitions="*,Auto">
+                <CheckBox Grid.Column="0"
+                          IsChecked="{Binding IsChecked}"
+                          IsEnabled="{Binding IsSelectable}"
+                          Content="{Binding DisplayText}" />
+                <TextBlock Grid.Column="1" Text="{Binding StatusText}" />
+              </Grid>
+              <ProgressBar Minimum="0"
+                           Maximum="100"
+                           Value="{Binding DownloadProgress}"
+                           ShowProgressText="True" />
+            </StackPanel>
+          </Border>
+        </DataTemplate>
+      </ListBox.ItemTemplate>
+    </ListBox>
+
+    <StackPanel Grid.Row="4" Orientation="Horizontal" Spacing="8" Margin="0,0,0,8">
+      <Button Content="{Binding Step5ButtonText}" Classes.step-done="{Binding IsStep5Done}" Click="DownloadSelected_OnClick" IsEnabled="{Binding CanDownload}" />
+      <Button Content="{Binding Step6ButtonText}" Classes.step-done="{Binding IsStep6Done}" Click="VerifyMd5_OnClick" IsEnabled="{Binding CanVerify}" />
+      <CheckBox Content="Verify MD5 after download (entire folder)" IsChecked="{Binding VerifyAfterDownload}" VerticalAlignment="Center" />
+      <Button Content="Cancel" Click="Cancel_OnClick" />
+      <TextBlock VerticalAlignment="Center" Text="Max Parallel" />
+      <ComboBox Width="80"
+                ItemsSource="{Binding MaxParallelOptions}"
+                SelectedItem="{Binding MaxParallelDownloads}" />
+    </StackPanel>
+
+    <StackPanel Grid.Row="5" Orientation="Horizontal" Spacing="6" Margin="0,4,0,0">
+      <TextBlock Text="💡" FontSize="15" VerticalAlignment="Top" />
+      <TextBlock Text="{Binding StatusText}" TextWrapping="Wrap" />
+    </StackPanel>
   </Grid>
 </Window>
+

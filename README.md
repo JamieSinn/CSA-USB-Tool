@@ -41,3 +41,43 @@ $ ./pyusbtool.py FRCSoftware<YEAR>.csv /path/to/drive/ --download
 
 ### PreRequisites
 - .NET 6 Runtime
+
+## Build macOS `.app` from source
+
+The desktop project targets `.NET 8`, so install the .NET 8 SDK first.
+
+From the repo root:
+
+```console
+$ ./scripts/package-macos-app.sh
+```
+
+This creates:
+
+- `dist/CSAUSBTool-osx-arm64.app` on Apple Silicon
+- `dist/CSAUSBTool-osx-x64.app` on Intel Macs
+
+The script performs restore/build/publish/package automatically.
+
+Run it with:
+
+```console
+$ open dist/CSAUSBTool-osx-arm64.app
+```
+
+Optional:
+
+```console
+$ ./scripts/package-macos-app.sh --all
+$ ./scripts/package-macos-app.sh --rid osx-x64 --dmg
+```
+
+- `--all` builds/packages both Apple Silicon and Intel app bundles.
+- `--dmg` creates a DMG in `dist/` for each runtime built.
+
+If macOS blocks launch, clear quarantine and retry:
+
+```console
+$ xattr -dr com.apple.quarantine dist/CSAUSBTool-osx-arm64.app
+$ open dist/CSAUSBTool-osx-arm64.app
+```
