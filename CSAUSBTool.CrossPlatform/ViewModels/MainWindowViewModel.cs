@@ -64,6 +64,7 @@ public class MainWindowViewModel : ViewModelBase
             this.RaisePropertyChanged(nameof(IsDownloadFolderPathValid));
             this.RaisePropertyChanged(nameof(CanDownload));
             this.RaisePropertyChanged(nameof(CanVerify));
+            IsStep4Done = IsDownloadFolderPathValid;
             if (!IsBusy)
             {
                 UpdateGuidanceHint();
@@ -80,6 +81,69 @@ public class MainWindowViewModel : ViewModelBase
         get => _statusText;
         set => this.RaiseAndSetIfChanged(ref _statusText, value);
     }
+
+    private bool _isStep1Done;
+    public bool IsStep1Done
+    {
+        get => _isStep1Done;
+        private set
+        {
+            this.RaiseAndSetIfChanged(ref _isStep1Done, value);
+            this.RaisePropertyChanged(nameof(Step1ButtonText));
+        }
+    }
+
+    private bool _isStep2Done;
+    public bool IsStep2Done
+    {
+        get => _isStep2Done;
+        private set
+        {
+            this.RaiseAndSetIfChanged(ref _isStep2Done, value);
+            this.RaisePropertyChanged(nameof(Step2ButtonText));
+        }
+    }
+
+    private bool _isStep4Done;
+    public bool IsStep4Done
+    {
+        get => _isStep4Done;
+        private set
+        {
+            this.RaiseAndSetIfChanged(ref _isStep4Done, value);
+            this.RaisePropertyChanged(nameof(Step4ButtonText));
+        }
+    }
+
+    private bool _isStep5Done;
+    public bool IsStep5Done
+    {
+        get => _isStep5Done;
+        private set
+        {
+            this.RaiseAndSetIfChanged(ref _isStep5Done, value);
+            this.RaisePropertyChanged(nameof(Step5ButtonText));
+        }
+    }
+
+    private bool _isStep6Done;
+    public bool IsStep6Done
+    {
+        get => _isStep6Done;
+        private set
+        {
+            this.RaiseAndSetIfChanged(ref _isStep6Done, value);
+            this.RaisePropertyChanged(nameof(Step6ButtonText));
+        }
+    }
+
+    public string Step1ButtonText => IsStep1Done ? "✅ Step 1: Fetch JSON List" : "Step 1: Fetch JSON List";
+    public string Step2ButtonText => IsStep2Done ? "✅ Step 2: Load Selected JSON" : "Step 2: Load Selected JSON";
+    public bool IsStep3Done => SoftwareItems.Any(s => s.IsChecked && s.IsSelectable);
+    public string Step3Text => IsStep3Done ? "✅ Step 3: Select by tag" : "Step 3: Select by tag";
+    public string Step4ButtonText => IsStep4Done ? "✅ Step 4: Select Folder" : "Step 4: Select Folder";
+    public string Step5ButtonText => IsStep5Done ? "✅ Step 5: Download Selected" : "Step 5: Download Selected";
+    public string Step6ButtonText => IsStep6Done ? "✅ Step 6: Verify MD5" : "Step 6: Verify MD5";
 
     private bool _isBusy;
     public bool IsBusy
@@ -110,9 +174,13 @@ public class MainWindowViewModel : ViewModelBase
         }
 
         IsBusy = true;
-        StatusText = "In progress: Fetching JSON files...";
+        StatusText = InProgress("Fetching JSON files...");
         JsonFiles.Clear();
         _jsonPathToUrl.Clear();
+        IsStep1Done = false;
+        IsStep2Done = false;
+        IsStep5Done = false;
+        IsStep6Done = false;
 
         try
         {
@@ -129,6 +197,7 @@ public class MainWindowViewModel : ViewModelBase
             if (results.Count == 0)
             {
                 StatusText = "Hint: No JSON files found. Check your config URL and try Step 1 again.";
+                IsStep1Done = false;
                 return;
             }
 
@@ -138,10 +207,12 @@ public class MainWindowViewModel : ViewModelBase
                 .First();
 
             SelectedJsonFile = latest.Path;
-            StatusText = $"Hint: Click Step 2 to load software. Auto-selected newest file: {latest.Path}";
+            IsStep1Done = true;
+            StatusText = $"Complete: Step 1 ✅ fetched JSON list. Auto-selected newest file: {latest.Path}.";
         }
         catch (Exception ex)
         {
+            IsStep1Done = false;
             StatusText = "Error: Could not fetch JSON files. Check network/config and try Step 1 again.";
             throw new InvalidOperationException($"Failed to fetch JSON list: {ex.Message}", ex);
         }
@@ -164,12 +235,17 @@ public class MainWindowViewModel : ViewModelBase
         }
 
         IsBusy = true;
+        IsStep2Done = false;
+        IsStep5Done = false;
+        IsStep6Done = false;
         try
         {
             await LoadJsonInternalAsync(SelectedJsonFile, downloadUrl);
+            IsStep2Done = SoftwareItems.Count > 0;
         }
         catch (Exception ex)
         {
+            IsStep2Done = false;
             StatusText = "Error: Could not load selected JSON. Try Step 2 again or choose another file.";
             throw new InvalidOperationException($"Failed to load selected JSON: {ex.Message}", ex);
         }
@@ -243,7 +319,9 @@ public class MainWindowViewModel : ViewModelBase
         }
 
         IsBusy = true;
-        StatusText = $"In progress: Downloading {selected.Count} selected item(s)...";
+        IsStep5Done = false;
+        IsStep6Done = false;
+        StatusText = InProgress($"Downloading {selected.Count} selected item(s)...");
         _operationCts = new CancellationTokenSource();
         var token = _operationCts.Token;
 
@@ -300,14 +378,19 @@ public class MainWindowViewModel : ViewModelBase
             }
 
             var failedCount = selected.Count - successful.Count;
+            IsStep5Done = !token.IsCancellationRequested && failedCount == 0 && selected.Count > 0;
             StatusText = token.IsCancellationRequested
                 ? $"Aborted: Download cancelled. Success: {successful.Count}, Failed: {failedCount}. Retry failed items if needed."
-                : $"Complete: Download finished. Success: {successful.Count}, Failed: {failedCount}. Next: Run Step 6 to Verify MD5.";
+                : IsStep5Done
+                    ? $"Complete: Step 5 ✅ download finished. Success: {successful.Count}, Failed: {failedCount}. Next: Step 6 Verify MD5."
+                    : $"Complete: Download finished. Success: {successful.Count}, Failed: {failedCount}. Next: Step 6 Verify MD5.";
             _pendingCompletionDialog = (
                 "Download Result",
                 token.IsCancellationRequested
                     ? $"Aborted: Download cancelled.\nSuccess: {successful.Count}\nFailed: {failedCount}"
-                    : $"Complete: Download finished.\nSuccess: {successful.Count}\nFailed: {failedCount}\n\nNext: Run Step 6 to Verify MD5."
+                    : IsStep5Done
+                        ? $"Complete: Step 5 ✅ download finished.\nSuccess: {successful.Count}\nFailed: {failedCount}\n\nNext: Step 6 Verify MD5."
+                        : $"Complete: Download finished.\nSuccess: {successful.Count}\nFailed: {failedCount}\n\nNext: Step 6 Verify MD5."
             );
         }
         finally
@@ -339,7 +422,8 @@ public class MainWindowViewModel : ViewModelBase
         }
 
         IsBusy = true;
-        StatusText = "In progress: Verifying MD5 hashes...";
+        IsStep6Done = false;
+        StatusText = InProgress("Verifying MD5 hashes...");
         _operationCts = new CancellationTokenSource();
         var token = _operationCts.Token;
 
@@ -405,14 +489,20 @@ public class MainWindowViewModel : ViewModelBase
                 item.IsChecked = item.IsSelectable;
             }
 
-            StatusText = $"Complete: Verify finished. OK: {ok}, Fail: {fail}, Missing: {missing}.";
+            IsStep6Done = fail == 0 && missing == 0;
+            StatusText = IsStep6Done
+                ? $"Complete: Step 6 ✅ verify finished. OK: {ok}, Fail: {fail}, Missing: {missing}."
+                : $"Complete: Verify finished. OK: {ok}, Fail: {fail}, Missing: {missing}.";
             _pendingCompletionDialog = (
                 "Verify Result",
-                $"Complete: Verify finished.\nOK: {ok}\nFail: {fail}\nMissing: {missing}"
+                IsStep6Done
+                    ? $"Complete: Step 6 ✅ verify finished.\nOK: {ok}\nFail: {fail}\nMissing: {missing}"
+                    : $"Complete: Verify finished.\nOK: {ok}\nFail: {fail}\nMissing: {missing}"
             );
         }
         catch (OperationCanceledException)
         {
+            IsStep6Done = false;
             StatusText = "Aborted: Verify cancelled.";
             _pendingCompletionDialog = ("Verify Result", "Aborted: Verify cancelled.");
         }
@@ -598,7 +688,7 @@ public class MainWindowViewModel : ViewModelBase
 
     private async Task LoadJsonInternalAsync(string selectedPath, string downloadUrl)
     {
-        StatusText = $"In progress: Loading software from {selectedPath}...";
+        StatusText = InProgress($"Loading software from {selectedPath}...");
 
         await using var stream = await _httpClient.GetStreamAsync(downloadUrl);
         var season = await JsonSerializer.DeserializeAsync<SeasonSoftwareList>(stream, new JsonSerializerOptions
@@ -610,6 +700,8 @@ public class MainWindowViewModel : ViewModelBase
         DetachSoftwareObservers();
         TagOptions.Clear();
         TagOptions.Add("All Tags");
+        this.RaisePropertyChanged(nameof(IsStep3Done));
+        this.RaisePropertyChanged(nameof(Step3Text));
 
         if (season?.Software == null || season.Software.Count == 0)
         {
@@ -641,9 +733,11 @@ public class MainWindowViewModel : ViewModelBase
         }
 
         SelectedTag = "All Tags";
-        StatusText = $"Hint: Step 3 - select software with checkboxes. Loaded {SoftwareItems.Count} entries.";
+        StatusText = $"Complete: Step 2 ✅ loaded {SoftwareItems.Count} entries. Hint: Step 3 - select software with checkboxes.";
         this.RaisePropertyChanged(nameof(CanDownload));
         this.RaisePropertyChanged(nameof(CanVerify));
+        this.RaisePropertyChanged(nameof(IsStep3Done));
+        this.RaisePropertyChanged(nameof(Step3Text));
     }
 
     private void AttachSoftwareObservers()
@@ -676,6 +770,8 @@ public class MainWindowViewModel : ViewModelBase
         }
 
         this.RaisePropertyChanged(nameof(CanDownload));
+        this.RaisePropertyChanged(nameof(IsStep3Done));
+        this.RaisePropertyChanged(nameof(Step3Text));
         if (!IsBusy)
         {
             UpdateGuidanceHint();
@@ -804,6 +900,11 @@ public class MainWindowViewModel : ViewModelBase
     private static void SetItemStatus(ControlSystemSoftware item, string status)
     {
         Dispatcher.UIThread.Post(() => item.StatusText = status);
+    }
+
+    private static string InProgress(string details)
+    {
+        return $"In progress ⏳: {details}";
     }
 
     [DllImport("kernel32.dll")]

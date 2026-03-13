@@ -10,6 +10,8 @@ namespace CSAUSBTool.CrossPlatform.Views;
 
 public partial class MainWindow : Window
 {
+    private bool _startupFetchTriggered;
+
     public MainWindow()
     {
         InitializeComponent();
@@ -26,9 +28,31 @@ public partial class MainWindow : Window
 
     private async void FetchJsonList_OnClick(object? sender, RoutedEventArgs e)
     {
+        await RunStep1AndAutoStep2Async();
+    }
+
+    protected override async void OnOpened(EventArgs e)
+    {
+        base.OnOpened(e);
+        if (_startupFetchTriggered)
+        {
+            return;
+        }
+
+        _startupFetchTriggered = true;
+        await System.Threading.Tasks.Task.Delay(1000);
+        await RunStep1AndAutoStep2Async();
+    }
+
+    private async System.Threading.Tasks.Task RunStep1AndAutoStep2Async()
+    {
         try
         {
             await Vm.FetchJsonListAsync();
+            if (Vm.IsStep1Done && !string.IsNullOrWhiteSpace(Vm.SelectedJsonFile))
+            {
+                await Vm.LoadSelectedJsonAsync();
+            }
         }
         catch (Exception ex)
         {
@@ -115,6 +139,11 @@ public partial class MainWindow : Window
         {
             await Vm.DownloadSelectedAsync();
             await ShowCompletionIfAnyAsync();
+            if (Vm.IsStep5Done && Vm.CanVerify)
+            {
+                await Vm.VerifyMd5Async();
+                await ShowCompletionIfAnyAsync();
+            }
         }
         catch (Exception ex)
         {
