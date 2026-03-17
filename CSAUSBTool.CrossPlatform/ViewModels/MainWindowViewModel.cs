@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
@@ -12,6 +14,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using Avalonia.Threading;
+using CSAUSBTool.CrossPlatform.Core;
 using CSAUSBTool.CrossPlatform.Models;
 using ReactiveUI;
 
@@ -19,9 +22,11 @@ namespace CSAUSBTool.CrossPlatform.ViewModels;
 
 public class MainWindowViewModel : ViewModelBase
 {
-    private const string DefaultRepoApiListsUrl = "https://api.github.com/repos/JamieSinn/CSA-USB-Tool/contents/Lists";
 
     private readonly HttpClient _httpClient;
+    private readonly RepoSettingsService _repoSettingsService = new();
+    private AppSettings _settings = new();
+    private bool _temporaryShowSettingsButton;
     private readonly Dictionary<string, string> _jsonPathToUrl = new(StringComparer.OrdinalIgnoreCase);
     private readonly List<ControlSystemSoftware> _observedSoftwareItems = [];
     private CancellationTokenSource? _operationCts;
@@ -29,8 +34,10 @@ public class MainWindowViewModel : ViewModelBase
 
     public ObservableCollection<string> JsonFiles { get; } = [];
     public ObservableCollection<string> TagOptions { get; } = ["All Tags"];
+    public ObservableCollection<string> Step3TabOptions { get; } = [];
     public ObservableCollection<int> MaxParallelOptions { get; } = [1, 2, 3, 4, 5, 6];
     public ObservableCollection<ControlSystemSoftware> SoftwareItems { get; } = [];
+    public ObservableCollection<ControlSystemSoftware> Step3TabItems { get; } = [];
 
     private string? _selectedJsonFile;
     public string? SelectedJsonFile
@@ -60,14 +67,50 @@ public class MainWindowViewModel : ViewModelBase
     public int MaxParallelDownloads
     {
         get => _maxParallelDownloads;
-        set => this.RaiseAndSetIfChanged(ref _maxParallelDownloads, value);
+        set
+        {
+            if (IsMaxParallelDownloadsEditable)
+            {
+                this.RaiseAndSetIfChanged(ref _maxParallelDownloads, value);
+            }
+        }
+    }
+
+    private string? _selectedStep3Tab;
+    public string? SelectedStep3Tab
+    {
+        get => _selectedStep3Tab;
+        set
+        {
+            var previous = _selectedStep3Tab;
+            this.RaiseAndSetIfChanged(ref _selectedStep3Tab, value);
+            if (!string.Equals(previous, value, StringComparison.OrdinalIgnoreCase)
+                && IsStep3TabView)
+            {
+                foreach (var item in SoftwareItems)
+                {
+                    item.IsChecked = false;
+                }
+
+                this.RaisePropertyChanged(nameof(CanDownload));
+                this.RaisePropertyChanged(nameof(IsStep3Done));
+                this.RaisePropertyChanged(nameof(Step3Text));
+            }
+            RefreshStep3TabItems();
+        }
     }
 
     private bool _verifyAfterDownload = true;
     public bool VerifyAfterDownload
     {
         get => _verifyAfterDownload;
-        set => this.RaiseAndSetIfChanged(ref _verifyAfterDownload, value);
+        set
+        {
+            if (IsVerifyAfterDownloadEditable)
+            {
+                this.RaiseAndSetIfChanged(ref _verifyAfterDownload, value);
+            }
+        }
     }
 
     private string _downloadFolder = string.Empty;
@@ -118,6 +161,7 @@ public class MainWindowViewModel : ViewModelBase
         {
             this.RaiseAndSetIfChanged(ref _isStep2Done, value);
             this.RaisePropertyChanged(nameof(Step2ButtonText));
+            this.RaisePropertyChanged(nameof(Step1ButtonText));
         }
     }
 
@@ -154,7 +198,31 @@ public class MainWindowViewModel : ViewModelBase
         }
     }
 
-    public string Step1ButtonText => IsStep1Done ? "✅ Step 1: Fetch JSON List" : "Step 1: Fetch JSON List";
+    public bool IsRawFetchMode => string.Equals(_settings.FetchMethod, "raw_url", StringComparison.OrdinalIgnoreCase);
+    public bool IsStep3TagView => !string.Equals(_settings.Step3ViewMode, "tab_view", StringComparison.OrdinalIgnoreCase);
+    public bool IsStep3TabView => string.Equals(_settings.Step3ViewMode, "tab_view", StringComparison.OrdinalIgnoreCase);
+    public bool ShowStep2Button => !IsRawFetchMode;
+    public bool ShowJsonSelection => !IsRawFetchMode;
+    public bool AutoFetchOnStartup => _settings.AutoFetchOnStartup;
+    public int AutoFetchDelaySeconds => _settings.AutoFetchDelaySeconds;
+    public bool IsVerifyAfterDownloadEditable => !_settings.LockVerifyAfterDownload;
+    public bool IsMaxParallelDownloadsEditable => !_settings.LockMaxParallelDownloads;
+    public bool ShowSettingsButton => _temporaryShowSettingsButton || !_settings.HideSetting;
+
+    public string Step1ButtonText
+    {
+        get
+        {
+            if (IsRawFetchMode)
+            {
+                var target = GetTargetJsonFileNameForDisplay(includeLargestLabel: false);
+                var prefix = IsStep1Done && IsStep2Done ? "✅ " : string.Empty;
+                return $"{prefix}Step 1&2: Fetch {target}";
+            }
+
+            return IsStep1Done ? "✅ Step 1: Fetch JSON List" : "Step 1: Fetch JSON List";
+        }
+    }
     public string Step2ButtonText => IsStep2Done ? "✅ Step 2: Load Selected JSON" : "Step 2: Load Selected JSON";
     public bool IsStep3Done => SoftwareItems.Any(s => s.IsChecked && s.IsSelectable);
     public string Step3Text => IsStep3Done ? "✅ Step 3: Select by tag" : "Step 3: Select by tag";
@@ -181,6 +249,40 @@ public class MainWindowViewModel : ViewModelBase
     {
         _httpClient = new HttpClient { Timeout = TimeSpan.FromMinutes(10) };
         _httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("CSA-USB-Tool-CrossPlatform/1.0");
+        ReloadSettings();
+    }
+
+    public void ReloadSettings()
+    {
+        _settings = _repoSettingsService.LoadSettings();
+        _verifyAfterDownload = _settings.DefaultVerifyAfterDownload;
+        _maxParallelDownloads = _settings.DefaultMaxParallelDownloads;
+        this.RaisePropertyChanged(nameof(VerifyAfterDownload));
+        this.RaisePropertyChanged(nameof(MaxParallelDownloads));
+        this.RaisePropertyChanged(nameof(IsRawFetchMode));
+        this.RaisePropertyChanged(nameof(IsStep3TagView));
+        this.RaisePropertyChanged(nameof(IsStep3TabView));
+        this.RaisePropertyChanged(nameof(ShowStep2Button));
+        this.RaisePropertyChanged(nameof(ShowJsonSelection));
+        this.RaisePropertyChanged(nameof(AutoFetchOnStartup));
+        this.RaisePropertyChanged(nameof(AutoFetchDelaySeconds));
+        this.RaisePropertyChanged(nameof(IsVerifyAfterDownloadEditable));
+        this.RaisePropertyChanged(nameof(IsMaxParallelDownloadsEditable));
+        this.RaisePropertyChanged(nameof(ShowSettingsButton));
+        this.RaisePropertyChanged(nameof(Step1ButtonText));
+        RefreshStep3TabData();
+        UpdateGuidanceHint();
+    }
+
+    public void EnableTemporarySettingsButton()
+    {
+        if (_temporaryShowSettingsButton)
+        {
+            return;
+        }
+
+        _temporaryShowSettingsButton = true;
+        this.RaisePropertyChanged(nameof(ShowSettingsButton));
     }
 
     public async Task FetchJsonListAsync()
@@ -201,31 +303,36 @@ public class MainWindowViewModel : ViewModelBase
 
         try
         {
-            var repoApiUrl = LoadRepoApiListsUrl();
-            var results = new List<(string Path, string DownloadUrl)>();
-            await CollectJsonFilesRecursiveAsync(repoApiUrl, results);
-
-            foreach (var item in results.OrderBy(x => x.Path, StringComparer.OrdinalIgnoreCase))
+            ReloadSettings();
+            if (IsRawFetchMode)
             {
-                JsonFiles.Add(item.Path);
-                _jsonPathToUrl[item.Path] = item.DownloadUrl;
+                await FetchFromRawUrlTemplateAsync();
+            }
+            else
+            {
+                var repoApiUrl = LoadRepoApiListsUrl();
+                var results = new List<(string Path, string DownloadUrl)>();
+                await CollectJsonFilesRecursiveAsync(repoApiUrl, results);
+
+                foreach (var item in results.OrderBy(x => x.Path, StringComparer.OrdinalIgnoreCase))
+                {
+                    JsonFiles.Add(item.Path);
+                    _jsonPathToUrl[item.Path] = item.DownloadUrl;
+                }
+
+                if (results.Count == 0)
+                {
+                    StatusText = "Hint: No JSON files found. Check your config URL and try Step 1 again.";
+                    IsStep1Done = false;
+                    return;
+                }
+
+                var selected = SelectJsonBySettings(results);
+                SelectedJsonFile = selected.Path;
+                StatusText = $"Complete: Step 1 ✅ fetched JSON list. Selected file: {selected.Path}.";
             }
 
-            if (results.Count == 0)
-            {
-                StatusText = "Hint: No JSON files found. Check your config URL and try Step 1 again.";
-                IsStep1Done = false;
-                return;
-            }
-
-            var latest = results
-                .OrderByDescending(x => ExtractYearFromPath(x.Path))
-                .ThenBy(x => x.Path, StringComparer.OrdinalIgnoreCase)
-                .First();
-
-            SelectedJsonFile = latest.Path;
             IsStep1Done = true;
-            StatusText = $"Complete: Step 1 ✅ fetched JSON list. Auto-selected newest file: {latest.Path}.";
         }
         catch (Exception ex)
         {
@@ -348,7 +455,7 @@ public class MainWindowViewModel : ViewModelBase
             item.StatusText = "Queued";
         }
 
-        var successful = new HashSet<ControlSystemSoftware>();
+        var successful = new ConcurrentBag<ControlSystemSoftware>();
         PreventSystemSleep();
 
         try
@@ -388,31 +495,32 @@ public class MainWindowViewModel : ViewModelBase
 
             if (!token.IsCancellationRequested)
             {
-                foreach (var item in successful)
+                foreach (var item in successful.Distinct())
                 {
                     item.IsChecked = false;
                 }
             }
 
-            var failedCount = selected.Count - successful.Count;
+            var successfulCount = successful.Distinct().Count();
+            var failedCount = selected.Count - successfulCount;
             IsStep5Done = !token.IsCancellationRequested && failedCount == 0 && selected.Count > 0;
             var willAutoVerify = VerifyAfterDownload && IsStep5Done;
             StatusText = token.IsCancellationRequested
-                ? $"Aborted: Download cancelled. Success: {successful.Count}, Failed: {failedCount}. Retry failed items if needed."
+                ? $"Aborted: Download cancelled. Success: {successfulCount}, Failed: {failedCount}. Retry failed items if needed."
                 : IsStep5Done
                     ? willAutoVerify
-                        ? $"Complete: Step 5 ✅ download finished. Success: {successful.Count}, Failed: {failedCount}. MD5 verify in progress."
-                        : $"Complete: Step 5 ✅ download finished. Success: {successful.Count}, Failed: {failedCount}. Next: Step 6 Verify MD5."
-                    : $"Complete: Download finished. Success: {successful.Count}, Failed: {failedCount}. Next: Step 6 Verify MD5.";
+                        ? $"Complete: Step 5 ✅ download finished. Success: {successfulCount}, Failed: {failedCount}. MD5 verify in progress."
+                        : $"Complete: Step 5 ✅ download finished. Success: {successfulCount}, Failed: {failedCount}. Next: Step 6 Verify MD5."
+                    : $"Complete: Download finished. Success: {successfulCount}, Failed: {failedCount}. Next: Step 6 Verify MD5.";
             _pendingCompletionDialog = (
                 "Download Result",
                 token.IsCancellationRequested
-                    ? $"Aborted: Download cancelled.\nSuccess: {successful.Count}\nFailed: {failedCount}"
+                    ? $"Aborted: Download cancelled.\nSuccess: {successfulCount}\nFailed: {failedCount}"
                     : IsStep5Done
                         ? willAutoVerify
-                            ? $"Complete: Step 5 ✅ download finished.\nSuccess: {successful.Count}\nFailed: {failedCount}\n\nMD5 verify in progress."
-                            : $"Complete: Step 5 ✅ download finished.\nSuccess: {successful.Count}\nFailed: {failedCount}\n\nNext: Step 6 Verify MD5."
-                        : $"Complete: Download finished.\nSuccess: {successful.Count}\nFailed: {failedCount}\n\nNext: Step 6 Verify MD5."
+                            ? $"Complete: Step 5 ✅ download finished.\nSuccess: {successfulCount}\nFailed: {failedCount}\n\nMD5 verify in progress."
+                            : $"Complete: Step 5 ✅ download finished.\nSuccess: {successfulCount}\nFailed: {failedCount}\n\nNext: Step 6 Verify MD5."
+                        : $"Complete: Download finished.\nSuccess: {successfulCount}\nFailed: {failedCount}\n\nNext: Step 6 Verify MD5."
             );
         }
         finally
@@ -595,6 +703,21 @@ public class MainWindowViewModel : ViewModelBase
         var finalPath = Path.Combine(DownloadFolder, safeFileName);
         var partPath = finalPath + ".part";
 
+        if (File.Exists(finalPath) && ShouldSkipDoNothing())
+        {
+            SetItemProgress(item, 100);
+            SetItemStatus(item, "Skipped: existing file");
+            return;
+        }
+
+        if (File.Exists(finalPath) && ShouldVerifyAndSkipIfMatch())
+        {
+            if (await TryVerifyExistingAndSkipAsync(item, finalPath, token))
+            {
+                return;
+            }
+        }
+
         SetItemStatus(item, "Downloading");
         SetItemProgress(item, 0);
 
@@ -672,6 +795,79 @@ public class MainWindowViewModel : ViewModelBase
 
         SetItemProgress(item, 100);
         SetItemStatus(item, "Success");
+    }
+
+    public void SelectAllInSelectedTab()
+    {
+        if (string.IsNullOrWhiteSpace(SelectedStep3Tab))
+        {
+            return;
+        }
+
+        foreach (var item in Step3TabItems.Where(s => s.IsSelectable))
+        {
+            item.IsChecked = true;
+        }
+
+        this.RaisePropertyChanged(nameof(CanDownload));
+        if (!IsBusy)
+        {
+            UpdateGuidanceHint();
+        }
+    }
+
+    public void DeselectAllInSelectedTab()
+    {
+        if (string.IsNullOrWhiteSpace(SelectedStep3Tab))
+        {
+            return;
+        }
+
+        foreach (var item in Step3TabItems)
+        {
+            item.IsChecked = false;
+        }
+
+        this.RaisePropertyChanged(nameof(CanDownload));
+        if (!IsBusy)
+        {
+            UpdateGuidanceHint();
+        }
+    }
+
+    private bool ShouldVerifyAndSkipIfMatch()
+    {
+        return string.Equals(_settings.FileExistsBehavior, "verify_then_skip_if_match", StringComparison.OrdinalIgnoreCase);
+    }
+
+    private bool ShouldSkipDoNothing()
+    {
+        return string.Equals(_settings.FileExistsBehavior, "skip_do_nothing", StringComparison.OrdinalIgnoreCase);
+    }
+
+    private async Task<bool> TryVerifyExistingAndSkipAsync(ControlSystemSoftware item, string finalPath, CancellationToken token)
+    {
+        if (string.IsNullOrWhiteSpace(item.Hash))
+        {
+            return false;
+        }
+
+        var algo = ControlSystemSoftware.GetHashAlgorithmFromLength(item.Hash);
+        if (algo == null)
+        {
+            return false;
+        }
+
+        SetItemStatus(item, $"Verifying existing {algo}");
+        var actualHash = await Task.Run(() => ControlSystemSoftware.CalculateHash(finalPath, algo), token);
+        if (!actualHash.Equals(item.Hash, StringComparison.OrdinalIgnoreCase))
+        {
+            return false;
+        }
+
+        SetItemProgress(item, 100);
+        SetItemStatus(item, "Skipped: existing file hash matches");
+        return true;
     }
 
     private async Task CollectJsonFilesRecursiveAsync(string apiUrl, List<(string Path, string DownloadUrl)> results)
@@ -755,6 +951,8 @@ public class MainWindowViewModel : ViewModelBase
             TagOptions.Add(tag);
         }
 
+        RefreshStep3TabData();
+
         SelectedTag = "All Tags";
         StatusText = $"Complete: Step 2 ✅ loaded {SoftwareItems.Count} entries. Hint: Step 3 - select software with checkboxes. Verify-only path: select folder in Step 4, then run Step 6.";
         this.RaisePropertyChanged(nameof(CanDownload));
@@ -774,6 +972,9 @@ public class MainWindowViewModel : ViewModelBase
         SoftwareItems.Clear();
         TagOptions.Clear();
         TagOptions.Add("All Tags");
+        Step3TabOptions.Clear();
+        Step3TabItems.Clear();
+        SelectedStep3Tab = null;
         SelectedTag = "All Tags";
 
         IsStep2Done = false;
@@ -843,13 +1044,22 @@ public class MainWindowViewModel : ViewModelBase
         {
             if (JsonFiles.Count == 0)
             {
-                StatusText = "Hint: Click Step 1 to fetch JSON files from the repository.";
+                StatusText = IsRawFetchMode
+                    ? "Hint: Click Step 1&2 to fetch and load the configured program/year JSON."
+                    : "Hint: Click Step 1 to fetch JSON files from the repository.";
                 return;
             }
 
-            StatusText = string.IsNullOrWhiteSpace(SelectedJsonFile)
-                ? "Hint: Choose a JSON file, then click Step 2 to load software."
-                : "Hint: Click Step 2 to load software from the selected JSON.";
+            if (IsRawFetchMode)
+            {
+                StatusText = "Hint: Click Step 1&2 to fetch and load software from the configured JSON.";
+            }
+            else
+            {
+                StatusText = string.IsNullOrWhiteSpace(SelectedJsonFile)
+                    ? "Hint: Choose a JSON file, then click Step 2 to load software."
+                    : "Hint: Click Step 2 to load software from the selected JSON.";
+            }
             return;
         }
 
@@ -904,6 +1114,256 @@ public class MainWindowViewModel : ViewModelBase
         return years.DefaultIfEmpty(int.MinValue).Max();
     }
 
+    private void RefreshStep3TabData()
+    {
+        Step3TabOptions.Clear();
+        Step3TabOptions.Add("All Tags");
+        foreach (var tag in SoftwareItems
+                     .SelectMany(s => s.Tags)
+                     .Where(t => !string.IsNullOrWhiteSpace(t))
+                     .Distinct(StringComparer.OrdinalIgnoreCase)
+                     .OrderBy(t => t, StringComparer.OrdinalIgnoreCase))
+        {
+            Step3TabOptions.Add(tag);
+        }
+
+        if (Step3TabOptions.Count == 0)
+        {
+            SelectedStep3Tab = null;
+            Step3TabItems.Clear();
+            return;
+        }
+
+        if (string.IsNullOrWhiteSpace(SelectedStep3Tab)
+            || !Step3TabOptions.Contains(SelectedStep3Tab, StringComparer.OrdinalIgnoreCase))
+        {
+            SelectedStep3Tab = Step3TabOptions[0];
+            return;
+        }
+
+        RefreshStep3TabItems();
+    }
+
+    private void RefreshStep3TabItems()
+    {
+        Step3TabItems.Clear();
+        if (string.IsNullOrWhiteSpace(SelectedStep3Tab))
+        {
+            return;
+        }
+
+        var items = string.Equals(SelectedStep3Tab, "All Tags", StringComparison.OrdinalIgnoreCase)
+            ? SoftwareItems
+            : SoftwareItems.Where(s => s.Tags.Contains(SelectedStep3Tab, StringComparer.OrdinalIgnoreCase));
+
+        foreach (var item in items)
+        {
+            Step3TabItems.Add(item);
+        }
+    }
+
+    private (string Path, string DownloadUrl) SelectJsonBySettings(List<(string Path, string DownloadUrl)> results)
+    {
+        var program = GetEffectiveProgram();
+        if (string.Equals(_settings.YearMode, "largest_year", StringComparison.OrdinalIgnoreCase))
+        {
+            var candidates = results
+                .Select(item => new
+                {
+                    Item = item,
+                    Parsed = TryParseProgramYear(item.Path, out var parsedProgram, out var parsedYear)
+                        ? (Program: parsedProgram, Year: parsedYear, Valid: true)
+                        : (Program: string.Empty, Year: int.MinValue, Valid: false)
+                })
+                .Where(x => x.Parsed.Valid && string.Equals(x.Parsed.Program, program, StringComparison.OrdinalIgnoreCase))
+                .OrderByDescending(x => x.Parsed.Year)
+                .ThenBy(x => x.Item.Path, StringComparer.OrdinalIgnoreCase)
+                .Select(x => x.Item)
+                .ToList();
+
+            if (candidates.Count == 0)
+            {
+                throw new InvalidOperationException($"No JSON files found for program \"{program}\".");
+            }
+
+            return candidates[0];
+        }
+
+        var year = GetRequestedYearForDirectSelection();
+        var targetFileName = $"{program}{year}.json";
+        var match = results.FirstOrDefault(x => string.Equals(Path.GetFileName(x.Path), targetFileName, StringComparison.OrdinalIgnoreCase));
+        if (string.IsNullOrWhiteSpace(match.Path))
+        {
+            throw new InvalidOperationException($"Could not find \"{targetFileName}\" in repository list.");
+        }
+
+        return match;
+    }
+
+    private async Task FetchFromRawUrlTemplateAsync()
+    {
+        var program = GetEffectiveProgram();
+        var targetYear = GetRequestedYearForRaw(out var usingSystemYear);
+        var template = _repoSettingsService.GetRawListsUriRequired();
+
+        foreach (var candidateYear in GetRawCandidateYears(targetYear, usingSystemYear))
+        {
+            var fileName = $"{program}{candidateYear}.json";
+            var url = template.Replace("{Program}", program, StringComparison.Ordinal)
+                .Replace("{Year}", candidateYear.ToString(), StringComparison.Ordinal);
+
+            var probe = await ProbeUrlAsync(url);
+            if (probe.Exists)
+            {
+                JsonFiles.Add(fileName);
+                _jsonPathToUrl[fileName] = url;
+                SelectedJsonFile = fileName;
+                if (candidateYear != targetYear)
+                {
+                    StatusText = $"Complete: Step 1 ✅ fetched fallback JSON after 404. Selected file: {fileName}.";
+                }
+                else
+                {
+                    StatusText = $"Complete: Step 1 ✅ fetched configured JSON. Selected file: {fileName}.";
+                }
+
+                return;
+            }
+
+            if (!probe.NotFound)
+            {
+                throw new InvalidOperationException($"Failed to access {fileName}: {probe.ErrorMessage}");
+            }
+        }
+
+        throw new InvalidOperationException($"No matching JSON found for {program}{targetYear}.json using configured raw template URL.");
+    }
+
+    private IEnumerable<int> GetRawCandidateYears(int targetYear, bool usingSystemYear)
+    {
+        yield return targetYear;
+
+        if (usingSystemYear && _settings.RawSystemYearFallbackToPrevious && targetYear > 1900)
+        {
+            yield return targetYear - 1;
+        }
+    }
+
+    private async Task<(bool Exists, bool NotFound, string ErrorMessage)> ProbeUrlAsync(string url)
+    {
+        using var request = new HttpRequestMessage(HttpMethod.Get, url);
+        using var response = await _httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
+        if (response.StatusCode == HttpStatusCode.NotFound)
+        {
+            return (false, true, "404 Not Found");
+        }
+
+        if (!response.IsSuccessStatusCode)
+        {
+            return (false, false, $"{(int)response.StatusCode} {response.ReasonPhrase}");
+        }
+
+        return (true, false, string.Empty);
+    }
+
+    private string GetEffectiveProgram()
+    {
+        if (string.Equals(_settings.Program, "Other", StringComparison.OrdinalIgnoreCase))
+        {
+            if (string.IsNullOrWhiteSpace(_settings.OtherProgram))
+            {
+                throw new InvalidOperationException("Program is set to Other, but no custom program value is configured.");
+            }
+
+            return _settings.OtherProgram.Trim();
+        }
+
+        if (string.IsNullOrWhiteSpace(_settings.Program))
+        {
+            throw new InvalidOperationException("Program setting is empty.");
+        }
+
+        return _settings.Program.Trim();
+    }
+
+    private int GetRequestedYearForDirectSelection()
+    {
+        if (string.Equals(_settings.YearMode, "system_year", StringComparison.OrdinalIgnoreCase))
+        {
+            return DateTime.Now.Year;
+        }
+
+        if (string.Equals(_settings.YearMode, "manual_year", StringComparison.OrdinalIgnoreCase))
+        {
+            return ValidateManualYear(_settings.ManualYear);
+        }
+
+        throw new InvalidOperationException("Year mode is set to largest year. Use this mode with API list selection.");
+    }
+
+    private int GetRequestedYearForRaw(out bool usingSystemYear)
+    {
+        usingSystemYear = false;
+
+        if (string.Equals(_settings.YearMode, "system_year", StringComparison.OrdinalIgnoreCase))
+        {
+            usingSystemYear = true;
+            return DateTime.Now.Year;
+        }
+
+        if (string.Equals(_settings.YearMode, "manual_year", StringComparison.OrdinalIgnoreCase))
+        {
+            return ValidateManualYear(_settings.ManualYear);
+        }
+
+        throw new InvalidOperationException("Raw URL fetch mode supports system year or manual year only.");
+    }
+
+    private static int ValidateManualYear(int year)
+    {
+        if (year is < 1900 or > 3000)
+        {
+            throw new InvalidOperationException("Manual year must be between 1900 and 3000.");
+        }
+
+        return year;
+    }
+
+    private string GetTargetJsonFileNameForDisplay(bool includeLargestLabel)
+    {
+        var program = string.Equals(_settings.Program, "Other", StringComparison.OrdinalIgnoreCase)
+            ? string.IsNullOrWhiteSpace(_settings.OtherProgram) ? "Other" : _settings.OtherProgram.Trim()
+            : _settings.Program;
+
+        if (string.Equals(_settings.YearMode, "system_year", StringComparison.OrdinalIgnoreCase))
+        {
+            return $"{program}{DateTime.Now.Year}.json";
+        }
+
+        if (string.Equals(_settings.YearMode, "manual_year", StringComparison.OrdinalIgnoreCase))
+        {
+            return $"{program}{_settings.ManualYear}.json";
+        }
+
+        return includeLargestLabel ? $"{program}<largest>.json" : $"{program}[largest].json";
+    }
+
+    private static bool TryParseProgramYear(string path, out string program, out int year)
+    {
+        program = string.Empty;
+        year = 0;
+
+        var fileName = Path.GetFileNameWithoutExtension(path);
+        var match = Regex.Match(fileName, @"^(?<program>[A-Za-z]+)(?<year>\d{4})$");
+        if (!match.Success)
+        {
+            return false;
+        }
+
+        program = match.Groups["program"].Value;
+        return int.TryParse(match.Groups["year"].Value, out year);
+    }
+
     private static string SanitizeFileName(string name)
     {
         var invalid = Path.GetInvalidFileNameChars();
@@ -912,32 +1372,7 @@ public class MainWindowViewModel : ViewModelBase
 
     private string LoadRepoApiListsUrl()
     {
-        var candidates = new[]
-        {
-            Path.Combine(AppContext.BaseDirectory, "config.json"),
-            Path.Combine(Environment.CurrentDirectory, "config.json")
-        };
-
-        foreach (var path in candidates)
-        {
-            if (!File.Exists(path))
-            {
-                continue;
-            }
-
-            using var stream = File.OpenRead(path);
-            using var doc = JsonDocument.Parse(stream);
-            if (doc.RootElement.TryGetProperty("repo_api_lists_url", out var value))
-            {
-                var url = value.GetString();
-                if (!string.IsNullOrWhiteSpace(url))
-                {
-                    return url;
-                }
-            }
-        }
-
-        return DefaultRepoApiListsUrl;
+        return _repoSettingsService.GetRepoApiListsUrlRequired();
     }
 
     private static void SetItemProgress(ControlSystemSoftware item, double value)

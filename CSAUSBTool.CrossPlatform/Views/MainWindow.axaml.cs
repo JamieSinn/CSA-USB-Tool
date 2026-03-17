@@ -3,7 +3,9 @@ using System.Diagnostics;
 using System.IO;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using Avalonia.Input;
 using Avalonia.Platform.Storage;
+using CSAUSBTool.CrossPlatform.Core;
 using CSAUSBTool.CrossPlatform.ViewModels;
 
 namespace CSAUSBTool.CrossPlatform.Views;
@@ -12,6 +14,7 @@ public partial class MainWindow : Window
 {
     private bool _startupFetchTriggered;
     private Window? _activeCompletionDialog;
+    private string _typedKeyBuffer = string.Empty;
 
     public MainWindow()
     {
@@ -22,6 +25,13 @@ public partial class MainWindow : Window
         if (tagSelector != null)
         {
             tagSelector.SelectionChanged += TagSelection_OnChanged;
+        }
+
+        KeyDown += MainWindow_OnKeyDown;
+        if (RuntimeOverrides.EnableSettingFromArg)
+        {
+            Vm.EnableTemporarySettingsButton();
+            Vm.StatusText = "Temporary settings override enabled for this run (--showsetting).";
         }
     }
 
@@ -40,8 +50,18 @@ public partial class MainWindow : Window
             return;
         }
 
+        Vm.ReloadSettings();
         _startupFetchTriggered = true;
-        await System.Threading.Tasks.Task.Delay(1000);
+        if (!Vm.AutoFetchOnStartup)
+        {
+            return;
+        }
+
+        if (Vm.AutoFetchDelaySeconds > 0)
+        {
+            await System.Threading.Tasks.Task.Delay(TimeSpan.FromSeconds(Vm.AutoFetchDelaySeconds));
+        }
+
         await RunStep1AndAutoStep2Async();
     }
 
@@ -66,6 +86,24 @@ public partial class MainWindow : Window
         try
         {
             await Vm.LoadSelectedJsonAsync();
+        }
+        catch (Exception ex)
+        {
+            await ShowErrorAsync(ex.Message);
+        }
+    }
+
+    private async void OpenSettings_OnClick(object? sender, RoutedEventArgs e)
+    {
+        try
+        {
+            var settingsWindow = new SettingsWindow(new RepoSettingsService());
+            var saved = await settingsWindow.ShowDialog<bool>(this);
+            if (saved)
+            {
+                Vm.ReloadSettings();
+                Vm.StatusText = "Complete: Settings saved.";
+            }
         }
         catch (Exception ex)
         {
@@ -99,6 +137,16 @@ public partial class MainWindow : Window
     private void DeselectAll_OnClick(object? sender, RoutedEventArgs e)
     {
         Vm.DeselectAll();
+    }
+
+    private void SelectAllInTab_OnClick(object? sender, RoutedEventArgs e)
+    {
+        Vm.SelectAllInSelectedTab();
+    }
+
+    private void DeselectAllInTab_OnClick(object? sender, RoutedEventArgs e)
+    {
+        Vm.DeselectAllInSelectedTab();
     }
 
     private async void SelectFolder_OnClick(object? sender, RoutedEventArgs e)
@@ -365,5 +413,38 @@ public partial class MainWindow : Window
         }
 
         Process.Start(psi);
+    }
+
+    private void MainWindow_OnKeyDown(object? sender, KeyEventArgs e)
+    {
+        if (e.KeyModifiers != KeyModifiers.None)
+        {
+            return;
+        }
+
+        if (e.Key == Key.Back)
+        {
+            _typedKeyBuffer = string.Empty;
+            return;
+        }
+
+        var keyText = e.Key.ToString();
+        if (string.IsNullOrWhiteSpace(keyText) || keyText.Length != 1 || !char.IsLetter(keyText[0]))
+        {
+            return;
+        }
+
+        _typedKeyBuffer += keyText.ToLowerInvariant();
+        if (_typedKeyBuffer.Length > 24)
+        {
+            _typedKeyBuffer = _typedKeyBuffer[^24..];
+        }
+
+        if (_typedKeyBuffer.EndsWith("showsetting", StringComparison.Ordinal))
+        {
+            Vm.EnableTemporarySettingsButton();
+            Vm.StatusText = "Temporary settings override enabled for this run (typed showsetting).";
+            _typedKeyBuffer = string.Empty;
+        }
     }
 }

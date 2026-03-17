@@ -1,0 +1,123 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        d:DesignWidth="340"
+        d:DesignHeight="620"
+        x:Class="CSAUSBTool.CrossPlatform.Views.SettingsWindow"
+        Title="Settings"
+        Width="340"
+        SizeToContent="Manual">
+  <ScrollViewer VerticalScrollBarVisibility="Auto">
+    <StackPanel Margin="16" Spacing="10">
+      <TextBlock Text="Fetch Method" FontWeight="SemiBold" />
+      <ComboBox x:Name="FetchMethodComboBox" SelectionChanged="FetchMethod_OnChanged">
+        <ComboBoxItem Content="GitHub API (List + Select)" Tag="github_api" />
+        <ComboBoxItem Content="Raw File URL ({Program}{Year}.json)" Tag="raw_url" />
+      </ComboBox>
+
+      <TextBlock Text="Program" FontWeight="SemiBold" Margin="0,8,0,0" />
+      <StackPanel Orientation="Horizontal" Spacing="8">
+        <ComboBox x:Name="ProgramComboBox" SelectionChanged="Program_OnChanged" Width="140">
+          <ComboBoxItem Content="FRC" Tag="FRC" />
+          <ComboBoxItem Content="FTC" Tag="FTC" />
+          <ComboBoxItem Content="FLL" Tag="FLL" />
+          <ComboBoxItem Content="Other" Tag="Other" />
+        </ComboBox>
+        <TextBox x:Name="OtherProgramTextBox"
+                 IsVisible="False"
+                 Width="150"
+                 Watermark="Enter custom program code (e.g. RoboMaster)" />
+      </StackPanel>
+
+      <TextBlock Text="Year Selection" FontWeight="SemiBold" Margin="0,8,0,0" />
+      <RadioButton x:Name="LargestYearRadioButton"
+                   GroupName="YearMode"
+                   Checked="YearMode_OnChanged"
+                   Content="Use largest year from available JSON files" />
+      <RadioButton x:Name="SystemYearRadioButton"
+                   GroupName="YearMode"
+                   Checked="YearMode_OnChanged"
+                   Content="Use system year (DateTime.Now.Year)" />
+      <CheckBox x:Name="RawFallbackCheckBox"
+                Margin="24,0,0,0"
+                IsVisible="False"
+                Content="If system year JSON is 404, try previous year automatically" />
+      <StackPanel Orientation="Horizontal" Spacing="8">
+        <RadioButton x:Name="ManualYearRadioButton"
+                     GroupName="YearMode"
+                     Checked="YearMode_OnChanged"
+                     Content="Use manual year" />
+        <TextBox x:Name="ManualYearTextBox"
+                 Width="120"
+                 Watermark="1900-3000" />
+      </StackPanel>
+
+      <TextBlock Text="URLs" FontWeight="SemiBold" Margin="0,8,0,0" />
+      <TextBlock Text="repo_api_lists_url" />
+      <TextBox x:Name="RepoApiListsUrlTextBox"
+               Watermark="https://api.github.com/repos/&lt;owner&gt;/&lt;repo&gt;/contents/Lists" />
+      <TextBlock Text="raw_lists_uri" />
+      <TextBox x:Name="RawListsUriTextBox"
+               Watermark="Use {Program} and {Year} placeholders" />
+
+      <TextBlock Text="Startup Fetch" FontWeight="SemiBold" Margin="0,8,0,0" />
+      <CheckBox x:Name="AutoFetchOnStartupCheckBox"
+                Content="Auto fetch upon software startup"
+                IsChecked="True" />
+      <StackPanel Orientation="Horizontal" Spacing="8">
+        <TextBlock VerticalAlignment="Center" Text="Delay fetch (seconds 0-10)" />
+        <TextBox x:Name="AutoFetchDelayTextBox" Width="80" Text="1" />
+      </StackPanel>
+
+      <TextBlock Text="Download Defaults" FontWeight="SemiBold" Margin="0,8,0,0" />
+      <CheckBox x:Name="DefaultVerifyAfterDownloadCheckBox"
+                Content="Verify MD5 after download (entire folder) by default" />
+      <CheckBox x:Name="LockVerifyAfterDownloadCheckBox"
+                Content="Lock verify-after-download setting (grey out in main UI)" />
+
+      <StackPanel Orientation="Horizontal" Spacing="8">
+        <TextBlock VerticalAlignment="Center" Text="Default max parallel download" />
+        <TextBox x:Name="DefaultMaxParallelDownloadsTextBox" Width="80" Text="3" />
+      </StackPanel>
+      <CheckBox x:Name="LockMaxParallelDownloadsCheckBox"
+                Content="Lock max parallel download setting (grey out in main UI)" />
+
+      <TextBlock Text="When file already exists in folder" FontWeight="SemiBold" Margin="0,8,0,0" />
+      <RadioButton x:Name="RedownloadReplaceRadioButton"
+                   GroupName="FileExistsBehavior"
+                   Content="Redownload and replace" />
+      <RadioButton x:Name="VerifyThenSkipRadioButton"
+                   GroupName="FileExistsBehavior"
+                   Content="Verify MD5, if match, skip download" />
+      <RadioButton x:Name="SkipDoNothingRadioButton"
+                   GroupName="FileExistsBehavior"
+                   Content="Skip, do nothing (no MD5 verify)" />
+
+      <TextBlock Text="Step 3 View" FontWeight="SemiBold" Margin="0,8,0,0" />
+      <RadioButton x:Name="Step3TagViewRadioButton"
+                   GroupName="Step3ViewMode"
+                   Content="Tag view (new)" />
+      <RadioButton x:Name="Step3TabViewRadioButton"
+                   GroupName="Step3ViewMode"
+                   Content="Tab view (legacy)" />
+
+      <CheckBox x:Name="HideSettingCheckBox"
+                Margin="0,8,0,0"
+                Content="Hide setting button on main window"
+                Checked="HideSetting_OnChecked" />
+
+      <TextBlock x:Name="ErrorTextBlock"
+                 Foreground="#B00020"
+                 IsVisible="False"
+                 TextWrapping="Wrap"
+                 Margin="0,8,0,0" />
+
+      <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Right" Margin="0,8,0,0">
+        <Button Content="Save" MinWidth="90" Click="Save_OnClick" />
+        <Button Content="Cancel" MinWidth="90" Click="Cancel_OnClick" />
+      </StackPanel>
+    </StackPanel>
+  </ScrollViewer>
+</Window>

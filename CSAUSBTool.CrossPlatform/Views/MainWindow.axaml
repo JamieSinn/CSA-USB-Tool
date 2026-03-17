@@ -22,17 +22,32 @@
       <Setter Property="FontWeight" Value="SemiBold" />
     </Style>
   </Window.Styles>
-  <Grid RowDefinitions="Auto,Auto,Auto,*,Auto,Auto" Margin="12">
+  <Grid RowDefinitions="Auto,Auto,*,Auto,Auto,Auto" Margin="12">
 
-    <StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="8" Margin="0,0,0,8">
-      <Button Content="{Binding Step1ButtonText}" Classes.step-done="{Binding IsStep1Done}" Click="FetchJsonList_OnClick" />
-      <ComboBox Width="450"
-                ItemsSource="{Binding JsonFiles}"
-                SelectedItem="{Binding SelectedJsonFile}" />
-      <Button Content="{Binding Step2ButtonText}" Classes.step-done="{Binding IsStep2Done}" Click="LoadSelectedJson_OnClick" />
-    </StackPanel>
+    <Grid Grid.Row="0" ColumnDefinitions="*,Auto" Margin="0,0,0,8">
+      <StackPanel Grid.Column="0" Orientation="Horizontal" Spacing="8">
+        <Button Content="{Binding Step1ButtonText}" Classes.step-done="{Binding IsStep1Done}" Click="FetchJsonList_OnClick" />
+        <ComboBox Width="450"
+                  ItemsSource="{Binding JsonFiles}"
+                  SelectedItem="{Binding SelectedJsonFile}"
+                  IsVisible="{Binding ShowJsonSelection}" />
+        <Button Content="{Binding Step2ButtonText}"
+                Classes.step-done="{Binding IsStep2Done}"
+                Click="LoadSelectedJson_OnClick"
+                IsVisible="{Binding ShowStep2Button}" />
+      </StackPanel>
+      <Button Grid.Column="1"
+              Content="⚙"
+              Width="36"
+              Height="32"
+              Margin="8,0,0,0"
+              FontSize="18"
+              ToolTip.Tip="Settings"
+              IsVisible="{Binding ShowSettingsButton}"
+              Click="OpenSettings_OnClick" />
+    </Grid>
 
-    <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="8" Margin="0,0,0,8">
+    <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="8" Margin="0,0,0,8" IsVisible="{Binding IsStep3TagView}">
       <TextBlock VerticalAlignment="Center" Text="{Binding Step3Text}" Classes.step-done="{Binding IsStep3Done}" />
       <ComboBox Width="220"
                 ItemsSource="{Binding TagOptions}"
@@ -41,13 +56,19 @@
       <Button Content="Deselect All" Click="DeselectAll_OnClick" />
     </StackPanel>
 
-    <StackPanel Grid.Row="2" Orientation="Horizontal" Spacing="8" Margin="0,0,0,8">
+    <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="8" Margin="0,0,0,8" IsVisible="{Binding IsStep3TabView}">
+      <TextBlock VerticalAlignment="Center" Text="{Binding Step3Text}" Classes.step-done="{Binding IsStep3Done}" />
+      <Button Content="Select All in Tab" Click="SelectAllInTab_OnClick" />
+      <Button Content="Deselect All in Tab" Click="DeselectAllInTab_OnClick" />
+    </StackPanel>
+
+    <StackPanel Grid.Row="3" Orientation="Horizontal" Spacing="8" Margin="0,0,0,8">
       <Button Content="{Binding Step4ButtonText}" Classes.step-done="{Binding IsStep4Done}" Click="SelectFolder_OnClick" />
       <TextBox Width="650" Text="{Binding DownloadFolder}" />
       <Button Content="Open Directory" Click="OpenFolder_OnClick" />
     </StackPanel>
 
-    <ListBox Grid.Row="3" ItemsSource="{Binding SoftwareItems}" Margin="0,0,0,8">
+    <ListBox Grid.Row="2" ItemsSource="{Binding SoftwareItems}" Margin="0,0,0,8" IsVisible="{Binding IsStep3TagView}">
       <ListBox.ItemTemplate>
         <DataTemplate x:DataType="models:ControlSystemSoftware">
           <Border BorderThickness="0,0,0,1" BorderBrush="#33444444" Padding="4">
@@ -69,15 +90,56 @@
       </ListBox.ItemTemplate>
     </ListBox>
 
+    <Grid Grid.Row="2" RowDefinitions="Auto,*" Margin="0,0,0,8" IsVisible="{Binding IsStep3TabView}">
+      <TabControl Grid.Row="0" ItemsSource="{Binding Step3TabOptions}" SelectedItem="{Binding SelectedStep3Tab}" Margin="0,0,0,8">
+        <TabControl.ItemTemplate>
+          <DataTemplate>
+            <TextBlock Text="{Binding}" />
+          </DataTemplate>
+        </TabControl.ItemTemplate>
+        <TabControl.ContentTemplate>
+          <DataTemplate>
+            <Grid Height="0" />
+          </DataTemplate>
+        </TabControl.ContentTemplate>
+      </TabControl>
+
+      <ListBox Grid.Row="1" ItemsSource="{Binding Step3TabItems}">
+        <ListBox.ItemTemplate>
+          <DataTemplate x:DataType="models:ControlSystemSoftware">
+            <Border BorderThickness="0,0,0,1" BorderBrush="#33444444" Padding="4">
+              <StackPanel Spacing="4">
+                <Grid ColumnDefinitions="*,Auto">
+                  <CheckBox Grid.Column="0"
+                            IsChecked="{Binding IsChecked}"
+                            IsEnabled="{Binding IsSelectable}"
+                            Content="{Binding DisplayText}" />
+                  <TextBlock Grid.Column="1" Text="{Binding StatusText}" />
+                </Grid>
+                <ProgressBar Minimum="0"
+                             Maximum="100"
+                             Value="{Binding DownloadProgress}"
+                             ShowProgressText="True" />
+              </StackPanel>
+            </Border>
+          </DataTemplate>
+        </ListBox.ItemTemplate>
+      </ListBox>
+    </Grid>
+
     <StackPanel Grid.Row="4" Orientation="Horizontal" Spacing="8" Margin="0,0,0,8">
       <Button Content="{Binding Step5ButtonText}" Classes.step-done="{Binding IsStep5Done}" Click="DownloadSelected_OnClick" IsEnabled="{Binding CanDownload}" />
       <Button Content="{Binding Step6ButtonText}" Classes.step-done="{Binding IsStep6Done}" Click="VerifyMd5_OnClick" IsEnabled="{Binding CanVerify}" />
-      <CheckBox Content="Verify MD5 after download (entire folder)" IsChecked="{Binding VerifyAfterDownload}" VerticalAlignment="Center" />
+      <CheckBox Content="Verify MD5 after download (entire folder)"
+                IsChecked="{Binding VerifyAfterDownload}"
+                IsEnabled="{Binding IsVerifyAfterDownloadEditable}"
+                VerticalAlignment="Center" />
       <Button Content="Cancel" Click="Cancel_OnClick" />
       <TextBlock VerticalAlignment="Center" Text="Max Parallel" />
       <ComboBox Width="80"
                 ItemsSource="{Binding MaxParallelOptions}"
-                SelectedItem="{Binding MaxParallelDownloads}" />
+                SelectedItem="{Binding MaxParallelDownloads}"
+                IsEnabled="{Binding IsMaxParallelDownloadsEditable}" />
     </StackPanel>
 
     <StackPanel Grid.Row="5" Orientation="Horizontal" Spacing="6" Margin="0,4,0,0">
@@ -86,4 +148,3 @@
     </StackPanel>
   </Grid>
 </Window>
-
