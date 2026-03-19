@@ -43,7 +43,7 @@ namespace CSAUSBTool.CrossPlatform.Models
             var outputUri = new Uri(new Uri(outputPath), FileName);
             try
             {
-                await using var existingFile = File.OpenRead(System.Uri.UnescapeDataString(outputUri.AbsolutePath));
+                await using var existingFile = File.OpenRead(System.Uri.UnescapeDataString(outputUri.LocalPath));
 
                 if (existingFile is { Length: > 0 })
                 {
@@ -56,7 +56,7 @@ namespace CSAUSBTool.CrossPlatform.Models
                             return;
                         }
 
-                        File.Delete(outputUri.AbsolutePath);
+                        File.Delete(outputUri.LocalPath);
                     }
                 }
             }
@@ -67,7 +67,7 @@ namespace CSAUSBTool.CrossPlatform.Models
             
 
             using var client =
-                new HttpClientDownloadWithProgress(Uri, outputUri.AbsolutePath);
+                new HttpClientDownloadWithProgress(Uri, outputUri.LocalPath);
             //client.ProgressChanged += _8kbBuffer;
             client.ProgressChanged += UpdateProgress;
             await client.StartDownload(token);
