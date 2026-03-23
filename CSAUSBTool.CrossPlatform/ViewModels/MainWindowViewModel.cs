@@ -26,7 +26,7 @@ public class MainWindowViewModel : ViewModelBase
     private readonly HttpClient _httpClient;
     private readonly RepoSettingsService _repoSettingsService = new();
     private AppSettings _settings = new();
-    private bool _temporaryShowSettingsButton;
+    private bool _temporaryShowMenuBar;
     private readonly Dictionary<string, string> _jsonPathToUrl = new(StringComparer.OrdinalIgnoreCase);
     private readonly List<ControlSystemSoftware> _observedSoftwareItems = [];
     private CancellationTokenSource? _operationCts;
@@ -207,7 +207,7 @@ public class MainWindowViewModel : ViewModelBase
     public int AutoFetchDelaySeconds => _settings.AutoFetchDelaySeconds;
     public bool IsVerifyAfterDownloadEditable => !_settings.LockVerifyAfterDownload;
     public bool IsMaxParallelDownloadsEditable => !_settings.LockMaxParallelDownloads;
-    public bool ShowSettingsButton => _temporaryShowSettingsButton || !_settings.HideSetting;
+    public bool ShowMenuBar => _temporaryShowMenuBar || !_settings.HideSetting;
 
     public string Step1ButtonText
     {
@@ -268,21 +268,48 @@ public class MainWindowViewModel : ViewModelBase
         this.RaisePropertyChanged(nameof(AutoFetchDelaySeconds));
         this.RaisePropertyChanged(nameof(IsVerifyAfterDownloadEditable));
         this.RaisePropertyChanged(nameof(IsMaxParallelDownloadsEditable));
-        this.RaisePropertyChanged(nameof(ShowSettingsButton));
+        this.RaisePropertyChanged(nameof(ShowMenuBar));
         this.RaisePropertyChanged(nameof(Step1ButtonText));
         RefreshStep3TabData();
         UpdateGuidanceHint();
     }
 
-    public void EnableTemporarySettingsButton()
+    public void ClearFetchedAndLoadedDataForSettingsChange()
     {
-        if (_temporaryShowSettingsButton)
+        JsonFiles.Clear();
+        _jsonPathToUrl.Clear();
+        SelectedJsonFile = null;
+
+        DetachSoftwareObservers();
+        SoftwareItems.Clear();
+        Step3TabItems.Clear();
+        Step3TabOptions.Clear();
+        TagOptions.Clear();
+        TagOptions.Add("All Tags");
+        SelectedTag = "All Tags";
+        SelectedStep3Tab = null;
+
+        IsStep1Done = false;
+        IsStep2Done = false;
+        IsStep5Done = false;
+        IsStep6Done = false;
+
+        this.RaisePropertyChanged(nameof(CanDownload));
+        this.RaisePropertyChanged(nameof(CanVerify));
+        this.RaisePropertyChanged(nameof(IsStep3Done));
+        this.RaisePropertyChanged(nameof(Step3Text));
+        UpdateGuidanceHint();
+    }
+
+    public void EnableTemporaryMenuBar()
+    {
+        if (_temporaryShowMenuBar)
         {
             return;
         }
 
-        _temporaryShowSettingsButton = true;
-        this.RaisePropertyChanged(nameof(ShowSettingsButton));
+        _temporaryShowMenuBar = true;
+        this.RaisePropertyChanged(nameof(ShowMenuBar));
     }
 
     public async Task FetchJsonListAsync()

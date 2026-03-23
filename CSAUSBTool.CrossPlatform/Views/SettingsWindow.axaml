@@ -105,7 +105,7 @@
 
       <CheckBox x:Name="HideSettingCheckBox"
                 Margin="0,8,0,0"
-                Content="Hide setting button on main window"
+                Content="Hide menu bar on main window"
                 Checked="HideSetting_OnChecked" />
 
       <TextBlock x:Name="ErrorTextBlock"

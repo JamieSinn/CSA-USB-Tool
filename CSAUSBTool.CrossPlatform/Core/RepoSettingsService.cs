@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Linq;
+using Microsoft.Extensions.Configuration;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 
@@ -29,29 +30,29 @@ public class RepoSettingsService
     public AppSettings LoadSettings()
     {
         var settings = new AppSettings();
-        var root = LoadRootObjectOrNull();
-        if (root == null)
+        var config = LoadConfigurationOrNull();
+        if (config == null)
         {
             return NormalizeSettings(settings);
         }
 
-        settings.FetchMethod = ReadString(root, FetchMethodKey, settings.FetchMethod);
-        settings.Program = ReadString(root, ProgramKey, settings.Program);
-        settings.OtherProgram = ReadString(root, OtherProgramKey, settings.OtherProgram);
-        settings.YearMode = ReadString(root, YearModeKey, settings.YearMode);
-        settings.Step3ViewMode = ReadString(root, Step3ViewModeKey, settings.Step3ViewMode);
-        settings.ManualYear = ReadInt(root, ManualYearKey, settings.ManualYear);
-        settings.RawSystemYearFallbackToPrevious = ReadBool(root, RawSystemYearFallbackKey, settings.RawSystemYearFallbackToPrevious);
-        settings.AutoFetchOnStartup = ReadBool(root, AutoFetchOnStartupKey, settings.AutoFetchOnStartup);
-        settings.AutoFetchDelaySeconds = ReadInt(root, AutoFetchDelaySecondsKey, settings.AutoFetchDelaySeconds);
-        settings.DefaultVerifyAfterDownload = ReadBool(root, DefaultVerifyAfterDownloadKey, settings.DefaultVerifyAfterDownload);
-        settings.LockVerifyAfterDownload = ReadBool(root, LockVerifyAfterDownloadKey, settings.LockVerifyAfterDownload);
-        settings.DefaultMaxParallelDownloads = ReadInt(root, DefaultMaxParallelDownloadsKey, settings.DefaultMaxParallelDownloads);
-        settings.LockMaxParallelDownloads = ReadBool(root, LockMaxParallelDownloadsKey, settings.LockMaxParallelDownloads);
-        settings.FileExistsBehavior = ReadString(root, FileExistsBehaviorKey, settings.FileExistsBehavior);
-        settings.HideSetting = ReadBool(root, HideSettingKey, settings.HideSetting);
-        settings.RepoApiListsUrl = ReadString(root, RepoApiListsUrlKey, settings.RepoApiListsUrl);
-        settings.RawListsUri = ReadString(root, RawListsUriKey, settings.RawListsUri);
+        settings.FetchMethod = ReadString(config, FetchMethodKey, settings.FetchMethod);
+        settings.Program = ReadString(config, ProgramKey, settings.Program);
+        settings.OtherProgram = ReadString(config, OtherProgramKey, settings.OtherProgram);
+        settings.YearMode = ReadString(config, YearModeKey, settings.YearMode);
+        settings.Step3ViewMode = ReadString(config, Step3ViewModeKey, settings.Step3ViewMode);
+        settings.ManualYear = ReadInt(config, ManualYearKey, settings.ManualYear);
+        settings.RawSystemYearFallbackToPrevious = ReadBool(config, RawSystemYearFallbackKey, settings.RawSystemYearFallbackToPrevious);
+        settings.AutoFetchOnStartup = ReadBool(config, AutoFetchOnStartupKey, settings.AutoFetchOnStartup);
+        settings.AutoFetchDelaySeconds = ReadInt(config, AutoFetchDelaySecondsKey, settings.AutoFetchDelaySeconds);
+        settings.DefaultVerifyAfterDownload = ReadBool(config, DefaultVerifyAfterDownloadKey, settings.DefaultVerifyAfterDownload);
+        settings.LockVerifyAfterDownload = ReadBool(config, LockVerifyAfterDownloadKey, settings.LockVerifyAfterDownload);
+        settings.DefaultMaxParallelDownloads = ReadInt(config, DefaultMaxParallelDownloadsKey, settings.DefaultMaxParallelDownloads);
+        settings.LockMaxParallelDownloads = ReadBool(config, LockMaxParallelDownloadsKey, settings.LockMaxParallelDownloads);
+        settings.FileExistsBehavior = ReadString(config, FileExistsBehaviorKey, settings.FileExistsBehavior);
+        settings.HideSetting = ReadBool(config, HideSettingKey, settings.HideSetting);
+        settings.RepoApiListsUrl = ReadString(config, RepoApiListsUrlKey, settings.RepoApiListsUrl);
+        settings.RawListsUri = ReadString(config, RawListsUriKey, settings.RawListsUri);
 
         return NormalizeSettings(settings);
     }
@@ -187,7 +188,7 @@ public class RepoSettingsService
         return GetRuntimeConfigPath();
     }
 
-    private static JsonObject? LoadRootObjectOrNull()
+    private static IConfiguration? LoadConfigurationOrNull()
     {
         TryMigrateCurrentDirectoryConfigToRuntime();
         var path = ResolveExistingConfigPath();
@@ -196,7 +197,21 @@ public class RepoSettingsService
             return null;
         }
 
-        return LoadRootObject(path);
+        return LoadConfiguration(path);
+    }
+
+    private static IConfiguration LoadConfiguration(string path)
+    {
+        var directory = Path.GetDirectoryName(path);
+        if (string.IsNullOrWhiteSpace(directory))
+        {
+            throw new InvalidOperationException($"Invalid config path: {path}");
+        }
+
+        return new ConfigurationBuilder()
+            .SetBasePath(directory)
+            .AddJsonFile(Path.GetFileName(path), optional: false, reloadOnChange: false)
+            .Build();
     }
 
     private static JsonObject LoadRootObjectOrCreate(string path)
@@ -220,19 +235,21 @@ public class RepoSettingsService
         return root;
     }
 
-    private static string ReadString(JsonObject root, string key, string fallback)
+    private static string ReadString(IConfiguration config, string key, string fallback)
     {
-        return root[key]?.GetValue<string>() ?? fallback;
+        return config[key] ?? fallback;
     }
 
-    private static int ReadInt(JsonObject root, string key, int fallback)
+    private static int ReadInt(IConfiguration config, string key, int fallback)
     {
-        return root[key]?.GetValue<int>() ?? fallback;
+        var value = config[key];
+        return int.TryParse(value, out var parsed) ? parsed : fallback;
     }
 
-    private static bool ReadBool(JsonObject root, string key, bool fallback)
+    private static bool ReadBool(IConfiguration config, string key, bool fallback)
     {
-        return root[key]?.GetValue<bool>() ?? fallback;
+        var value = config[key];
+        return bool.TryParse(value, out var parsed) ? parsed : fallback;
     }
 
     private static AppSettings NormalizeSettings(AppSettings settings)

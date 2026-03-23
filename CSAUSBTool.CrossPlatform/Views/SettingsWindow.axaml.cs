@@ -103,6 +103,18 @@ public partial class SettingsWindow : Window
         _isLoading = false;
     }
 
+    public void PrefillForCustomProgram()
+    {
+        SelectComboItemByTag(ProgramComboBox, "Other");
+        UpdateProgramUi();
+    }
+
+    public void PrefillForManualYear()
+    {
+        ManualYearRadioButton.IsChecked = true;
+        UpdateModeSpecificUi();
+    }
+
     private AppSettings BuildSettingsFromInputs()
     {
         var fetchMethod = GetSelectedComboTag(FetchMethodComboBox) ?? "github_api";
@@ -196,7 +208,7 @@ public partial class SettingsWindow : Window
         var warningText = new TextBlock
         {
             TextWrapping = Avalonia.Media.TextWrapping.Wrap,
-            Text = "Enabling this will hide the settings button on the main window. Temporary access: start with --showsetting or type showsetting on the main window. To permanently disable hide_setting, either remove the \"hide_setting\" line from config.json, or temporarily show settings and uncheck this option."
+            Text = "Enabling this will hide the top menu bar (including Menu > Settings) on the main window. Temporary access: start with --showsetting or type showsetting on the main window. To permanently disable hide_setting, either remove the \"hide_setting\" line from config.json, or temporarily show the menu and uncheck this option."
         };
 
         var warningLayout = new StackPanel
