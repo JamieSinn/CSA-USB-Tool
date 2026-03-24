@@ -1,0 +1,336 @@
+{
+  "Year": 2025,
+  "Program": "FTC",
+  "Software": [
+    {
+      "Name": "Home",
+      "Description": "Select your desired pre-selected software list",
+      "Tags": [
+        "Home"
+      ],
+      "FileName": null,
+      "Uri": "https://github.com",
+      "Hash": null,
+      "Platform": null
+    },
+    {
+      "Name": "NI Game Tools",
+      "Description": "Game Tools for FRC - DriverStation",
+      "Tags": [
+        "Team",
+        "Event",
+        "FTA",
+        "CSA"
+      ],
+      "FileName": "ni-frc-2025-game-tools_25.0.1_offline.iso",
+      "Uri": "https://download.ni.com/support/nipkg/products/ni-f/ni-frc-2025-game-tools/25.0/offline/ni-frc-2025-game-tools_25.0.1_offline.iso",
+      "Hash": "7fd3f9fef61449f8e263c61ed9f2be6a",
+      "Platform": "Windows"
+    },
+    {
+      "Name": "NI LabVIEW",
+      "Description": "NI LabVIEW Base",
+      "Tags": [
+        "Team",
+        "Event",
+        "FTA",
+        "CSA"
+      ],
+      "FileName": "ni-frc-2025-base-suite_25.0.0.49156-0+f4_offline.iso",
+      "Uri": "https://download.ni.com/support/nipkg/products/ni-f/ni-frc-2025-base-suite/25.0/offline/ni-frc-2025-base-suite_25.0.0.49156-0+f4_offline.iso",
+      "Hash": "5b8f9d06aa175563c6d31d7cbfa8c60c",
+      "Platform": "Windows"
+    },
+    {
+      "Name": "NI CompactRIO Driver",
+      "Description": "cRIO Driver - Rarely used, but can be helpful for recovering roboRIOs",
+      "Tags": [
+        "FTA",
+        "CSA"
+      ],
+      "FileName": "ni-compactrio-device-drivers_24.0.0.49260-0+f108_offline.iso",
+      "Uri": "https://download.ni.com/support/nipkg/products/ni-c/ni-compactrio-device-drivers/24.0/offline/ni-compactrio-device-drivers_24.0.0.49260-0+f108_offline.iso",
+      "Hash": "a76eef4d5d81d9f01a1c2ea860ba170a",
+      "Platform": "Windows"
+    },
+    {
+      "Name": "WPILibInstaller Windows64",
+      "Description": "WPILib Installer",
+      "Tags": [
+        "Event",
+        "Team",
+        "CSA"
+      ],
+      "FileName": "WPILib_Windows-2025.3.2.iso",
+      "Uri": "https://packages.wpilib.workers.dev/installer/v2025.3.2/Win64/WPILib_Windows-2025.3.2.iso",
+      "Hash": "bb749ad10e857b904c5fb7780718a778",
+      "Platform": "Windows"
+    },
+    {
+      "Name": "WPILib VS Code",
+      "Description": "WPILib Installer can source a specific VSCode version if needed.",
+      "Tags": [
+        "Event",
+        "Team",
+        "CSA"
+      ],
+      "FileName": "VSCode-1.96.2-Windows.zip",
+      "Uri": "https://update.code.visualstudio.com/1.96.2/win32-x64-archive/stable",
+      "Hash": "bbd8d51067b5f3a06041d88f74ed3a4b",
+      "Platform": "Windows"
+    },
+    {
+      "Name": "Season Password",
+      "Description": "WPILib Installer",
+      "Tags": [
+        "Event",
+        "Team",
+        "FTA",
+        "CSA"
+      ],
+      "FileName": "2025Password.txt",
+      "Uri": "https://raw.githubusercontent.com/JamieSinn/CSA-USB-Tool/main/2025Password.txt",
+      "Hash": "035e077ac662be31f3138fe6a8148103",
+      "Platform": "Windows"
+    },
+    {
+      "Name": "CTRE Phoenix",
+      "Description": "Phoenix 6 Offline Installer - Contains all data/supporting tools.",
+      "Tags": [
+        "Event",
+        "Team",
+        "FTA",
+        "CSA"
+      ],
+      "FileName": "Phoenix-Offline_v25.3.2.exe",
+      "Uri": "https://github.com/CrossTheRoadElec/Phoenix-Releases/releases/download/v25.3.2/Phoenix-Offline_v25.3.2.exe",
+      "Hash": "f03e47ca8016bb9e397ee7064a91f974",
+      "Platform": "Windows"
+    },
+    {
+      "Name": "VH-109 Network Assistant",
+      "Description": "Vivid Hosting Network Assitant Tool",
+      "Tags": [
+        "Event",
+        "Team",
+        "FTA",
+        "CSA"
+      ],
+      "FileName": "vh_network_assistant.zip",
+      "Uri": "https://4239402461-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FzaDthb1gXvbj84qIfOUE%2Fuploads%2FJH9mvCiIVx33X8PlpHVK%2Fvh_network_assistant.zip?alt=media&token=a461c2fb-7fa0-4023-9264-ebcfeca0561c",
+      "Hash": "9528237b54bf36f55ce98c72f9ed7628",
+      "Platform": "Windows"
+    },
+    {
+      "Name": "VH-109 Firmware 1.3.0 for pre 1.2.0",
+      "Description": "Vivid Hosting Firmware to be used with VH-109 reporting no version (i.e. < 1.2.0)",
+      "Tags": [
+        "Event",
+        "Team",
+        "FTA",
+        "CSA"
+      ],
+      "FileName": "VH-109_1.3.0-02142025.img.enc",
+      "Uri": "https://4239402461-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FzaDthb1gXvbj84qIfOUE%2Fuploads%2F65TQWiqa8pCSqhqT91Er%2FVH-109_1.3.0-02142025.img.enc?alt=media&token=45103316-adcc-4a7a-8ec8-7c20e50fd97b",
+      "Hash": "667a7a2001c834ac3fac7bca24ae7c51",
+      "Platform": null
+    },
+    {
+      "Name": "VH-109 Firmware 1.3.0 for 1.2.0+",
+      "Description": "Vivid Hosting Firmware to be used with VH-109 reporting versions >= 1.2.0",
+      "Tags": [
+        "Event",
+        "Team",
+        "FTA",
+        "CSA"
+      ],
+      "FileName": "VH-109_1.3.0-02142025.FROM_1_2_X.img.enc",
+      "Uri": "https://4239402461-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FzaDthb1gXvbj84qIfOUE%2Fuploads%2Fn54KTi8BM3jHNiEmnTe6%2FVH-109_1.3.0-02142025.FROM_1_2_X.img.enc?alt=media&token=9d22757c-99fc-4cda-914c-28fb97c9cda4",
+      "Hash": "84f9a0e5ddc40836bcaa190bdf466dd2",
+      "Platform": null
+    },
+    {
+      "Name": "2025 Game Manual",
+      "Description": "Season ",
+      "Tags": [
+        "Event",
+        "Team",
+        "FTA",
+        "CSA"
+      ],
+      "FileName": "2025GameManual.pdf",
+      "Uri": "https://firstfrc.blob.core.windows.net/frc2025/Manual/2025GameManual.pdf",
+      "Hash": null,
+      "Platform": null
+    },
+    {
+      "Name": "Studica Hardware Manager",
+      "Description": "Updates and configures all Studica electronics including NavX",
+      "Tags": [
+        "Event",
+        "Team",
+        "CSA"
+      ],
+      "FileName": "Studica_Hardware_Manager-Setup_1.0.0.exe",
+      "Uri": "https://dev.studica.com/maven/release/firmware/app/win32/Studica_Hardware_Manager-Setup_1.0.0.exe",
+      "Hash": "73676756c2bc95f5a8d57c75d1782386",
+      "Platform": "Windows"
+    },
+    {
+      "Name": "REV Hardware Client",
+      "Description": "REV Hardware Client w/ FRC firmware.",
+      "Tags": [
+        "Event",
+        "Team",
+        "CSA"
+      ],
+      "FileName": "REV-Hardware-Client-Setup-1.7.5-offline-FRC-2025-03-18.exe",
+      "Uri": "https://github.com/REVrobotics/REV-Software-Binaries/releases/download/rhc-1.7.5/REV-Hardware-Client-Setup-1.7.5-offline-FRC-2025-03-18.exe",
+      "Hash": "b149e84d0a08d1aab11ed84a2a3ecc45",
+      "Platform": "Windows"
+    },
+    {
+      "Name": "REVlib LabView API",
+      "Description": "REV Library for use with Labview",
+      "Tags": [
+        "Event",
+        "Team",
+        "CSA"
+      ],
+      "FileName": "revlib_2025.0.0-0_windows_all.nipkg",
+      "Uri": "https://github.com/REVrobotics/REV-Software-Binaries/releases/download/revlib-2025.0.0/revlib_2025.0.0-0_windows_all.nipkg",
+      "Hash": "ad00851226a6d8130b8ec0c762472ed7",
+      "Platform": "Windows"
+    },
+    {
+      "Name": "REVlib Java/C++ API",
+      "Description": "REV Library for use with Java and C++",
+      "Tags": [
+        "Event",
+        "Team",
+        "CSA"
+      ],
+      "FileName": "REVLib-offline-v2025.0.3.zip",
+      "Uri": "https://github.com/REVrobotics/REV-Software-Binaries/releases/download/revlib-2025.0.3/REVLib-offline-v2025.0.3.zip",
+      "Hash": "5ee350f310c7a3bdb0640808e9815279",
+      "Platform": "Windows"
+    },
+    {
+      "Name": "Limelight Hardware Manager",
+      "Description": "Limelight Hardware Manager",
+      "Tags": [
+        "Event",
+        "Team",
+        "CSA"
+      ],
+      "FileName": "LimelightHardwareManagerSetup1_5_0.exe",
+      "Uri": "https://downloads.limelightvision.io/software/LimelightHardwareManagerSetup1_5_0.exe",
+      "Hash": "70cdc6b3817a2b092a6dbd4c5a55f772",
+      "Platform": "Windows"
+    },
+    {
+      "Name": "Limelight USB Drivers",
+      "Description": "Compute Module Module Installer.  Provides Windows drivers for Limelight.",
+      "Tags": [
+        "Event",
+        "Team",
+        "CSA"
+      ],
+      "FileName": "rpiboot_setup.exe",
+      "Uri": "https://github.com/raspberrypi/usbboot/raw/master/win32/rpiboot_setup.exe",
+      "Hash": "3107682e67ea4c6d35ea784d421ef338",
+      "Platform": "Windows"
+    },
+    {
+      "Name": "Balena Etcher Flash Tool v1.19.5",
+      "Description": "Flash Tool.  Useful for flashing new images to devices like Limelights.",
+      "Tags": [
+        "Event",
+        "Team",
+        "CSA"
+      ],
+      "FileName": "balenaEtcher-1.19.5.Setup.exe",
+      "Uri": "https://github.com/balena-io/etcher/releases/download/v1.19.5/balenaEtcher-1.19.5.Setup.exe",
+      "Hash": "972f11897ad99fb3377ef6c58afabb9d",
+      "Platform": "Windows"
+    },
+    {
+      "Name": "Limelight OS 2025 for LL 1, 2, 2+",
+      "Description": "Limelight OS image for early limelight models",
+      "Tags": [
+        "Event",
+        "Team",
+        "CSA"
+      ],
+      "FileName": "limelight2_2025_1_release.zip",
+      "Uri": "https://downloads.limelightvision.io/images/limelight2_2025_1_release.zip",
+      "Hash": "13eb694116b3a85edb9ef11a7ba51b57",
+      "Platform": "Windows"
+    },
+    {
+      "Name": "Limelight OS 2025 for LL 3",
+      "Description": "Limelight OS image for Limelight 3 models",
+      "Tags": [
+        "Event",
+        "Team",
+        "CSA"
+      ],
+      "FileName": "limelight3_2025_1_release.zip",
+      "Uri": "https://downloads.limelightvision.io/images/limelight3_2025_1_release.zip",
+      "Hash": "3ae5f15e1ddeeb66f43ca60d141bcf8c",
+      "Platform": "Windows"
+    },
+    {
+      "Name": "Limelight OS 2025 for LL 3G",
+      "Description": "Limelight OS image for Limelight 3G models",
+      "Tags": [
+        "Event",
+        "Team",
+        "CSA"
+      ],
+      "FileName": "limelight3g_2025_1_release.zip",
+      "Uri": "https://downloads.limelightvision.io/images/limelight3g_2025_1_release.zip",
+      "Hash": "8652721d7c2e5ee71dfb0387c549403f",
+      "Platform": "Windows"
+    },
+    {
+      "Name": "Limelight OS 2025 for LL 4",
+      "Description": "Limelight OS image for Limelight 4 models",
+      "Tags": [
+        "Event",
+        "Team",
+        "CSA"
+      ],
+      "FileName": "limelight4_2025_1_release.zip",
+      "Uri": "https://downloads.limelightvision.io/images/limelight4_2025_1_release.zip",
+      "Hash": "7bddd51a9af0c7792e025792555ef6c3",
+      "Platform": "Windows"
+    },
+    {
+      "Name": "Limelight 2025 AprilTag map v2 Welded Field",
+      "Description": "A map of AprilTags for the 2025 game for the Welded Field",
+      "Tags": [
+        "Event",
+        "Team",
+        "CSA"
+      ],
+      "FileName": "frc2025r2.fmap",
+      "Uri": "https://downloads.limelightvision.io/models/frc2025r2.fmap",
+      "Hash": "9f31c7f5ca2e8c65bd3b161a9a616aa5",
+      "Platform": "Windows"
+    },
+    {
+      "Name": "Limelight 2025 AprilTag map v2 AndyMark Field",
+      "Description": "A map of AprilTags for the 2025 game for the AndyMark Field",
+      "Tags": [
+        "Event",
+        "Team",
+        "CSA"
+      ],
+      "FileName": "frc2025r2_ANDYMARK.fmap",
+      "Uri": "https://downloads.limelightvision.io/models/frc2025r2_ANDYMARK.fmap",
+      "Hash": "633d8e1e6297f91313c11dae99c39544",
+      "Platform": "Windows"
+    }
+  ]
+}
