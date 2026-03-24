@@ -10,9 +10,12 @@ import (
 	"os"
 )
 
-var completed = make(chan Software, 100)
-var failed = make(chan Software, 100)
-var filePath string
+var (
+	completed        = make(chan Software, 100)
+	failed           = make(chan Software, 100)
+	filePath         string
+	enableConcurrent bool
+)
 
 type ProgramSeason struct {
 	Year     int        `json:"Year,omitempty"`
@@ -58,6 +61,7 @@ func (s *Software) Download() error {
 func main() {
 
 	flag.StringVar(&filePath, "file", "", "File path")
+	flag.BoolVar(&enableConcurrent, "concurrent", false, "Enable concurrent downloads")
 	flag.Parse()
 
 	if filePath == "" {
@@ -105,7 +109,7 @@ func checkFile(filePath string) (err error) {
 	// Download the software
 	for _, s := range programSeason.Software {
 		software := s
-		go func() {
+		dl := func() {
 			e2 := software.Download()
 			if e2 != nil {
 				fmt.Println(e2)
@@ -113,7 +117,12 @@ func checkFile(filePath string) (err error) {
 			} else {
 				completed <- software
 			}
-		}()
+		}
+		if enableConcurrent {
+			go dl()
+		} else {
+			dl()
+		}
 	}
 
 	completedCount := 0
@@ -133,6 +142,9 @@ func checkFile(filePath string) (err error) {
 			fmt.Println("All downloads finished")
 			break
 		}
+	}
+	if failedCount > 0 {
+		return fmt.Errorf("failed to download %d software", failedCount)
 	}
 	return nil
 }
