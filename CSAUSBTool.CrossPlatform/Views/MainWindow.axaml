@@ -1,16 +1,204 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="using:CSAUSBTool.CrossPlatform.ViewModels"
+        xmlns:models="using:CSAUSBTool.CrossPlatform.Models"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:views="clr-namespace:CSAUSBTool.CrossPlatform.Views"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d"
+        d:DesignWidth="1200"
+        d:DesignHeight="800"
         x:Class="CSAUSBTool.CrossPlatform.Views.MainWindow"
         Icon="/Assets/reuven.ico"
-        Title="CSAUSBTool v2"
+        Title="CSA USB Tool"
         x:DataType="vm:MainWindowViewModel"
         SizeToContent="Manual">
-  <Grid>
-    <views:ProgramYearView />
+  <Window.Styles>
+    <Style Selector="Button.step-done">
+      <Setter Property="Background" Value="#2E7D32" />
+      <Setter Property="Foreground" Value="White" />
+    </Style>
+    <Style Selector="TextBlock.step-done">
+      <Setter Property="Foreground" Value="#2E7D32" />
+      <Setter Property="FontWeight" Value="SemiBold" />
+    </Style>
+  </Window.Styles>
+  <Grid RowDefinitions="Auto,Auto,Auto,*,Auto,Auto,Auto" Margin="12">
+
+    <Menu Grid.Row="0" IsVisible="{Binding ShowMenuBar}" Margin="0,0,0,8">
+      <MenuItem Header="_File">
+        <MenuItem Header="_Load JSON" Click="LoadJsonFromMenu_OnClick" />
+        <MenuItem Header="_Settings" Click="OpenSettings_OnClick" />
+        <Separator />
+        <MenuItem Header="E_xit" Click="Exit_OnClick" />
+      </MenuItem>
+
+      <MenuItem Header="_Program">
+        <MenuItem x:Name="ProgramFrcMenuItem" Header="_FRC" ToggleType="CheckBox" Click="ProgramFrc_OnClick" />
+        <MenuItem x:Name="ProgramFtcMenuItem" Header="F_TC" ToggleType="CheckBox" Click="ProgramFtc_OnClick" />
+        <MenuItem x:Name="ProgramFllMenuItem" Header="F_LL" ToggleType="CheckBox" Click="ProgramFll_OnClick" />
+        <MenuItem x:Name="ProgramOtherMenuItem" Header="_Other..." ToggleType="CheckBox" Click="ProgramOther_OnClick" />
+      </MenuItem>
+
+      <MenuItem Header="_Year">
+        <MenuItem x:Name="YearLargestMenuItem"
+                  Header="Use largest year from available JSON"
+                  ToggleType="CheckBox"
+                  Click="YearLargest_OnClick" />
+        <MenuItem x:Name="YearSystemMenuItem"
+                  Header="Use system year"
+                  ToggleType="CheckBox"
+                  Click="YearSystem_OnClick" />
+        <MenuItem x:Name="YearRawFallbackMenuItem"
+                  Header="If system year is 404, try previous year"
+                  ToggleType="CheckBox"
+                  Click="YearRawFallback_OnClick" />
+        <Separator />
+        <MenuItem x:Name="YearManualPreviousMenuItem" Header="Previous year" ToggleType="CheckBox" Click="YearManualPrevious_OnClick" />
+        <MenuItem x:Name="YearManualCurrentMenuItem" Header="Current year" ToggleType="CheckBox" Click="YearManualCurrent_OnClick" />
+        <MenuItem x:Name="YearManualNextMenuItem" Header="Next year" ToggleType="CheckBox" Click="YearManualNext_OnClick" />
+        <MenuItem x:Name="YearManualCustomMenuItem" Header="Custom..." ToggleType="CheckBox" Click="YearManualCustom_OnClick" />
+      </MenuItem>
+
+      <MenuItem Header="_Fetch Method">
+        <MenuItem x:Name="FetchGithubApiMenuItem"
+                  Header="GitHub API"
+                  ToggleType="CheckBox"
+                  Click="FetchGithubApi_OnClick" />
+        <MenuItem x:Name="FetchRawMenuItem"
+                  Header="Raw file URL"
+                  ToggleType="CheckBox"
+                  Click="FetchRaw_OnClick" />
+        <Separator />
+        <MenuItem x:Name="AutoFetchMenuItem"
+                  Header="Auto fetch on startup"
+                  ToggleType="CheckBox"
+                  Click="AutoFetch_OnClick" />
+      </MenuItem>
+
+      <MenuItem Header="_View">
+        <MenuItem x:Name="ViewTagMenuItem"
+                  Header="Tag view"
+                  ToggleType="CheckBox"
+                  Click="ViewTag_OnClick" />
+        <MenuItem x:Name="ViewTabMenuItem"
+                  Header="Tab view"
+                  ToggleType="CheckBox"
+                  Click="ViewTab_OnClick" />
+      </MenuItem>
+    </Menu>
+
+    <Grid Grid.Row="1" ColumnDefinitions="*" Margin="0,0,0,8">
+      <StackPanel Grid.Column="0" Orientation="Horizontal" Spacing="8">
+        <Button Content="{Binding Step1ButtonText}" Classes.step-done="{Binding IsStep1Done}" Click="FetchJsonList_OnClick" />
+        <ComboBox Width="450"
+                  ItemsSource="{Binding JsonFiles}"
+                  SelectedItem="{Binding SelectedJsonFile}"
+                  IsVisible="{Binding ShowJsonSelection}" />
+        <Button Content="{Binding Step2ButtonText}"
+                Classes.step-done="{Binding IsStep2Done}"
+                Click="LoadSelectedJson_OnClick"
+                IsVisible="{Binding ShowStep2Button}" />
+      </StackPanel>
+    </Grid>
+
+    <StackPanel Grid.Row="2" Orientation="Horizontal" Spacing="8" Margin="0,0,0,8" IsVisible="{Binding IsStep3TagView}">
+      <TextBlock VerticalAlignment="Center" Text="{Binding Step3Text}" Classes.step-done="{Binding IsStep3Done}" />
+      <ComboBox Width="220"
+                ItemsSource="{Binding TagOptions}"
+                x:Name="TagSelector" SelectedItem="{Binding SelectedTag}" />
+      <Button Content="Select All" Click="SelectAll_OnClick" />
+      <Button Content="Deselect All" Click="DeselectAll_OnClick" />
+    </StackPanel>
+
+    <StackPanel Grid.Row="2" Orientation="Horizontal" Spacing="8" Margin="0,0,0,8" IsVisible="{Binding IsStep3TabView}">
+      <TextBlock VerticalAlignment="Center" Text="{Binding Step3Text}" Classes.step-done="{Binding IsStep3Done}" />
+      <Button Content="Select All in Tab" Click="SelectAllInTab_OnClick" />
+      <Button Content="Deselect All in Tab" Click="DeselectAllInTab_OnClick" />
+    </StackPanel>
+
+    <StackPanel Grid.Row="4" Orientation="Horizontal" Spacing="8" Margin="0,0,0,8">
+      <Button Content="{Binding Step4ButtonText}" Classes.step-done="{Binding IsStep4Done}" Click="SelectFolder_OnClick" />
+      <TextBox Width="650" Text="{Binding DownloadFolder}" />
+      <Button Content="Open Directory" Click="OpenFolder_OnClick" />
+    </StackPanel>
+
+    <ListBox Grid.Row="3" ItemsSource="{Binding SoftwareItems}" Margin="0,0,0,8" IsVisible="{Binding IsStep3TagView}">
+      <ListBox.ItemTemplate>
+        <DataTemplate x:DataType="models:ControlSystemSoftware">
+          <Border BorderThickness="0,0,0,1" BorderBrush="#33444444" Padding="4">
+            <StackPanel Spacing="4">
+              <Grid ColumnDefinitions="*,Auto">
+                <CheckBox Grid.Column="0"
+                          IsChecked="{Binding IsChecked}"
+                          IsEnabled="{Binding IsSelectable}"
+                          Content="{Binding DisplayText}" />
+                <TextBlock Grid.Column="1" Text="{Binding StatusText}" />
+              </Grid>
+              <ProgressBar Minimum="0"
+                           Maximum="100"
+                           Value="{Binding DownloadProgress}"
+                           ShowProgressText="True" />
+            </StackPanel>
+          </Border>
+        </DataTemplate>
+      </ListBox.ItemTemplate>
+    </ListBox>
+
+    <Grid Grid.Row="3" RowDefinitions="Auto,*" Margin="0,0,0,8" IsVisible="{Binding IsStep3TabView}">
+      <TabControl Grid.Row="0" ItemsSource="{Binding Step3TabOptions}" SelectedItem="{Binding SelectedStep3Tab}" Margin="0,0,0,8">
+        <TabControl.ItemTemplate>
+          <DataTemplate>
+            <TextBlock Text="{Binding}" />
+          </DataTemplate>
+        </TabControl.ItemTemplate>
+        <TabControl.ContentTemplate>
+          <DataTemplate>
+            <Grid Height="0" />
+          </DataTemplate>
+        </TabControl.ContentTemplate>
+      </TabControl>
+
+      <ListBox Grid.Row="1" ItemsSource="{Binding Step3TabItems}">
+        <ListBox.ItemTemplate>
+          <DataTemplate x:DataType="models:ControlSystemSoftware">
+            <Border BorderThickness="0,0,0,1" BorderBrush="#33444444" Padding="4">
+              <StackPanel Spacing="4">
+                <Grid ColumnDefinitions="*,Auto">
+                  <CheckBox Grid.Column="0"
+                            IsChecked="{Binding IsChecked}"
+                            IsEnabled="{Binding IsSelectable}"
+                            Content="{Binding DisplayText}" />
+                  <TextBlock Grid.Column="1" Text="{Binding StatusText}" />
+                </Grid>
+                <ProgressBar Minimum="0"
+                             Maximum="100"
+                             Value="{Binding DownloadProgress}"
+                             ShowProgressText="True" />
+              </StackPanel>
+            </Border>
+          </DataTemplate>
+        </ListBox.ItemTemplate>
+      </ListBox>
+    </Grid>
+
+    <StackPanel Grid.Row="5" Orientation="Horizontal" Spacing="8" Margin="0,0,0,8">
+      <Button Content="{Binding Step5ButtonText}" Classes.step-done="{Binding IsStep5Done}" Click="DownloadSelected_OnClick" IsEnabled="{Binding CanDownload}" />
+      <Button Content="{Binding Step6ButtonText}" Classes.step-done="{Binding IsStep6Done}" Click="VerifyMd5_OnClick" IsEnabled="{Binding CanVerify}" />
+      <CheckBox Content="Verify MD5 after download (entire folder)"
+                IsChecked="{Binding VerifyAfterDownload}"
+                IsEnabled="{Binding IsVerifyAfterDownloadEditable}"
+                VerticalAlignment="Center" />
+      <Button Content="Cancel" Click="Cancel_OnClick" />
+      <TextBlock VerticalAlignment="Center" Text="Max Parallel" />
+      <ComboBox Width="80"
+                ItemsSource="{Binding MaxParallelOptions}"
+                SelectedItem="{Binding MaxParallelDownloads}"
+                IsEnabled="{Binding IsMaxParallelDownloadsEditable}" />
+    </StackPanel>
+
+    <StackPanel Grid.Row="6" Orientation="Horizontal" Spacing="6" Margin="0,4,0,0">
+      <TextBlock Text="💡" FontSize="15" VerticalAlignment="Top" />
+      <TextBlock Text="{Binding StatusText}" TextWrapping="Wrap" />
+    </StackPanel>
   </Grid>
 </Window>

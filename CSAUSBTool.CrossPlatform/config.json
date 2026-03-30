@@ -1,0 +1,18 @@
+{
+  "fetch_method": "raw_url",
+  "program": "FRC",
+  "other_program": "",
+  "year_mode": "system_year",
+  "step3_view_mode": "tab_view",
+  "manual_year": 2026,
+  "raw_system_year_fallback_to_previous": false,
+  "auto_fetch_on_startup": true,
+  "auto_fetch_delay_seconds": 1,
+  "default_verify_after_download": false,
+  "lock_verify_after_download": false,
+  "default_max_parallel_downloads": 3,
+  "lock_max_parallel_downloads": false,
+  "file_exists_behavior": "verify_then_skip_if_match",
+  "repo_api_lists_url": "https://api.github.com/repos/JamieSinn/CSA-USB-Tool/contents/Lists",
+  "raw_lists_uri": "https://raw.githubusercontent.com/JamieSinn/CSA-USB-Tool/main/Lists/{Program}{Year}.json"
+}
